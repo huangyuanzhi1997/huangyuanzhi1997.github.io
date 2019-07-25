@@ -396,7 +396,7 @@
                 
               
 
-              <time title="创建时间：2019-07-25 18:21:20 / 修改时间：18:44:20" itemprop="dateCreated datePublished" datetime="2019-07-25T18:21:20+08:00">2019-07-25</time>
+              <time title="创建时间：2019-07-25 18:21:20 / 修改时间：19:30:07" itemprop="dateCreated datePublished" datetime="2019-07-25T18:21:20+08:00">2019-07-25</time>
             </span>
           
 
@@ -429,7 +429,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.4k</span>
+              <span title="本文字数">1.5k</span>
             </span>
           
 
@@ -452,7 +452,7 @@
       
         
           
-            <p>###Web资源</p>
+            <p>##Web资源</p>
 <p>在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。 </p>
 <p>有两种分类</p>
 <ul>
@@ -503,14 +503,14 @@ HttpServlet （用于处理http的请求）</code></pre><p>###定义一个类，
 默认情况下是 ： 初次访问该servlet，才会创建实例。 </code></pre></li>
 <li><p>service方法</p>
 <pre><code>只要客户端来了一个请求，那么就执行这个方法了。
-  该方法可以被执行很多次。 一次请求，对应一次service方法的调用</code></pre></li>
+该方法可以被执行很多次。 一次请求，对应一次service方法的调用</code></pre></li>
 <li><p>destroy方法</p>
-</li>
-</ul>
 <pre><code>servlet销毁的时候，就会执行该方法
 
     1. 该项目从tomcat的里面移除。
-    2. 正常关闭tomcat就会执行 shutdown.bat</code></pre><blockquote>
+    2. 正常关闭tomcat就会执行 shutdown.bat</code></pre></li>
+</ul>
+<blockquote>
 <p>doGet 和 doPost不算生命周期方法，所谓的生命周期方法是指，从对象的创建到销毁一定会执行的方法， 但是这两个方法，不一定会执行。</p>
 </blockquote>
 <p>###让Servlet创建实例的时机提前。</p>
@@ -520,14 +520,12 @@ HttpServlet （用于处理http的请求）</code></pre><p>###定义一个类，
 <li><p>那么这个时候，初次访问，可能会在init方法中逗留太久的时间。 那么有没有方法可以让这个初始化的时机提前一点。 </p>
 </li>
 <li><p>在配置的时候， 使用load-on-startup元素来指定， 给定的数字越小，启动的时机就越早。 一般不写负数， 从2开始即可。 </p>
-</li>
+<pre><code>&lt;servlet&gt;
+    &lt;servlet-name&gt;HelloServlet04&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.itheima.servlet.HelloServlet04&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+&lt;/servlet&gt;</code></pre></li>
 </ol>
-<servlet>
-              <servlet-name>HelloServlet04</servlet-name>
-              <servlet-class>com.itheima.servlet.HelloServlet04</servlet-class>
-              <load-on-startup>2</load-on-startup>
-          </servlet>
-
 <p>###为什么需要有这个ServletConfig</p>
 <blockquote>
 <p>Servlet的配置，通过这个对象，可以获取servlet在配置的时候一些信息</p>
