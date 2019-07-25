@@ -1792,7 +1792,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #04ff73;
+  background: #73fe73;
 }
 .feed-link,
 .chat {
@@ -2031,6 +2031,9 @@ pre .javascript .function {
 }
 .footer-inner {
   text-align: center;
+}
+#animate {
+  animation: iconAnimate 1.33s ease-in-out infinite;
 }
 .with-love {
   display: inline-block;
