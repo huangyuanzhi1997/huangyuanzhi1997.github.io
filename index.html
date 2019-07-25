@@ -396,7 +396,7 @@
                 
               
 
-              <time title="创建时间：2019-07-25 18:21:20 / 修改时间：20:50:47" itemprop="dateCreated datePublished" datetime="2019-07-25T18:21:20+08:00">2019-07-25</time>
+              <time title="创建时间：2019-07-25 18:21:20 / 修改时间：21:09:09" itemprop="dateCreated datePublished" datetime="2019-07-25T18:21:20+08:00">2019-07-25</time>
             </span>
           
 
@@ -456,91 +456,16 @@
 
       
         
+          <h2 id="Web资源"><a href="#Web资源" class="headerlink" title="Web资源"></a>Web资源</h2><p>在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。 </p>
+          <!--noindex-->
           
-            <h2 id="Web资源"><a href="#Web资源" class="headerlink" title="Web资源"></a>Web资源</h2><p>在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。 </p>
-<h3 id="有两种分类"><a href="#有两种分类" class="headerlink" title="有两种分类"></a>有两种分类</h3><ul>
-<li>静态资源</li>
-</ul>
-<p>html 、 js、 css</p>
-<ul>
-<li>动态资源</li>
-</ul>
-<p>servlet/jsp</p>
-<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><ul>
-<li>servlet是什么?</li>
-</ul>
-<blockquote>
-<p>其实就是一个java程序，运行在我们的web服务器上，用于接收和响应 客户端的http请求。 </p>
-</blockquote>
-<blockquote>
-<p>更多的是配合动态资源来做。 当然静态资源也需要使用到servlet，只不过是Tomcat里面已经定义好了一个 DefaultServlet</p>
-</blockquote>
-<h3 id="Servlet执行过程"><a href="#Servlet执行过程" class="headerlink" title="Servlet执行过程"></a>Servlet执行过程</h3><p> <img src="D:%5CHexo%5Csource%5Cimages%5CServlet%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.png" alt="image"></p>
-<h3 id="Servlet的通用写法"><a href="#Servlet的通用写法" class="headerlink" title="Servlet的通用写法"></a>Servlet的通用写法</h3><pre><code>Servlet (接口)
-    |
-    |
-GenericServlet
-    |
-    |
-HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类，继承HttpServlet-复写doGet-和-doPost"><a href="#定义一个类，继承HttpServlet-复写doGet-和-doPost" class="headerlink" title="定义一个类，继承HttpServlet 复写doGet 和 doPost"></a>定义一个类，继承HttpServlet 复写doGet 和 doPost</h3><p> <img src="D:%5CHexo%5Csource%5Cimages%5CServlet%E7%9A%84%E9%80%9A%E7%94%A8%E5%86%99%E6%B3%95.png" alt="image"></p>
-<h2 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h2><ul>
-<li>生命周期</li>
-</ul>
-<blockquote>
-<p>从创建到销毁的一段时间。</p>
-</blockquote>
-<ul>
-<li>生命周期方法</li>
-</ul>
-<blockquote>
-<p>从创建到销毁，所调用的那些方法。</p>
-</blockquote>
-<ul>
-<li><p>init方法</p>
-<pre><code>在创建该servlet的实例时，就执行该方法。
-一个servlet只会初始化一次， init方法只会执行一次
-默认情况下是 ： 初次访问该servlet，才会创建实例。 </code></pre></li>
-<li><p>service方法</p>
-<pre><code>只要客户端来了一个请求，那么就执行这个方法了。
-该方法可以被执行很多次。 一次请求，对应一次service方法的调用</code></pre></li>
-<li><p>destroy方法</p>
-<pre><code>servlet销毁的时候，就会执行该方法
-
-    1. 该项目从tomcat的里面移除。
-    2. 正常关闭tomcat就会执行 shutdown.bat</code></pre></li>
-</ul>
-<blockquote>
-<p>doGet 和 doPost不算生命周期方法，所谓的生命周期方法是指，从对象的创建到销毁一定会执行的方法， 但是这两个方法，不一定会执行。</p>
-</blockquote>
-<h3 id="让Servlet创建实例的时机提前"><a href="#让Servlet创建实例的时机提前" class="headerlink" title="让Servlet创建实例的时机提前"></a>让Servlet创建实例的时机提前</h3><ol>
-<li><p>默认情况下，只有在初次访问servlet的时候，才会执行init方法。 有的时候，我们可能需要在这个方法里面执行一些初始化工作，甚至是做一些比较耗时的逻辑。 </p>
-</li>
-<li><p>那么这个时候，初次访问，可能会在init方法中逗留太久的时间。 那么有没有方法可以让这个初始化的时机提前一点。 </p>
-</li>
-<li><p>在配置的时候， 使用load-on-startup元素来指定， 给定的数字越小，启动的时机就越早。 一般不写负数， 从2开始即可。 </p>
-<pre><code>&lt;servlet&gt;
-    &lt;servlet-name&gt;HelloServlet04&lt;/servlet-name&gt;
-    &lt;servlet-class&gt;com.itheima.servlet.HelloServlet04&lt;/servlet-class&gt;
-    &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
-&lt;/servlet&gt;</code></pre></li>
-</ol>
-<h3 id="为什么需要有这个ServletConfig"><a href="#为什么需要有这个ServletConfig" class="headerlink" title="为什么需要有这个ServletConfig"></a>为什么需要有这个ServletConfig</h3><blockquote>
-<p>Servlet的配置，通过这个对象，可以获取servlet在配置的时候一些信息</p>
-</blockquote>
-<blockquote>
-<p>先说 ， 再写怎么用， 最后说有什么用。</p>
-</blockquote>
-<ol>
-<li><p>未来我们自己开发的一些应用，使用到了一些技术，或者一些代码，我们不会。 但是有人写出来了。它的代码放置在了自己的servlet类里面。 </p>
-</li>
-<li><p>刚好这个servlet 里面需要一个数字或者叫做变量值。 但是这个值不能是固定了。 所以要求使用到这个servlet的公司，在注册servlet的时候，必须要在web.xml里面，声明init-params</p>
-</li>
-</ol>
-<ol start="3">
-<li>在开发当中比较少用。</li>
-</ol>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/25/Web服务技术之Servlet/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
