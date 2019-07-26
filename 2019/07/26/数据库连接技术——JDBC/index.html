@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="为什么会出现JDBC SUN公司提供的一种数据库访问规则、规范, 由于数据库种类较多，并且Java语言使用比较广泛，SUN公司就提供了一种规范，让其他的数据库提供商去实现底层的访问规则。 我们的Java程序只要使用SUN公司提供的JDBC驱动即可。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-26T05:23:05.676Z">
+<meta property="og:updated_time" content="2019-07-26T06:54:21.755Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库连接技术——JDBC(Java DataBase Connectivity)">
 <meta name="twitter:description" content="为什么会出现JDBC SUN公司提供的一种数据库访问规则、规范, 由于数据库种类较多，并且Java语言使用比较广泛，SUN公司就提供了一种规范，让其他的数据库提供商去实现底层的访问规则。 我们的Java程序只要使用SUN公司提供的JDBC驱动即可。">
@@ -395,7 +395,7 @@
                 
               
 
-              <time title="创建时间：2019-07-26 00:21:20 / 修改时间：13:23:05" itemprop="dateCreated datePublished" datetime="2019-07-26T00:21:20+08:00">2019-07-26</time>
+              <time title="创建时间：2019-07-26 00:21:20 / 修改时间：14:54:21" itemprop="dateCreated datePublished" datetime="2019-07-26T00:21:20+08:00">2019-07-26</time>
             </span>
           
 
@@ -451,7 +451,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">6.3k</span>
+              <span title="本文字数">6.2k</span>
             </span>
           
 
@@ -495,14 +495,9 @@
  <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(rs.next())&#123;</span><br><span class="line">	int <span class="built_in">id</span> = rs.getInt(<span class="string">"id"</span>);</span><br><span class="line">	String <span class="built_in">name</span> = rs.getString(<span class="string">"name"</span>);</span><br><span class="line">	int age = rs.getInt(<span class="string">"age"</span>);</span><br><span class="line">	System.out.println(<span class="string">"id="</span>+<span class="built_in">id</span> + <span class="string">"===name="</span>+<span class="built_in">name</span>+<span class="string">"==age="</span>+age);   		</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>释放资源：</p>
-<pre><code>if (rs != null) {
-    try {
-        rs.close();
-    } catch (SQLException sqlEx) { } // ignore 
-    rs = null;
-}
+ <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (rs != <span class="literal">null</span>) &#123;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           rs.close();</span><br><span class="line">       &#125; <span class="keyword">catch</span> (SQLException sqlEx) &#123; &#125; <span class="comment">// ignore </span></span><br><span class="line">       rs = <span class="literal">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
-...</code></pre></li>
+</li>
 </ol>
 <h3 id="JDBC-工具类构建"><a href="#JDBC-工具类构建" class="headerlink" title="JDBC 工具类构建"></a>JDBC 工具类构建</h3><ol>
 <li>资源释放工作的整合</li>
@@ -510,16 +505,17 @@
 <ol start="2">
 <li><p>驱动防二次注册</p>
 <p> 1). river 这个类里面有静态代码块，一上来就执行了，所以等同于我们注册了两次驱动。 其实没这个必要的。</p>
-<pre><code>DriverManager.registerDriver(new com.mysql.jdbc.Driver());</code></pre><p> 2). 静态代码块 ——&gt;类加载了，就执行。</p>
-<pre><code>java.sql.DriverManager.registerDriver(new Driver());</code></pre><p> 3).最后形成以下代码即可。</p>
-<pre><code>Class.forName(&quot;com.mysql.jdbc.Driver&quot;);    </code></pre></li>
+<p>   <code>DriverManager.registerDriver(new com.mysql.jdbc.Driver());</code></p>
+<p> 2). 静态代码块 ——&gt;类加载了，就执行。</p>
+<pre><code>`java.sql.DriverManager.registerDriver(new Driver());`</code></pre><p> 3).最后形成以下代码即可。</p>
+<pre><code>` Class.forName(&quot;com.mysql.jdbc.Driver&quot;);    `</code></pre></li>
 <li><p>使用properties配置文件</p>
 <p>  1). 在src底下声明一个文件 xxx.properties ，里面的内容如下：</p>
-<pre><code>driverClass=com.mysql.jdbc.Driver
+<pre><code>`driverClass=com.mysql.jdbc.Driver
 url=jdbc:mysql://localhost/student
 name=root
-password=root</code></pre><p> 2). 在工具类里面，使用静态代码块，读取属性</p>
-<pre><code>static{
+password=root`</code></pre><p> 2). 在工具类里面，使用静态代码块，读取属性</p>
+<pre><code>`static{
     try {
         //创建一个属性配置对象
         Properties properties = new Properties();
@@ -539,33 +535,34 @@ password=root</code></pre><p> 2). 在工具类里面，使用静态代码块，�
     } catch (Exception e) {
         e.printStackTrace();
     }
-}</code></pre></li>
+}`</code></pre></li>
 </ol>
 <p>​    </p>
 <h3 id="数据库-SQL-的CRUD"><a href="#数据库-SQL-的CRUD" class="headerlink" title="数据库(SQL)的CRUD"></a>数据库(SQL)的CRUD</h3><ul>
 <li><p>insert</p>
 <pre><code>INSERT INTO t_stu (NAME , age) VALUES (&apos;wangqiang&apos;,28)
 
-  INSERT INTO t_stu VALUES (NULL,&apos;wangqiang2&apos;,28)
+  INSERT INTO t_stu VALUES (NULL,&apos;wangqiang2&apos;,28)</code></pre><p>  `        </p>
+<pre><code>// 1. 获取连接对象
+conn = JDBCUtil.getConn();
+// 2. 根据连接对象，得到statement
+st = conn.createStatement();
 
-  // 1. 获取连接对象
-      conn = JDBCUtil.getConn();
-      // 2. 根据连接对象，得到statement
-      st = conn.createStatement();
+//3. 执行添加
+String sql = &quot;insert into t_stu values(null , &apos;aobama&apos; , 59)&quot;;
+//影响的行数， ，如果大于0 表明操作成功。 否则失败
+int result = st.executeUpdate(sql);
 
-      //3. 执行添加
-      String sql = &quot;insert into t_stu values(null , &apos;aobama&apos; , 59)&quot;;
-      //影响的行数， ，如果大于0 表明操作成功。 否则失败
-      int result = st.executeUpdate(sql);
-
-      if(result &gt;0 ){
-          System.out.println(&quot;添加成功&quot;);
-      }else{
-          System.out.println(&quot;添加失败&quot;);
-      }</code></pre></li>
+if(result &gt;0 ){
+    System.out.println(&quot;添加成功&quot;);
+}else{
+    System.out.println(&quot;添加失败&quot;);
+}</code></pre><p>`</p>
+</li>
 <li><p>delete</p>
 <pre><code>DELETE FROM t_stu WHERE id = 6
 
+      `
       // 1. 获取连接对象
       conn = JDBCUtil.getConn();
       // 2. 根据连接对象，得到statement
@@ -580,55 +577,57 @@ password=root</code></pre><p> 2). 在工具类里面，使用静态代码块，�
           System.out.println(&quot;删除成功&quot;);
       }else{
           System.out.println(&quot;删除失败&quot;);
-      }</code></pre></li>
+      }</code></pre><p>`</p>
+</li>
 <li><p>query</p>
-<pre><code>SELECT * FROM t_stu
+<pre><code>SELECT * FROM t_stu</code></pre><p>  `</p>
+<pre><code>// 1. 获取连接对象
+conn = JDBCUtil.getConn();
+// 2. 根据连接对象，得到statement
+st = conn.createStatement();
 
-      // 1. 获取连接对象
-      conn = JDBCUtil.getConn();
-      // 2. 根据连接对象，得到statement
-      st = conn.createStatement();
+// 3. 执行sql语句，返回ResultSet
+String sql = &quot;select * from t_stu&quot;;
+rs = st.executeQuery(sql);
 
-      // 3. 执行sql语句，返回ResultSet
-      String sql = &quot;select * from t_stu&quot;;
-      rs = st.executeQuery(sql);
+// 4. 遍历结果集
+while (rs.next()) {
+    String name = rs.getString(&quot;name&quot;);
+    int age = rs.getInt(&quot;age&quot;);
 
-      // 4. 遍历结果集
-      while (rs.next()) {
-          String name = rs.getString(&quot;name&quot;);
-          int age = rs.getInt(&quot;age&quot;);
-
-          System.out.println(name + &quot;   &quot; + age);
-      }</code></pre></li>
+    System.out.println(name + &quot;   &quot; + age);
+ }</code></pre><p>  `</p>
+</li>
 <li><p>update</p>
-<pre><code>UPDATE t_stu SET age = 38 WHERE id = 1;
+<pre><code>UPDATE t_stu SET age = 38 WHERE id = 1;</code></pre><p>  `</p>
+<pre><code>// 1. 获取连接对象
+    conn = JDBCUtil.getConn();
+    // 2. 根据连接对象，得到statement
+    st = conn.createStatement();
 
-  // 1. 获取连接对象
-      conn = JDBCUtil.getConn();
-      // 2. 根据连接对象，得到statement
-      st = conn.createStatement();
+    //3. 执行添加
+    String sql = &quot;update t_stu set age = 26 where name =&apos;qyq&apos;&quot;;
+    //影响的行数， ，如果大于0 表明操作成功。 否则失败
+    int result = st.executeUpdate(sql);
 
-      //3. 执行添加
-      String sql = &quot;update t_stu set age = 26 where name =&apos;qyq&apos;&quot;;
-      //影响的行数， ，如果大于0 表明操作成功。 否则失败
-      int result = st.executeUpdate(sql);
-
-      if(result &gt;0 ){
-          System.out.println(&quot;更新成功&quot;);
-      }else{
-          System.out.println(&quot;更新失败&quot;);
-      }</code></pre></li>
+    if(result &gt;0 ){
+        System.out.println(&quot;更新成功&quot;);
+    }else{
+        System.out.println(&quot;更新失败&quot;);
+    }</code></pre><p>  `</p>
+</li>
 </ul>
 <h3 id="使用单元测试，测试代码"><a href="#使用单元测试，测试代码" class="headerlink" title="使用单元测试，测试代码"></a>使用单元测试，测试代码</h3><ol>
 <li><p>定义一个类， TestXXX , 里面定义方法 testXXX.</p>
 </li>
 <li><p>添加Junit的支持。 </p>
 <pre><code>右键工程 --- add Library --- Junit --- Junit4</code></pre></li>
-<li><p>在方法的上面加上注解 ， 其实就是一个标记。</p>
+<li><p>在方法的上面加上注解 ， 其实就是一个标记。<br>`</p>
 <pre><code>@Test
 public void testQuery() {
     ...
-}</code></pre></li>
+}</code></pre><p>`</p>
+</li>
 <li><p>光标选中方法名字，然后右键执行单元测试。  或者是打开outline视图， 然后选择方法右键执行。</p>
 </li>
 </ol>
@@ -637,6 +636,7 @@ public void testQuery() {
 </blockquote>
 <ol>
 <li><p>新建一个dao的接口， 里面声明数据库访问规则</p>
+<p> `</p>
 <pre><code>/**
  * 定义操作数据库的方法
  */
@@ -646,10 +646,10 @@ public interface UserDao {
      * 查询所有
      */
     void findAll();
-}</code></pre></li>
-</ol>
-<ol start="2">
+}</code></pre><p> `</p>
+</li>
 <li><p>新建一个dao的实现类，具体实现早前定义的规则</p>
+<p> `</p>
 <pre><code>public class UserDaoImpl implements UserDao{
 
 @Override
@@ -677,17 +677,18 @@ public void findAll() {
     }finally {
         JDBCUtil.release(conn, st, rs);
     }
-}</code></pre><p> }</p>
+}</code></pre><p> }<br> `</p>
 </li>
 <li><p>直接使用实现</p>
+<p>  `</p>
 <pre><code>@Test
 public void testFindAll(){
     UserDao dao = new UserDaoImpl();
     dao.findAll();
-}</code></pre></li>
-</ol>
-<h2 id="Statement安全问题"><a href="#Statement安全问题" class="headerlink" title="Statement安全问题"></a>Statement安全问题</h2><ol>
-<li><p>Statement执行 ，其实是拼接sql语句的。  先拼接sql语句，然后在一起执行。 </p>
+}</code></pre><p> `</p>
+<h2 id="Statement安全问题"><a href="#Statement安全问题" class="headerlink" title="Statement安全问题"></a>Statement安全问题</h2></li>
+<li><p>Statement执行 ，其实是拼接sql语句的。即先拼接sql语句，然后在一起执行。 </p>
+<p> `</p>
 <pre><code>String sql = &quot;select * from t_user where username=&apos;&quot;+ username  +&quot;&apos; and password=&apos;&quot;+ password +&quot;&apos;&quot;;
 
 UserDao dao = new UserDaoImpl();
@@ -696,19 +697,22 @@ dao.login(&quot;admin&quot;, &quot;100234khsdf88&apos; or &apos;1=1&quot;);
 SELECT * FROM t_user WHERE username=&apos;admin&apos; AND PASSWORD=&apos;100234khsdf88&apos; or &apos;1=1&apos; 
 
 //前面先拼接sql语句， 如果变量里面带有了 数据库的关键字，那么一并认为是关键字。 不认为是普通的字符串。 
-rs = st.executeQuery(sql);</code></pre></li>
+rs = st.executeQuery(sql);</code></pre><p> `</p>
+</li>
 </ol>
 <h2 id="PrepareStatement的用法"><a href="#PrepareStatement的用法" class="headerlink" title="PrepareStatement的用法"></a>PrepareStatement的用法</h2><blockquote>
 <p>该对象就是替换前面的statement对象。</p>
 </blockquote>
 <ol>
 <li><p>相比较以前的statement， 预先处理给定的sql语句，对其执行语法检查。 在sql语句里面使用 ? 占位符来替代后续要传递进来的变量。 后面进来的变量值，将会被看成是字符串，不会产生任何的关键字。</p>
+<p> `</p>
 <pre><code>String sql = &quot;insert into t_user values(null , ? , ?)&quot;;
 ps = conn.prepareStatement(sql);
 
 //给占位符赋值 从左到右数过来，1 代表第一个问号， 永远都是从1开始。
 ps.setString(1, userName);
-ps.setString(2, password);</code></pre></li>
+ps.setString(2, password);</code></pre><p> `</p>
+</li>
 </ol>
 <p>​</p>
 

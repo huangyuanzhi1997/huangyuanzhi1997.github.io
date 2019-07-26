@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="Web资源在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-26T06:16:08.893Z">
+<meta property="og:updated_time" content="2019-07-26T06:39:26.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web服务技术——Servlet">
 <meta name="twitter:description" content="Web资源在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。">
@@ -410,7 +410,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-26 14:16:08" itemprop="dateModified" datetime="2019-07-26T14:16:08+08:00">2019-07-26</time>
+                <time title="修改时间：2019-07-26 14:39:26" itemprop="dateModified" datetime="2019-07-26T14:39:26+08:00">2019-07-26</time>
               </span>
             
           
@@ -541,13 +541,12 @@ HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类�
 <li><p>init方法</p>
 <pre><code>在创建该Servlet的实例时，就执行该方法。
 一个Servlet只会初始化一次， init方法只会执行一次。
-默认情况下是 ： 初次访问该Servlet，才会创建实例。 </code></pre></li>
+默认情况下是 ： 初次访问该Servlet，才会创建实例。</code></pre></li>
 <li><p>service方法</p>
 <pre><code>只要客户端来了一个请求，那么就执行这个方法了。
 该方法可以被执行很多次。 一次请求，对应一次service方法的调用。</code></pre></li>
 <li><p>destroy方法</p>
-<pre><code>servlet销毁的时候，就会执行该方法
-
+<pre><code>servlet销毁的时候，就会执行该方法。
 1). 该项目从Tomcat的里面移除。
 2). 正常关闭Tomcat就会执行 shutdown.bat。</code></pre></li>
 </ol>
