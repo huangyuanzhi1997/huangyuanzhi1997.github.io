@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="为什么会出现JDBC SUN公司提供的一种数据库访问规则、规范, 由于数据库种类较多，并且Java语言使用比较广泛，SUN公司就提供了一种规范，让其他的数据库提供商去实现底层的访问规则。 我们的Java程序只要使用SUN公司提供的JDBC驱动即可。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-26T05:04:55.971Z">
+<meta property="og:updated_time" content="2019-07-26T05:19:33.940Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库连接技术——JDBC(Java DataBase Connectivity)">
 <meta name="twitter:description" content="为什么会出现JDBC SUN公司提供的一种数据库访问规则、规范, 由于数据库种类较多，并且Java语言使用比较广泛，SUN公司就提供了一种规范，让其他的数据库提供商去实现底层的访问规则。 我们的Java程序只要使用SUN公司提供的JDBC驱动即可。">
@@ -395,7 +395,7 @@
                 
               
 
-              <time title="创建时间：2019-07-26 00:21:20 / 修改时间：13:04:55" itemprop="dateCreated datePublished" datetime="2019-07-26T00:21:20+08:00">2019-07-26</time>
+              <time title="创建时间：2019-07-26 00:21:20 / 修改时间：13:19:33" itemprop="dateCreated datePublished" datetime="2019-07-26T00:21:20+08:00">2019-07-26</time>
             </span>
           
 
@@ -451,7 +451,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">6.4k</span>
+              <span title="本文字数">6.3k</span>
             </span>
           
 
@@ -480,28 +480,20 @@
 
 <h3 id="使用JDBC的基本步骤"><a href="#使用JDBC的基本步骤" class="headerlink" title="使用JDBC的基本步骤"></a>使用JDBC的基本步骤</h3><ol>
 <li><p>注册驱动：</p>
-<p> ‘’’java</p>
-<pre><code>DriverManager.registerDriver(new com.mysql.jdbc.Driver());</code></pre><p> ‘’’</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DriverManager.registerDriver(<span class="keyword">new</span> com.mysql.jdbc.Driver());</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>建立连接：参数一： 协议 + 访问的数据库 ， 参数二： 用户名 ， 参数三： 密码。</p>
-<p> ‘’’java</p>
-<pre><code>//DriverManager.getConnection(&quot;jdbc:mysql://localhost/test?user=monty&amp;password=greatsqldb&quot;);
-conn = DriverManager.getConnection(&quot;jdbc:mysql://localhost/student&quot;, &quot;root&quot;, &quot;root&quot;);</code></pre><p> ‘’’</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//DriverManager.getConnection("jdbc:mysql://localhost/test?user=monty&amp;password=greatsqldb");  </span></span><br><span class="line">conn = DriverManager.getConnection(<span class="string">"jdbc:mysql://localhost/student"</span>, <span class="string">"root"</span>, <span class="string">"root"</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>创建statement：跟数据库打交道，一定需要这个对象。</p>
-<p> ‘’’java</p>
-<pre><code>st = conn.createStatement();</code></pre><p> ‘’’</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st = conn.createStatement();</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>执行sql ，得到ResultSet：执行查询，得到结果集。</p>
-<pre><code>String sql = &quot;select * from t_stu&quot;;
-rs = st.executeQuery(sql);</code></pre></li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String sql = <span class="string">"select * from t_stu"</span>;</span><br><span class="line">rs = st.executeQuery(sql);</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>遍历结果集：遍历查询每一条记录 。</p>
-<pre><code>while(rs.next()){
-    int id = rs.getInt(&quot;id&quot;);
-    String name = rs.getString(&quot;name&quot;);
-    int age = rs.getInt(&quot;age&quot;);
-    System.out.println(&quot;id=&quot;+id + &quot;===name=&quot;+name+&quot;==age=&quot;+age);           
-    }</code></pre></li>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(rs.next())&#123;</span><br><span class="line">	<span class="keyword">int</span> id = rs.getInt(<span class="string">"id"</span>);</span><br><span class="line">	String name = rs.getString(<span class="string">"name"</span>);</span><br><span class="line">	<span class="keyword">int</span> age = rs.getInt(<span class="string">"age"</span>);</span><br><span class="line">	System.out.println(<span class="string">"id="</span>+id + <span class="string">"===name="</span>+name+<span class="string">"==age="</span>+age);   		</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>释放资源：</p>
 <pre><code>if (rs != null) {
     try {
