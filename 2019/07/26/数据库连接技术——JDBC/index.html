@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="JDBC(Java DataBase Connectivity： Java 数据库连接)为什么会出现JDBC SUN公司提供的一种数据库访问规则、规范, 由于数据库种类较多，并且Java语言使用比较广泛，SUN公司就提供了一种规范，让其他的数据库提供商去实现底层的访问规则。 我们的Java程序只要使用SUN公司提供的JDBC驱动即可。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-26T02:58:18.305Z">
+<meta property="og:updated_time" content="2019-07-26T03:04:23.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库连接技术——JDBC">
 <meta name="twitter:description" content="JDBC(Java DataBase Connectivity： Java 数据库连接)为什么会出现JDBC SUN公司提供的一种数据库访问规则、规范, 由于数据库种类较多，并且Java语言使用比较广泛，SUN公司就提供了一种规范，让其他的数据库提供商去实现底层的访问规则。 我们的Java程序只要使用SUN公司提供的JDBC驱动即可。">
@@ -395,7 +395,7 @@
                 
               
 
-              <time title="创建时间：2019-07-26 00:21:20 / 修改时间：10:58:18" itemprop="dateCreated datePublished" datetime="2019-07-26T00:21:20+08:00">2019-07-26</time>
+              <time title="创建时间：2019-07-26 00:21:20 / 修改时间：11:04:23" itemprop="dateCreated datePublished" datetime="2019-07-26T00:21:20+08:00">2019-07-26</time>
             </span>
           
 
@@ -451,7 +451,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">6.3k</span>
+              <span title="本文字数">6.4k</span>
             </span>
           
 
@@ -567,23 +567,23 @@ password=root</code></pre><p> 2). 在工具类里面，使用静态代码块，�
           System.out.println(&quot;添加失败&quot;);
       }</code></pre></li>
 <li><p>delete</p>
-<pre><code>DELETE FROM t_stu WHERE id = 6</code></pre></li>
-</ul>
-<pre><code>// 1. 获取连接对象
-conn = JDBCUtil.getConn();
-// 2. 根据连接对象，得到statement
-st = conn.createStatement();
+<pre><code>DELETE FROM t_stu WHERE id = 6
 
-//3. 执行添加
-String sql = &quot;delete from t_stu where name=&apos;aobama&apos;&quot;;
-//影响的行数， ，如果大于0 表明操作成功。 否则失败
-int result = st.executeUpdate(sql);
+      // 1. 获取连接对象
+      conn = JDBCUtil.getConn();
+      // 2. 根据连接对象，得到statement
+      st = conn.createStatement();
 
-if(result &gt;0 ){
-    System.out.println(&quot;删除成功&quot;);
-}else{
-    System.out.println(&quot;删除失败&quot;);
-}</code></pre><ul>
+      //3. 执行添加
+      String sql = &quot;delete from t_stu where name=&apos;aobama&apos;&quot;;
+      //影响的行数， ，如果大于0 表明操作成功。 否则失败
+      int result = st.executeUpdate(sql);
+
+      if(result &gt;0 ){
+          System.out.println(&quot;删除成功&quot;);
+      }else{
+          System.out.println(&quot;删除失败&quot;);
+      }</code></pre></li>
 <li><p>query</p>
 <pre><code>SELECT * FROM t_stu
 
