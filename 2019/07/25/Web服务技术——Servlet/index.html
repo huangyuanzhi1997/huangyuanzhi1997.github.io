@@ -104,7 +104,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/25/Web服务技术——Servlet/images/Implementation.png">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/25/Web服务技术——Servlet/images/GeneralWriting.png">
-<meta property="og:updated_time" content="2019-07-26T03:04:23.340Z">
+<meta property="og:updated_time" content="2019-07-26T04:07:39.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web服务技术——Servlet">
 <meta name="twitter:description" content="Web资源在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。">
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-26 11:04:23" itemprop="dateModified" datetime="2019-07-26T11:04:23+08:00">2019-07-26</time>
+                <time title="修改时间：2019-07-26 12:07:39" itemprop="dateModified" datetime="2019-07-26T12:07:39+08:00">2019-07-26</time>
               </span>
             
           
@@ -492,15 +492,16 @@
 <h3 id="有两种分类"><a href="#有两种分类" class="headerlink" title="有两种分类"></a>有两种分类</h3><ul>
 <li>静态资源</li>
 </ul>
+<blockquote>
 <p>html 、 js、 css</p>
+</blockquote>
 <ul>
 <li>动态资源</li>
 </ul>
-<p>servlet/jsp</p>
-<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><ul>
-<li>servlet是什么?</li>
-</ul>
 <blockquote>
+<p>servlet/jsp</p>
+</blockquote>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="servlet是什么"><a href="#servlet是什么" class="headerlink" title="servlet是什么?"></a>servlet是什么?</h3><blockquote>
 <ol>
 <li>其实就是一个java程序，运行在我们的web服务器上，用于接收和响应 客户端的http请求。 </li>
 </ol>
@@ -510,13 +511,13 @@
 <li>更多的是配合动态资源来做。 当然静态资源也需要使用到servlet，只不过是Tomcat里面已经定义好了一个 DefaultServlet</li>
 </ol>
 </blockquote>
-<h3 id="Servlet执行过程"><a href="#Servlet执行过程" class="headerlink" title="Servlet执行过程"></a>Servlet执行过程</h3><p> <img src="images/Implementation.png" alt></p>
+<h3 id="Servlet执行过程"><a href="#Servlet执行过程" class="headerlink" title="Servlet执行过程"></a>Servlet执行过程</h3><p><img src="images/Implementation.png" alt></p>
 <h3 id="Servlet的通用写法"><a href="#Servlet的通用写法" class="headerlink" title="Servlet的通用写法"></a>Servlet的通用写法</h3><pre><code>Servlet (接口)
-    |
-    |
+     |
+     |
 GenericServlet
-    |
-    |
+     |
+     |
 HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类，继承HttpServlet-复写doGet-和-doPost"><a href="#定义一个类，继承HttpServlet-复写doGet-和-doPost" class="headerlink" title="定义一个类，继承HttpServlet 复写doGet 和 doPost"></a>定义一个类，继承HttpServlet 复写doGet 和 doPost</h3><p> <img src="images/GeneralWriting.png" alt></p>
 <h2 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h2><ul>
 <li>生命周期</li>
@@ -665,8 +666,8 @@ HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/26/数据库连接技术——JDBC/" rel="prev" title="数据库连接技术——JDBC">
-                数据库连接技术——JDBC <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/26/数据库连接技术——JDBC/" rel="prev" title="数据库连接技术——JDBC(Java DataBase Connectivity)">
+                数据库连接技术——JDBC(Java DataBase Connectivity) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -850,7 +851,7 @@ HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web资源"><span class="nav-text">Web资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有两种分类"><span class="nav-text">有两种分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet"><span class="nav-text">Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet执行过程"><span class="nav-text">Servlet执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet的通用写法"><span class="nav-text">Servlet的通用写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义一个类，继承HttpServlet-复写doGet-和-doPost"><span class="nav-text">定义一个类，继承HttpServlet 复写doGet 和 doPost</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet的生命周期"><span class="nav-text">Servlet的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#让Servlet创建实例的时机提前"><span class="nav-text">让Servlet创建实例的时机提前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要有这个ServletConfig"><span class="nav-text">为什么需要有这个ServletConfig</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web资源"><span class="nav-text">Web资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有两种分类"><span class="nav-text">有两种分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet"><span class="nav-text">Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#servlet是什么"><span class="nav-text">servlet是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet执行过程"><span class="nav-text">Servlet执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet的通用写法"><span class="nav-text">Servlet的通用写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义一个类，继承HttpServlet-复写doGet-和-doPost"><span class="nav-text">定义一个类，继承HttpServlet 复写doGet 和 doPost</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet的生命周期"><span class="nav-text">Servlet的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#让Servlet创建实例的时机提前"><span class="nav-text">让Servlet创建实例的时机提前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要有这个ServletConfig"><span class="nav-text">为什么需要有这个ServletConfig</span></a></li></ol></li></ol></div>
             
 
           </div>
