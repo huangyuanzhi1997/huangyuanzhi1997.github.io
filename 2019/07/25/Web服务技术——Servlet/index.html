@@ -104,7 +104,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/25/Web服务技术——Servlet/images/Implementation.png">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/25/Web服务技术——Servlet/images/GeneralWriting.png">
-<meta property="og:updated_time" content="2019-07-26T04:07:39.689Z">
+<meta property="og:updated_time" content="2019-07-26T04:36:32.471Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web服务技术——Servlet">
 <meta name="twitter:description" content="Web资源在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。">
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-26 12:07:39" itemprop="dateModified" datetime="2019-07-26T12:07:39+08:00">2019-07-26</time>
+                <time title="修改时间：2019-07-26 12:36:32" itemprop="dateModified" datetime="2019-07-26T12:36:32+08:00">2019-07-26</time>
               </span>
             
           
@@ -554,11 +554,11 @@ HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类�
 <li><p>那么这个时候，初次访问，可能会在init方法中逗留太久的时间。 那么有没有方法可以让这个初始化的时机提前一点。 </p>
 </li>
 <li><p>在配置的时候， 使用load-on-startup元素来指定， 给定的数字越小，启动的时机就越早。 一般不写负数， 从2开始即可。 </p>
-<pre><code>&lt;servlet&gt;
+<pre><code>&apos;&apos;&apos;&lt;servlet&gt;
     &lt;servlet-name&gt;HelloServlet04&lt;/servlet-name&gt;
     &lt;servlet-class&gt;com.itheima.servlet.HelloServlet04&lt;/servlet-class&gt;
     &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
-&lt;/servlet&gt;</code></pre></li>
+&lt;/servlet&gt;&apos;&apos;&apos;</code></pre></li>
 </ol>
 <h3 id="为什么需要有这个ServletConfig"><a href="#为什么需要有这个ServletConfig" class="headerlink" title="为什么需要有这个ServletConfig"></a>为什么需要有这个ServletConfig</h3><blockquote>
 <p>Servlet的配置，通过这个对象，可以获取servlet在配置的时候一些信息</p>
