@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="为什么会出现JDBC SUN公司提供的一种数据库访问规则、规范, 由于数据库种类较多，并且Java语言使用比较广泛，SUN公司就提供了一种规范，让其他的数据库提供商去实现底层的访问规则。 我们的Java程序只要使用SUN公司提供的JDBC驱动即可。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-26T04:06:06.538Z">
+<meta property="og:updated_time" content="2019-07-26T05:04:55.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库连接技术——JDBC(Java DataBase Connectivity)">
 <meta name="twitter:description" content="为什么会出现JDBC SUN公司提供的一种数据库访问规则、规范, 由于数据库种类较多，并且Java语言使用比较广泛，SUN公司就提供了一种规范，让其他的数据库提供商去实现底层的访问规则。 我们的Java程序只要使用SUN公司提供的JDBC驱动即可。">
@@ -395,7 +395,7 @@
                 
               
 
-              <time title="创建时间：2019-07-26 00:21:20 / 修改时间：12:06:06" itemprop="dateCreated datePublished" datetime="2019-07-26T00:21:20+08:00">2019-07-26</time>
+              <time title="创建时间：2019-07-26 00:21:20 / 修改时间：13:04:55" itemprop="dateCreated datePublished" datetime="2019-07-26T00:21:20+08:00">2019-07-26</time>
             </span>
           
 
@@ -480,13 +480,18 @@
 
 <h3 id="使用JDBC的基本步骤"><a href="#使用JDBC的基本步骤" class="headerlink" title="使用JDBC的基本步骤"></a>使用JDBC的基本步骤</h3><ol>
 <li><p>注册驱动：</p>
-<pre><code>DriverManager.registerDriver(new com.mysql.jdbc.Driver());</code></pre></li>
+<p> ‘’’java</p>
+<pre><code>DriverManager.registerDriver(new com.mysql.jdbc.Driver());</code></pre><p> ‘’’</p>
+</li>
 <li><p>建立连接：参数一： 协议 + 访问的数据库 ， 参数二： 用户名 ， 参数三： 密码。</p>
+<p> ‘’’java</p>
 <pre><code>//DriverManager.getConnection(&quot;jdbc:mysql://localhost/test?user=monty&amp;password=greatsqldb&quot;);
-
-conn = DriverManager.getConnection(&quot;jdbc:mysql://localhost/student&quot;, &quot;root&quot;, &quot;root&quot;);</code></pre></li>
+conn = DriverManager.getConnection(&quot;jdbc:mysql://localhost/student&quot;, &quot;root&quot;, &quot;root&quot;);</code></pre><p> ‘’’</p>
+</li>
 <li><p>创建statement：跟数据库打交道，一定需要这个对象。</p>
-<pre><code>st = conn.createStatement();</code></pre></li>
+<p> ‘’’java</p>
+<pre><code>st = conn.createStatement();</code></pre><p> ‘’’</p>
+</li>
 <li><p>执行sql ，得到ResultSet：执行查询，得到结果集。</p>
 <pre><code>String sql = &quot;select * from t_stu&quot;;
 rs = st.executeQuery(sql);</code></pre></li>
