@@ -104,7 +104,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/25/Web服务技术——Servlet/images/Implementation.png">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/25/Web服务技术——Servlet/images/GeneralWriting.png">
-<meta property="og:updated_time" content="2019-07-26T05:04:55.970Z">
+<meta property="og:updated_time" content="2019-07-26T05:24:35.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web服务技术——Servlet">
 <meta name="twitter:description" content="Web资源在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。">
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-26 13:04:55" itemprop="dateModified" datetime="2019-07-26T13:04:55+08:00">2019-07-26</time>
+                <time title="修改时间：2019-07-26 13:24:35" itemprop="dateModified" datetime="2019-07-26T13:24:35+08:00">2019-07-26</time>
               </span>
             
           
@@ -533,8 +533,8 @@ HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类�
 </blockquote>
 <ol>
 <li><p>init方法</p>
-<pre><code>在创建该servlet的实例时，就执行该方法。
-一个servlet只会初始化一次， init方法只会执行一次
+<pre><code>&gt;在创建该servlet的实例时，就执行该方法。
+&gt;一个servlet只会初始化一次， init方法只会执行一次
 默认情况下是 ： 初次访问该servlet，才会创建实例。 </code></pre></li>
 <li><p>service方法</p>
 <pre><code>只要客户端来了一个请求，那么就执行这个方法了。
@@ -542,8 +542,8 @@ HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类�
 <li><p>destroy方法</p>
 <pre><code>servlet销毁的时候，就会执行该方法
 
-    1). 该项目从tomcat的里面移除。
-    2). 正常关闭tomcat就会执行 shutdown.bat</code></pre></li>
+1). 该项目从tomcat的里面移除。
+2). 正常关闭tomcat就会执行 shutdown.bat</code></pre></li>
 </ol>
 <blockquote>
 <p>doGet 和 doPost不算生命周期方法，所谓的生命周期方法是指，从对象的创建到销毁一定会执行的方法， 但是这两个方法，不一定会执行。</p>
@@ -554,11 +554,9 @@ HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类�
 <li><p>那么这个时候，初次访问，可能会在init方法中逗留太久的时间。 那么有没有方法可以让这个初始化的时机提前一点。 </p>
 </li>
 <li><p>在配置的时候， 使用load-on-startup元素来指定， 给定的数字越小，启动的时机就越早。 一般不写负数， 从2开始即可。 </p>
-<pre><code>&lt;servlet&gt;
-    &lt;servlet-name&gt;HelloServlet04&lt;/servlet-name&gt;
-    &lt;servlet-class&gt;com.itheima.servlet.HelloServlet04&lt;/servlet-class&gt;
-    &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
-&lt;/servlet&gt;</code></pre></li>
+ <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-<span class="built_in">name</span>&gt;HelloServlet04&lt;/servlet-<span class="built_in">name</span>&gt;</span><br><span class="line">    &lt;servlet-<span class="built_in">class</span>&gt;com.itheima.servlet.HelloServlet04&lt;/servlet-<span class="built_in">class</span>&gt;</span><br><span class="line">    &lt;load-<span class="keyword">on</span>-startup&gt;<span class="number">2</span>&lt;/load-<span class="keyword">on</span>-startup&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
 <h3 id="为什么需要有这个ServletConfig"><a href="#为什么需要有这个ServletConfig" class="headerlink" title="为什么需要有这个ServletConfig"></a>为什么需要有这个ServletConfig</h3><blockquote>
 <p>Servlet的配置，通过这个对象，可以获取servlet在配置的时候一些信息</p>
