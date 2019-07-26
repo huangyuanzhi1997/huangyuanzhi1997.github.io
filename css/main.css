@@ -528,8 +528,8 @@ pre,
 .highlight {
   margin: 20px 0;
   font-size: 14px;
-  color: #eaeaea;
-  background: #000;
+  color: #ccc;
+  background: #2d2d2d;
   line-height: 1.6;
 }
 pre,
@@ -551,12 +551,12 @@ pre {
 }
 pre code {
   padding: 0;
-  color: #eaeaea;
+  color: #ccc;
   background: none;
   text-shadow: none;
 }
 .highlight *::selection {
-  background: #424242;
+  background: #515151;
 }
 .highlight pre {
   border: none;
@@ -574,7 +574,7 @@ pre code {
 }
 .highlight figcaption {
   font-size: 1em;
-  color: #eaeaea;
+  color: #ccc;
   line-height: 1em;
   margin: 0em;
   padding: 0.5em;
@@ -591,22 +591,22 @@ pre code {
 }
 .highlight figcaption a {
   float: right;
-  color: #eaeaea;
+  color: #ccc;
 }
 .highlight figcaption a:hover {
-  border-bottom-color: #eaeaea;
+  border-bottom-color: #ccc;
 }
 .highlight .gutter pre {
   padding-left: 10px;
   padding-right: 10px;
-  color: #666;
+  color: #999;
   text-align: right;
-  background-color: #292929;
+  background-color: #1b1b1b;
 }
 .highlight .code pre {
   width: 100%;
   padding-left: 10px;
-  background-color: #000;
+  background-color: #2d2d2d;
 }
 .highlight .line {
   height: 20px;
@@ -630,14 +630,14 @@ pre .addition {
   background: #008000;
 }
 pre .meta {
-  color: #e7c547;
+  color: #fc6;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
 pre .comment {
-  color: #969896;
+  color: #999;
 }
 pre .variable,
 pre .attribute,
@@ -652,7 +652,7 @@ pre .html .doctype,
 pre .css .id,
 pre .css .class,
 pre .css .pseudo {
-  color: #d54e53;
+  color: #f2777a;
 }
 pre .number,
 pre .preprocessor,
@@ -662,7 +662,7 @@ pre .literal,
 pre .params,
 pre .constant,
 pre .command {
-  color: #e78c45;
+  color: #f99157;
 }
 pre .ruby .class .title,
 pre .css .rules .attribute,
@@ -675,11 +675,11 @@ pre .ruby .symbol,
 pre .xml .cdata,
 pre .special,
 pre .formula {
-  color: #b9ca4a;
+  color: #9c9;
 }
 pre .title,
 pre .css .hexcolor {
-  color: #70c0b1;
+  color: #6cc;
 }
 pre .function,
 pre .python .decorator,
@@ -689,11 +689,11 @@ pre .ruby .title .keyword,
 pre .perl .sub,
 pre .javascript .title,
 pre .coffeescript .title {
-  color: #7aa6da;
+  color: #69c;
 }
 pre .keyword,
 pre .javascript .function {
-  color: #c397d8;
+  color: #c9c;
 }
 .posts-expand .post-body img.full-image {
   border: none;
@@ -1834,7 +1834,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e953d5;
+  background: #ff53b3;
 }
 .feed-link,
 .chat {
