@@ -102,10 +102,10 @@
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="服务器 其实服务器就是一台电脑。 配置比一般的电脑要好。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/07/images/tomcat01.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat02.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat08.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat12.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/images/tomcat01.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/images/tomcat02.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/images/tomcat08.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/images/tomcat12.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat13.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat11.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat03.jpg">
@@ -115,11 +115,11 @@
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat07.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat09.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat10.jpg">
-<meta property="og:updated_time" content="2019-07-27T14:48:15.433Z">
+<meta property="og:updated_time" content="2019-07-27T14:53:11.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web服务技术——Tomcat">
 <meta name="twitter:description" content="服务器 其实服务器就是一台电脑。 配置比一般的电脑要好。">
-<meta name="twitter:image" content="https://huangyuanzhi.top/2019/07/images/tomcat01.jpg">
+<meta name="twitter:image" content="https://huangyuanzhi.top/images/tomcat01.jpg">
 
 
 
@@ -419,7 +419,7 @@
                 
               
 
-              <time title="创建时间：2019-07-27 12:34:35 / 修改时间：22:48:15" itemprop="dateCreated datePublished" datetime="2019-07-27T12:34:35+08:00">2019-07-27</time>
+              <time title="创建时间：2019-07-27 12:34:35 / 修改时间：22:53:11" itemprop="dateCreated datePublished" datetime="2019-07-27T12:34:35+08:00">2019-07-27</time>
             </span>
           
 
@@ -506,11 +506,11 @@ IIS           微软</code></pre><h3 id="Tomcat安装"><a href="#Tomcat安装" c
 <li>直接解压 ，然后找到bin目录下的startup.bat文件启动。</li>
 <li>启动之后，如果能够正常看到黑窗口，表明已经成功安装。</li>
 </ol>
-<p><img src="../../images/tomcat01.jpg" alt></p>
+<p><img src="/images/tomcat01.jpg" alt></p>
 <ol start="3">
 <li>为了确保万无一失， 最好在浏览器的地址栏上输入 ： <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> , 如果有看到如下内容就表明成功了。</li>
 </ol>
-<p><img src="images/tomcat02.jpg" alt></p>
+<p><img src="/images/tomcat02.jpg" alt></p>
 <blockquote>
 <p>如果双击了startup.bat,  看到一闪而过的情形，一般都是 JDK的环境变量没有配置。</p>
 </blockquote>
@@ -534,8 +534,8 @@ work：jsp翻译成class文件存放地</code></pre><h2 id="如何把一个项�
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">person</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">age</span>&gt;</span>18<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">person</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="1-直接拷贝stu-xml文件到webapps-ROOT目录下，-在浏览器里面访问"><a href="#1-直接拷贝stu-xml文件到webapps-ROOT目录下，-在浏览器里面访问" class="headerlink" title="1. 直接拷贝stu.xml文件到webapps/ROOT目录下， 在浏览器里面访问"></a>1. 直接拷贝stu.xml文件到webapps/ROOT目录下， 在浏览器里面访问</h3><pre><code>http://localhost:8080/stu.xml</code></pre><p><img src="images/tomcat08.jpg" alt></p>
-<pre><code>可以使用IP地址访问：http://192.168.43.139:8080/stu.xml</code></pre><p><img src="images/tomcat12.jpg" alt></p>
+<h3 id="1-直接拷贝stu-xml文件到webapps-ROOT目录下，-在浏览器里面访问"><a href="#1-直接拷贝stu-xml文件到webapps-ROOT目录下，-在浏览器里面访问" class="headerlink" title="1. 直接拷贝stu.xml文件到webapps/ROOT目录下， 在浏览器里面访问"></a>1. 直接拷贝stu.xml文件到webapps/ROOT目录下， 在浏览器里面访问</h3><pre><code>http://localhost:8080/stu.xml</code></pre><p><img src="/images/tomcat08.jpg" alt></p>
+<pre><code>可以使用IP地址访问：http://192.168.43.139:8080/stu.xml</code></pre><p><img src="/images/tomcat12.jpg" alt></p>
 <blockquote>
 <p>注意：</p>
 </blockquote>
