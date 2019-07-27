@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat04.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat05.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat06.jpg">
-<meta property="og:updated_time" content="2019-07-27T17:23:19.900Z">
+<meta property="og:updated_time" content="2019-07-27T17:27:34.724Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web服务技术——Tomcat">
 <meta name="twitter:description" content="服务器 其实服务器就是一台电脑。 配置比一般的电脑要好。">
@@ -435,7 +435,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-28 01:23:19" itemprop="dateModified" datetime="2019-07-28T01:23:19+08:00">2019-07-28</time>
+                <time title="修改时间：2019-07-28 01:27:34" itemprop="dateModified" datetime="2019-07-28T01:27:34+08:00">2019-07-28</time>
               </span>
             
           
@@ -596,15 +596,13 @@ work：jsp翻译成class文件存放地</code></pre><h2 id="如何把一个项�
 <li><p>在浏览器地址栏上输入：<a href="http://localhost:8080/a/person.xml" target="_blank" rel="noopener">http://localhost:8080/a/person.xml</a></p>
 </li>
 </ol>
-{% asset_img tomcat09.jpg %}
-
 <h3 id="配置虚拟路径-二"><a href="#配置虚拟路径-二" class="headerlink" title="配置虚拟路径(二)"></a>配置虚拟路径(二)</h3><ol>
 <li><p>在tomcat/conf/catalina/localhost/ 文件夹下新建一个xml文件，名字可以自己定义。如person.xml。</p>
 </li>
 <li><p>在person.xml文件里面写入以下内容</p>
  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version='1.0' encoding='utf-8'?&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"D:\xml02"</span>&gt;</span><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在浏览器上面访问<br> <a href="http://localhost:8080/person/xml" target="_blank" rel="noopener">http://localhost:8080/person/xml</a></p>
+<li><p>在浏览器上面访问：<a href="http://localhost:8080/person/xml" target="_blank" rel="noopener">http://localhost:8080/person/xml</a></p>
 </li>
 </ol>
 <h3 id="给Eclipse配置Tomcat"><a href="#给Eclipse配置Tomcat" class="headerlink" title="给Eclipse配置Tomcat"></a>给Eclipse配置Tomcat</h3><ol>
