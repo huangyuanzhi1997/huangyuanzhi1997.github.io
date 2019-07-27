@@ -94,18 +94,18 @@
   };
 </script>
 
-  <meta name="description" content="Web资源在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。">
+  <meta name="description" content="Servlet是什么?  其实就是一个Java程序，运行在我们的Web服务器上，用于接收和响应客户端的HTTP请求。      更多的是配合动态资源来做。 当然静态资源也需要使用到Servlet，只不过是Tomcat里面已经定义好了一个 DefaultServlet">
 <meta name="keywords" content="Web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web服务技术——Servlet">
 <meta property="og:url" content="https://huangyuanzhi.top/2019/07/25/Web服务技术——Servlet/index.html">
 <meta property="og:site_name" content="远志の博客">
-<meta property="og:description" content="Web资源在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。">
+<meta property="og:description" content="Servlet是什么?  其实就是一个Java程序，运行在我们的Web服务器上，用于接收和响应客户端的HTTP请求。      更多的是配合动态资源来做。 当然静态资源也需要使用到Servlet，只不过是Tomcat里面已经定义好了一个 DefaultServlet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-26T12:48:23.053Z">
+<meta property="og:updated_time" content="2019-07-27T03:57:26.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web服务技术——Servlet">
-<meta name="twitter:description" content="Web资源在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。">
+<meta name="twitter:description" content="Servlet是什么?  其实就是一个Java程序，运行在我们的Web服务器上，用于接收和响应客户端的HTTP请求。      更多的是配合动态资源来做。 当然静态资源也需要使用到Servlet，只不过是Tomcat里面已经定义好了一个 DefaultServlet">
 
 
 
@@ -307,7 +307,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">3</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">4</span></a>
 
   </li>
 
@@ -420,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-26 20:48:23" itemprop="dateModified" datetime="2019-07-26T20:48:23+08:00">2019-07-26</time>
+                <time title="修改时间：2019-07-27 11:57:26" itemprop="dateModified" datetime="2019-07-27T11:57:26+08:00">2019-07-27</time>
               </span>
             
           
@@ -463,7 +463,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">4k</span>
+              <span title="本文字数">3.9k</span>
             </span>
           
 
@@ -485,22 +485,7 @@
       
 
       
-        <h2 id="Web资源"><a href="#Web资源" class="headerlink" title="Web资源"></a>Web资源</h2><p>在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。 </p>
-<a id="more"></a>
-
-<h3 id="有两种分类"><a href="#有两种分类" class="headerlink" title="有两种分类"></a>有两种分类</h3><ul>
-<li>静态资源</li>
-</ul>
-<blockquote>
-<p>html 、 js、 css</p>
-</blockquote>
-<ul>
-<li>动态资源</li>
-</ul>
-<blockquote>
-<p>servlet/jsp</p>
-</blockquote>
-<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="Servlet是什么"><a href="#Servlet是什么" class="headerlink" title="Servlet是什么?"></a>Servlet是什么?</h3><blockquote>
+        <h3 id="Servlet是什么"><a href="#Servlet是什么" class="headerlink" title="Servlet是什么?"></a>Servlet是什么?</h3><blockquote>
 <ol>
 <li>其实就是一个Java程序，运行在我们的Web服务器上，用于接收和响应客户端的HTTP请求。 </li>
 </ol>
@@ -510,6 +495,8 @@
 <li>更多的是配合动态资源来做。 当然静态资源也需要使用到Servlet，只不过是Tomcat里面已经定义好了一个 DefaultServlet</li>
 </ol>
 </blockquote>
+<a id="more"></a>
+
 <h3 id="Servlet执行过程"><a href="#Servlet执行过程" class="headerlink" title="Servlet执行过程"></a>Servlet执行过程</h3><h4 id="第一步：类的定义"><a href="#第一步：类的定义" class="headerlink" title="第一步：类的定义"></a>第一步：类的定义</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Servlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletConfig;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *<span class="doctag">@author</span>	黄远志</span></span><br><span class="line"><span class="comment"> *<span class="doctag">@date</span>		2019年7月4日下午7:08:19</span></span><br><span class="line"><span class="comment"> *<span class="doctag">@GitHub</span>	https://github.com/huangyuanzhi1997</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest req, ServletResponse res)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"HelloServlet"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="第二步：Servlet的配置"><a href="#第二步：Servlet的配置" class="headerlink" title="第二步：Servlet的配置"></a>第二步：Servlet的配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 向tomcat报告， 我这个应用里面有这个servlet，名字叫做HelloServlet , 具体的路径是com.huang.servlet.HelloServlet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>HelloServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.huang.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 注册servlet的映射。 servletName : 找到上面注册的具体servlet，url-pattern: 在地址栏上的path一定要以/打头 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>HelloServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/a<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -751,7 +738,7 @@ HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类�
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -862,7 +849,7 @@ HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web资源"><span class="nav-text">Web资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有两种分类"><span class="nav-text">有两种分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet"><span class="nav-text">Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet是什么"><span class="nav-text">Servlet是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet执行过程"><span class="nav-text">Servlet执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：类的定义"><span class="nav-text">第一步：类的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：Servlet的配置"><span class="nav-text">第二步：Servlet的配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet的通用写法"><span class="nav-text">Servlet的通用写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义一个类，继承HttpServlet-复写doGet-和-doPost"><span class="nav-text">定义一个类，继承HttpServlet 复写doGet 和 doPost</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet的生命周期"><span class="nav-text">Servlet的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#让Servlet创建实例的时机提前"><span class="nav-text">让Servlet创建实例的时机提前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要有这个ServletConfig"><span class="nav-text">为什么需要有这个ServletConfig</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet是什么"><span class="nav-text">Servlet是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet执行过程"><span class="nav-text">Servlet执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：类的定义"><span class="nav-text">第一步：类的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：Servlet的配置"><span class="nav-text">第二步：Servlet的配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet的通用写法"><span class="nav-text">Servlet的通用写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义一个类，继承HttpServlet-复写doGet-和-doPost"><span class="nav-text">定义一个类，继承HttpServlet 复写doGet 和 doPost</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet的生命周期"><span class="nav-text">Servlet的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#让Servlet创建实例的时机提前"><span class="nav-text">让Servlet创建实例的时机提前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要有这个ServletConfig"><span class="nav-text">为什么需要有这个ServletConfig</span></a></li></ol></li></div>
             
 
           </div>
@@ -896,7 +883,7 @@ HttpServlet （用于处理http的请求）</code></pre><h3 id="定义一个类�
     </span>
     
 
-   站点总字数： <span title="站点总字数">10k字</span>
+   站点总字数： <span title="站点总字数">12k字</span>
   
 
 
