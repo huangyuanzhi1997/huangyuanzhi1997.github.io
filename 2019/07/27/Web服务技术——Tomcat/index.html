@@ -115,9 +115,8 @@
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat04.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat05.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat06.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat09.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat10.jpg">
-<meta property="og:updated_time" content="2019-07-27T16:39:13.493Z">
+<meta property="og:updated_time" content="2019-07-27T16:55:35.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web服务技术——Tomcat">
 <meta name="twitter:description" content="服务器 其实服务器就是一台电脑。 配置比一般的电脑要好。">
@@ -436,7 +435,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-28 00:39:13" itemprop="dateModified" datetime="2019-07-28T00:39:13+08:00">2019-07-28</time>
+                <time title="修改时间：2019-07-28 00:55:35" itemprop="dateModified" datetime="2019-07-28T00:55:35+08:00">2019-07-28</time>
               </span>
             
           
@@ -512,8 +511,8 @@
 <p> Web应用：需要服务器支撑</p>
 <pre><code>服务器            所属公司
 Tomcat            Apache
-WebLogic        BEA
-WebSphere        IBM  
+WebLogic            BEA
+WebSphere            IBM  
 IIS                微软</code></pre><h3 id="Tomcat安装"><a href="#Tomcat安装" class="headerlink" title="Tomcat安装"></a>Tomcat安装</h3><ol>
 <li>直接解压 ，然后找到bin目录下的startup.bat文件启动。</li>
 <li>启动之后，如果能够正常看到黑窗口，表明已经成功安装。</li>
@@ -548,19 +547,21 @@ work：jsp翻译成class文件存放地</code></pre><h2 id="如何把一个项�
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">person</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">age</span>&gt;</span>18<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">person</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="1-直接拷贝stu-xml文件到webapps-ROOT目录下，-在浏览器里面访问"><a href="#1-直接拷贝stu-xml文件到webapps-ROOT目录下，-在浏览器里面访问" class="headerlink" title="1. 直接拷贝stu.xml文件到webapps/ROOT目录下， 在浏览器里面访问"></a>1. 直接拷贝stu.xml文件到webapps/ROOT目录下， 在浏览器里面访问</h3><pre><code>默认访问方式：http://localhost:8080/stu.xml</code></pre>{% asset_img tomcat08.jpg %}
-
+<h3 id="直接拷贝stu-xml文件到webapps-ROOT目录下，-在浏览器里面访问"><a href="#直接拷贝stu-xml文件到webapps-ROOT目录下，-在浏览器里面访问" class="headerlink" title="直接拷贝stu.xml文件到webapps/ROOT目录下， 在浏览器里面访问"></a>直接拷贝stu.xml文件到webapps/ROOT目录下， 在浏览器里面访问</h3><pre><code>默认访问方式：http://localhost:8080/stu.xml</code></pre>{% asset_img tomcat08.jpg %}
 <pre><code>可以使用IP地址访问：http://192.168.43.139:8080/stu.xml</code></pre><img src="/2019/07/27/Web服务技术——Tomcat/tomcat12.jpg">
 
 <blockquote>
 <p>注意：</p>
 </blockquote>
 <blockquote>
-<p>1）. 如果Tomcat在运行需要重新启动，否则会报404错误。<br>2）. 需要把xml文件改为UTF-8编码，否则会报错。解决方法是使用记事本打开xml文件，选择文件——&gt;另存为，“编码”格式选则UTF-8，点击保存。</p>
+<ol>
+<li>如果Tomcat在运行需要重新启动，否则会报404错误。  </li>
+<li>需要把xml文件改为UTF-8编码，否则会报错。解决方法是使用记事本打开xml文件，选择文件——&gt;另存为，“编码”格式选则UTF-8，点击保存。</li>
+</ol>
 </blockquote>
 <img src="/2019/07/27/Web服务技术——Tomcat/tomcat13.jpg">
 
-<h3 id="2-在webaps下面新建一个文件夹xml-然后拷贝文件放置到这个文件夹中"><a href="#2-在webaps下面新建一个文件夹xml-然后拷贝文件放置到这个文件夹中" class="headerlink" title="2. 在webaps下面新建一个文件夹xml  , 然后拷贝文件放置到这个文件夹中"></a>2. 在webaps下面新建一个文件夹xml  , 然后拷贝文件放置到这个文件夹中</h3><pre><code>http://localhost:8080/xml/stu.xml
+<h3 id="在webaps下面新建一个文件夹xml-然后拷贝文件放置到这个文件夹中"><a href="#在webaps下面新建一个文件夹xml-然后拷贝文件放置到这个文件夹中" class="headerlink" title="在webaps下面新建一个文件夹xml  , 然后拷贝文件放置到这个文件夹中"></a>在webaps下面新建一个文件夹xml  , 然后拷贝文件放置到这个文件夹中</h3><pre><code>http://localhost:8080/xml/stu.xml
 也可以使用IP地址访问：http://192.168.43.139:8080/xml/stu.xml</code></pre><img src="/2019/07/27/Web服务技术——Tomcat/tomcat11.jpg">
 
 <blockquote>
@@ -569,7 +570,7 @@ work：jsp翻译成class文件存放地</code></pre><h2 id="如何把一个项�
 <blockquote>
 <p><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> ： 其实对应的是到webapps/root<br><a href="http://localhost:8080/xml/" target="_blank" rel="noopener">http://localhost:8080/xml/</a> : 对应是 webapps/xml</p>
 </blockquote>
-<h3 id="3-配置虚拟路径-一"><a href="#3-配置虚拟路径-一" class="headerlink" title="3. 配置虚拟路径(一)"></a>3. 配置虚拟路径(一)</h3><ul>
+<h3 id="配置虚拟路径-一"><a href="#配置虚拟路径-一" class="headerlink" title="配置虚拟路径(一)"></a>配置虚拟路径(一)</h3><ul>
 <li>查看使用文档说明</li>
 </ul>
 <p>使用localhost：8080 打开tomcat首页， 在左侧找到tomcat的文档入口， 点击进去后， 在左侧接着找到 Context入口，点击进入。</p>
@@ -578,21 +579,24 @@ work：jsp翻译成class文件存放地</code></pre><h2 id="如何把一个项�
 <img src="/2019/07/27/Web服务技术——Tomcat/tomcat05.jpg">
 <img src="/2019/07/27/Web服务技术——Tomcat/tomcat06.jpg">
 
-<pre><code>也可以输入地址访问：http://localhost:8080/docs/config/context.html</code></pre><p>1). 在conf/server.xml 找到host元素节点</p>
-{% asset_img tomcat07.jpg %}
-
-<p>2). 加入以下内容</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context <span class="attribute">docBase</span>=<span class="string">"D:\xml02"</span> <span class="attribute">path</span>=<span class="string">"/a"</span>&gt;&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>也可以输入地址访问：http://localhost:8080/docs/config/context.html</code></pre><ol>
+<li><p>在conf/server.xml 找到host元素节点</p>
+ {% asset_img tomcat07.jpg %}
+</li>
+<li><p>加入以下内容</p>
+ <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context <span class="attribute">docBase</span>=<span class="string">"D:\xml02"</span> <span class="attribute">path</span>=<span class="string">"/a"</span>&gt;&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>说明:</p>
 </blockquote>
-<blockquote>
-<p>docBase：  项目的路径地址，如： D:\xml02\person.xml。<br>path : 对应的虚拟路径 一定要以/打头。</p>
-</blockquote>
-<p>3). 在浏览器地址栏上输入： </p>
-<pre><code>http://localhost:8080/a/person.xml</code></pre><img src="/2019/07/27/Web服务技术——Tomcat/tomcat09.jpg">
+<p> 1). docBase：  项目的路径地址，如： D:\xml02\person.xml。<br> 2). path : 对应的虚拟路径 一定要以/打头。</p>
+</li>
+<li><p>在浏览器地址栏上输入： </p>
+<p> <a href="http://localhost:8080/a/person.xml" target="_blank" rel="noopener">http://localhost:8080/a/person.xml</a></p>
+ {% asset_img tomcat09.jpg %}
 
+</li>
+</ol>
 <h3 id="4-配置虚拟路径-二"><a href="#4-配置虚拟路径-二" class="headerlink" title="4. 配置虚拟路径(二)"></a>4. 配置虚拟路径(二)</h3><p>1). 在tomcat/conf/catalina/localhost/ 文件夹下新建一个xml文件，名字可以自己定义。如person.xml。</p>
 <p>2). 在person.xml文件里面写入以下内容</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version='1.0' encoding='utf-8'?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"D:\xml02"</span>&gt;</span><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -895,7 +899,7 @@ http://localhost:8080/person/person.xml</code></pre><img src="/2019/07/27/Web服
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器"><span class="nav-text">服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web服务器软件"><span class="nav-text">Web服务器软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat安装"><span class="nav-text">Tomcat安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat目录介绍"><span class="nav-text">Tomcat目录介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何把一个项目发布到Tomcat中"><span class="nav-text">如何把一个项目发布到Tomcat中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-直接拷贝stu-xml文件到webapps-ROOT目录下，-在浏览器里面访问"><span class="nav-text">1. 直接拷贝stu.xml文件到webapps/ROOT目录下， 在浏览器里面访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在webaps下面新建一个文件夹xml-然后拷贝文件放置到这个文件夹中"><span class="nav-text">2. 在webaps下面新建一个文件夹xml  , 然后拷贝文件放置到这个文件夹中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-配置虚拟路径-一"><span class="nav-text">3. 配置虚拟路径(一)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置虚拟路径-二"><span class="nav-text">4. 配置虚拟路径(二)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给Eclipse配置Tomcat"><span class="nav-text">给Eclipse配置Tomcat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序架构"><span class="nav-text">程序架构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器"><span class="nav-text">服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web服务器软件"><span class="nav-text">Web服务器软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat安装"><span class="nav-text">Tomcat安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat目录介绍"><span class="nav-text">Tomcat目录介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何把一个项目发布到Tomcat中"><span class="nav-text">如何把一个项目发布到Tomcat中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接拷贝stu-xml文件到webapps-ROOT目录下，-在浏览器里面访问"><span class="nav-text">直接拷贝stu.xml文件到webapps/ROOT目录下， 在浏览器里面访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在webaps下面新建一个文件夹xml-然后拷贝文件放置到这个文件夹中"><span class="nav-text">在webaps下面新建一个文件夹xml  , 然后拷贝文件放置到这个文件夹中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置虚拟路径-一"><span class="nav-text">配置虚拟路径(一)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置虚拟路径-二"><span class="nav-text">4. 配置虚拟路径(二)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给Eclipse配置Tomcat"><span class="nav-text">给Eclipse配置Tomcat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序架构"><span class="nav-text">程序架构</span></a></li></ol></div>
             
 
           </div>
