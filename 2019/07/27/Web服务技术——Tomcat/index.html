@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="服务器 其实服务器就是一台电脑。 配置比一般的电脑要好。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat01.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/07/images/tomcat01.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat02.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat08.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat12.jpg">
@@ -115,11 +115,11 @@
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat07.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat09.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat10.jpg">
-<meta property="og:updated_time" content="2019-07-27T13:52:22.995Z">
+<meta property="og:updated_time" content="2019-07-27T14:48:15.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web服务技术——Tomcat">
 <meta name="twitter:description" content="服务器 其实服务器就是一台电脑。 配置比一般的电脑要好。">
-<meta name="twitter:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/images/tomcat01.jpg">
+<meta name="twitter:image" content="https://huangyuanzhi.top/2019/07/images/tomcat01.jpg">
 
 
 
@@ -419,7 +419,7 @@
                 
               
 
-              <time title="创建时间：2019-07-27 12:34:35 / 修改时间：21:52:22" itemprop="dateCreated datePublished" datetime="2019-07-27T12:34:35+08:00">2019-07-27</time>
+              <time title="创建时间：2019-07-27 12:34:35 / 修改时间：22:48:15" itemprop="dateCreated datePublished" datetime="2019-07-27T12:34:35+08:00">2019-07-27</time>
             </span>
           
 
@@ -506,7 +506,7 @@ IIS           微软</code></pre><h3 id="Tomcat安装"><a href="#Tomcat安装" c
 <li>直接解压 ，然后找到bin目录下的startup.bat文件启动。</li>
 <li>启动之后，如果能够正常看到黑窗口，表明已经成功安装。</li>
 </ol>
-<p><img src="images/tomcat01.jpg" alt></p>
+<p><img src="../../images/tomcat01.jpg" alt></p>
 <ol start="3">
 <li>为了确保万无一失， 最好在浏览器的地址栏上输入 ： <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> , 如果有看到如下内容就表明成功了。</li>
 </ol>
@@ -571,8 +571,9 @@ work：jsp翻译成class文件存放地</code></pre><h2 id="如何把一个项�
 <pre><code>http://localhost:8080/a/person.xml</code></pre><p><img src="images/tomcat09.jpg" alt></p>
 <h3 id="4-配置虚拟路径-二"><a href="#4-配置虚拟路径-二" class="headerlink" title="4. 配置虚拟路径(二)"></a>4. 配置虚拟路径(二)</h3><p>1). 在tomcat/conf/catalina/localhost/ 文件夹下新建一个xml文件，名字可以自己定义。如person.xml。</p>
 <p>2). 在person.xml文件里面写入以下内容</p>
-<pre><code>&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;
-&lt;Context docBase=&quot;D:\xml02&quot;&gt;&lt;/Context&gt;</code></pre><p>3). 在浏览器上面访问</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version='1.0' encoding='utf-8'?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"D:\xml02"</span>&gt;</span><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>3). 在浏览器上面访问</p>
 <pre><code>http://localhost:8080/person/xml的名字
 http://localhost:8080/person/person.xml</code></pre><p><img src="images/tomcat10.jpg" alt></p>
 <h3 id="给Eclipse配置Tomcat"><a href="#给Eclipse配置Tomcat" class="headerlink" title="给Eclipse配置Tomcat"></a>给Eclipse配置Tomcat</h3><ol>
