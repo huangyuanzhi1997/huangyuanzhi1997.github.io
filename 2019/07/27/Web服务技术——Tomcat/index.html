@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat04.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat05.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/tomcat06.jpg">
-<meta property="og:updated_time" content="2019-07-27T17:31:27.322Z">
+<meta property="og:updated_time" content="2019-07-28T02:47:53.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web服务技术——Tomcat">
 <meta name="twitter:description" content="服务器 其实服务器就是一台电脑。 配置比一般的电脑要好。">
@@ -435,7 +435,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-28 01:31:27" itemprop="dateModified" datetime="2019-07-28T01:31:27+08:00">2019-07-28</time>
+                <time title="修改时间：2019-07-28 10:47:53" itemprop="dateModified" datetime="2019-07-28T10:47:53+08:00">2019-07-28</time>
               </span>
             
           
@@ -478,7 +478,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">2.4k</span>
+              <span title="本文字数">2.6k</span>
             </span>
           
 
@@ -587,6 +587,9 @@ work：jsp翻译成class文件存放地</code></pre><h2 id="如何把一个项�
 </li>
 <li><p>加入以下内容</p>
  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context <span class="attribute">docBase</span>=<span class="string">"D:\xml02"</span> <span class="attribute">path</span>=<span class="string">"/a"</span>&gt;&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在D盘新建xml02文件夹，在文件夹下新建person.xml文件，内容如下</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">person</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">age</span>&gt;</span>18<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>这里是虚拟路径<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">person</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>说明:</p>
@@ -605,6 +608,12 @@ work：jsp翻译成class文件存放地</code></pre><h2 id="如何把一个项�
 <li><p>在浏览器上面访问：<a href="http://localhost:8080/person/person.xml" target="_blank" rel="noopener">http://localhost:8080/person/person.xml</a></p>
 </li>
 </ol>
+<blockquote>
+<p>注意：</p>
+</blockquote>
+<blockquote>
+<p>XML文件的名字也就是项目部署成功后的web根路径，如定义这person.xml,那么后面的访问路径就是<a href="http://ip:port/person。" target="_blank" rel="noopener">http://ip:port/person。</a></p>
+</blockquote>
 <h3 id="给Eclipse配置Tomcat"><a href="#给Eclipse配置Tomcat" class="headerlink" title="给Eclipse配置Tomcat"></a>给Eclipse配置Tomcat</h3><ol>
 <li>在server里面 右键新建一个服务器， 选择到Apache分类， 找到对应的Tomcat版本， 接着一步一步配置即可。</li>
 <li>配置完毕后， 在server 里面， 右键刚才的服务器，然后Open  ， 找到上面的Server Location , 选择中间的 Use Tomcat installation…</li>
