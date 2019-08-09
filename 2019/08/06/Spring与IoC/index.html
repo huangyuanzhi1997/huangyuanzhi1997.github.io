@@ -136,7 +136,7 @@
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/06/Spring与IoC/spring33.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/06/Spring与IoC/spring34.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/06/Spring与IoC/spring35.jpg">
-<meta property="og:updated_time" content="2019-08-09T02:19:07.984Z">
+<meta property="og:updated_time" content="2019-08-09T02:28:35.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring与IoC">
 <meta name="twitter:description" content="Spring是一个容器，用于降低代码间的耦合度，根据不同的代码(主业务逻辑、系统级服务)采用IoC和AOP两种进行的业务逻辑。">
@@ -455,7 +455,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-09 10:19:07" itemprop="dateModified" datetime="2019-08-09T10:19:07+08:00">2019-08-09</time>
+                <time title="修改时间：2019-08-09 10:28:35" itemprop="dateModified" datetime="2019-08-09T10:28:35+08:00">2019-08-09</time>
               </span>
             
           
@@ -663,7 +663,7 @@
 <blockquote>
 <p>注意，若要看到 Bean 的 destroy-method 的执行结果，需要满足两个条件：<br>（1） Bean 为 singleton，即单例<br>（2）要确保容器关闭。接口 ApplicationContext 没有 close()方法，但其实现类有。所以，可以将 ApplicationContext 强转为其实现类对象，或直接创建的就是实现类对象。</p>
 </blockquote>
-<h3 id="Bean-的生命周期"><a href="#Bean-的生命周期" class="headerlink" title="Bean 的生命周期"></a>Bean 的生命周期</h3><p>Step1：调用无参构造器，创建实例对象。<br>Step2：调用参数的 setter，为属性注入值。<br>Step3：若 Bean 实现了 BeanNameAware 接口，则会执行接口方法 setBeanName(String beanId)，使 Bean 类可以获取其在容器中的 id 名称。<br>Step4：若 Bean 实现了 BeanFactoryAware 接口，则执行接口方法 setBeanFactory(BeanFactory factory)，使 Bean 类可以获取到 BeanFactory 对象。<br>Step5：若定义并注册了 Bean 后处理器 BeanPostProcessor ，则执行接口方法 postProcessBeforeInitialization()。<br>Step6：若 Bean 实现了 InitializingBean 接口，则执行接口方法 afterPropertiesSet ()。 该方法在 Bean 的所有属性的 set 方法执行完毕后执行，是 Bean 初始化结束的标志，即 Bean 实例化结束。<br>Step7：若设置了 init-method 方法，则执行。<br>Step8：若定义并注册了 Bean 后处理器 BeanPostProcessor ，则执行接口方法 postProcessAfterInitialization()。<br>Step9：执行业务方法。<br>Step10：若 Bean 实现了 DisposableBean 接口，则执行接口方法 destroy()。<br>Step11：若设置了 destroy-method 方法，则执行。</p>
+<h3 id="Bean-的生命周期"><a href="#Bean-的生命周期" class="headerlink" title="Bean 的生命周期"></a>Bean 的生命周期</h3><p>Step1：调用无参构造器，创建实例对象。<br>Step2：调用参数的 setter，为属性注入值。<br>Step3：若 Bean 实现了 BeanNameAware 接口，则会执行接口方法 setBeanName(String beanId)，使 Bean 类可以获取其在容器中的 id 名称。<br>Step4：若 Bean 实现了 BeanFactoryAware 接口，则执行接口方法 setBeanFactory(BeanFactory factory)，使 Bean 类可以获取到 BeanFactory 对象。<br>Step5：若定义并注册了 Bean 后处理器 BeanPostProcessor，则执行接口方法 postProcessBeforeInitialization()。<br>Step6：若 Bean 实现了 InitializingBean 接口，则执行接口方法 afterPropertiesSet ()。 该方法在 Bean 的所有属性的 set 方法执行完毕后执行，是 Bean 初始化结束的标志，即 Bean 实例化结束。<br>Step7：若设置了 init-method 方法，则执行。<br>Step8：若定义并注册了 Bean 后处理器 BeanPostProcessor ， 则执行接口方法 postProcessAfterInitialization()。<br>Step9：执行业务方法。<br>Step10：若 Bean 实现了 DisposableBean 接口，则执行接口方法 destroy()。<br>Step11：若设置了 destroy-method 方法，则执行。</p>
 <h3 id="lt-bean-gt-标签的-id-属性与-name"><a href="#lt-bean-gt-标签的-id-属性与-name" class="headerlink" title="&lt;bean/&gt;标签的 id 属性与 name"></a>&lt;bean/&gt;标签的 id 属性与 name</h3><p>一般情况下，命名&lt;bean/&gt;使用 id 属性，而不使用 name 属性。在没有 id 属性的情况下，name 属性与 id 属性作用是相同的。但，当&lt;bean/&gt;中含有一些特殊字符时，就需要使用 name属性了。</p>
 <p>命名规范：</p>
 <ul>
