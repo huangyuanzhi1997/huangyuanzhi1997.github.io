@@ -108,6 +108,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/08/Spring与AOP/aop01.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/08/Spring与AOP/aop02.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/08/Spring与AOP/aop03.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/08/Spring与AOP/aop04.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/08/Spring与AOP/aop05.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/08/Spring与AOP/aop06.jpg">
@@ -126,7 +127,7 @@
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/08/Spring与AOP/aop19.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/08/Spring与AOP/aop20.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/08/Spring与AOP/aop21.jpg">
-<meta property="og:updated_time" content="2019-08-11T16:25:46.633Z">
+<meta property="og:updated_time" content="2019-08-11T16:31:06.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring与AOP">
 <meta name="twitter:description" content="AOP 简介AOP（Aspect Orient Programming），面向切面编程，是面向对象编程 OOP 的一种补充。面向对象编程是从静态角度考虑程序的结构，而面向切面编程是从动态角度考虑程序运行过程。AOP 底层采用两种动态代理模式实现： JDK 的动态代理与 CGLIB 的动态代理。">
@@ -445,7 +446,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-12 00:25:46" itemprop="dateModified" datetime="2019-08-12T00:25:46+08:00">2019-08-12</time>
+                <time title="修改时间：2019-08-12 00:31:06" itemprop="dateModified" datetime="2019-08-12T00:31:06+08:00">2019-08-12</time>
               </span>
             
           
@@ -580,7 +581,8 @@
 
 <h4 id="异常通知"><a href="#异常通知" class="headerlink" title="异常通知"></a>异常通知</h4><p>定义异常通知，需要实现 ThrowsAdvice 接口。该接口的主要作用是，在目标方法抛出异常后，根据异常的不同做出相应的处理。当该接口处理完异常后，会简单地将异常再次抛出给目标方法。</p>
 <p>不过，这个接口较为特殊，从形式上看，该接口中没有必须要实现的方法。但，这个接口却确实有必须要实现的方法 afterThrowing()。这个方法重载了四种形式。由于使用时，一般只使用其中一种，该接口定义为标识接口（没有方法的接口）。</p>
-<p>(% asset_img aop03.jpg %)</p>
+<img src="/2019/08/08/Spring与AOP/aop03.jpg">
+
 <p>这四种方法中，常用的形式如下：</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> afterThrowing(自定义的异常类 e)</span><br></pre></td></tr></table></figure>
 
