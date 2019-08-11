@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="AOP 简介AOP（Aspect Orient Programming），面向切面编程，是面向对象编程 OOP 的一种补充。面向对象编程是从静态角度考虑程序的结构，而面向切面编程是从动态角度考虑程序运行过程。AOP 底层采用两种动态代理模式实现： JDK 的动态代理与 CGLIB 的动态代理。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-11T15:47:02.433Z">
+<meta property="og:updated_time" content="2019-08-11T16:13:10.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring与AOP">
 <meta name="twitter:description" content="AOP 简介AOP（Aspect Orient Programming），面向切面编程，是面向对象编程 OOP 的一种补充。面向对象编程是从静态角度考虑程序的结构，而面向切面编程是从动态角度考虑程序运行过程。AOP 底层采用两种动态代理模式实现： JDK 的动态代理与 CGLIB 的动态代理。">
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-11 23:47:02" itemprop="dateModified" datetime="2019-08-11T23:47:02+08:00">2019-08-11</time>
+                <time title="修改时间：2019-08-12 00:13:10" itemprop="dateModified" datetime="2019-08-12T00:13:10+08:00">2019-08-12</time>
               </span>
             
           
@@ -467,7 +467,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">17k</span>
+              <span title="本文字数">21k</span>
             </span>
           
 
@@ -780,17 +780,26 @@
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义了一个切入点，叫 doThirdPointcut()</span></span><br><span class="line"><span class="meta">@Pointcut</span>(<span class="string">"execution(* *..ISomeService.doThird(..))"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">doThirdPointcut</span><span class="params">()</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="AspectJ-基于-XML-的-AOP-实现"><a href="#AspectJ-基于-XML-的-AOP-实现" class="headerlink" title="AspectJ 基于 XML 的 AOP 实现"></a>AspectJ 基于 XML 的 AOP 实现</h3><p>AspectJ 除了提供了基于注解的 AOP 的实现外，还提供了以 XML 方式的实现。切面就是一个 POJO 类，而用于增强的方法就是普通的方法。通过配置文件，将切面中的功能增强织入到了目标类的目标方法中。</p>
-<h4 id="实现步骤-1"><a href="#实现步骤-1" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>Step1：定义业务接口与实现类</p>
-<p>Step2：定义切面 POJO 类</p>
+<h4 id="实现步骤-1"><a href="#实现步骤-1" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>（1） 定义业务接口与实现类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//主业务接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">ISomeService</span> &#123;</span><br><span class="line">	<span class="comment">//主业务方法</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">doFirst</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="comment">//主业务方法</span></span><br><span class="line">	<span class="function">String <span class="title">doSecond</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="comment">//主业务方法</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">doThird</span>(<span class="params"></span>)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//目标类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SomeServiceImpl</span> <span class="keyword">implements</span> <span class="title">ISomeService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//目标方法</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"执行doFirst()方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//目标方法</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">doSecond</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"执行doSecond()方法"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"abcde"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//目标方法</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doThird</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"执行doThird()方法"</span> + <span class="number">3</span> / <span class="number">0</span>);</span><br><span class="line">		System.out.println(<span class="string">"执行doThird()方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 定义切面 POJO 类</p>
 <p>该类为一个 POJO 类，将作为切面出现。其中定义了若干普通方法，将作为不同的通知方法。</p>
-<p>Step3：注册目标对象与 POJO 切面类</p>
-<p>Step4：在容器中定义 AOP 配置</p>
-<p>配置文件中，除了要定义目标类与切面的 Bean 外，最主要的是在&lt;aop:config/&gt;中进行 aop 的配置。 而该标签的底层，会根据其子标签的配置，生成自动代理。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表示当前类为切面</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyAspectJ</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//前置通知</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myBefore</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行前置通知方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"><span class="comment">//	@Before("execution(* *..ISomeService.doFirst(..))")</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myBefore</span>(<span class="params">JoinPoint jp</span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行前置通知方法 jp = "</span> + jp);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//后置通知</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myAfterReturning</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行后置通知方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myAfterReturning</span>(<span class="params">Object result</span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行后置通知方法 result = "</span> + result);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//环绕通知</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">myAround</span>(<span class="params">ProceedingJoinPoint pjp</span>) throws Throwable</span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行环绕通知方法，目标方法执行之前"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//执行目标方法</span></span><br><span class="line">		Object result = pjp.proceed();</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行环绕通知方法，目标方法执行之后"</span>);</span><br><span class="line">		<span class="keyword">if</span> (result != <span class="literal">null</span>) &#123;</span><br><span class="line">			result = ((String)result).toUpperCase();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//异常通知</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myAfetrThrowing</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行异常通知方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//使用切入点，叫 doThirdPointcut()</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myAfterThrowing</span>(<span class="params">Exception ex</span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行异常通知方法 ex = "</span> + ex.getMessage());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//最终通知</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myAfter</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行最终通知方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3） 注册目标对象与 POJO 切面类</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册切面 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myAspectJ"</span> <span class="attr">class</span>=<span class="string">"com.huang.xml.MyAspectJ"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 注册目标对象 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"someService"</span> <span class="attr">class</span>=<span class="string">"com.huang.xml.SomeServiceImpl"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（4） 在容器中定义 AOP 配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- AOP配置 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">	    </span><br><span class="line">	    <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"myAspectJ"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">expression</span>=<span class="string">"execution(* *..ISomeService.doFirst(..))"</span> <span class="attr">id</span>=<span class="string">"doFirstPointcut"</span>/&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">expression</span>=<span class="string">"execution(* *..ISomeService.doSecond(..))"</span> <span class="attr">id</span>=<span class="string">"doSecondPointcut"</span>/&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">expression</span>=<span class="string">"execution(* *..ISomeService.doThird(..))"</span> <span class="attr">id</span>=<span class="string">"doThirdPointcut"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">	    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>通过其子标签&lt;aop:pointcut/&gt;定义切入点，该标签有两个属性， id 与 expression。分别用于指定该切入点的名称及切入点的值。 expression 的值为 execution 表达式。</p>
 <p>子标签&lt;aop:aspect/&gt;定义具体的织入规则：根据不同的通知类型，确定不同的织入时间；将 method 指定的增强方法，按照指定织入时间，织入到切入点指定的目标方法中。</p>
 <p>&lt;aop:aspect/&gt;的 ref 属性用于指定使用哪个切面。&lt;aop:aspect/&gt;的子标签是各种不同的通知类型。不同的通知所包含的属性是不同的，但也有共同的属性。</p>
 <ul>
-<li>method：指定该通知使用的切面中的增强方法。</li>
+<li>method：指定该通知使用的切面中的增强方法。  </li>
 <li>pointcut-ref：指定该通知要应用的切入点。</li>
 </ul>
 <p>AspectJ 的 6 种通知的 XML 标签如下：</p>
@@ -802,11 +811,61 @@
 <li>&lt;aop:after/&gt;：最终通知  </li>
 <li>&lt;aop:declare-parents/&gt;：引入通知</li>
 </ul>
-<p>Step5：测试类中使用目标对象的 id</p>
-<h4 id="lt-aop-before-gt-前置通知"><a href="#lt-aop-before-gt-前置通知" class="headerlink" title="&lt;aop:before/&gt;前置通知"></a>&lt;aop:before/&gt;前置通知</h4><h4 id="lt-aop-after-returning-gt-后置通知"><a href="#lt-aop-after-returning-gt-后置通知" class="headerlink" title="&lt;aop:after-returning/&gt;后置通知"></a>&lt;aop:after-returning/&gt;后置通知</h4><p>其 XML 的配置中，有一个属性 returning，指定用于接收目标方法的返回值所使用的变量名。其可作为增强方法的参数出现。</p>
+<p>（5） 定义测试类</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> test01() &#123;</span><br><span class="line">	<span class="keyword">String</span> resource = <span class="string">"com/huang/xml/applicationContext.xml"</span>;</span><br><span class="line">	ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(resource);</span><br><span class="line">	<span class="comment">//serviceProxy为代理对象，而非目标对象</span></span><br><span class="line">	ISomeService service = (ISomeService) ac.getBean(<span class="string">"someService"</span>);  </span><br><span class="line">	service.doFirst();</span><br><span class="line">	System.out.<span class="built_in">println</span>(<span class="string">"----------------------"</span>);</span><br><span class="line">	service.doSecond();</span><br><span class="line">	System.out.<span class="built_in">println</span>(<span class="string">"----------------------"</span>);</span><br><span class="line">	service.doThird();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="lt-aop-before-gt-前置通知"><a href="#lt-aop-before-gt-前置通知" class="headerlink" title="&lt;aop:before/&gt;前置通知"></a>&lt;aop:before/&gt;前置通知</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 前置通知 --&gt;</span></span><br><span class="line">	        <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"myBefore"</span> <span class="attr">pointcut-ref</span>=<span class="string">"doFirstPointcut"</span>/&gt;</span></span><br><span class="line">	        <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"myBefore(org.aspectj.lang.JoinPoint)"</span> <span class="attr">pointcut-ref</span>=<span class="string">"doFirstPointcut"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+
+
+
+<h4 id="lt-aop-after-returning-gt-后置通知"><a href="#lt-aop-after-returning-gt-后置通知" class="headerlink" title="&lt;aop:after-returning/&gt;后置通知"></a>&lt;aop:after-returning/&gt;后置通知</h4><p>其 XML 的配置中，有一个属性 returning，指定用于接收目标方法的返回值所使用的变量名。其可作为增强方法的参数出现。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">      <span class="comment">&lt;!-- 后置通知 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">method</span>=<span class="string">"myAfterReturning"</span> <span class="attr">pointcut-ref</span>=<span class="string">"doSecondPointcut"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">method</span>=<span class="string">"myAfterReturning(java.lang.Object)"</span> <span class="attr">pointcut-ref</span>=<span class="string">"doSecondPointcut"</span> <span class="attr">returning</span>=<span class="string">"result"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+
+
+
 <h4 id="lt-aop-around-gt-环绕通知"><a href="#lt-aop-around-gt-环绕通知" class="headerlink" title="&lt;aop:around/&gt;环绕通知"></a>&lt;aop:around/&gt;环绕通知</h4><p>环绕通知的增强方法一般返回类型为 Object，是目标方法的返回值。并且可以包含一个参数 ProceedingJoinPoint，其方法 proceed()可执行目标方法。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 环绕通知 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">method</span>=<span class="string">"myAround"</span> <span class="attr">pointcut-ref</span>=<span class="string">"doSecondPointcut"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+
+
+
 <h4 id="lt-aop-after-throwing-gt-异常通知"><a href="#lt-aop-after-throwing-gt-异常通知" class="headerlink" title="&lt;aop:after-throwing/&gt;异常通知"></a>&lt;aop:after-throwing/&gt;异常通知</h4><p>其 XML 的配置中，有一个属性 throwing，指定用于接收目标方法所抛出异常的变量名。其可作为增强方法的参数出现，该参数为 Throwable 类型。</p>
-<h4 id="lt-aop-after-gt-最终通知"><a href="#lt-aop-after-gt-最终通知" class="headerlink" title="&lt;aop:after/&gt;最终通知"></a>&lt;aop:after/&gt;最终通知</h4><p>未完……</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 异常通知 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">method</span>=<span class="string">"myAfterThrowing(java.lang.Exception)"</span> <span class="attr">pointcut-ref</span>=<span class="string">"doThirdPointcut"</span> <span class="attr">throwing</span>=<span class="string">"ex"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+
+
+
+<h4 id="lt-aop-after-gt-最终通知"><a href="#lt-aop-after-gt-最终通知" class="headerlink" title="&lt;aop:after/&gt;最终通知"></a>&lt;aop:after/&gt;最终通知</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 最终通知 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">method</span>=<span class="string">"myAfter"</span> <span class="attr">pointcut-ref</span>=<span class="string">"doThirdPointcut"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       
     </div>
@@ -1135,7 +1194,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">138k字</span>
+   站点总字数： <span title="站点总字数">142k字</span>
   
 
 
