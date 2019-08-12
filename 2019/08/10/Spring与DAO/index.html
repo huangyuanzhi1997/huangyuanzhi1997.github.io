@@ -98,18 +98,18 @@
   };
 </script>
 
-  <meta name="description" content="Spring与JDBC模板从属性文件读取数据库连接信息配置JDBC模板Dao实现类继承JdbcDaoSupport对DB的增、删、改操作对DB的查询操作Spring的事务管理Spring事务管理API使用Spring的事务代理工厂管理事务使用Spring的事物注解管理事务使用AspectJ的AOP配置管理事务">
+  <meta name="description" content="Spring 所使用的操作数据库的技术： JDBC 模板的使用和 Spring 对于事务的管理。  JDBC 模板的使用，是 IoC 的应用，将 JDBC 模板对象注入给了 Dao 层的实现类。   Spring 的事务管理， 是 AOP 的应用，将事务作为切面织入到了 Service 层的业务方法中。">
 <meta name="keywords" content="DAO">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring与DAO">
 <meta property="og:url" content="https://huangyuanzhi.top/2019/08/10/Spring与DAO/index.html">
 <meta property="og:site_name" content="远志の博客">
-<meta property="og:description" content="Spring与JDBC模板从属性文件读取数据库连接信息配置JDBC模板Dao实现类继承JdbcDaoSupport对DB的增、删、改操作对DB的查询操作Spring的事务管理Spring事务管理API使用Spring的事务代理工厂管理事务使用Spring的事物注解管理事务使用AspectJ的AOP配置管理事务">
+<meta property="og:description" content="Spring 所使用的操作数据库的技术： JDBC 模板的使用和 Spring 对于事务的管理。  JDBC 模板的使用，是 IoC 的应用，将 JDBC 模板对象注入给了 Dao 层的实现类。   Spring 的事务管理， 是 AOP 的应用，将事务作为切面织入到了 Service 层的业务方法中。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-10T12:41:44.163Z">
+<meta property="og:updated_time" content="2019-08-12T13:34:19.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring与DAO">
-<meta name="twitter:description" content="Spring与JDBC模板从属性文件读取数据库连接信息配置JDBC模板Dao实现类继承JdbcDaoSupport对DB的增、删、改操作对DB的查询操作Spring的事务管理Spring事务管理API使用Spring的事务代理工厂管理事务使用Spring的事物注解管理事务使用AspectJ的AOP配置管理事务">
+<meta name="twitter:description" content="Spring 所使用的操作数据库的技术： JDBC 模板的使用和 Spring 对于事务的管理。  JDBC 模板的使用，是 IoC 的应用，将 JDBC 模板对象注入给了 Dao 层的实现类。   Spring 的事务管理， 是 AOP 的应用，将事务作为切面织入到了 Service 层的业务方法中。">
 
 
 
@@ -293,7 +293,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">5</span></a>
 
   </li>
         
@@ -311,7 +311,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">14</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">15</span></a>
 
   </li>
 
@@ -409,13 +409,23 @@
                 
               
 
-              <time title="创建时间：2019-08-10 20:28:54 / 修改时间：20:41:44" itemprop="dateCreated datePublished" datetime="2019-08-10T20:28:54+08:00">2019-08-10</time>
+              <time title="创建时间：2019-08-10 20:28:54" itemprop="dateCreated datePublished" datetime="2019-08-10T20:28:54+08:00">2019-08-10</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-12 21:34:19" itemprop="dateModified" datetime="2019-08-12T21:34:19+08:00">2019-08-12</time>
+              </span>
             
           
 
@@ -457,7 +467,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">155</span>
+              <span title="本文字数">5.7k</span>
             </span>
           
 
@@ -479,7 +489,123 @@
       
 
       
-        <h2 id="Spring与JDBC模板"><a href="#Spring与JDBC模板" class="headerlink" title="Spring与JDBC模板"></a>Spring与JDBC模板</h2><h3 id="从属性文件读取数据库连接信息"><a href="#从属性文件读取数据库连接信息" class="headerlink" title="从属性文件读取数据库连接信息"></a>从属性文件读取数据库连接信息</h3><h3 id="配置JDBC模板"><a href="#配置JDBC模板" class="headerlink" title="配置JDBC模板"></a>配置JDBC模板</h3><h3 id="Dao实现类继承JdbcDaoSupport"><a href="#Dao实现类继承JdbcDaoSupport" class="headerlink" title="Dao实现类继承JdbcDaoSupport"></a>Dao实现类继承JdbcDaoSupport</h3><h3 id="对DB的增、删、改操作"><a href="#对DB的增、删、改操作" class="headerlink" title="对DB的增、删、改操作"></a>对DB的增、删、改操作</h3><h3 id="对DB的查询操作"><a href="#对DB的查询操作" class="headerlink" title="对DB的查询操作"></a>对DB的查询操作</h3><h2 id="Spring的事务管理"><a href="#Spring的事务管理" class="headerlink" title="Spring的事务管理"></a>Spring的事务管理</h2><h3 id="Spring事务管理API"><a href="#Spring事务管理API" class="headerlink" title="Spring事务管理API"></a>Spring事务管理API</h3><h3 id="使用Spring的事务代理工厂管理事务"><a href="#使用Spring的事务代理工厂管理事务" class="headerlink" title="使用Spring的事务代理工厂管理事务"></a>使用Spring的事务代理工厂管理事务</h3><h3 id="使用Spring的事物注解管理事务"><a href="#使用Spring的事物注解管理事务" class="headerlink" title="使用Spring的事物注解管理事务"></a>使用Spring的事物注解管理事务</h3><h3 id="使用AspectJ的AOP配置管理事务"><a href="#使用AspectJ的AOP配置管理事务" class="headerlink" title="使用AspectJ的AOP配置管理事务"></a>使用AspectJ的AOP配置管理事务</h3>
+        <p>Spring 所使用的操作数据库的技术： JDBC 模板的使用和 Spring 对于事务的管理。</p>
+<ul>
+<li>JDBC 模板的使用，是 IoC 的应用，将 JDBC 模板对象注入给了 Dao 层的实现类。  </li>
+<li>Spring 的事务管理， 是 AOP 的应用，将事务作为切面织入到了 Service 层的业务方法中。</li>
+</ul>
+<a id="more"></a>
+
+
+<h2 id="Spring与JDBC模板"><a href="#Spring与JDBC模板" class="headerlink" title="Spring与JDBC模板"></a>Spring与JDBC模板</h2><p>为了避免直接使用 JDBC 而带来的复杂且冗长的代码， Spring 提供了一个强有力的模板类——JdbcTemplate 来简化 JDBC 操作。并且，数据源 DataSource 对象与模板 JdbcTemplate 对象均可通过 Bean 的形式定义在配置文件中，充分发挥了依赖注入的威力。</p>
+<h3 id="数据源的配置"><a href="#数据源的配置" class="headerlink" title="数据源的配置"></a>数据源的配置</h3><p>使用 JDBC 模板，首先需要配置好数据源，数据源直接以 Bean 的形式配置在 Spring 配置文件中。根据数据源的不同，其配置方式不同。常用数据源的配置方式有三种：</p>
+<ol>
+<li>Spring 默认的数据源  </li>
+<li>DBCP 数据源  </li>
+<li>C3P0 数据源</li>
+</ol>
+<h4 id="Spring-默认的数据源"><a href="#Spring-默认的数据源" class="headerlink" title="Spring 默认的数据源"></a>Spring 默认的数据源</h4><p>Spring 默认的数据源为 DriverManagerDataSource，其有一个属性 DriverClassName，用于接收 DB 驱动。</p>
+<p>DriverManagerDataSource 类继承自 AbstractDriverBasedDataSource。其有三个属性用于接收连接数据库的 URL、用户名与密码。</p>
+<h4 id="DBCP-数据源"><a href="#DBCP-数据源" class="headerlink" title="DBCP 数据源"></a>DBCP 数据源</h4><p>DBCP(DataBase Connection Pool)，是 apache 下的项目，DBCP 数据源是 BasicDataSource，其有 driverClassName、 url、 username、 password 四个 DB 连接属性。</p>
+<h4 id="C3P0-数据源"><a href="#C3P0-数据源" class="headerlink" title="C3P0 数据源"></a>C3P0 数据源</h4><p>C3P0 数据源是 ComboPooledDataSource ，其有 DriverClass、<br>JdbcUrl、 User、 Password 四个 DB 连接属性。</p>
+<h3 id="从属性文件读取数据库连接信息"><a href="#从属性文件读取数据库连接信息" class="headerlink" title="从属性文件读取数据库连接信息"></a>从属性文件读取数据库连接信息</h3><p>为了便于维护，可以将数据库连接信息写入到属性文件中，使 Spring 配置文件从中读取数据。</p>
+<p>Spring 配置文件从属性文件中读取数据时，需要在&lt;property/&gt;的 value 属性中使用${ }，将在属性文件中定义的 key 括起来，以引用指定属性的值。</p>
+<p>该属性文件若要被 Spring 配置文件读取，其必须在配置文件中进行注册。注册方式有两种：</p>
+<ol>
+<li>&lt;bean/&gt;方式  </li>
+<li>&lt;context&gt;方式</li>
+</ol>
+<h4 id="lt-bean-gt-方式"><a href="#lt-bean-gt-方式" class="headerlink" title="&lt;bean/&gt;方式"></a>&lt;bean/&gt;方式</h4><p>以 PropertyPlaceholderConfigurer 类的 bean 实例的方式进行注册。该类有一个属性 location，用于指定属性文件的位置。</p>
+<h4 id="lt-context-property-placeholder-gt-方式"><a href="#lt-context-property-placeholder-gt-方式" class="headerlink" title="&lt;context:property-placeholder/&gt;方式"></a>&lt;context:property-placeholder/&gt;方式</h4><p>该方式要求在 Spring 配置文件头部加入 context 的约束，即修改配置文件头。</p>
+<p>&lt;context:property-placeholder/&gt;标签中有一个属性 location，用于指定属性文件的位置。</p>
+<h3 id="配置JDBC模板"><a href="#配置JDBC模板" class="headerlink" title="配置JDBC模板"></a>配置JDBC模板</h3><p>JDBC 模板类 JdbcTemplate 从其父类 JdbcAccessor 继承了一个属性 dataSource，用于接收数据源。</p>
+<h3 id="Dao实现类继承JdbcDaoSupport"><a href="#Dao实现类继承JdbcDaoSupport" class="headerlink" title="Dao实现类继承JdbcDaoSupport"></a>Dao实现类继承JdbcDaoSupport</h3><p>JdbcDaoSupport 类中有一个属性 JdbcTemplate，用于接收 JDBC 模板。所以 Dao 实现类继承了 JdbcDaoSupport 类后，也就具有了 JDBC 模板属性。在配置文件中，只要将模板对象注入即可。</p>
+<h3 id="对DB的增、删、改操作"><a href="#对DB的增、删、改操作" class="headerlink" title="对DB的增、删、改操作"></a>对DB的增、删、改操作</h3><p>JdbcTemplate 类中提供了对 DB 进行修改、查询的方法。 Dao 实现类使用继承自 JdbcDaoSupport 的 getTemplate()方法，可以获取到 JDBC 模板对象。</p>
+<p>对 DB 的增、删、改都是通过 update()方法实现的。该方法常用的重载方法有两个：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> update ( <span class="keyword">String</span> sql)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> update ( <span class="keyword">String</span> sql, <span class="keyword">Object</span>… args)</span><br></pre></td></tr></table></figure>
+
+<p>第 1 个参数为要执行的 sql 语句，第 2 个参数为要执行的 sql 语句中所包含的动态参数。其返回值为所影响记录的条数。一般不用。</p>
+<h3 id="对DB的查询操作"><a href="#对DB的查询操作" class="headerlink" title="对DB的查询操作"></a>对DB的查询操作</h3><p>JDBC 模板的查询结果均是以对象的形式返回。根据返回对象类型的不同，可以将查询分为两类：</p>
+<ul>
+<li>简单对象查询：查询结果为 String、 Integer 等简单对象类型，或该类型做为元素的集合类型，如 List&lt;String&gt;等。  </li>
+<li>自定义对象查询：查询结果为自定义类型，如 User 等，或该类型做为元素的集合类型，如 List&lt;User&gt;等。</li>
+</ul>
+<h4 id="简单对象查询"><a href="#简单对象查询" class="headerlink" title="简单对象查询"></a>简单对象查询</h4><p>常用的简单对象查询方法有：查询结果为单个对象的 queryForObject()与查询结果为 List的 queryForList()。</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pubic T queryForObject (<span class="keyword">String</span> sql, <span class="keyword">Class</span>&lt;T&gt; <span class="keyword">type</span>, <span class="keyword">Object</span>... args)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pubic List&lt;T&gt; queryForList (<span class="keyword">String</span> sql, <span class="keyword">Class</span>&lt;T&gt; <span class="keyword">type</span>, <span class="keyword">Object</span>... args)</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义对象查询"><a href="#自定义对象查询" class="headerlink" title="自定义对象查询"></a>自定义对象查询</h4><p>常用的自定义对象查询方法有：查询结果为单个对象的 queryForObject()与查询结果为List 的 query()。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pubic T queryForObject (<span class="built_in">String</span> sql, RowMapper&lt;T&gt; m , <span class="built_in">Object</span>... args)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pubic <span class="built_in">List</span>&lt;T&gt; query (<span class="built_in">String</span> sql, RowMapper&lt;T &gt; m, <span class="built_in">Object</span>... args)</span><br></pre></td></tr></table></figure>
+
+<p>RowMapper 为记录映射接口，用于将查询结果集中每一条记录包装为指定对象。该接口中有一个方法需要实现：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">Object</span> mapRow(ResultSet rs, <span class="built_in">int</span> rowNum)</span><br></pre></td></tr></table></figure>
+
+<p>参数 rowNum 表示总的结果集中当前行的行号，但参数 rs 并不表示总的结果集，而是表示 rowNum 所代表的当前行的记录所定义的结果集，仅仅是当前行的结果。一般来说，该方法体中就是实现将查询结果中当前行的数据包装为一个指定对象。</p>
+<blockquote>
+<p>注意：<br>JdbcTemplate 对象是多例的，即系统会为每一个使用模板对象的线程（方法）创建一个 JdbcTemplate 实例，并且在该线程（方法）结束时，自动释放 JdbcTemplate 实例。所以在每次使用 JdbcTemplate 对象时，都需要通过 getJdbcTemplate()方法获取。</p>
+</blockquote>
+<h2 id="Spring的事务管理"><a href="#Spring的事务管理" class="headerlink" title="Spring的事务管理"></a>Spring的事务管理</h2><p>事务原本是数据库中的概念，在 Dao 层。但一般情况下，需要将事务提升到业务层，即 Service 层。这样做是为了能够使用事务的特性来管理具体的业务。在 Spring 中通常可以通过以下三种方式来实现对事务的管理：</p>
+<ol>
+<li>使用 Spring 的事务代理工厂管理事务  </li>
+<li>使用 Spring 的事务注解管理事务  </li>
+<li>使用 AspectJ 的 AOP 配置管理事务</li>
+</ol>
+<h3 id="Spring事务管理API"><a href="#Spring事务管理API" class="headerlink" title="Spring事务管理API"></a>Spring事务管理API</h3><p>Spring 的事务管理，主要用到两个事务相关的接口。</p>
+<h4 id="1-事务管理器接口"><a href="#1-事务管理器接口" class="headerlink" title="1. 事务管理器接口"></a>1. 事务管理器接口</h4><p>事务管理器是 PlatformTransactionManager 接口对象。其主要用于完成事务的提交、回滚，及获取事务的状态信息。 </p>
+<h5 id="常用的两个实现类"><a href="#常用的两个实现类" class="headerlink" title="常用的两个实现类"></a>常用的两个实现类</h5><ul>
+<li>DataSourceTransactionManager：使用 JDBC 或 iBatis 进行持久化数据时使用。  </li>
+<li>HibernateTransactionManager：使用 Hibernate 进行持久化数据时使用。</li>
+</ul>
+<h5 id="Spring-的回滚方式"><a href="#Spring-的回滚方式" class="headerlink" title="Spring 的回滚方式"></a>Spring 的回滚方式</h5><p>Spring 事务的默认回滚方式是： 发生运行时异常时回滚，发生受查异常时提交。 不过，对于受查异常，也可以手工设置其回滚方式。</p>
+<h5 id="回顾错误与异常"><a href="#回顾错误与异常" class="headerlink" title="回顾错误与异常"></a>回顾错误与异常</h5><h4 id="2-事务定义接口"><a href="#2-事务定义接口" class="headerlink" title="2. 事务定义接口"></a>2. 事务定义接口</h4><p>事务定义接口 TransactionDefinition 中定义了事务描述相关的三类常量： 事务隔离级别、事务传播行为、事务默认超时时限， 及对它们的操作。</p>
+<h5 id="定义了五个事务隔离级别常量"><a href="#定义了五个事务隔离级别常量" class="headerlink" title="定义了五个事务隔离级别常量"></a>定义了五个事务隔离级别常量</h5><p>这些常量均是以 ISOLATION_开头。即形如 ISOLATION_XXX。</p>
+<ul>
+<li>DEFAULT： 采用 DB 默认的事务隔离级别。 MySql 的默认为 REPEATABLE_READ； Oracle 默认为 READ_COMMITTED。  </li>
+<li>READ_UNCOMMITTED： 读未提交。 未解决任何并发问题。  </li>
+<li>READ_COMMITTED： 读已提交。解决脏读，存在不可重复读与幻读。  </li>
+<li>REPEATABLE_READ： 可重复读。解决脏读、不可重复读，存在幻读。  </li>
+<li>SERIALIZABLE： 串行化。不存在并发问题。</li>
+</ul>
+<h5 id="定义了七个事务传播行为常量"><a href="#定义了七个事务传播行为常量" class="headerlink" title="定义了七个事务传播行为常量"></a>定义了七个事务传播行为常量</h5><p>谓事务传播行为是指，处于不同事务中的方法在相互调用时，执行期间事务的维护情况。如， A 事务中的方法 doSome()调用 B 事务中的方法 doOther()，在调用执行期间事务的维护情况，就称为事务传播行为。事务传播行为是加在方法上的。</p>
+<p>事务传播行为常量都是以 PROPAGATION_ 开头，形如 PROPAGATION_XXX。</p>
+<ul>
+<li>REQUIRED： 指定的方法必须在事务内执行。若当前存在事务，就加入到当前事务中；若当前没有事务，则创建一个新事务。这种传播行为是最常见的选择，也是 Spring 默认的事务传播行为。  </li>
+<li>SUPPORTS： 指定的方法支持当前事务，但若当前没有事务，也可以以非事务方式执行。  </li>
+<li>MANDATORY： 指定的方法必须在当前事务内执行，若当前没有事务，则直接抛出异常。  </li>
+<li>REQUIRES_NEW： 总是新建一个事务，若当前存在事务，就将当前事务挂起，直到新事务执行完毕。  </li>
+<li>NOT_SUPPORTED： 指定的方法不能在事务环境中执行，若当前存在事务，就将当前事务挂起。  </li>
+<li>NEVER： 指定的方法不能在事务环境下执行，若当前存在事务，就直接抛出异常。  </li>
+<li>NESTED： 指定的方法必须在事务内执行。若当前存在事务，则在嵌套事务内执行；若当前没有事务，则创建一个新事务。</li>
+</ul>
+<h5 id="定义了默认事务超时时"><a href="#定义了默认事务超时时" class="headerlink" title="定义了默认事务超时时"></a>定义了默认事务超时时</h5><p>常量 TIMEOUT_DEFAULT 定义了事务底层默认的超时时限，及不支持事务超时时限设置的 none 值。</p>
+<blockquote>
+<p>注意：<br>事务的超时时限起作用的条件比较多，且超时的时间计算点较复杂。所以，该值一般就使用默认值即可。</p>
+</blockquote>
+<h3 id="使用Spring的事务代理工厂管理事务"><a href="#使用Spring的事务代理工厂管理事务" class="headerlink" title="使用Spring的事务代理工厂管理事务"></a>使用Spring的事务代理工厂管理事务</h3><p>该方式是，需要为目标类，即 Service 的实现类创建事务代理。事务代理使用的类是 TransactionProxyFactoryBean，该类需要初始化如下一些属性：</p>
+<p>（1） transactionManager：事务管理器<br>（2） target：目标对象，即 Service 实现类对象<br>（3） transactionAttributes：事务属性</p>
+<h3 id="使用Spring的事物注解管理事务"><a href="#使用Spring的事物注解管理事务" class="headerlink" title="使用Spring的事物注解管理事务"></a>使用Spring的事物注解管理事务</h3><p>通过@Transactional 注解方式，也可将事务织入到相应方法中。而使用注解方式，只需在配置文件中加入一个 tx 标签，以告诉 spring 使用注解来完成事务的织入。该标签只需指定一个属性，事务管理器。</p>
+<p>@Transactional 的所有可选属性如下所示：</p>
+<ul>
+<li>propagation： 用于设置事务传播属性。该属性类型为 Propagation 枚举，默认值为 Propagation.REQUIRED。  </li>
+<li>isolation： 用于设置事务的隔离级别。该属性类型为 Isolation 枚举 ，默认值为 Isolation.DEFAULT。  </li>
+<li>readOnly： 用于设置该方法对数据库的操作是否是只读的。该属性为 boolean，默认值为 false。  </li>
+<li>timeout： 用于设置本操作与数据库连接的超时时限。单位为秒，类型为 int，默认值为-1，即没有时限。  </li>
+<li>rollbackFor： 指定需要回滚的异常类。类型为 Class[]，默认值为空数组。当然，若只有一个异常类时，可以不使用数组。  </li>
+<li>rollbackForClassName： 指定需要回滚的异常类类名。类型为 String[]，默认值为空数组。当然，若只有一个异常类时，可以不使用数组。  </li>
+<li>noRollbackFor： 指定不需要回滚的异常类。类型为 Class[]，默认值为空数组。当然，若只有一个异常类时，可以不使用数组。  </li>
+<li>noRollbackForClassName： 指定不需要回滚的异常类类名。类型为 String[]，默认值为空数组。当然，若只有一个异常类时，可以不使用数组。</li>
+</ul>
+<blockquote>
+<p>注意：<br>@Transactional 若用在方法上，只能用于 public 方法上。对于其他非 public方法，如果加上了注解@Transactional，虽然 Spring 不会报错，但不会将指定事务织入到该方法中。因为 Spring 会忽略掉所有非 public 方法上的@Transaction 注解。若@Transaction 注解在类上，则表示该类上所有的方法均将在执行时织入事务。</p>
+</blockquote>
+<h3 id="使用AspectJ的AOP配置管理事务"><a href="#使用AspectJ的AOP配置管理事务" class="headerlink" title="使用AspectJ的AOP配置管理事务"></a>使用AspectJ的AOP配置管理事务</h3><p>使用 XML 配置事务代理的方式的不足是，每个目标类都需要配置事务代理。当目标类较多，配置文件会变得非常臃肿。使用 XML 配置顾问方式可以自动为每个符合切入点表达式的类生成事务代理。</p>
+<p>未完。。。</p>
+
       
     </div>
 
@@ -570,6 +696,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/08/12/SpringMVC概概述/" rel="prev" title="SpringMVC概概述">
+                SpringMVC概概述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -640,7 +770,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -665,7 +795,9 @@
         
           
         
-        <span class="site-state-item-count">4</span>
+          
+        
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -769,7 +901,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring与JDBC模板"><span class="nav-text">Spring与JDBC模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从属性文件读取数据库连接信息"><span class="nav-text">从属性文件读取数据库连接信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置JDBC模板"><span class="nav-text">配置JDBC模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dao实现类继承JdbcDaoSupport"><span class="nav-text">Dao实现类继承JdbcDaoSupport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对DB的增、删、改操作"><span class="nav-text">对DB的增、删、改操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对DB的查询操作"><span class="nav-text">对DB的查询操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring的事务管理"><span class="nav-text">Spring的事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring事务管理API"><span class="nav-text">Spring事务管理API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Spring的事务代理工厂管理事务"><span class="nav-text">使用Spring的事务代理工厂管理事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Spring的事物注解管理事务"><span class="nav-text">使用Spring的事物注解管理事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用AspectJ的AOP配置管理事务"><span class="nav-text">使用AspectJ的AOP配置管理事务</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring与JDBC模板"><span class="nav-text">Spring与JDBC模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据源的配置"><span class="nav-text">数据源的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-默认的数据源"><span class="nav-text">Spring 默认的数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DBCP-数据源"><span class="nav-text">DBCP 数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C3P0-数据源"><span class="nav-text">C3P0 数据源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从属性文件读取数据库连接信息"><span class="nav-text">从属性文件读取数据库连接信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-bean-gt-方式"><span class="nav-text">&lt;bean/&gt;方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-context-property-placeholder-gt-方式"><span class="nav-text">&lt;context:property-placeholder/&gt;方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置JDBC模板"><span class="nav-text">配置JDBC模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dao实现类继承JdbcDaoSupport"><span class="nav-text">Dao实现类继承JdbcDaoSupport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对DB的增、删、改操作"><span class="nav-text">对DB的增、删、改操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对DB的查询操作"><span class="nav-text">对DB的查询操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单对象查询"><span class="nav-text">简单对象查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义对象查询"><span class="nav-text">自定义对象查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring的事务管理"><span class="nav-text">Spring的事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring事务管理API"><span class="nav-text">Spring事务管理API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-事务管理器接口"><span class="nav-text">1. 事务管理器接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常用的两个实现类"><span class="nav-text">常用的两个实现类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spring-的回滚方式"><span class="nav-text">Spring 的回滚方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#回顾错误与异常"><span class="nav-text">回顾错误与异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-事务定义接口"><span class="nav-text">2. 事务定义接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义了五个事务隔离级别常量"><span class="nav-text">定义了五个事务隔离级别常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义了七个事务传播行为常量"><span class="nav-text">定义了七个事务传播行为常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义了默认事务超时时"><span class="nav-text">定义了默认事务超时时</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Spring的事务代理工厂管理事务"><span class="nav-text">使用Spring的事务代理工厂管理事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Spring的事物注解管理事务"><span class="nav-text">使用Spring的事物注解管理事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用AspectJ的AOP配置管理事务"><span class="nav-text">使用AspectJ的AOP配置管理事务</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -803,7 +935,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">142k字</span>
+   站点总字数： <span title="站点总字数">147k字</span>
   
 
 
