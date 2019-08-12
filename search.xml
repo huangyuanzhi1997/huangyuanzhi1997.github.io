@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[SpringMVC概概述]]></title>
-    <url>%2F2019%2F08%2F12%2FSpringMVC%E6%A6%82%E6%A6%82%E8%BF%B0%2F</url>
+    <title><![CDATA[SpringMVC概述]]></title>
+    <url>%2F2019%2F08%2F12%2FSpringMVC%E6%A6%82%E8%BF%B0%2F</url>
     <content type="text"><![CDATA[SpringMVC简介第一个SpringMVC程序SpringMVC执行流程再解&lt;url-pattern/&gt;绝对路径与相对路径]]></content>
       <categories>
         <category>SpringMVC</category>
