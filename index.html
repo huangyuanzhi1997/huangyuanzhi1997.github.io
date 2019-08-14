@@ -310,7 +310,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">15</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">16</span></a>
 
   </li>
 
@@ -349,6 +349,186 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄远志">
+      <meta itemprop="description" content="没有理所当然的成功，也没有毫无道理的平庸">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远志の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/14/SpringMVC配置式开发/" class="post-title-link" itemprop="url">SpringMVC配置式开发</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-14 23:11:30 / 修改时间：23:17:43" itemprop="dateCreated datePublished" datetime="2019-08-14T23:11:30+08:00">2019-08-14</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SpringMVC/" itemprop="url" rel="index"><span itemprop="name">SpringMVC</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">355</span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="处理器映射器-HandlerMapping"><a href="#处理器映射器-HandlerMapping" class="headerlink" title="处理器映射器 HandlerMapping"></a>处理器映射器 HandlerMapping</h2><h3 id="BeanNameUrlHandlerMapping"><a href="#BeanNameUrlHandlerMapping" class="headerlink" title="BeanNameUrlHandlerMapping"></a>BeanNameUrlHandlerMapping</h3><h3 id="SimpleUrlHandlerMapping"><a href="#SimpleUrlHandlerMapping" class="headerlink" title="SimpleUrlHandlerMapping"></a>SimpleUrlHandlerMapping</h3><h2 id="处理器适配器-HandlerAdapter"><a href="#处理器适配器-HandlerAdapter" class="headerlink" title="处理器适配器 HandlerAdapter"></a>处理器适配器 HandlerAdapter</h2><h3 id="SimpleControllerHandlerAdapter"><a href="#SimpleControllerHandlerAdapter" class="headerlink" title="SimpleControllerHandlerAdapter"></a>SimpleControllerHandlerAdapter</h3><h3 id="HttpRequestHandlerAdapter"><a href="#HttpRequestHandlerAdapter" class="headerlink" title="HttpRequestHandlerAdapter"></a>HttpRequestHandlerAdapter</h3><h2 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h2><h3 id="继承自-AbstractController-类"><a href="#继承自-AbstractController-类" class="headerlink" title="继承自 AbstractController 类"></a>继承自 AbstractController 类</h3><h3 id="继承自-MultiActionController-类"><a href="#继承自-MultiActionController-类" class="headerlink" title="继承自 MultiActionController 类"></a>继承自 MultiActionController 类</h3><h2 id="ModelAndView"><a href="#ModelAndView" class="headerlink" title="ModelAndView"></a>ModelAndView</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><h2 id="视图解析器-ViewResolver"><a href="#视图解析器-ViewResolver" class="headerlink" title="视图解析器 ViewResolver"></a>视图解析器 ViewResolver</h2><h3 id="InternalResourceViewResolver-视图解析器"><a href="#InternalResourceViewResolver-视图解析器" class="headerlink" title="InternalResourceViewResolver 视图解析器"></a>InternalResourceViewResolver 视图解析器</h3><h3 id="BeanNameViewResolver-视图解析器"><a href="#BeanNameViewResolver-视图解析器" class="headerlink" title="BeanNameViewResolver 视图解析器"></a>BeanNameViewResolver 视图解析器</h3><h3 id="XmlViewResolver-视图解析器"><a href="#XmlViewResolver-视图解析器" class="headerlink" title="XmlViewResolver 视图解析器"></a>XmlViewResolver 视图解析器</h3><h3 id="ResourceBundleViewResolver-视图解析器"><a href="#ResourceBundleViewResolver-视图解析器" class="headerlink" title="ResourceBundleViewResolver 视图解析器"></a>ResourceBundleViewResolver 视图解析器</h3><h3 id="视图解析器的优先级"><a href="#视图解析器的优先级" class="headerlink" title="视图解析器的优先级"></a>视图解析器的优先级</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+
+
+     <div>
+       
+      </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -425,7 +605,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-14 14:38:48" itemprop="dateModified" datetime="2019-08-14T14:38:48+08:00">2019-08-14</time>
+                <time title="修改时间：2019-08-14 14:55:34" itemprop="dateModified" datetime="2019-08-14T14:55:34+08:00">2019-08-14</time>
               </span>
             
           
@@ -2118,196 +2298,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huangyuanzhi.top/2019/07/28/MySQL数据库基础入门与实战/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="黄远志">
-      <meta itemprop="description" content="没有理所当然的成功，也没有毫无道理的平庸">
-      <meta itemprop="image" content="/images/author.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="远志の博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/28/MySQL数据库基础入门与实战/" class="post-title-link" itemprop="url">MySQL数据库基础入门与实战</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-28 18:21:53 / 修改时间：23:43:29" itemprop="dateCreated datePublished" datetime="2019-07-28T18:21:53+08:00">2019-07-28</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">11k</span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="常见数据库"><a href="#常见数据库" class="headerlink" title="常见数据库"></a>常见数据库</h2><ul>
-<li>关系型数据库：MySQL、Oracle、SQL Server、JDBC、DB2等。</li>
-<li>非关系型数据库：Redis、MongoDB、NoSQL等。  </li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/28/MySQL数据库基础入门与实战/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-
-
-     <div>
-       
-      </div>
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2357,7 +2347,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2505,7 +2495,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">168k字</span>
+   站点总字数： <span title="站点总字数">169k字</span>
   
 
 

@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/12/SpringMVC概述/mvc03.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/12/SpringMVC概述/mvc04.jpg">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/12/SpringMVC概述/mvc05.jpg">
-<meta property="og:updated_time" content="2019-08-14T06:38:48.757Z">
+<meta property="og:updated_time" content="2019-08-14T06:55:34.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC概述">
 <meta name="twitter:description" content="SpringMVC 全称是 Spring Web MVC，是 Spring 框架一部分，是一个 MVC 的框架，和 Struts2 一样是一个表现层框架，是在 Spring3.0 后发布的。">
@@ -316,7 +316,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">15</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">16</span></a>
 
   </li>
 
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-14 14:38:48" itemprop="dateModified" datetime="2019-08-14T14:38:48+08:00">2019-08-14</time>
+                <time title="修改时间：2019-08-14 14:55:34" itemprop="dateModified" datetime="2019-08-14T14:55:34+08:00">2019-08-14</time>
               </span>
             
           
@@ -602,7 +602,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"/my.do"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"com.huang.handlers.MyController"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>解释：<br>这是个后台路径：出现在Java代码中，或xml文件，或properties等配置文件中的，以斜杠/开头的路径为后台路径<br>后台路径的参照路径是：当前web应用的根 <a href="http://localhost:8080/requestPath" target="_blank" rel="noopener">http://localhost:8080/requestPath</a><br>绝对路径 = 参照路径 + 相对路径<br>这里对于处理器的注册，意思是，若要想访问MyController这个处理器，必须提交一个请求，这个请求，以后台路径的方式给出这个/my.do后台路径，转变为绝对路径是： <a href="http://localhost:8080/requestPath/my.do" target="_blank" rel="noopener">http://localhost:8080/requestPath/my.do</a><br>也就是说，用户若要访问MyContrller这个处理器，必须提交的请求为： <a href="http://localhost:8080/requestPath/my.do" target="_blank" rel="noopener">http://localhost:8080/requestPath/my.do</a></p>
+<p>解释：<br>这是后台路径：出现在Java代码、xml文件或properties等配置文件中的，以斜杠/开头的路径为后台路径<br>后台路径的参照路径是：当前web应用的根 <a href="http://localhost:8080/requestPath" target="_blank" rel="noopener">http://localhost:8080/requestPath</a><br>绝对路径 = 参照路径 + 相对路径<br>这里对于处理器的注册，意思是，若要想访问MyController这个处理器，必须提交一个请求，这个请求，以后台路径的方式给出这个/my.do后台路径，转变为绝对路径是： <a href="http://localhost:8080/requestPath/my.do" target="_blank" rel="noopener">http://localhost:8080/requestPath/my.do</a><br>也就是说，用户若要访问MyContrller这个处理器，必须提交的请求为： <a href="http://localhost:8080/requestPath/my.do" target="_blank" rel="noopener">http://localhost:8080/requestPath/my.do</a></p>
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这个请求是访问不到的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/my.do"</span>&gt;</span>跳转到welcome页面<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -717,6 +717,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/08/14/SpringMVC配置式开发/" rel="prev" title="SpringMVC配置式开发">
+                SpringMVC配置式开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -787,7 +791,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -952,7 +956,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">168k字</span>
+   站点总字数： <span title="站点总字数">169k字</span>
   
 
 
