@@ -310,7 +310,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">16</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">17</span></a>
 
   </li>
 
@@ -349,6 +349,186 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄远志">
+      <meta itemprop="description" content="没有理所当然的成功，也没有毫无道理的平庸">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远志の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/15/SpringMVC注解式开发/" class="post-title-link" itemprop="url">SpringMVC注解式开发</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-15 23:24:13 / 修改时间：23:30:26" itemprop="dateCreated datePublished" datetime="2019-08-15T23:24:13+08:00">2019-08-15</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SpringMVC/" itemprop="url" rel="index"><span itemprop="name">SpringMVC</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">210</span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="第一个注解式开发程序"><a href="#第一个注解式开发程序" class="headerlink" title="第一个注解式开发程序"></a>第一个注解式开发程序</h2><h3 id="注册组件扫描器"><a href="#注册组件扫描器" class="headerlink" title="注册组件扫描器"></a>注册组件扫描器</h3><h3 id="定义处理器"><a href="#定义处理器" class="headerlink" title="定义处理器"></a>定义处理器</h3><h2 id="处理器的请求映射规则的定义"><a href="#处理器的请求映射规则的定义" class="headerlink" title="处理器的请求映射规则的定义"></a>处理器的请求映射规则的定义</h2><h3 id="对请求-URI-的命名空间的定义"><a href="#对请求-URI-的命名空间的定义" class="headerlink" title="对请求 URI 的命名空间的定义"></a>对请求 URI 的命名空间的定义</h3><h3 id="请求-URI-中通配符的应用"><a href="#请求-URI-中通配符的应用" class="headerlink" title="请求 URI 中通配符的应用"></a>请求 URI 中通配符的应用</h3><h3 id="对请求提交方式的定义"><a href="#对请求提交方式的定义" class="headerlink" title="对请求提交方式的定义"></a>对请求提交方式的定义</h3><h3 id="对请求中携带参数的定义"><a href="#对请求中携带参数的定义" class="headerlink" title="对请求中携带参数的定义"></a>对请求中携带参数的定义</h3><h2 id="处理器方法的参数"><a href="#处理器方法的参数" class="headerlink" title="处理器方法的参数"></a>处理器方法的参数</h2><h3 id="逐个参数接收"><a href="#逐个参数接收" class="headerlink" title="逐个参数接收"></a>逐个参数接收</h3><h3 id="请求参数中文乱码问题"><a href="#请求参数中文乱码问题" class="headerlink" title="请求参数中文乱码问题"></a>请求参数中文乱码问题</h3><h3 id="校正请求参数名-RequestParam"><a href="#校正请求参数名-RequestParam" class="headerlink" title="校正请求参数名@RequestParam"></a>校正请求参数名@RequestParam</h3><h3 id="整体参数接收"><a href="#整体参数接收" class="headerlink" title="整体参数接收"></a>整体参数接收</h3><h3 id="域属性参数的接收"><a href="#域属性参数的接收" class="headerlink" title="域属性参数的接收"></a>域属性参数的接收</h3><h3 id="路径变量-PathVariable"><a href="#路径变量-PathVariable" class="headerlink" title="路径变量@PathVariable"></a>路径变量@PathVariable</h3><h2 id="处理器方法的返回值"><a href="#处理器方法的返回值" class="headerlink" title="处理器方法的返回值"></a>处理器方法的返回值</h2><h3 id="返回-ModelAndView"><a href="#返回-ModelAndView" class="headerlink" title="返回 ModelAndView"></a>返回 ModelAndView</h3><h3 id="返回-String"><a href="#返回-String" class="headerlink" title="返回 String"></a>返回 String</h3><h3 id="返回-void"><a href="#返回-void" class="headerlink" title="返回 void"></a>返回 void</h3><h3 id="返回-Object"><a href="#返回-Object" class="headerlink" title="返回 Object"></a>返回 Object</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+
+
+     <div>
+       
+      </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -410,13 +590,23 @@
                 
               
 
-              <time title="创建时间：2019-08-14 23:11:30 / 修改时间：23:17:43" itemprop="dateCreated datePublished" datetime="2019-08-14T23:11:30+08:00">2019-08-14</time>
+              <time title="创建时间：2019-08-14 23:11:30" itemprop="dateCreated datePublished" datetime="2019-08-14T23:11:30+08:00">2019-08-14</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-15 23:22:34" itemprop="dateModified" datetime="2019-08-15T23:22:34+08:00">2019-08-15</time>
+              </span>
             
           
 
@@ -458,7 +648,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">355</span>
+              <span title="本文字数">7.1k</span>
             </span>
           
 
@@ -481,9 +671,16 @@
 
       
         
+          <p>配置式开发是指，“处理器类是程序员手工定义的、实现了特定接口的类，然后在 SpringMVC 配置文件中对该类进行显式的、明确的注册”的开发方式。</p>
+          <!--noindex-->
           
-            <h2 id="处理器映射器-HandlerMapping"><a href="#处理器映射器-HandlerMapping" class="headerlink" title="处理器映射器 HandlerMapping"></a>处理器映射器 HandlerMapping</h2><h3 id="BeanNameUrlHandlerMapping"><a href="#BeanNameUrlHandlerMapping" class="headerlink" title="BeanNameUrlHandlerMapping"></a>BeanNameUrlHandlerMapping</h3><h3 id="SimpleUrlHandlerMapping"><a href="#SimpleUrlHandlerMapping" class="headerlink" title="SimpleUrlHandlerMapping"></a>SimpleUrlHandlerMapping</h3><h2 id="处理器适配器-HandlerAdapter"><a href="#处理器适配器-HandlerAdapter" class="headerlink" title="处理器适配器 HandlerAdapter"></a>处理器适配器 HandlerAdapter</h2><h3 id="SimpleControllerHandlerAdapter"><a href="#SimpleControllerHandlerAdapter" class="headerlink" title="SimpleControllerHandlerAdapter"></a>SimpleControllerHandlerAdapter</h3><h3 id="HttpRequestHandlerAdapter"><a href="#HttpRequestHandlerAdapter" class="headerlink" title="HttpRequestHandlerAdapter"></a>HttpRequestHandlerAdapter</h3><h2 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h2><h3 id="继承自-AbstractController-类"><a href="#继承自-AbstractController-类" class="headerlink" title="继承自 AbstractController 类"></a>继承自 AbstractController 类</h3><h3 id="继承自-MultiActionController-类"><a href="#继承自-MultiActionController-类" class="headerlink" title="继承自 MultiActionController 类"></a>继承自 MultiActionController 类</h3><h2 id="ModelAndView"><a href="#ModelAndView" class="headerlink" title="ModelAndView"></a>ModelAndView</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><h2 id="视图解析器-ViewResolver"><a href="#视图解析器-ViewResolver" class="headerlink" title="视图解析器 ViewResolver"></a>视图解析器 ViewResolver</h2><h3 id="InternalResourceViewResolver-视图解析器"><a href="#InternalResourceViewResolver-视图解析器" class="headerlink" title="InternalResourceViewResolver 视图解析器"></a>InternalResourceViewResolver 视图解析器</h3><h3 id="BeanNameViewResolver-视图解析器"><a href="#BeanNameViewResolver-视图解析器" class="headerlink" title="BeanNameViewResolver 视图解析器"></a>BeanNameViewResolver 视图解析器</h3><h3 id="XmlViewResolver-视图解析器"><a href="#XmlViewResolver-视图解析器" class="headerlink" title="XmlViewResolver 视图解析器"></a>XmlViewResolver 视图解析器</h3><h3 id="ResourceBundleViewResolver-视图解析器"><a href="#ResourceBundleViewResolver-视图解析器" class="headerlink" title="ResourceBundleViewResolver 视图解析器"></a>ResourceBundleViewResolver 视图解析器</h3><h3 id="视图解析器的优先级"><a href="#视图解析器的优先级" class="headerlink" title="视图解析器的优先级"></a>视图解析器的优先级</h3>
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/14/SpringMVC配置式开发/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -2113,191 +2310,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huangyuanzhi.top/2019/07/31/MyBatis入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="黄远志">
-      <meta itemprop="description" content="没有理所当然的成功，也没有毫无道理的平庸">
-      <meta itemprop="image" content="/images/author.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="远志の博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/31/MyBatis入门/" class="post-title-link" itemprop="url">MyBatis入门</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-31 22:52:34" itemprop="dateCreated datePublished" datetime="2019-07-31T22:52:34+08:00">2019-07-31</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-07 10:09:02" itemprop="dateModified" datetime="2019-08-07T10:09:02+08:00">2019-08-07</time>
-              </span>
-            
-          
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">12k</span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><blockquote>
-<p>框架（Framework）是整个或部分系统的可重用设计，表现为一组抽象构件及构件实例间交互的方法；另一种定义认为，框架是可被应用开发者定制的应用骨架。可以说，一个框架是一个可复用的设计构件，它规定了应用的体系结构，阐明了整个设计、协作构件之间的依赖关系、责任分配和控制流程，表现为一组抽象类以及其实例之间协作的方法，它为构件复用提供上下文(Context)关系。——百度百科  </p>
-</blockquote>
-<p>对于程序员来说，框架是一套资源，这套资源中会包含 Jar 包、文档，还有些会包含源码、代码示例等。这套资源从相关的官网上可以下载。一般是以压缩文件的形式出现。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/31/MyBatis入门/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-
-
-     <div>
-       
-      </div>
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2347,7 +2359,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2495,7 +2507,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">169k字</span>
+   站点总字数： <span title="站点总字数">176k字</span>
   
 
 
