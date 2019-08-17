@@ -98,17 +98,35 @@
   };
 </script>
 
-  <meta name="description" content="第一个注解式开发程序注册组件扫描器定义处理器处理器的请求映射规则的定义对请求 URI 的命名空间的定义请求 URI 中通配符的应用对请求提交方式的定义对请求中携带参数的定义处理器方法的参数逐个参数接收请求参数中文乱码问题校正请求参数名@RequestParam整体参数接收域属性参数的接收路径变量@PathVariable处理器方法的返回值返回 ModelAndView返回 String返回 voi">
+  <meta name="description" content="所谓 SpringMVC 的注解式开发是指，处理器是基于注解的类的开发。 对于每一个定义的处理器，无需在配置文件中逐个注册，只需在代码中通过对类与方法的注解，便可完成注册。即注解替换的是配置文件中对于处理器的注册部分。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringMVC注解式开发">
 <meta property="og:url" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/index.html">
 <meta property="og:site_name" content="远志の博客">
-<meta property="og:description" content="第一个注解式开发程序注册组件扫描器定义处理器处理器的请求映射规则的定义对请求 URI 的命名空间的定义请求 URI 中通配符的应用对请求提交方式的定义对请求中携带参数的定义处理器方法的参数逐个参数接收请求参数中文乱码问题校正请求参数名@RequestParam整体参数接收域属性参数的接收路径变量@PathVariable处理器方法的返回值返回 ModelAndView返回 String返回 voi">
+<meta property="og:description" content="所谓 SpringMVC 的注解式开发是指，处理器是基于注解的类的开发。 对于每一个定义的处理器，无需在配置文件中逐个注册，只需在代码中通过对类与方法的注解，便可完成注册。即注解替换的是配置文件中对于处理器的注册部分。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T15:30:26.573Z">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann01.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann02.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann03.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann04.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann05.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann06.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann07.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann08.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann09.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann10.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann11.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann12.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann13.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann14.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann15.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann16.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann17.png">
+<meta property="og:updated_time" content="2019-08-17T13:20:14.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC注解式开发">
-<meta name="twitter:description" content="第一个注解式开发程序注册组件扫描器定义处理器处理器的请求映射规则的定义对请求 URI 的命名空间的定义请求 URI 中通配符的应用对请求提交方式的定义对请求中携带参数的定义处理器方法的参数逐个参数接收请求参数中文乱码问题校正请求参数名@RequestParam整体参数接收域属性参数的接收路径变量@PathVariable处理器方法的返回值返回 ModelAndView返回 String返回 voi">
+<meta name="twitter:description" content="所谓 SpringMVC 的注解式开发是指，处理器是基于注解的类的开发。 对于每一个定义的处理器，无需在配置文件中逐个注册，只需在代码中通过对类与方法的注解，便可完成注册。即注解替换的是配置文件中对于处理器的注册部分。">
+<meta name="twitter:image" content="https://huangyuanzhi.top/2019/08/15/SpringMVC注解式开发/ann01.png">
 
 
 
@@ -292,7 +310,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">5</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">6</span></a>
 
   </li>
         
@@ -310,7 +328,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">17</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">18</span></a>
 
   </li>
 
@@ -408,13 +426,23 @@
                 
               
 
-              <time title="创建时间：2019-08-15 23:24:13 / 修改时间：23:30:26" itemprop="dateCreated datePublished" datetime="2019-08-15T23:24:13+08:00">2019-08-15</time>
+              <time title="创建时间：2019-08-15 23:24:13" itemprop="dateCreated datePublished" datetime="2019-08-15T23:24:13+08:00">2019-08-15</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-17 21:20:14" itemprop="dateModified" datetime="2019-08-17T21:20:14+08:00">2019-08-17</time>
+              </span>
             
           
 
@@ -456,7 +484,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">210</span>
+              <span title="本文字数">14k</span>
             </span>
           
 
@@ -478,7 +506,288 @@
       
 
       
-        <h2 id="第一个注解式开发程序"><a href="#第一个注解式开发程序" class="headerlink" title="第一个注解式开发程序"></a>第一个注解式开发程序</h2><h3 id="注册组件扫描器"><a href="#注册组件扫描器" class="headerlink" title="注册组件扫描器"></a>注册组件扫描器</h3><h3 id="定义处理器"><a href="#定义处理器" class="headerlink" title="定义处理器"></a>定义处理器</h3><h2 id="处理器的请求映射规则的定义"><a href="#处理器的请求映射规则的定义" class="headerlink" title="处理器的请求映射规则的定义"></a>处理器的请求映射规则的定义</h2><h3 id="对请求-URI-的命名空间的定义"><a href="#对请求-URI-的命名空间的定义" class="headerlink" title="对请求 URI 的命名空间的定义"></a>对请求 URI 的命名空间的定义</h3><h3 id="请求-URI-中通配符的应用"><a href="#请求-URI-中通配符的应用" class="headerlink" title="请求 URI 中通配符的应用"></a>请求 URI 中通配符的应用</h3><h3 id="对请求提交方式的定义"><a href="#对请求提交方式的定义" class="headerlink" title="对请求提交方式的定义"></a>对请求提交方式的定义</h3><h3 id="对请求中携带参数的定义"><a href="#对请求中携带参数的定义" class="headerlink" title="对请求中携带参数的定义"></a>对请求中携带参数的定义</h3><h2 id="处理器方法的参数"><a href="#处理器方法的参数" class="headerlink" title="处理器方法的参数"></a>处理器方法的参数</h2><h3 id="逐个参数接收"><a href="#逐个参数接收" class="headerlink" title="逐个参数接收"></a>逐个参数接收</h3><h3 id="请求参数中文乱码问题"><a href="#请求参数中文乱码问题" class="headerlink" title="请求参数中文乱码问题"></a>请求参数中文乱码问题</h3><h3 id="校正请求参数名-RequestParam"><a href="#校正请求参数名-RequestParam" class="headerlink" title="校正请求参数名@RequestParam"></a>校正请求参数名@RequestParam</h3><h3 id="整体参数接收"><a href="#整体参数接收" class="headerlink" title="整体参数接收"></a>整体参数接收</h3><h3 id="域属性参数的接收"><a href="#域属性参数的接收" class="headerlink" title="域属性参数的接收"></a>域属性参数的接收</h3><h3 id="路径变量-PathVariable"><a href="#路径变量-PathVariable" class="headerlink" title="路径变量@PathVariable"></a>路径变量@PathVariable</h3><h2 id="处理器方法的返回值"><a href="#处理器方法的返回值" class="headerlink" title="处理器方法的返回值"></a>处理器方法的返回值</h2><h3 id="返回-ModelAndView"><a href="#返回-ModelAndView" class="headerlink" title="返回 ModelAndView"></a>返回 ModelAndView</h3><h3 id="返回-String"><a href="#返回-String" class="headerlink" title="返回 String"></a>返回 String</h3><h3 id="返回-void"><a href="#返回-void" class="headerlink" title="返回 void"></a>返回 void</h3><h3 id="返回-Object"><a href="#返回-Object" class="headerlink" title="返回 Object"></a>返回 Object</h3>
+        <p>所谓 SpringMVC 的注解式开发是指，处理器是基于注解的类的开发。 对于每一个定义的处理器，无需在配置文件中逐个注册，只需在代码中通过对类与方法的注解，便可完成注册。即注解替换的是配置文件中对于处理器的注册部分。</p>
+<a id="more"></a>
+
+<h2 id="第一个注解式开发程序"><a href="#第一个注解式开发程序" class="headerlink" title="第一个注解式开发程序"></a>第一个注解式开发程序</h2><p><a href="https://www.huangyuanzhi.top/2019/08/12/SpringMVC%E6%A6%82%E8%BF%B0/#more" title="开发流程" target="_blank" rel="noopener">开发流程四个步骤请查看之前的文章</a></p>
+<h3 id="注册组件扫描器"><a href="#注册组件扫描器" class="headerlink" title="注册组件扫描器"></a>注册组件扫描器</h3><p>这里的组件即处理器，需要指定处理器所在基本包。</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">context</span>:<span class="keyword">component</span>-scan base-<span class="keyword">package</span>=<span class="string">"com.huang.handlers"</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义处理器"><a href="#定义处理器" class="headerlink" title="定义处理器"></a>定义处理器</h3><p>此时的处理器类无需继承任何父类，实现任何接口。只需在类上与方法上添加相应注解即可。</p>
+<ul>
+<li>@Controller：表示当前类为处理器  </li>
+<li>@RequestMapping：表示当前方法为处理器方法。该方法要对 value 属性所指定的 URL 进行处理与响应。(被注解的方法的方法名可以随意)。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/my.do"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">doFirst</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		ModelAndView mv = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">		mv.addObject(<span class="string">"message"</span>, <span class="string">"Hello World SpringMVC World!"</span>);</span><br><span class="line">		mv.setViewName(<span class="string">"/WEB-INF/jsp/welcome.jsp"</span>);</span><br><span class="line">		<span class="keyword">return</span> mv;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若有多个请求路径均可匹配该处理器方法的执行，则@RequestMapping 的 value 属性中可以写上一个数组。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&#123;<span class="meta-string">"/my.do"</span>,<span class="meta-string">"/hello.do"</span>&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="处理器的请求映射规则的定义"><a href="#处理器的请求映射规则的定义" class="headerlink" title="处理器的请求映射规则的定义"></a>处理器的请求映射规则的定义</h2><p>通过@RequestMapping 注解可以定义处理器对于请求的映射规则。 该注解可以注解在方法上，也可以注解在类上，但意义是不同的。</p>
+<h3 id="对请求-URI-的命名空间的定义"><a href="#对请求-URI-的命名空间的定义" class="headerlink" title="对请求 URI 的命名空间的定义"></a>对请求 URI 的命名空间的定义</h3><p>@RequestMapping 的 value 属性用于定义所匹配请求的 URI。但对于注解在方法上与类上，其 value 属性所指定的 URI，意义是不同的。</p>
+<p>一个@Controller 所注解的类中，可以定义多个处理器方法。当然，不同的处理器方法所匹配的 URI 是不同的。 这些不同的 URI 被指定在注解于方法之上的@RequestMapping 的 value 属性中。 但若这些请求具有相同的 URI 部分，则这些相同的 URI， 可以被抽取到注解在类之上的@RequestMapping 的 value 属性中。此时的这个 URI 称为命名空间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span>		<span class="comment">//表示当前类是一个处理器</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)	<span class="comment">//命名空间</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/first.do"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">doFirst</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		ModelAndView mv = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">		mv.addObject(<span class="string">"message"</span>, <span class="string">"执行doFirst()方法"</span>);</span><br><span class="line">		mv.setViewName(<span class="string">"/WEB-INF/jsp/welcome.jsp"</span>);</span><br><span class="line">		<span class="keyword">return</span> mv;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/second.do"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">doSecond</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		ModelAndView mv = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">		mv.addObject(<span class="string">"message"</span>, <span class="string">"执行doSecond()方法"</span>);</span><br><span class="line">		mv.setViewName(<span class="string">"/WEB-INF/jsp/welcome.jsp"</span>);</span><br><span class="line">		<span class="keyword">return</span> mv;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="请求-URI-中通配符的应用"><a href="#请求-URI-中通配符的应用" class="headerlink" title="请求 URI 中通配符的应用"></a>请求 URI 中通配符的应用</h3><p>在处理器方法所映射的 URI 中，可以使用通配符，有两种用法。</p>
+<h4 id="1-资源名称中使用通配符"><a href="#1-资源名称中使用通配符" class="headerlink" title="1. 资源名称中使用通配符"></a>1. 资源名称中使用通配符</h4><p>在请求的资源名称中使用通配符，表示请求的资源名称中只要包含指定的字符即可完成匹配。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@RequestMapping</span>(<span class="string">"/third*.do"</span>)	<span class="comment">// 资源名称必须以third开头，后面可加其它字符</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">@RequestMapping</span>(<span class="string">"/*fourth.do"</span>)	<span class="comment">// 资源名称必须以fourth结尾，前面可加其它字符</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-资源路径中使用通配符"><a href="#2-资源路径中使用通配符" class="headerlink" title="2. 资源路径中使用通配符"></a>2. 资源路径中使用通配符</h4><ul>
+<li>路径级数的精确匹配：/xxx/*/my.do： 表示在 my.do 的资源名称前面，只能有两级路径，第一级必须是/xxx，而第二级随意。  </li>
+<li>路径级数的可变匹配：/xxx/**/my.do： 表示在 my.do 的资源名称前面，必须以/xxx 路径开头，而其它级的路径是否包含，若包含又包含几级，各级又叫什么名称，均随意。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//路径级数的精确匹配</span></span><br><span class="line"><span class="meta">@RequestMapping(<span class="meta-string">"/*/fifth.do"</span>)</span>	<span class="comment">// 路径级数的绝对匹配，即要求在test与fifth.do之间必须要有一级路径</span></span><br></pre></td></tr></table></figure>
+
+<p>访问方式</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann01.png">
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//路径级数的可变匹配</span></span><br><span class="line"><span class="meta">@RequestMapping(<span class="meta-string">"/**/sixth.do"</span>)</span>	<span class="comment">// 要求在test与sixth.do之间可以包含多级路径，也可以没有其它路径</span></span><br></pre></td></tr></table></figure>
+
+<p>访问方式(两种)</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann02.png">
+
+<img src="/2019/08/15/SpringMVC注解式开发/ann03.png">
+
+
+<h3 id="对请求提交方式的定义"><a href="#对请求提交方式的定义" class="headerlink" title="对请求提交方式的定义"></a>对请求提交方式的定义</h3><p>对于@RequestMapping，其有一个属性 method，用于对被注解方法所处理请求的提交方式进行限制，即只有满足该 method 属性指定的提交方式的请求，才会执行该被注解方法。</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//对请求提交方式的定义</span><br><span class="line"><span class="symbol">@RequestMapping</span>(<span class="string">"value=&#123;\"</span>/my.<span class="keyword">do</span>\<span class="string">", \"</span>hello.<span class="keyword">do</span>\<span class="string">"&#125;, method=RequestMethod.POST"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>由于 POST 提交只能通过表单或者 AJAX 提交，所以通过地址栏访问会出现 404 错误</p>
+<blockquote>
+<p>注意：<br>若不指定 method 属性，则无论是 GET 还是 POST 提交方式，均可匹配。即对于请求的提交方式无要求。</p>
+</blockquote>
+<p>客户端浏览器常用的请求方式，及其提交方式有以下几种：</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">请求方式</th>
+<th align="left">提交方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="left">表单请求</td>
+<td align="left">默认 GET,可以指定 POST</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">AJAX 请求</td>
+<td align="left">默认 GET,可以指定 POST</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="left">地址栏请求</td>
+<td align="left">GET 请求</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="left">超链接请求</td>
+<td align="left">GET 请求</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="left">src 资源路径请求</td>
+<td align="left">GET 请求</td>
+</tr>
+</tbody></table>
+<h3 id="对请求中携带参数的定义"><a href="#对请求中携带参数的定义" class="headerlink" title="对请求中携带参数的定义"></a>对请求中携带参数的定义</h3><p>@RequestMapping 中 params 属性中定义了请求中必须携带的参数的要求。</p>
+<ul>
+<li>@RequestMapping(value=”/xxx.do”, params={“name”,”age”}) ：要求请求中必须携带请求参数 name 与 age  </li>
+<li>@RequestMapping(value=”/xxx.do”, params={“!name”,”age”}) ：要求请求中必须携带请求参数 age，但必须不能携带参数 name  </li>
+<li>@RequestMapping(value=”/xxx.do”, params={“name=zs”,”ag=23”}) ：要求请求中必须携带请求参数 name，且其值必须为 zs；必须携带参数 age，其其值必须为 23  </li>
+<li>@RequestMapping(value=”/xxx.do”, params=“name!=zs”) ：要求请求中必须携带请求参数 name，且其值必须不能为 zs</li>
+</ul>
+<h2 id="处理器方法的参数"><a href="#处理器方法的参数" class="headerlink" title="处理器方法的参数"></a>处理器方法的参数</h2><p>处理器方法可以包含以下五类参数，这些参数会在系统调用时由系统自动赋值，即程序员可在方法内直接使用。</p>
+<ol>
+<li>HttpServletRequest  </li>
+<li>HttpServletResponse  </li>
+<li>HttpSession  </li>
+<li>用于承载数据的 Model  </li>
+<li>请求中所携带的请求参数</li>
+</ol>
+<h3 id="逐个参数接收"><a href="#逐个参数接收" class="headerlink" title="逐个参数接收"></a>逐个参数接收</h3><p>只要保证请求参数名与该请求处理方法的参数名相同即可。</p>
+<p>（1） 处理器类 MyController</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span>		<span class="comment">//表示当前类是一个处理器</span></span><br><span class="line"><span class="meta">@RequestMapping(<span class="meta-string">"/test"</span>)</span>	<span class="comment">//命名空间</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping(<span class="meta-string">"/register.do"</span>)</span></span><br><span class="line">	<span class="comment">//底层使用类型转换器</span></span><br><span class="line">	<span class="keyword">public</span> ModelAndView doRegister(String name,int age) &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"name ="</span> + name);</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"age ="</span> + age);</span><br><span class="line">		</span><br><span class="line">		ModelAndView mv = new ModelAndView();</span><br><span class="line">		mv.addObject(<span class="string">"name"</span>,name);</span><br><span class="line">		mv.addObject(<span class="string">"age"</span>,age);</span><br><span class="line">		mv.setViewName(<span class="string">"/WEB-INF/jsp/welcome.jsp"</span>);</span><br><span class="line">		<span class="keyword">return</span> mv;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） index 页面</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">   &lt;form action=<span class="string">"$&#123;pageContext.request.contextPath &#125;/test/register.do"</span> method=<span class="string">"<span class="keyword">POST</span>"</span>&gt;</span><br><span class="line">   	姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"name"</span>/&gt;&lt;br&gt;</span><br><span class="line">   	年龄：&lt;input type=<span class="string">"text"</span> name=<span class="string">"age"</span>/&gt;&lt;br&gt;</span><br><span class="line">   	&lt;input type=<span class="string">"submit"</span> value=<span class="string">"注册"</span>/&gt;</span><br><span class="line">   &lt;/form&gt;</span><br><span class="line"> &lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>(3) 目标页面</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml">	name = $</span><span class="template-variable">&#123;name &#125;</span><span class="xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">	age = $</span><span class="template-variable">&#123;age &#125;</span><span class="xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（4） 运行结果的注册页面</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann04.png">
+
+
+<h3 id="请求参数中文乱码问题"><a href="#请求参数中文乱码问题" class="headerlink" title="请求参数中文乱码问题"></a>请求参数中文乱码问题</h3><p>对于前面所接收的请求参数，若含有中文，则会出现中文乱码问题。 Spring 对于请求参数中的中文乱码问题，给出了专门的字符集过滤器</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>在 web.xml 中注册字符集过滤器，即可解决 Spring 的请求参数的中文乱码问题。不过，最好将该过滤器注册在其它过滤器之前。因为过滤器的执行是按照其注册顺序进行的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册字符集过滤器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 指定字符集 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>utf-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 指定强制使用指定的字符集 </span></span><br><span class="line"><span class="comment">		如果为true，不管系统有没有设置字符集，通通按照自己定义的字符集，即utf-8</span></span><br><span class="line"><span class="comment">		如果没有设置或者false，若系统设置了字符集按系统的，没设置按照自定义的</span></span><br><span class="line"><span class="comment">	--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><p>打开 CharacterEncodingFilter 类的源码，发现有两个 set 属性： encoding 与 forceEncoding。</p>
+<ul>
+<li>encoding： String 类型，指定字符集。  </li>
+<li>forceEncoding： boolean 类型，指定是否强制使用指定的字符集。若为 true，则代码中指定的字符集将不起作用。若为 false，则代码中若指定了字符集，就使用代码指定字符集；若代码中没有指定字符集，则使用这里指定的字符集。</li>
+</ul>
+<img src="/2019/08/15/SpringMVC注解式开发/ann05.png">
+
+
+<h3 id="校正请求参数名-RequestParam"><a href="#校正请求参数名-RequestParam" class="headerlink" title="校正请求参数名@RequestParam"></a>校正请求参数名@RequestParam</h3><p>若请求 URL 所携带的参数名称与处理方法中指定的参数名不相同时， 则需在处理方法参数前， 添加一个注解@RequestParam(“请求参数名”)，指定请<br>求 URL 所携带参数的名称。该注解是对处理器方法参数进行修饰的。@RequestParam()有三个属性：</p>
+<ul>
+<li>value： 指定请求参数的名称。  </li>
+<li>required： 指定该注解所修饰的参数是否是必须的， boolean 类型。若为 true，则表示请求中所携带的参数中必须包含当前参数。若为 false，则表示有没有均可。  </li>
+<li>defaultValue：指定当前参数的默认值。若请求 URI 中没有给出当前参数，则当前方法参数将取该默认值。即使 required 为 true，且 URI 中没有给出当前参数，该处理器方法参数会自动取该默认值，而不会报错。</li>
+</ul>
+<img src="/2019/08/15/SpringMVC注解式开发/ann06.png">
+
+
+<h3 id="整体参数接收"><a href="#整体参数接收" class="headerlink" title="整体参数接收"></a>整体参数接收</h3><p>将处理器方法的参数定义为一个对象，只要保证请求参数名与这个对象的属性同名即可(表单的参数名与实体的属性一致)。</p>
+<p>（1） 定义 VO 类 Student</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 修改处理器类</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span>		<span class="comment">//表示当前类是一个处理器</span></span><br><span class="line"><span class="meta">@RequestMapping(<span class="meta-string">"/test"</span>)</span>	<span class="comment">//命名空间</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping(<span class="meta-string">"/register.do"</span>)</span></span><br><span class="line">	<span class="keyword">public</span> ModelAndView doRegister(Student student) &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"name ="</span> + student.getName());</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"age ="</span> + student.getAge());</span><br><span class="line">		</span><br><span class="line">		ModelAndView mv = new ModelAndView();</span><br><span class="line">		mv.addObject(<span class="string">"student"</span>,student);</span><br><span class="line">		mv.setViewName(<span class="string">"/WEB-INF/jsp/welcome.jsp"</span>);</span><br><span class="line">		<span class="keyword">return</span> mv;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(3) 定义目标页面</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml">	student = $</span><span class="template-variable">&#123;student &#125;</span><span class="xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（4） 修改 index 页面</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;pageContext.request.contextPath &#125;</span><span class="xml"><span class="tag"><span class="string">/test/register.do"</span> <span class="attr">method</span>=<span class="string">"POST"</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="comment">&lt;!-- 整体接收时，要求表单参数名与对象属性名相同 --&gt;</span></span></span><br><span class="line"><span class="xml">  	姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">  	年龄：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"age"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">  	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"注册"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<br>参数名称中不用写为“对象.属性”的形式。</p>
+</blockquote>
+<p>（5） 注册结果</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann07.png">
+
+
+<h3 id="域属性参数的接收"><a href="#域属性参数的接收" class="headerlink" title="域属性参数的接收"></a>域属性参数的接收</h3><p>所谓域属性，即对象属性。当请求参数中的数据为某类对象域属性的属性值时，要求请求参数名为“域属性名.属性”。</p>
+<p>（1） 定义 VO 类</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class School &#123;</span><br><span class="line">	private String sname;</span><br><span class="line">	private String address;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	<span class="keyword">private</span> School school;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 修改 index 页面</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml">   <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;pageContext.request.contextPath &#125;</span><span class="xml"><span class="tag"><span class="string">/test/register.do"</span> <span class="attr">method</span>=<span class="string">"POST"</span>&gt;</span></span></span><br><span class="line"><span class="xml">   <span class="comment">&lt;!-- 整体接收时，要求表单参数名与对象属性名相同 --&gt;</span></span></span><br><span class="line"><span class="xml">   	姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">   	年龄：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"age"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 请求参数名为“域属性名.属性” --&gt;</span></span></span><br><span class="line"><span class="xml">   	学校：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"school.sname"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">   	校址：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"school.address"</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">   	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"注册"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">   <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<br>参数名称中要写为“对象.属性”的形式。</p>
+</blockquote>
+<h3 id="路径变量-PathVariable"><a href="#路径变量-PathVariable" class="headerlink" title="路径变量@PathVariable"></a>路径变量@PathVariable</h3><p>对于处理器方法中所接收的请求参数，可以来自于请求中所携带的参数，也可以来自于请求的 URI 中所携带的变量，即路径变量。不过，此时，需要借助@PathVariable 注解(参数在访问路径)。</p>
+<p>@PathVariable 在不指定参数的情况下，默认其参数名，即路径变量名与用于接收其值的属性名相同。若路径变量名与用于接收其值的属性名不同，则@PathVariable 可通过参数指出路径变量名称。</p>
+<p>（1） 处理器类</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann08.png">
+
+<p>（2） 访问方式</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann09.png">
+
+
+<h2 id="处理器方法的返回值"><a href="#处理器方法的返回值" class="headerlink" title="处理器方法的返回值"></a>处理器方法的返回值</h2><p>使用@Controller 注解的处理器的处理器方法，其返回值常用的有四种类型：</p>
+<h3 id="1-返回-ModelAndView"><a href="#1-返回-ModelAndView" class="headerlink" title="1. 返回 ModelAndView"></a>1. 返回 ModelAndView</h3><p>若处理器方法处理完后，需要跳转到其它资源，且又要在跳转的资源间传递数据， 此时处理器方法返回 ModelAndView 比较好。当然，若要返回 ModelAndView，则处理器方法中需要定义 ModelAndView 对象。</p>
+<h3 id="2-返回-String"><a href="#2-返回-String" class="headerlink" title="2. 返回 String"></a>2. 返回 String</h3><p>处理器方法返回的字符串可以指定逻辑视图名，通过视图解析器解析可以将其转换为物理视图地址。</p>
+<h4 id="返回内部资源逻辑视图名"><a href="#返回内部资源逻辑视图名" class="headerlink" title="返回内部资源逻辑视图名"></a>返回内部资源逻辑视图名</h4><p>若要跳转的资源为内部资源，则视图解析器可以使用 InternalResourceViewResolver 内部资源视图解析器。此时处理器方法返回的字符串就是要跳转页面的文件名去掉文件扩展名后的部分。这个字符串与视图解析器中的 prefix、 suffix 相结合，即可形成要访问的 URI。</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann10.png">
+
+
+<p>也可以直接返回资源的物理视图名。此时就不需要在视图解析器中再配置前辍与后辍。</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann11.png">
+
+
+<h4 id="返回-View-对象名"><a href="#返回-View-对象名" class="headerlink" title="返回 View 对象名"></a>返回 View 对象名</h4><p>若要跳转的资源为外部资源，则视图解析器可以使用 BeanNameViewResolver，然后在配置文件中再定义一些外部资源视图 View 对象，此时处理器方法返回的字符串就是要跳转资源视图 View 的名称。 </p>
+<p>（1） 修改 springmvc 配置文件</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann12.png">
+
+<p>（2） 修改处理器</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span>    <span class="comment">// 表示当前类是一个处理器</span></span><br><span class="line"><span class="meta">@RequestMapping(<span class="meta-string">"/test"</span>)</span>     <span class="comment">// 命名空间</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping(<span class="meta-string">"/my.do"</span>)</span></span><br><span class="line">	<span class="keyword">public</span> String doSome() &#123;</span><br><span class="line">		<span class="comment">/*// 逻辑视图</span></span><br><span class="line"><span class="comment">		return "welcome";*/</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 物理视图</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"taobao"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-返回-void"><a href="#3-返回-void" class="headerlink" title="3. 返回 void"></a>3. 返回 void</h3><p>对于处理器方法返回 void 的应用场景，主要有两种：</p>
+<h4 id="通过-ServletAPI-传递数据并完成跳转"><a href="#通过-ServletAPI-传递数据并完成跳转" class="headerlink" title="通过 ServletAPI 传递数据并完成跳转"></a>通过 ServletAPI 传递数据并完成跳转</h4><p>可在方法参数中放入 HttpServletRequest 或 HttpSession，使方法中可以直接将数据放入到 request、 session 的域中，也可通过 request.getServletContext()获取到 ServletContext，从而将数据放入到 application 的域中。<br>可在方法参数中放入 HttpServletRequest 与 HttpServletResponse，使方法可以完成请求转发与重定向。 注意，重定向是无法完成对/WEB-INF/下资源的访问的。</p>
+<ul>
+<li>请求转发： request.getRequestDispatcher(“目标页面”).forward(request,response);</li>
+<li>重定向： response.sendRedirect(“目标页面”);</li>
+</ul>
+<p>（1） 定义 VO 类 Student</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 修改处理器</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Controller</span>    <span class="comment">// 表示当前类是一个处理器</span></span><br><span class="line"><span class="variable">@RequestMapping</span>(<span class="string">"/test"</span>)     <span class="comment">// 命名空间</span></span><br><span class="line">public class MyController &#123;</span><br><span class="line"></span><br><span class="line">	<span class="variable">@RequestMapping</span>(<span class="string">"/my.do"</span>)</span><br><span class="line">	public void register(HttpServletRequest request,HttpServletResponse response,Student student)throws Exception &#123;</span><br><span class="line">		<span class="selector-tag">request</span><span class="selector-class">.setAttribute</span>(<span class="string">"myStudent"</span>, student);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//请求转发</span></span><br><span class="line">		<span class="selector-tag">request</span><span class="selector-class">.getRequestDispatcher</span>(<span class="string">"/WEB-INF/jsp/welcome.jsp"</span>)<span class="selector-class">.forward</span>(request, response);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3） 修改 springmvc 配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册组件扫描器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.huang.*"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="AJAX-响应"><a href="#AJAX-响应" class="headerlink" title="AJAX 响应"></a>AJAX 响应</h4><p>若处理器对请求处理后，无需跳转到其它任何资源，此时可以让处理器方法返回 void。例如，对于 AJAX 的异步请求的响应。</p>
+<p>（1） 定义 index 页面</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/jquery-1.8.3.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">		$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">			$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">				$.ajax(&#123;</span></span><br><span class="line"><span class="actionscript">					url:<span class="string">"test/myAjax.do"</span>,</span></span><br><span class="line">					data:&#123;</span><br><span class="line"><span class="actionscript">						name:<span class="string">"张三"</span>,</span></span><br><span class="line">						age:23</span><br><span class="line">					&#125;,</span><br><span class="line"><span class="actionscript">					success:<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">						<span class="keyword">var</span> json = <span class="built_in">eval</span>(<span class="string">"("</span> + data + <span class="string">")"</span>);</span></span><br><span class="line"><span class="actionscript">						alert(json.pname + <span class="string">"   "</span> + json.page);</span></span><br><span class="line">					&#125;</span><br><span class="line">				&#125;);</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交Ajax请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2） 修改处理器类 </p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@Controller    </span><br><span class="line">@RequestMapping(<span class="string">"/test"</span>)    </span><br><span class="line"><span class="keyword">public</span> class MyController &#123;</span><br><span class="line"></span><br><span class="line">	@RequestMapping(<span class="string">"/myAjax.do"</span>)</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> doAjax(<span class="keyword">String</span> name, <span class="built_in">int</span> age, HttpServletResponse response) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//将数据存放到map中</span></span><br><span class="line">		Map&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt; <span class="built_in">map</span> = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt;();</span><br><span class="line">		<span class="built_in">map</span>.put(<span class="string">"pname"</span>, name);</span><br><span class="line">		<span class="built_in">map</span>.put(<span class="string">"page"</span>, age);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//将map转为JSON</span></span><br><span class="line">		<span class="keyword">JSONObject</span> myJson = <span class="keyword">JSONObject</span>.fromObject(<span class="built_in">map</span>);</span><br><span class="line">		<span class="keyword">String</span> jsonStr = myJson.toString();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//将数据发回客户端</span></span><br><span class="line">		PrintWriter out = response.getWriter();</span><br><span class="line">		out.<span class="built_in">print</span>(jsonStr);</span><br><span class="line">		out.close();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-返回-Object"><a href="#4-返回-Object" class="headerlink" title="4. 返回 Object"></a>4. 返回 Object</h3><p>处理器方法也可以返回 Object 对象。 但返回的这个 Object 对象不是作为逻辑视图出现的，而是作为直接在页面显示的数据出现的。返回 Object 对象，需要使用@ResponseBody 注解， 将转换后的 JSON 数据放入到响应体中。</p>
+<h4 id="返回数值型对象"><a href="#返回数值型对象" class="headerlink" title="返回数值型对象"></a>返回数值型对象</h4><p>（1） 注册注解驱动</p>
+<p>将 Object 数据转化为 JSON 数据，需要由 Http 消息转换器 HttpMessageConverter 完成。而转换器的开启，需要由&lt;mvc:annotation-driven/&gt;来完成。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册MVC注解驱动 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2） 修改 index 页面</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/jquery-1.8.3.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">	$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">		$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">			$.ajax(&#123;</span></span><br><span class="line"><span class="actionscript">				url:<span class="string">"test/myAjax.do"</span>,</span></span><br><span class="line"><span class="actionscript">				success:<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;</span></span><br><span class="line">					alert(data);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交Ajax请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（3） 修改处理器</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Controller</span>    </span><br><span class="line"><span class="variable">@RequestMapping</span>(<span class="string">"/test"</span>)    </span><br><span class="line">public class MyController &#123;</span><br><span class="line"></span><br><span class="line">	<span class="variable">@RequestMapping</span>(value=<span class="string">"/myAjax.do"</span>)</span><br><span class="line">	<span class="variable">@ResponseBody</span>   <span class="comment">// 将返回的数据放入到响应体中</span></span><br><span class="line">	public Object doAjax()  &#123;</span><br><span class="line">		<span class="selector-tag">return</span> <span class="selector-tag">123</span><span class="selector-class">.456</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4） 修改配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册MVC注解驱动 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 注册组件扫描器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.huang.handlers"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="返回字符串对象"><a href="#返回字符串对象" class="headerlink" title="返回字符串对象"></a>返回字符串对象</h4><p>返回的字符串中带有中文字符，则接收方页面将会出现乱码 。此时需要使用<br>@RequestMapping 的 produces 属性指定字符集，该属性用于设置输出结果类型。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span>    </span><br><span class="line"><span class="meta">@RequestMapping(<span class="meta-string">"/test"</span>)</span>    </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping(value=<span class="meta-string">"/myAjax.do"</span>,produces=<span class="meta-string">"text/html;charset=utf-8"</span>)</span></span><br><span class="line">	<span class="meta">@ResponseBody</span>   <span class="comment">// 将返回的数据放入到响应体中</span></span><br><span class="line">	<span class="keyword">public</span> Object doAjax()  &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"广东广州"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="返回自定义类型对象"><a href="#返回自定义类型对象" class="headerlink" title="返回自定义类型对象"></a>返回自定义类型对象</h4><p>返回自定义类型对象时，不能以对象的形式直接返回给客户端浏览器，而是将对象转换为 JSON 格式的数据发送给浏览器的。</p>
+<p>（1） 定义 VO 类</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann13.png">
+
+<p>（2） 修改处理器 MyController</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann14.png">
+
+<p>（3） 修改 index 页面</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann15.png">
+
+
+<h4 id="返回-Map-集合"><a href="#返回-Map-集合" class="headerlink" title="返回 Map 集合"></a>返回 Map 集合</h4><p>（1） 修改处理器</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Controller    </span><br><span class="line">@RequestMapping(<span class="string">"/test"</span>)    </span><br><span class="line"><span class="keyword">public</span> class MyController &#123;</span><br><span class="line"></span><br><span class="line">	@RequestMapping(<span class="string">"/myAjax.do"</span>)</span><br><span class="line">	@ResponseBody   <span class="comment">// 将返回的数据放入到响应体中</span></span><br><span class="line">	<span class="keyword">public</span> Object doAjax()  &#123;</span><br><span class="line">		Map&lt;<span class="keyword">String</span>, Student&gt; <span class="built_in">map</span> = <span class="keyword">new</span> HashMap&lt;<span class="keyword">String</span>, Student&gt;();</span><br><span class="line">		<span class="built_in">map</span>.<span class="built_in">put</span>(<span class="string">"stu1"</span>, <span class="keyword">new</span> Student(<span class="string">"张三"</span>, <span class="number">23</span>) );</span><br><span class="line">		<span class="built_in">map</span>.<span class="built_in">put</span>(<span class="string">"stu2"</span>, <span class="keyword">new</span> Student(<span class="string">"李四"</span>, <span class="number">24</span>) );</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">return</span> <span class="built_in">map</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 修改 index 页面</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/jquery-1.8.3.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">	$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">		$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">			$.ajax(&#123;</span></span><br><span class="line"><span class="actionscript">				url:<span class="string">"test/myAjax.do"</span>,</span></span><br><span class="line"><span class="actionscript">				success:<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">					alert(data.stu1.name + <span class="string">"  "</span> + data.stu2.age);</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交Ajax请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="返回-List-集合"><a href="#返回-List-集合" class="headerlink" title="返回 List 集合"></a>返回 List 集合</h4><p>（1） 修改处理器</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann16.png">
+
+<p>（2） 修改 index 页面</p>
+<img src="/2019/08/15/SpringMVC注解式开发/ann17.png">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       
     </div>
 
@@ -560,6 +869,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/08/17/SpringMVC核心技术/" rel="prev" title="SpringMVC核心技术">
+                SpringMVC核心技术 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -630,7 +943,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -657,7 +970,9 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -761,7 +1076,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个注解式开发程序"><span class="nav-text">第一个注解式开发程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册组件扫描器"><span class="nav-text">注册组件扫描器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义处理器"><span class="nav-text">定义处理器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器的请求映射规则的定义"><span class="nav-text">处理器的请求映射规则的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对请求-URI-的命名空间的定义"><span class="nav-text">对请求 URI 的命名空间的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求-URI-中通配符的应用"><span class="nav-text">请求 URI 中通配符的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对请求提交方式的定义"><span class="nav-text">对请求提交方式的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对请求中携带参数的定义"><span class="nav-text">对请求中携带参数的定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器方法的参数"><span class="nav-text">处理器方法的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#逐个参数接收"><span class="nav-text">逐个参数接收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求参数中文乱码问题"><span class="nav-text">请求参数中文乱码问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校正请求参数名-RequestParam"><span class="nav-text">校正请求参数名@RequestParam</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体参数接收"><span class="nav-text">整体参数接收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域属性参数的接收"><span class="nav-text">域属性参数的接收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路径变量-PathVariable"><span class="nav-text">路径变量@PathVariable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器方法的返回值"><span class="nav-text">处理器方法的返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#返回-ModelAndView"><span class="nav-text">返回 ModelAndView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回-String"><span class="nav-text">返回 String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回-void"><span class="nav-text">返回 void</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回-Object"><span class="nav-text">返回 Object</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个注解式开发程序"><span class="nav-text">第一个注解式开发程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册组件扫描器"><span class="nav-text">注册组件扫描器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义处理器"><span class="nav-text">定义处理器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器的请求映射规则的定义"><span class="nav-text">处理器的请求映射规则的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对请求-URI-的命名空间的定义"><span class="nav-text">对请求 URI 的命名空间的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求-URI-中通配符的应用"><span class="nav-text">请求 URI 中通配符的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-资源名称中使用通配符"><span class="nav-text">1. 资源名称中使用通配符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-资源路径中使用通配符"><span class="nav-text">2. 资源路径中使用通配符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对请求提交方式的定义"><span class="nav-text">对请求提交方式的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对请求中携带参数的定义"><span class="nav-text">对请求中携带参数的定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器方法的参数"><span class="nav-text">处理器方法的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#逐个参数接收"><span class="nav-text">逐个参数接收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求参数中文乱码问题"><span class="nav-text">请求参数中文乱码问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#源码分析"><span class="nav-text">源码分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校正请求参数名-RequestParam"><span class="nav-text">校正请求参数名@RequestParam</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体参数接收"><span class="nav-text">整体参数接收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域属性参数的接收"><span class="nav-text">域属性参数的接收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路径变量-PathVariable"><span class="nav-text">路径变量@PathVariable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器方法的返回值"><span class="nav-text">处理器方法的返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-返回-ModelAndView"><span class="nav-text">1. 返回 ModelAndView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-返回-String"><span class="nav-text">2. 返回 String</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#返回内部资源逻辑视图名"><span class="nav-text">返回内部资源逻辑视图名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回-View-对象名"><span class="nav-text">返回 View 对象名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-返回-void"><span class="nav-text">3. 返回 void</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过-ServletAPI-传递数据并完成跳转"><span class="nav-text">通过 ServletAPI 传递数据并完成跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AJAX-响应"><span class="nav-text">AJAX 响应</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-返回-Object"><span class="nav-text">4. 返回 Object</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#返回数值型对象"><span class="nav-text">返回数值型对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回字符串对象"><span class="nav-text">返回字符串对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回自定义类型对象"><span class="nav-text">返回自定义类型对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回-Map-集合"><span class="nav-text">返回 Map 集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回-List-集合"><span class="nav-text">返回 List 集合</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -795,7 +1110,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">179k字</span>
+   站点总字数： <span title="站点总字数">192k字</span>
   
 
 
