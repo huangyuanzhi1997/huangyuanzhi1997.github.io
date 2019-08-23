@@ -98,18 +98,26 @@
   };
 </script>
 
-  <meta name="description" content="Builder 模式工厂模式单例模式代理模式组合模式模板方法模式适配器模式装饰者模式迭代模式">
+  <meta name="description" content="Builder 模式Builder 模式的定义是“将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。”，它属于创建类模式，一般来说，如果一个对象的构建比较复杂，超出了构造函数所能包含的范围，就可以使用工厂模式和 Builder 模式，相对于工厂模式会产出一个完整的产品，Builder 应用于更加复杂的对象的构建，甚至只会构建产品的一个部分。">
 <meta name="keywords" content="MyBatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MyBatis常用的设计模式">
 <meta property="og:url" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/index.html">
 <meta property="og:site_name" content="远志の博客">
-<meta property="og:description" content="Builder 模式工厂模式单例模式代理模式组合模式模板方法模式适配器模式装饰者模式迭代模式">
+<meta property="og:description" content="Builder 模式Builder 模式的定义是“将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。”，它属于创建类模式，一般来说，如果一个对象的构建比较复杂，超出了构造函数所能包含的范围，就可以使用工厂模式和 Builder 模式，相对于工厂模式会产出一个完整的产品，Builder 应用于更加复杂的对象的构建，甚至只会构建产品的一个部分。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-21T11:07:19.497Z">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des01.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des03.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des02.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des04.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des05.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des06.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des07.png">
+<meta property="og:updated_time" content="2019-08-23T14:06:09.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis常用的设计模式">
-<meta name="twitter:description" content="Builder 模式工厂模式单例模式代理模式组合模式模板方法模式适配器模式装饰者模式迭代模式">
+<meta name="twitter:description" content="Builder 模式Builder 模式的定义是“将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。”，它属于创建类模式，一般来说，如果一个对象的构建比较复杂，超出了构造函数所能包含的范围，就可以使用工厂模式和 Builder 模式，相对于工厂模式会产出一个完整的产品，Builder 应用于更加复杂的对象的构建，甚至只会构建产品的一个部分。">
+<meta name="twitter:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des01.jpg">
 
 
 
@@ -409,13 +417,23 @@
                 
               
 
-              <time title="创建时间：2019-08-21 19:03:09 / 修改时间：19:07:19" itemprop="dateCreated datePublished" datetime="2019-08-21T19:03:09+08:00">2019-08-21</time>
+              <time title="创建时间：2019-08-21 19:03:09" itemprop="dateCreated datePublished" datetime="2019-08-21T19:03:09+08:00">2019-08-21</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-23 22:06:09" itemprop="dateModified" datetime="2019-08-23T22:06:09+08:00">2019-08-23</time>
+              </span>
             
           
 
@@ -457,7 +475,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">46</span>
+              <span title="本文字数">8.7k</span>
             </span>
           
 
@@ -479,7 +497,92 @@
       
 
       
-        <h2 id="Builder-模式"><a href="#Builder-模式" class="headerlink" title="Builder 模式"></a>Builder 模式</h2><h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><h2 id="迭代模式"><a href="#迭代模式" class="headerlink" title="迭代模式"></a>迭代模式</h2>
+        <h2 id="Builder-模式"><a href="#Builder-模式" class="headerlink" title="Builder 模式"></a>Builder 模式</h2><p>Builder 模式的定义是“将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。”，它属于创建类模式，一般来说，如果一个对象的构建比较复杂，超出了构造函数所能包含的范围，就可以使用工厂模式和 Builder 模式，相对于工厂模式会产出一个完整的产品，Builder 应用于更加复杂的对象的构建，甚至只会构建产品的一个部分。</p>
+<a id="more"></a>
+
+<img src="/2019/08/21/MyBatis常用的设计模式/des01.jpg">
+
+<p>在 MyBatis环境的初始化过程中，SqlSessionFactoryBuilder 会调用 XMLConfigBuilder 读取所有的 MyBatisMapConfig.xml 和所有的 *Mapper.xml 文件，构建 MyBatis 运行的核心对象 Configuration 对象，然后将该 Configuration 对象作为参数构建一个 SqlSessionFactory 对象。</p>
+<p>其中 XMLConfigBuilder 在构建 Configuration 对象时，也会调用 XMLMapperBuilder 用于读取 *.Mapper 文件，而 XMLMapperBuilder 会使用 XMLStatementBuilder 来读取和 build 所有的 SQL 语句。</p>
+<p>在这个过程中，有一个相似的特点，就是这些 Builder 会读取文件或者配置，然后做大量的 XpathParser 解析、配置或语法的解析、反射生成对象、存入结果缓存等步骤，这么多的工作都不是一个构造函数所能包括的，因此大量采用了Builder模式来解决。</p>
+<p>对于 Builder 的具体类，方法都大都用 build* 开头，比如 SqlSessionFactoryBuilder 为例，它包含以下方法：</p>
+<img src="/2019/08/21/MyBatis常用的设计模式/des03.png">
+
+<p>即根据不同的输入参数来构建 SqlSessionFactory 这个工厂对象。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>在 MyBatis 中比如 SqlSessionFactory 使用的是工厂模式，该工厂没有那么复杂的逻辑，是一个简单工厂模式。</p>
+<p>简单工厂模式(Simple Factory Pattern)：又称为静态工厂方法(Static Factory Method)模式，它属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类。</p>
+<img src="/2019/08/21/MyBatis常用的设计模式/des02.png">
+
+
+<h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><p>SqlSession 可以认为是一个 MyBatis 工作的核心的接口，通过这个接口可以执行执行 SQL 语句、获取 Mappers 、管理事务。类似于连接 MySQL 的 Connection 对象。</p>
+<img src="/2019/08/21/MyBatis常用的设计模式/des04.png">
+
+<p>可以看到，该 Factory的openSession 方法重载了很多个，分别支持 autoCommit 、Executor 、Transaction 等参数的输入，来构建核心的 SqlSession 对象。在 DefaultSqlSessionFactory 的默认工厂实现里，有一个方法可以看出工厂怎么产出一个产品：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function">SqlSession <span class="title">openSessionFromDataSource</span><span class="params">(ExecutorType execType, TransactionIsolationLevel level, <span class="keyword">boolean</span> autoCommit)</span> </span>&#123;</span><br><span class="line">  Transaction tx = <span class="keyword">null</span>;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> Environment environment = configuration.getEnvironment();</span><br><span class="line">    <span class="keyword">final</span> TransactionFactory transactionFactory = getTransactionFactoryFromEnvironment(environment);</span><br><span class="line">    tx = transactionFactory.newTransaction(environment.getDataSource(), level, autoCommit);</span><br><span class="line">    <span class="keyword">final</span> Executor executor = configuration.newExecutor(tx, execType, autoCommit);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> DefaultSqlSession(configuration, executor);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    closeTransaction(tx); <span class="comment">// may have fetched a connection so lets call close()</span></span><br><span class="line">    <span class="keyword">throw</span> ExceptionFactory.wrapException(<span class="string">"Error opening session.  Cause: "</span> + e, e);</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    ErrorContext.instance().reset();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>是一个 openSession 调用的底层方法，该方法先从 configuration 读取对应的环境配置，然后初始化 TransactionFactory 获得一个 Transaction 对象，然后通过 Transaction 获取一个 Executor 对象，最后通过 configuration、Executor、是否 autoCommit 三个参数构建了 SqlSession。SqlSession 的执行，其实是委托给对应的 Executor 来进行的。</p>
+<p>而对于LogFactory，它的实现代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">LogFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Constructor<span class="meta">&lt;?</span> extends Log&gt; logConstructor;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> LogFactory() &#123;</span><br><span class="line">        <span class="comment">// disable construction</span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Log getLog(<span class="class"><span class="keyword">Class</span>&lt;?&gt; <span class="title">aClass</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getLog(aClass.getName());</span><br></pre></td></tr></table></figure>
+
+<p>这里有个特别的地方，Log 变量的的类型是 Constructor&lt;? extendsLog&gt;，也就是说该工厂生产的不只是一个产品，而是具有 Log 公共接口的一系列产品，比如 Log4jImpl、Slf4jImpl 等很多具体的 Log。</p>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>单例模式(Singleton Pattern)：单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。</p>
+<p>单例模式的要点有三个：一是某个类只能有一个实例；二是它必须自行创建这个实例；三是它必须自行向整个系统提供这个实例。单例模式是一种对象创建型模式。单例模式又名单件模式或单态模式。</p>
+<p>在 MyBatis 中有两个地方用到单例模式，ErrorContext 和 LogFactory，其中 ErrorContext 是用在每个线程范围内的单例，用于记录该线程的执行环境错误信息，而 LogFactory 则是提供给整个 MyBatis 使用的日志工厂，用于获得针对项目配置好的日志对象。</p>
+<p>ErrorContext 的单例实现代码：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> final ThreadLocal&lt;ErrorContext&gt; LOCAL = <span class="keyword">new</span> <span class="type">ThreadLocal</span>&lt;ErrorContext&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> ErrorContext stored;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> resource;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> activity;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> object;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> message;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> sql;</span><br><span class="line"><span class="keyword">private</span> Throwable cause;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> ErrorContext() &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ErrorContext instance() &#123;</span><br><span class="line">  ErrorContext context = LOCAL.<span class="keyword">get</span>();</span><br><span class="line">  <span class="keyword">if</span> (context == <span class="literal">null</span>) &#123;</span><br><span class="line">    context = <span class="keyword">new</span> <span class="type">ErrorContext</span>();</span><br><span class="line">    LOCAL.<span class="keyword">set</span>(context);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> context;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>造函数是 private 修饰，具有一个 static 的局部 instance 变量和一个获取 instance 变量的方法，在获取实例的方法中，先判断是否为空如果是的话就先创建，然后返回构造好的对象。</p>
+<p>需要注意的是是，LOCAL 的静态实例变量使用了 ThreadLoca l修饰，也就是说它属于每个线程各自的数据，而在 instance() 方法中，先获取本线程的该实例，如果没有就创建该线程独有的 ErrorContext。</p>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>代理模式(Proxy Pattern) ：给某一个对象提供一个代理，并由代理对象控制对原对象的引用。代理模式的英 文叫做 Proxy 或 Surrogate，它是一种对象结构型模式。代理模式可以认为是 MyBatis 的核心使用的模式，正是由于这个模式，我们只需要编写 Mapper.java 接口，不需要实现，由 MyBatis 后台帮我们完成具体 SQL 的执行。</p>
+<p>代理模式包含如下角色：</p>
+<ul>
+<li><p>Subject: 抽象主题角色  </p>
+</li>
+<li><p>Proxy: 代理主题角色  </p>
+</li>
+<li><p>RealSubject: 真实主题角色</p>
+</li>
+</ul>
+<img src="/2019/08/21/MyBatis常用的设计模式/des05.png">
+
+<p>这里有两个步骤，第一个是提前创建一个Proxy，第二个是使用的时候会自动请求Proxy，然后由Proxy来执行具体事务；</p>
+<p>当我们使用 Configuration 的 getMapper 方法时，会调用 mapperRegistry.getMapper 方法，而该方法又会调用 mapperProxyFactory.newInstance(sqlSession) 来生成一个具体的代理：</p>
+<figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapperProxyFactory</span>&lt;<span class="title">T</span>&gt; &#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> <span class="class"><span class="keyword">Class</span>&lt;<span class="title">T</span>&gt; <span class="title">mapperInterface</span>;</span></span><br><span class="line">  <span class="keyword">private</span> Map&lt;<span class="function"><span class="keyword">Method</span>, <span class="title">MapperMethod</span>&gt; <span class="title">methodCache</span> =</span> <span class="keyword">new</span> ConcurrentHashMap&lt;<span class="function"><span class="keyword">Method</span>, <span class="title">MapperMethod</span>&gt;(</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> MapperProxyFactory(<span class="class"><span class="keyword">Class</span>&lt;<span class="title">T</span>&gt; <span class="title">mapperInterface</span>) &#123;</span></span><br><span class="line">    this.mapperInterface = mapperInterface;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">Class</span>&lt;<span class="title">T</span>&gt; <span class="title">getMapperInterface</span>() &#123;</span></span><br><span class="line">    <span class="keyword">return</span> mapperInterface;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> Map&lt;<span class="function"><span class="keyword">Method</span>, <span class="title">MapperMethod</span>&gt; <span class="title">getMethodCache</span>(</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> methodCache;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @SuppressWarnings(<span class="string">"unchecked"</span>)</span><br><span class="line">  protected T newInstance(MapperProxy&lt;T&gt; mapperProxy) &#123;</span><br><span class="line">    <span class="keyword">return</span> (T) Proxy.newProxyInstance(mapperInterface.getClassLoader(), <span class="keyword">new</span> <span class="class"><span class="keyword">Class</span>[] &#123; <span class="title">mapperInterface</span> &#125;, <span class="title">mapperProxy</span>);</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> T newInstance(SqlSession sqlSession) &#123;</span><br><span class="line">    <span class="keyword">final</span> MapperProxy&lt;T&gt; mapperProxy = <span class="keyword">new</span> MapperProxy&lt;T&gt;(sqlSession, mapperInterface, methodCache);</span><br><span class="line">    <span class="keyword">return</span> newInstance(mapperProxy);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，先通过 T newInstance(SqlSession sqlSession) 方法会得到一个 MapperProxy 对象，然后调用 T newInstance(MapperProxy<t> mapperProxy) 生成代理对象然后返回。</t></p>
+<p>而查看 MapperProxy 的代码，可以看到如下内容：</p>
+<figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapperProxy</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">InvocationHandler</span>, <span class="title">Serializable</span> &#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> static <span class="keyword">final</span> long serialVersionUID = -<span class="number">6424540398559729838</span>L;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> SqlSession sqlSession;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> <span class="class"><span class="keyword">Class</span>&lt;<span class="title">T</span>&gt; <span class="title">mapperInterface</span>;</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;<span class="function"><span class="keyword">Method</span>, <span class="title">MapperMethod</span>&gt; <span class="title">methodCache</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> MapperProxy(SqlSession sqlSession, <span class="class"><span class="keyword">Class</span>&lt;<span class="title">T</span>&gt; <span class="title">mapperInterface</span>, <span class="title">Map</span>&lt;<span class="title">Method</span>, <span class="title">MapperMethod</span>&gt; <span class="title">methodCache</span>) &#123;</span></span><br><span class="line">    this.sqlSession = sqlSession;</span><br><span class="line">    this.mapperInterface = mapperInterface;</span><br><span class="line">    this.methodCache = methodCache;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> Object invoke(Object proxy, <span class="function"><span class="keyword">Method</span> <span class="title">method</span>, <span class="title">Object</span>[] <span class="title">args</span>) <span class="title">throws</span> <span class="title">Throwable</span> &#123;</span></span><br><span class="line">    <span class="keyword">if</span> (Object.class.equals(<span class="function"><span class="keyword">method</span>.<span class="title">getDeclaringClass</span>(</span>))) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">method</span>.<span class="title">invoke</span>(</span>this, args);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">        <span class="keyword">throw</span> ExceptionUtil.unwrapThrowable(t);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">final</span> MapperMethod mapperMethod = cachedMapperMethod(<span class="function"><span class="keyword">method</span>);</span></span><br><span class="line">    <span class="keyword">return</span> mapperMethod.execute(sqlSession, args);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是非常典型的，该 MapperProxy 类实现了 InvocationHandler 接口，并且实现了该接口的 invoke 方法。</p>
+<p>通过这种方式，我们只需要编写 Mapper.java 接口类，当真正执行一个 Mapper 接口的时候，就会转发给 MapperProxy.invoke 方法，而该方法则会调用后续的 sqlSession.cud&gt;executor.execute&gt;prepareStatement 等一系列方法，完成 SQL 的执行和返回。</p>
+<h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><p>组合模式组合多个对象形成树形结构以表示“整体-部分”的结构层次。</p>
+<p>组合模式对单个对象(叶子对象)和组合对象(组合对象)具有一致性，它将对象组织到树结构中，可以用来描述整体与部分的关系。同时它也模糊了简单元素(叶子对象)和复杂元素(容器对象)的概念，使得客户能够像处理简单元素一样来处理复杂元素，从而使客户程序能够与复杂元素的内部结构解耦。</p>
+<p>在使用组合模式中需要注意一点也是组合模式最关键的地方：叶子对象和组合对象实现相同的接口。这就是组合模式能够将叶子节点和对象节点进行一致处理的原因。</p>
+<img src="/2019/08/21/MyBatis常用的设计模式/des06.png">
+
+<p>组合模式</p>
+<p>MyBatis 支持动态 SQL 的强大功能，比如下面的这个SQL：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">update</span> id=<span class="string">"update"</span> parameterType=<span class="string">"org.format.dynamicproxy.mybatis.bean.User"</span>&gt;</span><br><span class="line">    <span class="keyword">UPDATE</span> users</span><br><span class="line">    &lt;<span class="keyword">trim</span> prefix=<span class="string">"SET"</span> prefixOverrides=<span class="string">","</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="keyword">test</span>=<span class="string">"name != null and name != ''"</span>&gt;</span><br><span class="line">            name = #&#123;name&#125;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="keyword">test</span>=<span class="string">"age != null and age != ''"</span>&gt;</span><br><span class="line">            , age = #&#123;age&#125;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="keyword">test</span>=<span class="string">"birthday != null and birthday != ''"</span>&gt;</span><br><span class="line">            , birthday = #&#123;birthday&#125;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;/<span class="keyword">trim</span>&gt;</span><br><span class="line">    where id = <span class="variable">$&#123;id&#125;</span></span><br><span class="line">&lt;/<span class="keyword">update</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在这里面使用到了 trim、i f等动态元素，可以根据条件来生成不同情况下的 SQL 。</p>
+<p>在 DynamicSqlSource.getBoundSql 方法里，调用了 rootSqlNode.apply(context) 方法，apply 方法是所有的动态节点都实现的接口：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>SqlNode &#123;</span><br><span class="line">  boolean apply(DynamicContext context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于实现该 SqlSource 接口的所有节点，就是整个组合模式树的各个节点：</p>
+<img src="/2019/08/21/MyBatis常用的设计模式/des07.png">
+
+<p>SqlNode</p>
+<p>组合模式的简单之处在于，所有的子节点都是同一类节点，可以递归的向下执行，比如对于 TextSqlNode ，因为它是最底层的叶子节点，所以直接将对应的内容 append 到 SQL 语句中：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> boolean</span><span class="built_in"> apply</span>(DynamicContext <span class="keyword">context</span>) &#123;</span><br><span class="line">  GenericTokenParser parser = createParser(new BindingTokenParser(<span class="keyword">context</span>));</span><br><span class="line">  <span class="keyword">context</span>.appendSql(parser.parse(<span class="type">text</span>));</span><br><span class="line">  <span class="keyword">return</span><span class="built_in"> true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是对于 IfSqlNode ，就需要先做判断，如果判断通过，仍然会调用子元素的 SqlNode ，即 contents.apply 方法，实现递归的解析。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> public<span class="built_in"> boolean</span><span class="built_in"> apply</span>(DynamicContext <span class="keyword">context</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (evaluator.evaluateBoolean(test, <span class="keyword">context</span>.getBindings())) &#123;</span><br><span class="line">      contents<span class="built_in">.apply</span>(<span class="keyword">context</span>);</span><br><span class="line">      <span class="keyword">return</span><span class="built_in"> true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span><span class="built_in"> false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><p>模板方法模式是所有模式中最为常见的几个模式之一，是基于继承的代码复用的基本技术。</p>
+<p>模板方法模式需要开发抽象类和具体子类的设计师之间的协作。一个设计师负责给出一个算法的轮廓和骨架，另一些设计师则负责给出这个算法的各个逻辑步骤。代表这些具体逻辑步骤的方法称做基本方法(primitive method)；而将这些基本方法汇总起来的方法叫做模板方法(template method)，这个设计模式的名字就是从此而来。</p>
+<p>模板类定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>适配器模式(Adapter Pattern)的定义是，将某个类的接口转换为接口客户所需的类型。 换句话说， 适配器模式解决的问题是， 使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以在一起工作、可以进行统一管理。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。</p>
+<h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><h2 id="迭代模式"><a href="#迭代模式" class="headerlink" title="迭代模式"></a>迭代模式</h2>
       
     </div>
 
@@ -775,7 +878,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Builder-模式"><span class="nav-text">Builder 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合模式"><span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板方法模式"><span class="nav-text">模板方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰者模式"><span class="nav-text">装饰者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代模式"><span class="nav-text">迭代模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Builder-模式"><span class="nav-text">Builder 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单工厂模式"><span class="nav-text">简单工厂模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合模式"><span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板方法模式"><span class="nav-text">模板方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰者模式"><span class="nav-text">装饰者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代模式"><span class="nav-text">迭代模式</span></a></li></ol></div>
             
 
           </div>
@@ -809,7 +912,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">213k字</span>
+   站点总字数： <span title="站点总字数">222k字</span>
   
 
 
