@@ -113,7 +113,13 @@
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des05.png">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des06.png">
 <meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des07.png">
-<meta property="og:updated_time" content="2019-08-23T14:06:09.547Z">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des08.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des09.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des10.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des11.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des12.png">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/des13.png">
+<meta property="og:updated_time" content="2019-08-24T04:24:45.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis常用的设计模式">
 <meta name="twitter:description" content="Builder 模式Builder 模式的定义是“将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。”，它属于创建类模式，一般来说，如果一个对象的构建比较复杂，超出了构造函数所能包含的范围，就可以使用工厂模式和 Builder 模式，相对于工厂模式会产出一个完整的产品，Builder 应用于更加复杂的对象的构建，甚至只会构建产品的一个部分。">
@@ -283,7 +289,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">8</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">9</span></a>
 
   </li>
         
@@ -319,7 +325,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">19</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">20</span></a>
 
   </li>
 
@@ -432,7 +438,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-23 22:06:09" itemprop="dateModified" datetime="2019-08-23T22:06:09+08:00">2019-08-23</time>
+                <time title="修改时间：2019-08-24 12:24:45" itemprop="dateModified" datetime="2019-08-24T12:24:45+08:00">2019-08-24</time>
               </span>
             
           
@@ -475,7 +481,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">8.7k</span>
+              <span title="本文字数">15k</span>
             </span>
           
 
@@ -560,8 +566,7 @@
 <p>在使用组合模式中需要注意一点也是组合模式最关键的地方：叶子对象和组合对象实现相同的接口。这就是组合模式能够将叶子节点和对象节点进行一致处理的原因。</p>
 <img src="/2019/08/21/MyBatis常用的设计模式/des06.png">
 
-<p>组合模式</p>
-<p>MyBatis 支持动态 SQL 的强大功能，比如下面的这个SQL：</p>
+<h3 id="组合模式-1"><a href="#组合模式-1" class="headerlink" title="组合模式"></a>组合模式</h3><p>MyBatis 支持动态 SQL 的强大功能，比如下面的这个SQL：</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">update</span> id=<span class="string">"update"</span> parameterType=<span class="string">"org.format.dynamicproxy.mybatis.bean.User"</span>&gt;</span><br><span class="line">    <span class="keyword">UPDATE</span> users</span><br><span class="line">    &lt;<span class="keyword">trim</span> prefix=<span class="string">"SET"</span> prefixOverrides=<span class="string">","</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="keyword">test</span>=<span class="string">"name != null and name != ''"</span>&gt;</span><br><span class="line">            name = #&#123;name&#125;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="keyword">test</span>=<span class="string">"age != null and age != ''"</span>&gt;</span><br><span class="line">            , age = #&#123;age&#125;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">if</span> <span class="keyword">test</span>=<span class="string">"birthday != null and birthday != ''"</span>&gt;</span><br><span class="line">            , birthday = #&#123;birthday&#125;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">    &lt;/<span class="keyword">trim</span>&gt;</span><br><span class="line">    where id = <span class="variable">$&#123;id&#125;</span></span><br><span class="line">&lt;/<span class="keyword">update</span>&gt;</span><br></pre></td></tr></table></figure>
 
 <p>在这里面使用到了 trim、i f等动态元素，可以根据条件来生成不同情况下的 SQL 。</p>
@@ -571,8 +576,7 @@
 <p>对于实现该 SqlSource 接口的所有节点，就是整个组合模式树的各个节点：</p>
 <img src="/2019/08/21/MyBatis常用的设计模式/des07.png">
 
-<p>SqlNode</p>
-<p>组合模式的简单之处在于，所有的子节点都是同一类节点，可以递归的向下执行，比如对于 TextSqlNode ，因为它是最底层的叶子节点，所以直接将对应的内容 append 到 SQL 语句中：</p>
+<h3 id="SqlNode"><a href="#SqlNode" class="headerlink" title="SqlNode"></a>SqlNode</h3><p>组合模式的简单之处在于，所有的子节点都是同一类节点，可以递归的向下执行，比如对于 TextSqlNode ，因为它是最底层的叶子节点，所以直接将对应的内容 append 到 SQL 语句中：</p>
 <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> boolean</span><span class="built_in"> apply</span>(DynamicContext <span class="keyword">context</span>) &#123;</span><br><span class="line">  GenericTokenParser parser = createParser(new BindingTokenParser(<span class="keyword">context</span>));</span><br><span class="line">  <span class="keyword">context</span>.appendSql(parser.parse(<span class="type">text</span>));</span><br><span class="line">  <span class="keyword">return</span><span class="built_in"> true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>但是对于 IfSqlNode ，就需要先做判断，如果判断通过，仍然会调用子元素的 SqlNode ，即 contents.apply 方法，实现递归的解析。</p>
@@ -581,8 +585,73 @@
 <h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><p>模板方法模式是所有模式中最为常见的几个模式之一，是基于继承的代码复用的基本技术。</p>
 <p>模板方法模式需要开发抽象类和具体子类的设计师之间的协作。一个设计师负责给出一个算法的轮廓和骨架，另一些设计师则负责给出这个算法的各个逻辑步骤。代表这些具体逻辑步骤的方法称做基本方法(primitive method)；而将这些基本方法汇总起来的方法叫做模板方法(template method)，这个设计模式的名字就是从此而来。</p>
 <p>模板类定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
-<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>适配器模式(Adapter Pattern)的定义是，将某个类的接口转换为接口客户所需的类型。 换句话说， 适配器模式解决的问题是， 使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以在一起工作、可以进行统一管理。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。</p>
-<h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><h2 id="迭代模式"><a href="#迭代模式" class="headerlink" title="迭代模式"></a>迭代模式</h2>
+<img src="/2019/08/21/MyBatis常用的设计模式/des08.png">
+
+<h3 id="模板方法模式-1"><a href="#模板方法模式-1" class="headerlink" title="模板方法模式"></a>模板方法模式</h3><p>在 MyBatis 中，sqlSession 的 SQL 执行，都是委托给 Executor 实现的，Executor 包含以下结构：</p>
+<img src="/2019/08/21/MyBatis常用的设计模式/des09.png">
+
+
+<h3 id="Executor接口"><a href="#Executor接口" class="headerlink" title="Executor接口"></a>Executor接口</h3><p>其中的 BaseExecutor 就采用了模板方法模式，它实现了大部分的 SQL 执行逻辑，然后把以下几个方法交给子类定制化完成：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> public<span class="built_in"> boolean</span><span class="built_in"> apply</span>(DynamicContext <span class="keyword">context</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (evaluator.evaluateBoolean(test, <span class="keyword">context</span>.getBindings())) &#123;</span><br><span class="line">      contents<span class="built_in">.apply</span>(<span class="keyword">context</span>);</span><br><span class="line">      <span class="keyword">return</span><span class="built_in"> true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span><span class="built_in"> false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该模板方法类有几个子类的具体实现，使用了不同的策略：</p>
+<ul>
+<li>简单 SimpleExecutor：每执行一次 update 或 select，就开启一个 Statement 对象，用完立刻关闭 Statement 对象。（可以是 Statement 或 PrepareStatement 对象）  </li>
+<li>重用 ReuseExecutor：执行 update 或 select，以 sql 作为 key 查找 Statement 对象，存在就使用，不存在就创建，用完后，不关闭 Statement 对象，而是放置于 Map 内，供下一次使用。（可以是 Statement 或 PrepareStatement 对象）  </li>
+<li>批量 BatchExecutor：执行 update （没有 select，JDBC 批处理不支持 select ），将所有sql都添加到批处理中（addBatch()），等待统一执行（executeBatch()），它缓存了多个 Statement 对象，每个 Statement 对象都是 addBatch() 完毕后，等待逐一执行 executeBatch() 批处理的；BatchExecutor 相当于维护了多个桶，每个桶里都装了很多属于自己的SQL，就像苹果蓝里装了很多苹果，番茄蓝里装了很多番茄，最后，再统一倒进仓库。（可以是 Statement 或 PrepareStatement 对象）</li>
+</ul>
+<p>比如在 SimpleExecutor 中这样实现 update 方法：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">doUpdate</span><span class="params">(MappedStatement ms, Object parameter)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">  Statement stmt = <span class="keyword">null</span>;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    Configuration configuration = ms.getConfiguration();</span><br><span class="line">    StatementHandler <span class="keyword">handler</span> = configuration.newStatementHandler(<span class="keyword">this</span>, ms, parameter, RowBounds.DEFAULT, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">    stmt = prepareStatement(<span class="keyword">handler</span>, ms.getStatementLog());</span><br><span class="line">    <span class="function"><span class="keyword">return</span> <span class="keyword">handler</span>.<span class="title">update</span><span class="params">(stmt)</span></span>;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    closeStatement(stmt);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>适配器模式(Adapter Pattern)的定义是，将某个类的接口转换为接口客户所需的类型。 换句话说， 适配器模式解决的问题是， 使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以在一起工作、可以进行统一管理，其别名为包装器(Wrapper)。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。</p>
+<img src="/2019/08/21/MyBatis常用的设计模式/des10.png">
+
+<p>在 MyBatsi 的 logging 包中，有一个 Log 接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Log</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">isDebugEnabled</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">isTraceEnabled</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">error</span><span class="params">(String s, Throwable e)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">error</span><span class="params">(String s)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">debug</span><span class="params">(String s)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">trace</span><span class="params">(String s)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">warn</span><span class="params">(String s)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该接口定义了 MyBatis 直接使用的日志方法，而 Log 接口具体由谁来实现呢？MyBatis 提供了多种日志框架的实现，这些实现都匹配这个 Log 接口所定义的接口方法，最终实现了所有外部日志框架到 MyBatis 日志包的适配：</p>
+<img src="/2019/08/21/MyBatis常用的设计模式/des11.png">
+
+<p>比如对于 Log4jImpl 的实现来说，该实现持有了 org.apache.log4j.Logger 的实例，然后所有的日志方法，均委托该实例来实现。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Log4jImpl implements Log &#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">String</span> FQCN = Log4jImpl.class.getName();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Logger <span class="built_in">log</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> Log4jImpl(<span class="keyword">String</span> clazz) &#123;</span><br><span class="line">    <span class="built_in">log</span> = Logger.getLogger(clazz);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="built_in">boolean</span> isDebugEnabled() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">log</span>.isDebugEnabled();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="built_in">boolean</span> isTraceEnabled() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">log</span>.isTraceEnabled();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> error(<span class="keyword">String</span> s, Throwable e) &#123;</span><br><span class="line">    <span class="built_in">log</span>.<span class="built_in">log</span>(FQCN, Level.ERROR, s, e);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> error(<span class="keyword">String</span> s) &#123;</span><br><span class="line">    <span class="built_in">log</span>.<span class="built_in">log</span>(FQCN, Level.ERROR, s, <span class="keyword">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> debug(<span class="keyword">String</span> s) &#123;</span><br><span class="line">    <span class="built_in">log</span>.<span class="built_in">log</span>(FQCN, Level.DEBUG, s, <span class="keyword">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> trace(<span class="keyword">String</span> s) &#123;</span><br><span class="line">    <span class="built_in">log</span>.<span class="built_in">log</span>(FQCN, Level.TRACE, s, <span class="keyword">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> warn(<span class="keyword">String</span> s) &#123;</span><br><span class="line">    <span class="built_in">log</span>.<span class="built_in">log</span>(FQCN, Level.WARN, s, <span class="keyword">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><p>装饰模式(Decorator Pattern) ：动态地给一个对象增加一些额外的职责(Responsibility)，就增加对象功能来说，装饰模式比生成子类实现更为灵活。其别名也可以称为包装器(Wrapper)，与适配器模式的别名相同，但它们适用于不同的场合。根据翻译的不同，装饰模式也有人称之为“油漆工模式”，它是一种对象结构型模式。</p>
+<img src="/2019/08/21/MyBatis常用的设计模式/des12.png">
+
+<h3 id="装饰者模式-1"><a href="#装饰者模式-1" class="headerlink" title="装饰者模式"></a>装饰者模式</h3><p>在 MyBatis 中，缓存的功能由根接口Cache（org.apache.ibatis.cache.Cache）定义。整个体系采用装饰器设计模式，数据存储和缓存的基本功能由 PerpetualCache（org.apache.ibatis.cache.impl.PerpetualCache）永久缓存实现，然后通过一系列的装饰器来对 PerpetualCache 永久缓存进行缓存策略等方便的控制。如下图：</p>
+<img src="/2019/08/21/MyBatis常用的设计模式/des13.png">
+
+<h3 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h3><p>用于装饰 PerpetualCache 的标准装饰器共有8个（全部在 org.apache.ibatis.cache.decorators 包中）：</p>
+<ol>
+<li>FifoCache：先进先出算法，缓存回收策略  </li>
+<li>LoggingCache：输出缓存命中的日志信息  </li>
+<li>LruCache：最近最少使用算法，缓存回收策略  </li>
+<li>ScheduledCache：调度缓存，负责定时清空缓存  </li>
+<li>SerializedCache：缓存序列化和反序列化存储  </li>
+<li>SoftCache：基于软引用实现的缓存管理策略  </li>
+<li>SynchronizedCache：同步的缓存装饰器，用于防止多线程并发访问  </li>
+<li>WeakCache：基于弱引用实现的缓存管理策略</li>
+</ol>
+<p>另外，还有一个特殊的装饰器 TransactionalCache：事务性的缓存</p>
+<p>正如大多数持久层框架一样，MyBatis 缓存同样分为一级缓存和二级缓存</p>
+<ul>
+<li>一级缓存，又叫本地缓存，是 PerpetualCache 类型的永久缓存，保存在执行器中（BaseExecutor），而执行器又在 SqlSession（DefaultSqlSession） 中，所以一级缓存的生命周期与 SqlSession 是相同的。</li>
+<li>二级缓存，又叫自定义缓存，实现了 Cache 接口的类都可以作为二级缓存，所以可配置如 encache 等的第三方缓存。二级缓存以 namespace 名称空间为其唯一标识，被保存在 Configuration 核心配置对象中。</li>
+</ul>
+<p>二级缓存对象的默认类型为 PerpetualCache ，如果配置的缓存是默认类型，则 MyBatis 会根据配置自动追加一系列装饰器。</p>
+<p>Cache对象之间的引用顺序为：</p>
+<p>SynchronizedCache–&gt;LoggingCache–&gt;SerializedCache–&gt;ScheduledCache–&gt;LruCache–&gt;PerpetualCache</p>
+<h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><p>迭代器（Iterator）模式，又叫做游标（Cursor）模式。GOF 给出的定义为：提供一种方法访问一个容器（container）对象中各个元素，而又不需暴露该对象的内部细节。</p>
+
+
+<p>Java 的 Iterator 就是迭代器模式的接口，只要实现了该接口，就相当于应用了迭代器模式：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>Iterator&lt;E&gt; &#123;</span><br><span class="line"></span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> default </span>void <span class="builtin-name">remove</span>() &#123;</span><br><span class="line">        throw new UnsupportedOperationException(<span class="string">"remove"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如 MyBatis 的 PropertyTokenizer 是 property 包中的重量级类，该类会被 reflection 包中其他的类频繁的引用到。这个类实现了 Iterator 接口，在使用时经常被用到的是 Iterator 接口中的 hasNext 这个函数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PropertyTokenizer</span> <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">PropertyTokenizer</span>&gt;, <span class="title">Iterator</span>&lt;<span class="title">PropertyTokenizer</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> String indexedName;</span><br><span class="line">  <span class="keyword">private</span> String index;</span><br><span class="line">  <span class="keyword">private</span> String children;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">PropertyTokenizer</span><span class="params">(String fullname)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> delim = fullname.indexOf(<span class="string">'.'</span>);</span><br><span class="line">    <span class="keyword">if</span> (delim &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">      name = fullname.substring(<span class="number">0</span>, delim);</span><br><span class="line">      children = fullname.substring(delim + <span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      name = fullname;</span><br><span class="line">      children = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    indexedName = name;</span><br><span class="line">    delim = name.indexOf(<span class="string">'['</span>);</span><br><span class="line">    <span class="keyword">if</span> (delim &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">      index = name.substring(delim + <span class="number">1</span>, name.length() - <span class="number">1</span>);</span><br><span class="line">      name = name.substring(<span class="number">0</span>, delim);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getIndex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> index;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getIndexedName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> indexedName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getChildren</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> children;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> children != <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> PropertyTokenizer <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PropertyTokenizer(children);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"Remove is not supported, as it has no meaning in the context of properties."</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Iterator&lt;PropertyTokenizer&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，这个类传入一个字符串到构造函数，然后提供了 iterator 方法对解析后的子串进行遍历，是一个很常用的方法类。</p>
+
       
     </div>
 
@@ -673,6 +742,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/08/23/Java常用的注解/" rel="prev" title="Java常用的注解">
+                Java常用的注解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -743,7 +816,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -807,7 +880,9 @@
         
           
         
-        <span class="site-state-item-count">8</span>
+          
+        
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -878,7 +953,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Builder-模式"><span class="nav-text">Builder 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单工厂模式"><span class="nav-text">简单工厂模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合模式"><span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板方法模式"><span class="nav-text">模板方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰者模式"><span class="nav-text">装饰者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代模式"><span class="nav-text">迭代模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Builder-模式"><span class="nav-text">Builder 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单工厂模式"><span class="nav-text">简单工厂模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合模式"><span class="nav-text">组合模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组合模式-1"><span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SqlNode"><span class="nav-text">SqlNode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板方法模式"><span class="nav-text">模板方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板方法模式-1"><span class="nav-text">模板方法模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Executor接口"><span class="nav-text">Executor接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰者模式"><span class="nav-text">装饰者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰者模式-1"><span class="nav-text">装饰者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache"><span class="nav-text">Cache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器模式"><span class="nav-text">迭代器模式</span></a></li></ol></div>
             
 
           </div>
@@ -912,7 +987,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">222k字</span>
+   站点总字数： <span title="站点总字数">228k字</span>
   
 
 
