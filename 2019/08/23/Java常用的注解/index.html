@@ -98,18 +98,18 @@
   };
 </script>
 
-  <meta name="description" content="注解本身没有功能的，就和 xml 一样。注解和 xml 都是一种元数据，元数据即解释数据的数据，这就是所谓配置。">
+  <meta name="description" content="注解本身没有功能的，就和 xml 一样。注解和 xml 都是一种元数据，元数据即解释数据的数据，这就是所谓配置。 Spring 部分声明 bean 的注解@Component 组件，没有明确的角色，在类上使用注解@Component，该注解的 value 属性用于指定该 bean 的 id 值 @Repository 用于对 DAO 实现类进行注解 @Service 用于对 Service 实现类">
 <meta name="keywords" content="注解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java常用的注解">
 <meta property="og:url" content="https://huangyuanzhi.top/2019/08/23/Java常用的注解/index.html">
 <meta property="og:site_name" content="远志の博客">
-<meta property="og:description" content="注解本身没有功能的，就和 xml 一样。注解和 xml 都是一种元数据，元数据即解释数据的数据，这就是所谓配置。">
+<meta property="og:description" content="注解本身没有功能的，就和 xml 一样。注解和 xml 都是一种元数据，元数据即解释数据的数据，这就是所谓配置。 Spring 部分声明 bean 的注解@Component 组件，没有明确的角色，在类上使用注解@Component，该注解的 value 属性用于指定该 bean 的 id 值 @Repository 用于对 DAO 实现类进行注解 @Service 用于对 Service 实现类">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-24T05:01:10.588Z">
+<meta property="og:updated_time" content="2019-09-01T14:50:50.893Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java常用的注解">
-<meta name="twitter:description" content="注解本身没有功能的，就和 xml 一样。注解和 xml 都是一种元数据，元数据即解释数据的数据，这就是所谓配置。">
+<meta name="twitter:description" content="注解本身没有功能的，就和 xml 一样。注解和 xml 都是一种元数据，元数据即解释数据的数据，这就是所谓配置。 Spring 部分声明 bean 的注解@Component 组件，没有明确的角色，在类上使用注解@Component，该注解的 value 属性用于指定该 bean 的 id 值 @Repository 用于对 DAO 实现类进行注解 @Service 用于对 Service 实现类">
 
 
 
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-24 13:01:10" itemprop="dateModified" datetime="2019-08-24T13:01:10+08:00">2019-08-24</time>
+                <time title="修改时间：2019-09-01 22:50:50" itemprop="dateModified" datetime="2019-09-01T22:50:50+08:00">2019-09-01</time>
               </span>
             
           
@@ -467,7 +467,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">57</span>
+              <span title="本文字数">4k</span>
             </span>
           
 
@@ -490,6 +490,82 @@
 
       
         <p>注解本身没有功能的，就和 xml 一样。注解和 xml 都是一种元数据，元数据即解释数据的数据，这就是所谓配置。</p>
+<h2 id="Spring-部分"><a href="#Spring-部分" class="headerlink" title="Spring 部分"></a>Spring 部分</h2><h3 id="声明-bean-的注解"><a href="#声明-bean-的注解" class="headerlink" title="声明 bean 的注解"></a>声明 bean 的注解</h3><p>@Component 组件，没有明确的角色，在类上使用注解@Component，该注解的 value 属性用于指定该 bean 的 id 值</p>
+<p>@Repository 用于对 DAO 实现类进行注解</p>
+<p>@Service 用于对 Service 实现类进行注解</p>
+<p>@Controller 用于对 Controller 实现类进行注解</p>
+<h3 id="注入-bean-的注解"><a href="#注入-bean-的注解" class="headerlink" title="注入 bean 的注解"></a>注入 bean 的注解</h3><p>@Autowired：由 Spring 提供</p>
+<p>@Inject：由 JSR-330 提供</p>
+<p>@Resource：由 JSR-250 提供</p>
+<p>都可以注解在 set 方法和属性上，推荐注解在属性上(一目了然，少写代码)。</p>
+<h3 id="Java-配置类相关注解"><a href="#Java-配置类相关注解" class="headerlink" title="Java 配置类相关注解"></a>Java 配置类相关注解</h3><p>@Configuration 表示当前类充当 Spring 容器，即所有的 Bean 将由这个类来创建(类上)</p>
+<p>@Bean 注解在方法上，声明当前方法的返回值为一个 bean ，替代 xml 中的方式（方法上）</p>
+<p>@Configuration 声明当前类为配置类，其中内部组合了 @Component 注解，表明这个类是一个 bean (类上)</p>
+<p>@ComponentScan 用于对 Component 进行扫描，相当于 xml 中的（类上）</p>
+<p>@WishlyConfiguration 为 @Configuration 与 @ComponentScan 的组合注解，可以替代这两个注解</p>
+<h3 id="切面（AOP）相关注解"><a href="#切面（AOP）相关注解" class="headerlink" title="切面（AOP）相关注解"></a>切面（AOP）相关注解</h3><p>Spring 支持 AspectJ 的注解式切面编程。</p>
+<p>@Aspect 指定当前 POJO 类将作为切面(类上)</p>
+<p>使用 @After 、 @Before 、 @Around 定义建言 (advice) ，可直接将拦截规则（切点）作为参数。</p>
+<p>@After 在方法执行之后执行（方法上）</p>
+<p>@Before 在方法执行之前执行（方法上）</p>
+<p>@Around 在方法执行之前与之后执行（方法上）</p>
+<p>@Pointcut 定义切入点</p>
+<p>在 Java 配置类中使用 @EnableAspectJAutoProxy 注解开启 Spring 对 AspectJ 代理的支持（类上）</p>
+<h3 id="Bean-的属性支持"><a href="#Bean-的属性支持" class="headerlink" title="@Bean 的属性支持"></a>@Bean 的属性支持</h3><p>@Scope 设置 Spring 容器如何新建 Bean 实例(方法上，得有 @Bean )</p>
+<p>其设置类型包括：</p>
+<p>Singleton (单例,一个 Spring 容器中只有一个 bean 实例，默认模式)<br>Protetype (每次调用新建一个 bean )<br>Request ( web 项目中，给每个 http request 新建一个 bean )<br>Session ( web项 目中，给每个 http session 新建一个 bean )<br>GlobalSession (给每一个 global http session 新建一个 Bean 实例)</p>
+<p>@StepScope 在 Spring Batch 中还有涉及</p>
+<p>@PostConstruct 由 JSR-250 提供，在构造函数执行完之后执行，等价于 xml 配置文件中 bean 的 initMethod</p>
+<p>@PreDestory 由 JSR-250 提供，在 Bean 销毁之前执行，等价于 xml 配置文件中 bean 的 destroyMethod</p>
+<h3 id="Value注解"><a href="#Value注解" class="headerlink" title="@Value注解"></a>@Value注解</h3><p>@Value 为属性注入值(属性上)支持如下方式的注入：</p>
+<h4 id="注入普通字符串"><a href="#注入普通字符串" class="headerlink" title="注入普通字符串"></a>注入普通字符串</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(<span class="meta-string">"normal"</span>)</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> String normal</span><br></pre></td></tr></table></figure>
+
+<h4 id="注入文件资源"><a href="#注入文件资源" class="headerlink" title="注入文件资源"></a>注入文件资源</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(<span class="meta-string">"classpath:com/huang/spring/configinject/config.txt"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Resource resourceFile;</span><br></pre></td></tr></table></figure>
+
+<h4 id="注入-URL-资源"><a href="#注入-URL-资源" class="headerlink" title="注入 URL 资源"></a>注入 URL 资源</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   @Value(<span class="string">"https://www.huangyuanzhi.top"</span>)</span><br><span class="line"></span><br><span class="line">private<span class="built_in"> Resource </span>testUrl;</span><br></pre></td></tr></table></figure>
+
+<h4 id="注入表达式结果"><a href="#注入表达式结果" class="headerlink" title="注入表达式结果"></a>注入表达式结果</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   @<span class="keyword">Value</span>("#&#123; <span class="selector-tag">T</span>(<span class="selector-tag">java</span><span class="selector-class">.lang</span><span class="selector-class">.Math</span>)<span class="selector-class">.random</span>() * 100<span class="selector-class">.0</span> &#125;")</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">private</span> <span class="selector-tag">double</span> <span class="selector-tag">randomNumber</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="注入其它-bean-属性"><a href="#注入其它-bean-属性" class="headerlink" title="注入其它 bean 属性"></a>注入其它 bean 属性</h4><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">@Value</span>(<span class="string">"&#123;domeClass.name&#125;"</span>)</span><br><span class="line"><span class="built_in">String</span> name<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注入配置文件"><a href="#注入配置文件" class="headerlink" title="注入配置文件"></a>注入配置文件</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(<span class="meta-string">"<span class="subst">$&#123;book.name&#125;</span>"</span>)</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> String bookName;</span><br></pre></td></tr></table></figure>
+
+<p>注入配置使用方法： </p>
+<p>(1) 编写配置文件（test.properties）</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">book.name</span>=《三体》</span><br></pre></td></tr></table></figure>
+
+<p>(2) @PropertySource 加载配置文件(类上)</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PropertySource(<span class="meta-string">"classpath:com/huang/spring/configinject/config.properties"</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>(3) 还需配置一个 PropertySourcesPlaceholderConfigurer 的 bean 。</p>
+<h3 id="环境切换"><a href="#环境切换" class="headerlink" title="环境切换"></a>环境切换</h3><p>@Profile 通过设定 Environment 的 ActiveProfiles 来设定当前 context 需要使用的配置环境。(类或方法上)</p>
+<p>@Conditional Spring4 中可以使用此注解定义条件话的 bean ，通过实现 Condition 接口，并重写 matches 方法，从而决定该 bean 是否被实例化。(方法上)</p>
+<h3 id="异步相关"><a href="#异步相关" class="headerlink" title="异步相关"></a>异步相关</h3><p>@EnableAsync 配置类中，通过此注解开启对异步任务的支持，叙事性 AsyncConfigurer 接口(类上)</p>
+<p>@Async 在实际执行的 bean 方法使用该注解来申明其是一个异步任务(方法上或类上所有的方法都将异步，需要 @EnableAsync 开启异步任务)</p>
+<h3 id="定时任务相关"><a href="#定时任务相关" class="headerlink" title="定时任务相关"></a>定时任务相关</h3><p>@EnableScheduling 在配置类上使用，开启计划任务的支持(类上)</p>
+<p>@Scheduled 来申明这是一个任务，包括 cron , fixDelay , fixRate 等类型(方法上，需先开启计划任务的支持)</p>
+<h3 id="Enable-注解说明"><a href="#Enable-注解说明" class="headerlink" title="@Enable* 注解说明"></a>@Enable* 注解说明</h3><p>这些注解主要用来开启对xxx的支持。</p>
+<p>@EnableAspectJAutoProxy 开启对 AspectJ 自动代理的支持</p>
+<p>@EnableAsync 开启异步方法的支持</p>
+<p>@EnableScheduling 开启计划任务的支持</p>
+<p>@EnableWebMvc 开启 Web MVC 的配置支持</p>
+<p>@EnableConfigurationProperties 开启对 @ConfigurationProperties 注解配置 Bean 的支持</p>
+<p>@EnableJpaRepositories 开启对 SpringData JPA Repository 的支持</p>
+<p>@EnableTransactionManagement 开启注解式事务的支持</p>
+<p>@EnableCaching 开启注解式的缓存支持</p>
+<h3 id="测试相关注解"><a href="#测试相关注解" class="headerlink" title="测试相关注解"></a>测试相关注解</h3><p>@RunWith 运行器，Spring 中通常用于对 JUnit 的支持</p>
+<p>@ContextConfiguration 用来加载配置 ApplicationContext ，其中 classes 属性用来加载配置类</p>
+<h2 id="Spring-MVC-部分"><a href="#Spring-MVC-部分" class="headerlink" title="Spring MVC 部分"></a>Spring MVC 部分</h2><p>@EnableWebMvc 在配置类中开启 Web MVC 的配置支持，如一些 ViewResolver 或者 MessageConverter 等，若无此句，重写 WebMvcConfigurerAdapter 方法(用于对 SpringMVC 的配置)。</p>
+<p>@Controller 表示当前类为处理器</p>
+<p>@RequestMapping 表示当前方法为处理器方法；该方法要对 value 属性所指定的 URL 进行处理与响应； 被注解的方法的方法名可以随意。</p>
+<p>@ResponseBody 支持将返回值放在 response 内，而不是一个页面，通常用户返回 json 数据（返回值旁或方法上）</p>
+<p>@RequestBody 允许 request 的参数在 request 体中，而不是在直接连接在地址后面。（放在参数前）</p>
+<p>@PathVariable 用于接收路径参数，比如@ RequestMapping(“/hello/{name}”) 申明的路径，将注解放在参数中前，即可获取该值，通常作为 Restful 的接口实现方法。</p>
+<p>@RestController 该注解为一个组合注解，相当于 @Controller 和 @ResponseBody 的组合，注解在类上，意味着，该 Controller 的所有方法都默认加上了 @ResponseBody。</p>
+<p>@ControllerAdvice 通过该注解，我们可以将对于控制器的全局配置放置在同一个位置，注解了 @Controller 的类的方法可使用 @ExceptionHandler 、 @InitBinder 、 @ModelAttribute 注解到方法上，这对所有注解了 @RequestMapping 的控制器内的方法有效。</p>
+<p>@ExceptionHandler 用于全局处理控制器里的异常</p>
+<p>@InitBinder 用来设置 WebDataBinder ， WebDataBinder 用来自动绑定前台请求参数到 Model 中。</p>
+<p>@ModelAttribute 本来的作用是绑定键值对到 Model 里，在 @ControllerAdvice 中是让全局的 @RequestMapping 都能获得在此处设置的键值对。</p>
 
       
     </div>
@@ -623,8 +699,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -769,6 +854,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-部分"><span class="nav-text">Spring 部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明-bean-的注解"><span class="nav-text">声明 bean 的注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注入-bean-的注解"><span class="nav-text">注入 bean 的注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-配置类相关注解"><span class="nav-text">Java 配置类相关注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切面（AOP）相关注解"><span class="nav-text">切面（AOP）相关注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-的属性支持"><span class="nav-text">@Bean 的属性支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Value注解"><span class="nav-text">@Value注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注入普通字符串"><span class="nav-text">注入普通字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注入文件资源"><span class="nav-text">注入文件资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注入-URL-资源"><span class="nav-text">注入 URL 资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注入表达式结果"><span class="nav-text">注入表达式结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注入其它-bean-属性"><span class="nav-text">注入其它 bean 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注入配置文件"><span class="nav-text">注入配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境切换"><span class="nav-text">环境切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步相关"><span class="nav-text">异步相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定时任务相关"><span class="nav-text">定时任务相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enable-注解说明"><span class="nav-text">@Enable* 注解说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试相关注解"><span class="nav-text">测试相关注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-MVC-部分"><span class="nav-text">Spring MVC 部分</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -796,7 +898,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">227k字</span>
+   站点总字数： <span title="站点总字数">231k字</span>
   
 
 
