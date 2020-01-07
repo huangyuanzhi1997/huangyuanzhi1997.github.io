@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[分布式架构——Redis 进阶]]></title>
     <url>%2F2019%2F09%2F10%2F%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E2%80%94%E2%80%94Redis%20%E8%BF%9B%E9%98%B6%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[Redis 事务什么是事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。 事务操作的命令multi持久化主从复制安全设置]]></content>
       <categories>
         <category>分布式</category>
       </categories>
