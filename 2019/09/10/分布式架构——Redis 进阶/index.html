@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="Redis 事务什么是事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。 事务操作的命令multi语法： multi 作用： 标记一个事务的开始。事务内的多条命令会按照先后顺序被放进一个队列当中。 返回值： 总">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-13T11:45:43.925Z">
+<meta property="og:updated_time" content="2020-01-18T12:20:57.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式架构——Redis 进阶">
 <meta name="twitter:description" content="Redis 事务什么是事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。 事务操作的命令multi语法： multi 作用： 标记一个事务的开始。事务内的多条命令会按照先后顺序被放进一个队列当中。 返回值： 总">
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-13 19:45:43" itemprop="dateModified" datetime="2020-01-13T19:45:43+08:00">2020-01-13</time>
+                <time title="修改时间：2020-01-18 20:20:57" itemprop="dateModified" datetime="2020-01-18T20:20:57+08:00">2020-01-18</time>
               </span>
             
           
@@ -467,7 +467,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">706</span>
+              <span title="本文字数">1.1k</span>
             </span>
           
 
@@ -505,9 +505,36 @@
 <h4 id="unwatch"><a href="#unwatch" class="headerlink" title="unwatch"></a>unwatch</h4><p>语法： unwatch</p>
 <p>作用：取消 WATCH 命令对所有 key 的监视。如果在执行 WATCH 命令之后， EXEC 命令或 DISCARD 命令先被执行了的话，那么就不需要再执行 UNWATCH 了。</p>
 <p>返回值：总是返回 ok</p>
-<h3 id="事务的实现"><a href="#事务的实现" class="headerlink" title="事务的实现"></a>事务的实现</h3><h4 id="正常执行事务"><a href="#正常执行事务" class="headerlink" title="正常执行事务"></a>正常执行事务</h4><h4 id="事务执行-exec-之前"><a href="#事务执行-exec-之前" class="headerlink" title="事务执行 exec 之前"></a>事务执行 exec 之前</h4><p>事务执行 exec 之前， 入队命令错误（语法错误；严重错误导致服务器不能正常工作（ 例如内存不足）），放弃事务。</p>
+<h3 id="事务的实现"><a href="#事务的实现" class="headerlink" title="事务的实现"></a>事务的实现</h3><h4 id="正常执行事务"><a href="#正常执行事务" class="headerlink" title="正常执行事务"></a>正常执行事务</h4><p>事务的执行步骤：   </p>
+<ol>
+<li>开启事务；  </li>
+<li>向事务队列中加入命令；  </li>
+<li>执行事务提交。</li>
+</ol>
+<h4 id="事务执行-exec-之前"><a href="#事务执行-exec-之前" class="headerlink" title="事务执行 exec 之前"></a>事务执行 exec 之前</h4><p>事务执行 exec 之前， 入队命令错误（语法错误；严重错误导致服务器不能正常工作（ 例如内存不足）），放弃事务。</p>
+<p>事务的执行步骤：  </p>
+<ol>
+<li>mulit 正常命令；  </li>
+<li>set key value 正常命令；  </li>
+<li>incr 命令语法错误；  </li>
+<li>exec 无法执行事务，那么第一条正确的命令也不会执行，所以 key 的值不会设置成功。</li>
+</ol>
 <h4 id="事务执行-exec-之后"><a href="#事务执行-exec-之后" class="headerlink" title="事务执行 exec 之后"></a>事务执行 exec 之后</h4><p>事务执行 exec 命令后，执行队列命令，命令执行错误，事务提交。</p>
-<h4 id="放弃事务"><a href="#放弃事务" class="headerlink" title="放弃事务"></a>放弃事务</h4><h4 id="Redis-的watch-机制"><a href="#Redis-的watch-机制" class="headerlink" title="Redis 的watch 机制"></a>Redis 的watch 机制</h4><h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><h2 id="安全设置"><a href="#安全设置" class="headerlink" title="安全设置"></a>安全设置</h2>
+<p>事务的执行步骤：  </p>
+<ol>
+<li>mulit 正常命令；  </li>
+<li>set username zhangsan 正常命令；  </li>
+<li>lpop username 正常命令，语法没有错误，执行命令时才会有错误；  </li>
+<li>exec 正常执行 ,发现错误可以在事务提交前放弃事务， 执行 discard。</li>
+</ol>
+<h4 id="放弃事务"><a href="#放弃事务" class="headerlink" title="放弃事务"></a>放弃事务</h4><p>事务的执行步骤：</p>
+<ol>
+<li>mulit 开启事务；  </li>
+<li>set age 25 命令入队；  </li>
+<li>set age 30 命令入队；  </li>
+<li>discard 放弃事务，则命令队列不会被执行。</li>
+</ol>
+<h4 id="Redis-的watch-机制"><a href="#Redis-的watch-机制" class="headerlink" title="Redis 的watch 机制"></a>Redis 的watch 机制</h4><h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><h2 id="安全设置"><a href="#安全设置" class="headerlink" title="安全设置"></a>安全设置</h2>
       
     </div>
 
