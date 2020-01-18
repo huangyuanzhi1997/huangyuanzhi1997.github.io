@@ -622,7 +622,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-18 20:20:57" itemprop="dateModified" datetime="2020-01-18T20:20:57+08:00">2020-01-18</time>
+                <time title="修改时间：2020-01-18 20:27:25" itemprop="dateModified" datetime="2020-01-18T20:27:25+08:00">2020-01-18</time>
               </span>
             
           
@@ -665,7 +665,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.1k</span>
+              <span title="本文字数">1.4k</span>
             </span>
           
 
@@ -734,7 +734,11 @@
 <li>set age 30 命令入队；  </li>
 <li>discard 放弃事务，则命令队列不会被执行。</li>
 </ol>
-<h4 id="Redis-的watch-机制"><a href="#Redis-的watch-机制" class="headerlink" title="Redis 的watch 机制"></a>Redis 的watch 机制</h4><h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><h2 id="安全设置"><a href="#安全设置" class="headerlink" title="安全设置"></a>安全设置</h2>
+<h4 id="Redis-的-WATCH-机制"><a href="#Redis-的-WATCH-机制" class="headerlink" title="Redis 的 WATCH 机制"></a>Redis 的 WATCH 机制</h4><p>WATCH 机制原理：</p>
+<p>使用 WATCH 监视一个或多个 key , 跟踪 key 的 value 修改情况， 如果有 key 的 value 值在事务 EXEC 执行之前被修改了， 整个事务被取消。 EXEC 返回提示信息， 表示事务已经失败。</p>
+<p>WATCH 机制使的事务 EXEC 变的有条件，事务只有在被 WATCH 的 key 没有修改的前提下才能执行。不满足条件，事务被取消。使用 WATCH 监视了一个带过期时间的键， 那么即使这个键过期了， 事务仍然可以正常执行。</p>
+<p>大多数情况下， 不同的客户端会访问不同的键， 相互同时竞争同一 key 的情况一般都很少， 乐观锁能够以很好的性能解决数据冲突的问题。</p>
+<h5 id="Redis-的-WATCH-机制-1"><a href="#Redis-的-WATCH-机制-1" class="headerlink" title="Redis 的 WATCH 机制"></a>Redis 的 WATCH 机制</h5><h5 id="取消-key-的监视（WATCH）"><a href="#取消-key-的监视（WATCH）" class="headerlink" title="取消 key 的监视（WATCH）"></a>取消 key 的监视（WATCH）</h5><h5 id="WATCH-的事例"><a href="#WATCH-的事例" class="headerlink" title="WATCH 的事例"></a>WATCH 的事例</h5><h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><h2 id="安全设置"><a href="#安全设置" class="headerlink" title="安全设置"></a>安全设置</h2>
           
         
       
@@ -2571,7 +2575,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">296k字</span>
+   站点总字数： <span title="站点总字数">297k字</span>
   
 
 
