@@ -98,18 +98,18 @@
   };
 </script>
 
-  <meta name="description" content="Redis 事务什么是事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。 事务操作的命令multi语法： multi 作用： 标记一个事务的开始。事务内的多条命令会按照先后顺序被放进一个队列当中。 返回值： 总">
+  <meta name="description" content="Redis 事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。">
 <meta name="keywords" content="Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式架构——Redis 进阶">
 <meta property="og:url" content="https://huangyuanzhi.top/2019/09/10/分布式架构——Redis 进阶/index.html">
 <meta property="og:site_name" content="远志の博客">
-<meta property="og:description" content="Redis 事务什么是事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。 事务操作的命令multi语法： multi 作用： 标记一个事务的开始。事务内的多条命令会按照先后顺序被放进一个队列当中。 返回值： 总">
+<meta property="og:description" content="Redis 事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-18T12:27:25.248Z">
+<meta property="og:updated_time" content="2020-01-19T12:48:59.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式架构——Redis 进阶">
-<meta name="twitter:description" content="Redis 事务什么是事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。 事务操作的命令multi语法： multi 作用： 标记一个事务的开始。事务内的多条命令会按照先后顺序被放进一个队列当中。 返回值： 总">
+<meta name="twitter:description" content="Redis 事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。">
 
 
 
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-18 20:27:25" itemprop="dateModified" datetime="2020-01-18T20:27:25+08:00">2020-01-18</time>
+                <time title="修改时间：2020-01-19 20:48:59" itemprop="dateModified" datetime="2020-01-19T20:48:59+08:00">2020-01-19</time>
               </span>
             
           
@@ -489,7 +489,9 @@
       
 
       
-        <h2 id="Redis-事务"><a href="#Redis-事务" class="headerlink" title="Redis 事务"></a>Redis 事务</h2><h3 id="什么是事务"><a href="#什么是事务" class="headerlink" title="什么是事务"></a>什么是事务</h3><p>事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。</p>
+        <h2 id="Redis-事务"><a href="#Redis-事务" class="headerlink" title="Redis 事务"></a>Redis 事务</h2><p>事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。</p>
+<a id="more"></a>
+
 <h3 id="事务操作的命令"><a href="#事务操作的命令" class="headerlink" title="事务操作的命令"></a>事务操作的命令</h3><h4 id="multi"><a href="#multi" class="headerlink" title="multi"></a>multi</h4><p>语法： multi</p>
 <p>作用： 标记一个事务的开始。事务内的多条命令会按照先后顺序被放进一个队列当中。</p>
 <p>返回值： 总是返回 ok</p>
@@ -846,7 +848,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-事务"><span class="nav-text">Redis 事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是事务"><span class="nav-text">什么是事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务操作的命令"><span class="nav-text">事务操作的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#multi"><span class="nav-text">multi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec"><span class="nav-text">exec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#discard"><span class="nav-text">discard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch"><span class="nav-text">watch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unwatch"><span class="nav-text">unwatch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的实现"><span class="nav-text">事务的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正常执行事务"><span class="nav-text">正常执行事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务执行-exec-之前"><span class="nav-text">事务执行 exec 之前</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务执行-exec-之后"><span class="nav-text">事务执行 exec 之后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#放弃事务"><span class="nav-text">放弃事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-的-WATCH-机制"><span class="nav-text">Redis 的 WATCH 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Redis-的-WATCH-机制-1"><span class="nav-text">Redis 的 WATCH 机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#取消-key-的监视（WATCH）"><span class="nav-text">取消 key 的监视（WATCH）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WATCH-的事例"><span class="nav-text">WATCH 的事例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化"><span class="nav-text">持久化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从复制"><span class="nav-text">主从复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全设置"><span class="nav-text">安全设置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-事务"><span class="nav-text">Redis 事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务操作的命令"><span class="nav-text">事务操作的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#multi"><span class="nav-text">multi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec"><span class="nav-text">exec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#discard"><span class="nav-text">discard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch"><span class="nav-text">watch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unwatch"><span class="nav-text">unwatch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的实现"><span class="nav-text">事务的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正常执行事务"><span class="nav-text">正常执行事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务执行-exec-之前"><span class="nav-text">事务执行 exec 之前</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务执行-exec-之后"><span class="nav-text">事务执行 exec 之后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#放弃事务"><span class="nav-text">放弃事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-的-WATCH-机制"><span class="nav-text">Redis 的 WATCH 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Redis-的-WATCH-机制-1"><span class="nav-text">Redis 的 WATCH 机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#取消-key-的监视（WATCH）"><span class="nav-text">取消 key 的监视（WATCH）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WATCH-的事例"><span class="nav-text">WATCH 的事例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化"><span class="nav-text">持久化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从复制"><span class="nav-text">主从复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全设置"><span class="nav-text">安全设置</span></a></li></ol></div>
             
 
           </div>
