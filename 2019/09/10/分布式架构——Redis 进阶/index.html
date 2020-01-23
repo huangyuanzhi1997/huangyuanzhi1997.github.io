@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="Redis 事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-21T11:20:00.103Z">
+<meta property="og:updated_time" content="2020-01-23T12:53:22.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式架构——Redis 进阶">
 <meta name="twitter:description" content="Redis 事务事务是指一系列操作步骤，这一系列的操作步骤，要么完全地执行，要么完全地不执行。Redis 中的事务（transaction）是一组命令的集合，至少是两个或两个以上的命令， redis 事务保证这些命令被执行时中间不会被任何其他操作打断。">
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-21 19:20:00" itemprop="dateModified" datetime="2020-01-21T19:20:00+08:00">2020-01-21</time>
+                <time title="修改时间：2020-01-23 20:53:22" itemprop="dateModified" datetime="2020-01-23T20:53:22+08:00">2020-01-23</time>
               </span>
             
           
@@ -467,7 +467,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">2.2k</span>
+              <span title="本文字数">3.2k</span>
             </span>
           
 
@@ -550,7 +550,34 @@
 <p>RDB 保存了在某个时间点的数据集（全部数据）。存储在一个二进制文件中，只有一个文件。默认是 dump.rdb。 RDB 技术非常适合做备份，可以保存最近一个小时，一天，一个月的全部数据。保存数据是在单独的进程中写文件，不影响 Redis 的正常使用。 RDB 恢复数据时比其他 AOF 速度快。</p>
 <h5 id="RDB-方式实现"><a href="#RDB-方式实现" class="headerlink" title="RDB 方式实现"></a>RDB 方式实现</h5><p>RDB 方式的数据持久化，仅需在 redis.conf 文件中配置即可，默认配置是启用的。</p>
 <p>在配置文件 redis.conf 中搜索 SNAPSHOTTING， 查找在注释开始和结束之间的关于 RDB 的配置说明。配 SNAPSHOTTING 置地方有三处。</p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><h4 id="AOF-方式"><a href="#AOF-方式" class="headerlink" title="AOF 方式"></a>AOF 方式</h4><h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><h3 id="高可用-Sentinel-哨兵"><a href="#高可用-Sentinel-哨兵" class="headerlink" title="高可用 Sentinel 哨兵"></a>高可用 Sentinel 哨兵</h3><h2 id="安全设置"><a href="#安全设置" class="headerlink" title="安全设置"></a>安全设置</h2><h3 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h3><h3 id="绑定-IP"><a href="#绑定-IP" class="headerlink" title="绑定 IP"></a>绑定 IP</h3><h3 id="修改默认端口"><a href="#修改默认端口" class="headerlink" title="修改默认端口"></a>修改默认端口</h3>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>优点：由于存储的是数据快照文件，恢复数据很方便，也比较快。</p>
+<p>缺点：  </p>
+<ol>
+<li>会丢失最后一次快照以后更改的数据。 如果应用程序能容忍一定数据的丢失，那么使用 RDB 是不错的选择； 否则，使用 RDB 就不是一个很好的选择。  </li>
+<li>由于需要经常操作磁盘， RDB 会分出一个子进程。如果 Redis 数据库很大的话，子进程占用比较多的时间，并且可能会影响 Redis 暂停服务一段时间（ millisecond 级别），如果数据库超级大并且服务器 CPU 比较弱，有可能是会达到一秒。</li>
+</ol>
+<h4 id="AOF-方式"><a href="#AOF-方式" class="headerlink" title="AOF 方式"></a>AOF 方式</h4><p>Append-only File（AOF）， Redis 每次接收到一条改变数据的命令时，它将把该命令写到一个 AOF 文件中（只记录写操作，读操作不记录），当 Redis 重启时，它通过执行 AOF 文件中所有的命令来恢复数据。</p>
+<h5 id="AOF方式实现"><a href="#AOF方式实现" class="headerlink" title="AOF方式实现"></a>AOF方式实现</h5><p>AOF 方式的数据持久化，仅需在 redis.conf 文件中配置即可。</p>
+<p>配置项：  </p>
+<ol>
+<li><p>appendonly：默认是 no，改成 yes 即开启了 AOF 持久化  </p>
+</li>
+<li><p>appendfilename：指定 AOF 文件名，默认文件名为 appendonly.aof  </p>
+</li>
+<li><p>dir : 指定 RDB 和 AOF 文件存放的目录，默认是 ./  </p>
+</li>
+<li><p>appendfsync：配置向 aof 文件写命令数据的策略： </p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>no：不主动进行同步操作，而是完全交由操作系统来做（即每 30 秒一次），比较快但不是很安全。  </span><br><span class="line"><span class="bullet">* </span>always：每次执行写入都会执行同步，慢一些但是比较安全。  </span><br><span class="line"><span class="bullet">* </span>everysec：每秒执行一次同步操作，比较平衡，介于速度和安全之间。这是默认项。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>auto-aof-rewrite-min-size：允许重写的最小 AOF 文件大小，默认是 64M 。当 AOF 文件大于 64M 时，开始整理 AOP 文件， 去掉无用的操作命令。缩小 AOP 文件。</p>
+</li>
+</ol>
+<h5 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h5><ol>
+<li>append-only 文件是另一个可以提供完全数据保障的方案。  </li>
+<li>AOF 文件会在操作过程中变得越来越大。如果要做一百次加法计算，最后只会在数据库里面得到最终的数值，但是在 AOF 里面会存在 100 次记录，其中 99 条记录对最终的结果是无用的；但 Redis 支持在不影响服务的前提下在后台重构 AOF 文件，让文件得以整理变小。  </li>
+<li>可以同时使用这两种方式， Redis 默认优先加载 AOF 文件（ AOF 数据最完整）。</li>
+</ol>
+<h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><h3 id="高可用-Sentinel-哨兵"><a href="#高可用-Sentinel-哨兵" class="headerlink" title="高可用 Sentinel 哨兵"></a>高可用 Sentinel 哨兵</h3><h2 id="安全设置"><a href="#安全设置" class="headerlink" title="安全设置"></a>安全设置</h2><h3 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h3><h3 id="绑定-IP"><a href="#绑定-IP" class="headerlink" title="绑定 IP"></a>绑定 IP</h3><h3 id="修改默认端口"><a href="#修改默认端口" class="headerlink" title="修改默认端口"></a>修改默认端口</h3>
       
     </div>
 
@@ -858,7 +885,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-事务"><span class="nav-text">Redis 事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务操作的命令"><span class="nav-text">事务操作的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#multi"><span class="nav-text">multi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec"><span class="nav-text">exec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#discard"><span class="nav-text">discard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch"><span class="nav-text">watch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unwatch"><span class="nav-text">unwatch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的实现"><span class="nav-text">事务的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正常执行事务"><span class="nav-text">正常执行事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务执行-exec-之前"><span class="nav-text">事务执行 exec 之前</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务执行-exec-之后"><span class="nav-text">事务执行 exec 之后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#放弃事务"><span class="nav-text">放弃事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-的-WATCH-机制"><span class="nav-text">Redis 的 WATCH 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#WATCH-机制原理"><span class="nav-text">WATCH 机制原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#取消-key-的监视（WATCH）"><span class="nav-text">取消 key 的监视（WATCH）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WATCH-的事例"><span class="nav-text">WATCH 的事例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化"><span class="nav-text">持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#持久化概述"><span class="nav-text">持久化概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久化方式"><span class="nav-text">持久化方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB-方式"><span class="nav-text">RDB 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#RDB-方式实现"><span class="nav-text">RDB 方式实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-方式"><span class="nav-text">AOF 方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从复制"><span class="nav-text">主从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读写分离"><span class="nav-text">读写分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高可用-Sentinel-哨兵"><span class="nav-text">高可用 Sentinel 哨兵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全设置"><span class="nav-text">安全设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置密码"><span class="nav-text">设置密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定-IP"><span class="nav-text">绑定 IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改默认端口"><span class="nav-text">修改默认端口</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-事务"><span class="nav-text">Redis 事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务操作的命令"><span class="nav-text">事务操作的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#multi"><span class="nav-text">multi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exec"><span class="nav-text">exec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#discard"><span class="nav-text">discard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch"><span class="nav-text">watch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unwatch"><span class="nav-text">unwatch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的实现"><span class="nav-text">事务的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正常执行事务"><span class="nav-text">正常执行事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务执行-exec-之前"><span class="nav-text">事务执行 exec 之前</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务执行-exec-之后"><span class="nav-text">事务执行 exec 之后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#放弃事务"><span class="nav-text">放弃事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-的-WATCH-机制"><span class="nav-text">Redis 的 WATCH 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#WATCH-机制原理"><span class="nav-text">WATCH 机制原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#取消-key-的监视（WATCH）"><span class="nav-text">取消 key 的监视（WATCH）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WATCH-的事例"><span class="nav-text">WATCH 的事例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化"><span class="nav-text">持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#持久化概述"><span class="nav-text">持久化概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久化方式"><span class="nav-text">持久化方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB-方式"><span class="nav-text">RDB 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#RDB-方式实现"><span class="nav-text">RDB 方式实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF-方式"><span class="nav-text">AOF 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AOF方式实现"><span class="nav-text">AOF方式实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从复制"><span class="nav-text">主从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读写分离"><span class="nav-text">读写分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高可用-Sentinel-哨兵"><span class="nav-text">高可用 Sentinel 哨兵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全设置"><span class="nav-text">安全设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置密码"><span class="nav-text">设置密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定-IP"><span class="nav-text">绑定 IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改默认端口"><span class="nav-text">修改默认端口</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -892,7 +919,7 @@
     </span>
     
 
-   站点总字数： <span title="站点总字数">297k字</span>
+   站点总字数： <span title="站点总字数">298k字</span>
   
 
 
