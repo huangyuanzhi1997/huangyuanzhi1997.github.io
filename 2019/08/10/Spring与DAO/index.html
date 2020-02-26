@@ -111,7 +111,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -202,6 +202,36 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -249,7 +279,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="黄远志">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/author.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -315,7 +345,31 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  5.1k
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -647,6 +701,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image" src="/images/author.jpg" alt="黄远志">
+            
               <p class="site-author-name" itemprop="name">黄远志</p>
               <p class="site-description motion-element" itemprop="description">没有理所当然的成功，也没有毫无道理的平庸</p>
           </div>
@@ -691,6 +747,22 @@
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/huangyuanzhi1997" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="460013011@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -713,7 +785,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring与JDBC模板"><span class="nav-number">1.</span> <span class="nav-text">Spring与JDBC模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据源的配置"><span class="nav-number">1.1.</span> <span class="nav-text">数据源的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-默认的数据源"><span class="nav-number">1.1.1.</span> <span class="nav-text">Spring 默认的数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DBCP-数据源"><span class="nav-number">1.1.2.</span> <span class="nav-text">DBCP 数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C3P0-数据源"><span class="nav-number">1.1.3.</span> <span class="nav-text">C3P0 数据源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从属性文件读取数据库连接信息"><span class="nav-number">1.2.</span> <span class="nav-text">从属性文件读取数据库连接信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-bean-gt-方式"><span class="nav-number">1.2.1.</span> <span class="nav-text">&lt;bean/&gt;方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-context-property-placeholder-gt-方式"><span class="nav-number">1.2.2.</span> <span class="nav-text">&lt;context:property-placeholder/&gt;方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置JDBC模板"><span class="nav-number">1.3.</span> <span class="nav-text">配置JDBC模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dao实现类继承JdbcDaoSupport"><span class="nav-number">1.4.</span> <span class="nav-text">Dao实现类继承JdbcDaoSupport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对DB的增、删、改操作"><span class="nav-number">1.5.</span> <span class="nav-text">对DB的增、删、改操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对DB的查询操作"><span class="nav-number">1.6.</span> <span class="nav-text">对DB的查询操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单对象查询"><span class="nav-number">1.6.1.</span> <span class="nav-text">简单对象查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义对象查询"><span class="nav-number">1.6.2.</span> <span class="nav-text">自定义对象查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring的事务管理"><span class="nav-number">2.</span> <span class="nav-text">Spring的事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring事务管理API"><span class="nav-number">2.1.</span> <span class="nav-text">Spring事务管理API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-事务管理器接口"><span class="nav-number">2.1.1.</span> <span class="nav-text">1. 事务管理器接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常用的两个实现类"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">常用的两个实现类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spring-的回滚方式"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">Spring 的回滚方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#错误与异常"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">错误与异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-事务定义接口"><span class="nav-number">2.1.2.</span> <span class="nav-text">2. 事务定义接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义了五个事务隔离级别常量"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">定义了五个事务隔离级别常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义了七个事务传播行为常量"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">定义了七个事务传播行为常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义了默认事务超时时"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">定义了默认事务超时时</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序举例"><span class="nav-number">2.2.</span> <span class="nav-text">程序举例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建数据库表"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 创建数据库表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-创建实体类"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. 创建实体类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-定义-service-的实现类"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. 定义 service 的实现类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-定义-Service-接口"><span class="nav-number">2.2.4.</span> <span class="nav-text">4. 定义 Service 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-定义-dao-接口"><span class="nav-number">2.2.5.</span> <span class="nav-text">5. 定义 dao 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-定义异常类"><span class="nav-number">2.2.6.</span> <span class="nav-text">6. 定义异常类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-定义-dao-实现类"><span class="nav-number">2.2.7.</span> <span class="nav-text">7. 定义 dao 实现类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-定义-Spring-配置文件-IoC应用"><span class="nav-number">2.2.8.</span> <span class="nav-text">8. 定义 Spring 配置文件(IoC应用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-定义测试类"><span class="nav-number">2.2.9.</span> <span class="nav-text">9. 定义测试类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-运行结果"><span class="nav-number">2.2.10.</span> <span class="nav-text">10. 运行结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Spring的事务代理工厂管理事务"><span class="nav-number">2.3.</span> <span class="nav-text">使用Spring的事务代理工厂管理事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改-Spring-配置文件-AOP应用"><span class="nav-number">2.3.1.</span> <span class="nav-text">1. 修改 Spring 配置文件(AOP应用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改测试类"><span class="nav-number">2.3.2.</span> <span class="nav-text">2. 修改测试类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Spring的事物注解管理事务"><span class="nav-number">2.4.</span> <span class="nav-text">使用Spring的事物注解管理事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改-Spring-配置文件-AOP应用-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">1. 修改 Spring 配置文件(AOP应用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改测试类-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">2. 修改测试类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-在-Service-实现类方法上添加注解"><span class="nav-number">2.4.3.</span> <span class="nav-text">3. 在 Service 实现类方法上添加注解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用AspectJ的AOP配置管理事务"><span class="nav-number">2.5.</span> <span class="nav-text">使用AspectJ的AOP配置管理事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改配置文件-AOP应用"><span class="nav-number">2.5.1.</span> <span class="nav-text">修改配置文件(AOP应用)</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring与JDBC模板"><span class="nav-text">Spring与JDBC模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据源的配置"><span class="nav-text">数据源的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-默认的数据源"><span class="nav-text">Spring 默认的数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DBCP-数据源"><span class="nav-text">DBCP 数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C3P0-数据源"><span class="nav-text">C3P0 数据源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从属性文件读取数据库连接信息"><span class="nav-text">从属性文件读取数据库连接信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-bean-gt-方式"><span class="nav-text">&lt;bean/&gt;方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-context-property-placeholder-gt-方式"><span class="nav-text">&lt;context:property-placeholder/&gt;方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置JDBC模板"><span class="nav-text">配置JDBC模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dao实现类继承JdbcDaoSupport"><span class="nav-text">Dao实现类继承JdbcDaoSupport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对DB的增、删、改操作"><span class="nav-text">对DB的增、删、改操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对DB的查询操作"><span class="nav-text">对DB的查询操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单对象查询"><span class="nav-text">简单对象查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义对象查询"><span class="nav-text">自定义对象查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring的事务管理"><span class="nav-text">Spring的事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring事务管理API"><span class="nav-text">Spring事务管理API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-事务管理器接口"><span class="nav-text">1. 事务管理器接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常用的两个实现类"><span class="nav-text">常用的两个实现类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spring-的回滚方式"><span class="nav-text">Spring 的回滚方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#错误与异常"><span class="nav-text">错误与异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-事务定义接口"><span class="nav-text">2. 事务定义接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义了五个事务隔离级别常量"><span class="nav-text">定义了五个事务隔离级别常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义了七个事务传播行为常量"><span class="nav-text">定义了七个事务传播行为常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义了默认事务超时时"><span class="nav-text">定义了默认事务超时时</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序举例"><span class="nav-text">程序举例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建数据库表"><span class="nav-text">1. 创建数据库表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-创建实体类"><span class="nav-text">2. 创建实体类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-定义-service-的实现类"><span class="nav-text">3. 定义 service 的实现类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-定义-Service-接口"><span class="nav-text">4. 定义 Service 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-定义-dao-接口"><span class="nav-text">5. 定义 dao 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-定义异常类"><span class="nav-text">6. 定义异常类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-定义-dao-实现类"><span class="nav-text">7. 定义 dao 实现类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-定义-Spring-配置文件-IoC应用"><span class="nav-text">8. 定义 Spring 配置文件(IoC应用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-定义测试类"><span class="nav-text">9. 定义测试类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-运行结果"><span class="nav-text">10. 运行结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Spring的事务代理工厂管理事务"><span class="nav-text">使用Spring的事务代理工厂管理事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改-Spring-配置文件-AOP应用"><span class="nav-text">1. 修改 Spring 配置文件(AOP应用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改测试类"><span class="nav-text">2. 修改测试类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Spring的事物注解管理事务"><span class="nav-text">使用Spring的事物注解管理事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改-Spring-配置文件-AOP应用-1"><span class="nav-text">1. 修改 Spring 配置文件(AOP应用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-修改测试类-1"><span class="nav-text">2. 修改测试类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-在-Service-实现类方法上添加注解"><span class="nav-text">3. 在 Service 实现类方法上添加注解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用AspectJ的AOP配置管理事务"><span class="nav-text">使用AspectJ的AOP配置管理事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改配置文件-AOP应用"><span class="nav-text">修改配置文件(AOP应用)</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -721,6 +793,13 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -733,11 +812,11 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"></span>
+  <span class="author" itemprop="copyrightHolder">黄远志</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -746,7 +825,7 @@
     </span>
     
 
-   վ���������� <span title="symbols_count_time.count_total">299k��</span>
+   站点总字数： <span title="symbols_count_time.count_total">299k字</span>
   
 
 
@@ -755,16 +834,14 @@
 
 
 
-<!-- �ײ��ÿͷָ������ʷָ��� -->
+<!-- 底部访客分隔符访问分隔符 -->
 <!--  -->
 
 
-  <div class="theme-info">Theme �C  v</div>
 
 
 
-
-<!-- �����ÿ�ͳ�ƴ��� -->
+<!-- 新增访客统计代码 -->
 
 
 <div class="busuanzi-count">
@@ -775,7 +852,7 @@
 
       <i class="fa fa-user"></i>
 
-      �ܷÿ����� <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> ��
+      总访客量： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
 |
     </span>
 
@@ -784,11 +861,31 @@
 
       <i class="fa fa-eye"></i>
 
-      �ܷ������� <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> ��
+      总访问数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
 
     </span>
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -800,11 +897,6 @@
       </div>
     </div></footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     

@@ -131,7 +131,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -222,6 +222,36 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -269,7 +299,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="黄远志">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/author.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -335,7 +365,31 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  6.4k
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -761,6 +815,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image" src="/images/author.jpg" alt="黄远志">
+            
               <p class="site-author-name" itemprop="name">黄远志</p>
               <p class="site-description motion-element" itemprop="description">没有理所当然的成功，也没有毫无道理的平庸</p>
           </div>
@@ -805,6 +861,22 @@
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/huangyuanzhi1997" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="460013011@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -827,7 +899,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-体系结构"><span class="nav-number">1.</span> <span class="nav-text">Spring 体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-的特点"><span class="nav-number">2.</span> <span class="nav-text">Spring 的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-非侵入式"><span class="nav-number">2.1.</span> <span class="nav-text">1. 非侵入式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-容器"><span class="nav-number">2.2.</span> <span class="nav-text">2. 容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-IoC"><span class="nav-number">2.3.</span> <span class="nav-text">3. IoC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-AOP"><span class="nav-number">2.4.</span> <span class="nav-text">4. AOP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-与-IoC"><span class="nav-number">3.</span> <span class="nav-text">Spring 与 IoC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-程序开发"><span class="nav-number">4.</span> <span class="nav-text">Spring 程序开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bean-的装配"><span class="nav-number">5.</span> <span class="nav-text">Bean 的装配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认装配方式"><span class="nav-number">5.1.</span> <span class="nav-text">默认装配方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态工厂-Bean"><span class="nav-number">5.2.</span> <span class="nav-text">动态工厂 Bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态工厂-Bean"><span class="nav-number">5.3.</span> <span class="nav-text">静态工厂 Bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器中-Bean-的作用域"><span class="nav-number">5.4.</span> <span class="nav-text">容器中 Bean 的作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-后处理器"><span class="nav-number">5.5.</span> <span class="nav-text">Bean 后处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制-Bean-的生命始末"><span class="nav-number">5.6.</span> <span class="nav-text">定制 Bean 的生命始末</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-的生命周期"><span class="nav-number">5.7.</span> <span class="nav-text">Bean 的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-bean-gt-标签的-id-属性与-name"><span class="nav-number">5.8.</span> <span class="nav-text">&lt;bean/&gt;标签的 id 属性与 name</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-XML-的-DI"><span class="nav-number">6.</span> <span class="nav-text">基于 XML 的 DI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注入分类"><span class="nav-number">6.1.</span> <span class="nav-text">注入分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设值注入"><span class="nav-number">6.1.1.</span> <span class="nav-text">设值注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造注入"><span class="nav-number">6.1.2.</span> <span class="nav-text">构造注入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名空间注入"><span class="nav-number">6.2.</span> <span class="nav-text">命名空间注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#p-命名空间设值注入"><span class="nav-number">6.2.1.</span> <span class="nav-text">p 命名空间设值注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-命名空间构造注入"><span class="nav-number">6.2.2.</span> <span class="nav-text">c 命名空间构造注入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合属性注入"><span class="nav-number">6.3.</span> <span class="nav-text">集合属性注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于域属性的自动注入"><span class="nav-number">6.4.</span> <span class="nav-text">对于域属性的自动注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-SPEL-注入"><span class="nav-number">6.5.</span> <span class="nav-text">使用 SPEL 注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用内部-Bean-注入"><span class="nav-number">6.6.</span> <span class="nav-text">使用内部 Bean 注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用同类抽象-Bean-注入"><span class="nav-number">6.7.</span> <span class="nav-text">使用同类抽象 Bean 注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用异类抽象-Bean-注入"><span class="nav-number">6.8.</span> <span class="nav-text">使用异类抽象 Bean 注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为应用指定多个-Spring-配置文件"><span class="nav-number">6.9.</span> <span class="nav-text">为应用指定多个 Spring 配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于注解的-DI-底层使用AOP"><span class="nav-number">7.</span> <span class="nav-text">基于注解的 DI (底层使用AOP)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-Bean-Component"><span class="nav-number">7.1.</span> <span class="nav-text">定义 Bean@Component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-的作用域-Scope"><span class="nav-number">7.2.</span> <span class="nav-text">Bean 的作用域@Scope</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本类型属性注入-Value"><span class="nav-number">7.3.</span> <span class="nav-text">基本类型属性注入@Value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按类型注入域属性-Autowired"><span class="nav-number">7.4.</span> <span class="nav-text">按类型注入域属性@Autowired</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按名称注入域属性-Autowired-与-Qualifier"><span class="nav-number">7.5.</span> <span class="nav-text">按名称注入域属性@Autowired 与@Qualifier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域属性注解-Resource"><span class="nav-number">7.6.</span> <span class="nav-text">域属性注解@Resource</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-的生命始末-PostConstruct-与-PreDestroy"><span class="nav-number">7.7.</span> <span class="nav-text">Bean 的生命始末@PostConstruct 与@PreDestroy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-JavaConfig-进行配置"><span class="nav-number">7.8.</span> <span class="nav-text">使用 JavaConfig 进行配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Spring-的-JUnit4-测试-Spring"><span class="nav-number">7.9.</span> <span class="nav-text">使用 Spring 的 JUnit4 测试 Spring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解与-XML-共同使用"><span class="nav-number">7.10.</span> <span class="nav-text">注解与 XML 共同使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-体系结构"><span class="nav-text">Spring 体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-的特点"><span class="nav-text">Spring 的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-非侵入式"><span class="nav-text">1. 非侵入式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-容器"><span class="nav-text">2. 容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-IoC"><span class="nav-text">3. IoC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-AOP"><span class="nav-text">4. AOP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-与-IoC"><span class="nav-text">Spring 与 IoC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-程序开发"><span class="nav-text">Spring 程序开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bean-的装配"><span class="nav-text">Bean 的装配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认装配方式"><span class="nav-text">默认装配方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态工厂-Bean"><span class="nav-text">动态工厂 Bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态工厂-Bean"><span class="nav-text">静态工厂 Bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器中-Bean-的作用域"><span class="nav-text">容器中 Bean 的作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-后处理器"><span class="nav-text">Bean 后处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制-Bean-的生命始末"><span class="nav-text">定制 Bean 的生命始末</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-的生命周期"><span class="nav-text">Bean 的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-bean-gt-标签的-id-属性与-name"><span class="nav-text">&lt;bean/&gt;标签的 id 属性与 name</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-XML-的-DI"><span class="nav-text">基于 XML 的 DI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注入分类"><span class="nav-text">注入分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设值注入"><span class="nav-text">设值注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造注入"><span class="nav-text">构造注入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名空间注入"><span class="nav-text">命名空间注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#p-命名空间设值注入"><span class="nav-text">p 命名空间设值注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-命名空间构造注入"><span class="nav-text">c 命名空间构造注入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合属性注入"><span class="nav-text">集合属性注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于域属性的自动注入"><span class="nav-text">对于域属性的自动注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-SPEL-注入"><span class="nav-text">使用 SPEL 注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用内部-Bean-注入"><span class="nav-text">使用内部 Bean 注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用同类抽象-Bean-注入"><span class="nav-text">使用同类抽象 Bean 注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用异类抽象-Bean-注入"><span class="nav-text">使用异类抽象 Bean 注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为应用指定多个-Spring-配置文件"><span class="nav-text">为应用指定多个 Spring 配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于注解的-DI-底层使用AOP"><span class="nav-text">基于注解的 DI (底层使用AOP)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-Bean-Component"><span class="nav-text">定义 Bean@Component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-的作用域-Scope"><span class="nav-text">Bean 的作用域@Scope</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本类型属性注入-Value"><span class="nav-text">基本类型属性注入@Value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按类型注入域属性-Autowired"><span class="nav-text">按类型注入域属性@Autowired</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按名称注入域属性-Autowired-与-Qualifier"><span class="nav-text">按名称注入域属性@Autowired 与@Qualifier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域属性注解-Resource"><span class="nav-text">域属性注解@Resource</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-的生命始末-PostConstruct-与-PreDestroy"><span class="nav-text">Bean 的生命始末@PostConstruct 与@PreDestroy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-JavaConfig-进行配置"><span class="nav-text">使用 JavaConfig 进行配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Spring-的-JUnit4-测试-Spring"><span class="nav-text">使用 Spring 的 JUnit4 测试 Spring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解与-XML-共同使用"><span class="nav-text">注解与 XML 共同使用</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -835,6 +907,13 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -847,11 +926,11 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder"></span>
+  <span class="author" itemprop="copyrightHolder">黄远志</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -860,7 +939,7 @@
     </span>
     
 
-   վ���������� <span title="symbols_count_time.count_total">299k��</span>
+   站点总字数： <span title="symbols_count_time.count_total">299k字</span>
   
 
 
@@ -869,16 +948,14 @@
 
 
 
-<!-- �ײ��ÿͷָ������ʷָ��� -->
+<!-- 底部访客分隔符访问分隔符 -->
 <!--  -->
 
 
-  <div class="theme-info">Theme �C  v</div>
 
 
 
-
-<!-- �����ÿ�ͳ�ƴ��� -->
+<!-- 新增访客统计代码 -->
 
 
 <div class="busuanzi-count">
@@ -889,7 +966,7 @@
 
       <i class="fa fa-user"></i>
 
-      �ܷÿ����� <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> ��
+      总访客量： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
 |
     </span>
 
@@ -898,11 +975,31 @@
 
       <i class="fa fa-eye"></i>
 
-      �ܷ������� <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> ��
+      总访问数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
 
     </span>
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -914,11 +1011,6 @@
       </div>
     </div></footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
