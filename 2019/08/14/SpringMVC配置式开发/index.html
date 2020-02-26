@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="配置式开发是指，“处理器类是程序员手工定义的、实现了特定接口的类，然后在 SpringMVC 配置文件中对该类进行显式的、明确的注册”的开发方式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC配置式开发">
+<meta property="og:url" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/index.html">
+<meta property="og:site_name" content="远志の博客">
+<meta property="og:description" content="配置式开发是指，“处理器类是程序员手工定义的、实现了特定接口的类，然后在 SpringMVC 配置文件中对该类进行显式的、明确的注册”的开发方式。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf01.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf02.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf03.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf04.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf05.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf06.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf07.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf08.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf09.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf10.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf11.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf12.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf13.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf14.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf15.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf16.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf17.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf18.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf19.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf20.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf21.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf22.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf23.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf24.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf25.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf26.jpg">
+<meta property="og:updated_time" content="2019-08-17T13:20:16.546Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringMVC配置式开发">
+<meta name="twitter:description" content="配置式开发是指，“处理器类是程序员手工定义的、实现了特定接口的类，然后在 SpringMVC 配置文件中对该类进行显式的、明确的注册”的开发方式。">
+<meta name="twitter:image" content="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/conf01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/">
+
+
+
+
+
+  <title>SpringMVC配置式开发 | 远志の博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">远志の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">敏而好学　勤奋刻苦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyuanzhi.top/2019/08/14/SpringMVC配置式开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄远志">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远志の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringMVC配置式开发</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-14T23:11:30+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringMVC/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringMVC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>配置式开发是指，“处理器类是程序员手工定义的、实现了特定接口的类，然后在 SpringMVC 配置文件中对该类进行显式的、明确的注册”的开发方式。</p>
+<a id="more"></a>
+
+
+<h2 id="处理器映射器-HandlerMapping"><a href="#处理器映射器-HandlerMapping" class="headerlink" title="处理器映射器 HandlerMapping"></a>处理器映射器 HandlerMapping</h2><p>HandlerMapping 接口负责根据 request 请求找到对应的 Handler 处理器及 Interceptor 拦截器，并将它们封装在 HandlerExecutionChain 对象中，返回给中央调度器。其常用的实现类有两种：</p>
+<h3 id="1-BeanNameUrlHandlerMapping"><a href="#1-BeanNameUrlHandlerMapping" class="headerlink" title="1. BeanNameUrlHandlerMapping"></a>1. BeanNameUrlHandlerMapping</h3><p>BeanNameUrlHandlerMapping 处理器映射器， 会根据请求的 url 与 spring 容器中定义的处理器 bean 的 name 属性值进行匹配，从而在 spring 容器中找到处理器 bean 实例。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf01.jpg">
+
+<p>打开BeanNameUrlHandlerMapping的源码， 从处理器映射器的方法中可以看出，对于处理器的 Bean 的名称，必须以“/”开头，否则无法加入到 urls 数组中。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf02.jpg">
+
+<blockquote>
+<p>缺点：  </p>
+<ol>
+<li>处理器 Bean 的 id 为一个 url 请求路径，而不是 Bean 的名称，有些不伦不类。  </li>
+<li>处理器Bean的定义与请求url绑定在了一起。 若出现多个url请求同一个处理器的情况，就需要在 Spring 容器中配置多个该处理器类的&lt;bean/&gt;。这将导致容器会创建多个该处理器类实例。</li>
+</ol>
+</blockquote>
+<h3 id="2-SimpleUrlHandlerMapping"><a href="#2-SimpleUrlHandlerMapping" class="headerlink" title="2. SimpleUrlHandlerMapping"></a>2. SimpleUrlHandlerMapping</h3><p>SimpleUrlHandlerMapping 处理器映射器，会根据请求的 url 与 Spring 容器中定义的处理器映射器子标签的 key 属性进行匹配。匹配上后，再将该 key 的 value 值与处理器 bean 的 id 值进行匹配，从而在 spring 容器中找到处理器 bean。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册HandlerMapping --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/my.do"</span>&gt;</span>myController<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/hello.do"</span>&gt;</span>myController<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 注册处理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myController"</span> <span class="attr">class</span>=<span class="string">"com.huang.handlers.MyController"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以使用 urlMap 属性：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册HandlerMapping --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"urlMap"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"/my.do"</span> <span class="attr">value</span>=<span class="string">"myController"</span>/&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"/hello.do"</span> <span class="attr">value</span>=<span class="string">"myController"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>优点：  </p>
+<ol>
+<li>可以将 url 与处理器的定义分离  </li>
+<li>还可以对 url 进行统一映射管理</li>
+</ol>
+</blockquote>
+<h2 id="处理器适配器-HandlerAdapter"><a href="#处理器适配器-HandlerAdapter" class="headerlink" title="处理器适配器 HandlerAdapter"></a>处理器适配器 HandlerAdapter</h2><p>有关适配器模式的详细介绍，请点击<a href="https://www.huangyuanzhi.top/2019/07/28/SSM%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more" target="_blank" rel="noopener">这里</a></p>
+<p>之所以要将 Handler 定义为 Controller 接口的实现类， 就是因为这里使用的处理器适配器是 SimpleControllerHandlerAdapter。打开其源码，可以看到将 handler 强转为了 Controller。在定义 Handler 时，若不将其定义为 Controller 接口的实现类，这里的强转要出错的。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf03.jpg">
+
+
+<blockquote>
+<p>注意：<br>中央调度器首先会调用该适配器的 supports()方法，判断该 Handler 是否与 Controller 具有 is-a 关系。在具有 is-a 关系的前提下，才会强转。</p>
+</blockquote>
+<h3 id="1-SimpleControllerHandlerAdapter"><a href="#1-SimpleControllerHandlerAdapter" class="headerlink" title="1. SimpleControllerHandlerAdapter"></a>1. SimpleControllerHandlerAdapter</h3><p>所有实现了 Controller 接口的处理器 Bean，均是通过此适配器进行适配、执行的。Controller 接口中有一个方法：</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf04.jpg">
+
+
+<p>该方法用于处理用户提交的请求。通过调用 Service 层代码，实现对用户请求的计算响应，并最终将计算所得数据及要响应的页面，封装为一个对象 ModelAndView，返回给中央调度器。</p>
+<h3 id="2-HttpRequestHandlerAdapter"><a href="#2-HttpRequestHandlerAdapter" class="headerlink" title="2. HttpRequestHandlerAdapter"></a>2. HttpRequestHandlerAdapter</h3><p>所有实现了 HttpRequestHandler 接口的处理器 Bean，均是通过此适配器进行适配、执行的。 HttpRequestHandler 接口中有一个方法：</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf05.jpg">
+
+
+<p>该方法没有返回值，不能像 ModelAndView 一样，将数据及目标视图封装为一个对象。但可以将数据直接放入到 request、 session 等域属性中，并由 request 或 response 完成到目标页面的跳转。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf06.jpg">
+
+
+<p>此时 springmvc.xml 配置文件中无需声明视图解析器的 Bean 。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf07.jpg">
+
+
+<h2 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h2><p>处理器除了实现 Controller 接口外，还可以继承自一些其它的类来完成一些特殊的功能。</p>
+<h3 id="继承自-AbstractController-类"><a href="#继承自-AbstractController-类" class="headerlink" title="继承自 AbstractController 类"></a>继承自 AbstractController 类</h3><p>若处理器继承自 AbstractController 类，那么该控制器就具有了一些新的功能。因为 AbstractController 类还继承自一个父类 WebContentGenerator。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf08.jpg">
+
+
+<p>WebContentGenerator 类具有 supportedMethods 属性， 可以设置支持的 HTTP 数据提交方式。 默认支持 GET、 POST。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf09.jpg">
+
+
+<p>若处理器继承自 AbstractController 类，那么处理器就可以通过属性 supportedMethods 来限制 HTTP 请求提交方式。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册处理器 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 指定只支持 POST 的 HTTP 请求提交方式 ，这里的 POST 必须写为大写--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"/my.do"</span> <span class="attr">class</span>=<span class="string">"com.huang.handlers.MyController"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"supportedMethods"</span> <span class="attr">value</span>=<span class="string">"POST"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>请求只能通过表单或 AJAX 请求方式进行提交，而不能通过地址栏、超链接、 Html 标签中的 src 方式进行提交。因为地址栏、超链接、 Html 标签中的 src 方式都是 GET 提交。 否则，会给出请求方法不允许的 405 错误：</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf10.jpg">
+
+
+<p>客户端浏览器常用的请求方式，及其提交方式有以下几种：</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">请求方式</th>
+<th align="left">提交方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="left">表单请求</td>
+<td align="left">默认 GET,可以指定 POST</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">AJAX 请求</td>
+<td align="left">默认 GET,可以指定 POST</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="left">地址栏请求</td>
+<td align="left">GET 请求</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="left">超链接请求</td>
+<td align="left">GET 请求</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="left">src 资源路径请求</td>
+<td align="left">GET 请求</td>
+</tr>
+</tbody></table>
+<p>AbstractController 类中有一个抽象方法需要实现：</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf11.jpg">
+
+<p>即定义处理器时，就需要实现其抽象方法 handleRequestInternal()。</p>
+<h3 id="继承自-MultiActionController-类"><a href="#继承自-MultiActionController-类" class="headerlink" title="继承自 MultiActionController 类"></a>继承自 MultiActionController 类</h3><p>MultiActionController 类继承自 AbstractController，所以继承自 MultiActionController 类的子类也可以设置 HTTP 请求提交方式。除此之外，继承自该类的处理器中可以定义多个处理方法。 这些方法的签名为公共的方法，返回值为 ModelAndView，包含参数 HttpServletRequest 与 HttpServletResponse，抛出 Exception 异常，方法名随意。</p>
+<p>（1） 修改处理器类</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyController</span> <span class="keyword">extends</span> <span class="title">MultiActionController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public <span class="type">ModelAndView</span> doFirst(<span class="type">HttpServletRequest</span> request, <span class="type">HttpServletResponse</span> response) <span class="keyword">throws</span> <span class="type">Exception</span> &#123;</span><br><span class="line">		<span class="type">ModelAndView</span> mv = <span class="keyword">new</span> <span class="type">ModelAndView</span>();</span><br><span class="line">		mv.addObject(<span class="string">"message"</span>, <span class="string">"执行doFirst()方法"</span>);</span><br><span class="line">		mv.setViewName(<span class="string">"/WEB-INF/jsp/welcome.jsp"</span>);</span><br><span class="line">		<span class="keyword">return</span> mv;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public <span class="type">ModelAndView</span> doSecond(<span class="type">HttpServletRequest</span> request, <span class="type">HttpServletResponse</span> response) <span class="keyword">throws</span> <span class="type">Exception</span> &#123;</span><br><span class="line">		<span class="type">ModelAndView</span> mv = <span class="keyword">new</span> <span class="type">ModelAndView</span>();</span><br><span class="line">		mv.addObject(<span class="string">"message"</span>, <span class="string">"执行doSecond()方法"</span>);</span><br><span class="line">		mv.setViewName(<span class="string">"/WEB-INF/jsp/welcome.jsp"</span>);</span><br><span class="line">		<span class="keyword">return</span> mv;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 修改 springmvc 配置文件</p>
+<p>处理器类的映射路径的写法：要求必须以/xxx/*的路径方式定义映射路径。其中*为通配符，在访问时使用要访问的方法名代替。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册HandlerMapping --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"urlMap"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"/my/*.do"</span> <span class="attr">value</span>=<span class="string">"myController"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 注册处理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myController"</span> <span class="attr">class</span>=<span class="string">"com.huang.handlers.MyController"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（3） 访问方式</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf12.jpg">
+
+
+<h4 id="InternalPathMethodNameResolver-方法名解析器"><a href="#InternalPathMethodNameResolver-方法名解析器" class="headerlink" title="InternalPathMethodNameResolver 方法名解析器"></a>InternalPathMethodNameResolver 方法名解析器</h4><p>MultiActionController 类具有一个默认的 MethodNameResolver 解析器。该方法名解析器要求方法名以 URI 中资源名称的身份出现，即方法作为一种可以被请求的资源出现。即前面的写法： /xxx/方法名。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf13.jpg">
+
+
+<h4 id="PropertiesMethodNameResolver-方法名解析器"><a href="#PropertiesMethodNameResolver-方法名解析器" class="headerlink" title="PropertiesMethodNameResolver 方法名解析器"></a>PropertiesMethodNameResolver 方法名解析器</h4><p>该方法名解析器中的方法名是作为 URI 资源名称中的一部分出现的，即方法名并非单独作为一种资源名称出现。例如请求时可以写为/xxx_doFirst，则会访问 xxx 所映射的处理器的doFirst()方法。</p>
+<p>（1） 修改 springmvc配置文件</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf14.jpg">
+
+<blockquote>
+<p>注意：<br>这里的指定的请求，必须要加上.do，否则，无法完成匹配，将报 404 错误。</p>
+</blockquote>
+<p>（2） 访问方式</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf15.jpg">
+
+
+<h4 id="ParameterMethodNameResolver-方法名解析"><a href="#ParameterMethodNameResolver-方法名解析" class="headerlink" title="ParameterMethodNameResolver 方法名解析"></a>ParameterMethodNameResolver 方法名解析</h4><p>该方法名解析器中的方法名作为请求参数的值出现。</p>
+<p>（1） 修改 springmvc配置文件</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf16.jpg">
+
+<p>（2） 访问方式</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf17.jpg">
+
+
+<p>不指定参数名称，则可以使用 action 作为参数。</p>
+<p>（1） 修改 springmvc 配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"urlMap"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"/my.do"</span> <span class="attr">value-ref</span>=<span class="string">"myController"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 注册方法名称解析器 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 不指定paramName属性，则默认参数名称是action --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"parameterMethodNameResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 注册处理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"myController"</span> <span class="attr">class</span>=<span class="string">"com.huang.handlers.MyController"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"methodNameResolver"</span> <span class="attr">ref</span>=<span class="string">"parameterMethodNameResolver"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2） 访问方式</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf18.jpg">
+
+
+<h2 id="ModelAndView"><a href="#ModelAndView" class="headerlink" title="ModelAndView"></a>ModelAndView</h2><p>ModelAndView 即模型与视图 ，通过 addObject()方法向模型中添加数据，通过setViewName()方法向模型添加视图名称。</p>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><h4 id="模型的本质就是-HashMap"><a href="#模型的本质就是-HashMap" class="headerlink" title="模型的本质就是 HashMap"></a>模型的本质就是 HashMap</h4><p>跟踪 addObject()方法，可以看出这里的模型就是 ModelMap，而 ModelMap 的本质就是个 HashMap，向 ModelAndView 中添加数据，就是向 HashMap 中添加数据。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf19.jpg">
+
+<img src="/2019/08/14/SpringMVC配置式开发/conf20.jpg">
+
+<img src="/2019/08/14/SpringMVC配置式开发/conf21.jpg">
+
+<img src="/2019/08/14/SpringMVC配置式开发/conf22.jpg">
+
+
+<h4 id="HashMap-是一个单向查找数组"><a href="#HashMap-是一个单向查找数组" class="headerlink" title="HashMap 是一个单向查找数组"></a>HashMap 是一个单向查找数组</h4><p>HashMap底层是哈希表(散列表)，哈希表就是一个数组，数组的每个元素是一个单向链表；即 HashMap 的本质是一个单向链表数组。HashMap 类的内部类为 Entry 类，是一个可单向链表的数据结构：因为其只能通过 next 查找下一个元素，而无法查找上一个元素。</p>
+<h4 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h4><p>LinkedHashMap(双向链表) 的本质是一个 HashMap，但其将 Entry 内部类进行了扩展。 LinkedHashMap 中的 Entry 变为了双向的，可以通过 before 查找上一个元素，通过 after 查找下一个元素。 即从性能上说，LinkedHashMap 的操作性能要高于 HashMap。</p>
+<blockquote>
+<p>总结：<br>ModelAndView 中的模型对象是 ModelMap，其本质是一个 HashMap，向 ModelMap 中添加数据就是向 HashMap 中添加数据。这个 ModelMap 要比 HashMap 的性能更高。</p>
+</blockquote>
+<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>通过 setViewName()指定视图名称。注意，这里的视图名称将会对应一个视图对象，一般是不会在这里直接写上要跳转的页面的。这个视图对象，将会被封装在ModelAndView中，传给视图解析器来解析，最终转换为相应的页面。 但需要注意的是，这里的 View 对象本质仅仅是一个 String 而已。后续的步骤中，还会继续对这个 View 对象进行进一步的封装。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf23.jpg">
+
+<p>若处理器方法返回的 ModelAndView 中并没有数据要携带，则可直接通过 ModelAndView 的带参构造器将视图名称放入 ModelAndView 中。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf24.jpg">
+
+
+<h2 id="视图解析器-ViewResolver"><a href="#视图解析器-ViewResolver" class="headerlink" title="视图解析器 ViewResolver"></a>视图解析器 ViewResolver</h2><p>视图解析器 ViewResolver 接口负责将处理结果生成 View 视图。 常用的实现类有四种：</p>
+<h3 id="1-InternalResourceViewResolver-默认"><a href="#1-InternalResourceViewResolver-默认" class="headerlink" title="1. InternalResourceViewResolver(默认)"></a>1. InternalResourceViewResolver(默认)</h3><p>该视图解析器用于完成对当前 Web 应用内部资源的封装与跳转。而对于内部资源的查找规则是，将 ModelAndView 中指定的视图名称与为视图解析器配置的前辍与后辍相结合的方式， 拼接成一个 Web 应用内部资源路径。拼接规则是： 前辍 + 视图名称 + 后辍。</p>
+<p>InternalResourceView 解析器会把处理器方法返回的模型属性都存放到对应的 request 中，然后将请求转发到目标 URL。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf25.jpg">
+
+
+<blockquote>
+<p>缺点：  </p>
+<ol>
+<li>只可以完成将内部资源封装后的跳转。但无法转向外部资源，如外部网页。  </li>
+<li>对于内部资源的定义，也只能定义一种格式的资源：存放于同一目录的同一文件类型的资源文件。</li>
+</ol>
+</blockquote>
+<h3 id="2-BeanNameViewResolver"><a href="#2-BeanNameViewResolver" class="headerlink" title="2. BeanNameViewResolver"></a>2. BeanNameViewResolver</h3><p>BeanNameViewResolver 视图解析器，顾名思义就是将资源封装为“Spring 容器中注册的 Bean 实例”， ModelAndView 通过设置视图名称为该 Bean 的 id 属性值来完成对该资源的访问。 所以在 springmvc.xml 中， 可以定义多个 View 视图 Bean，让处理器中 ModelAndView 通过对这些 Bean 的 id 的引用来完成向 View 中封装资源的跳转。</p>
+<ul>
+<li>RedirectView： 定义外部资源视图对象</li>
+<li>JstlView： 定义内部资源视图对象</li>
+</ul>
+<p>（1） 修改 springmvc 配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 定义一个外部资源视图：京东 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jd"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.RedirectView"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"http://www.jd.com"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">       </span><br><span class="line"><span class="comment">&lt;!-- 定义一个外部资源视图：淘宝 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"taobao"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.RedirectView"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"http://www.taobao.com"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 定义一个内部资源视图 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"internalResource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.JstlView"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/welcome.jsp"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 注册视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.BeanNameViewResolver"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 注册处理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"/my.do"</span> <span class="attr">class</span>=<span class="string">"com.huang.handlers.MyController"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2） 修改处理器类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController</span> <span class="keyword">implements</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="comment">//		return new ModelAndView("taobao");</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"jd"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>缺点：<br>需要定义的 View 视图对象很多时，就会使 springmvc.xml 文件变得很大，很臃肿，不便于管理。</p>
+</blockquote>
+<h3 id="3-XmlViewResolver"><a href="#3-XmlViewResolver" class="headerlink" title="3. XmlViewResolver"></a>3. XmlViewResolver</h3><p>XmlViewResolver 解析器是将 View 视图对象专门抽取出来，单独定义为一个 xml 文件。</p>
+<p>（1） 定义 myView 配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 定义一个外部资源视图：淘宝 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"taobao"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.RedirectView"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"http://www.taobao.com"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 定义一个外部资源视图：京东 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jd"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.RedirectView"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"http://www.jd.com"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 定义一个内部资源视图 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"internalResource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.JstlView"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/welcome.jsp"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2） 定义 springmvc 配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.XmlViewResolver"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"location"</span> <span class="attr">value</span>=<span class="string">"classpath:myViews.xml"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 注册处理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"/my.do"</span> <span class="attr">class</span>=<span class="string">"com.huang.handlers.MyController"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-ResourceBundleViewResolver"><a href="#4-ResourceBundleViewResolver" class="headerlink" title="4. ResourceBundleViewResolver"></a>4. ResourceBundleViewResolver</h3><p>ResourceBundleViewResolver 解析器需要定义在类路径下，即 src 下。而对于属性文件的写法，是有格式要求的：</p>
+<p>资源名称.(class)=封装资源的 View 全限定性类名<br>资源名称.url=资源路径</p>
+<p>（1） 定义 properties 文件</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">taobao.(class)=org<span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.servlet</span><span class="selector-class">.view</span><span class="selector-class">.RedirectView</span></span><br><span class="line">taobao.url=http:<span class="comment">//www.taobao.com</span></span><br><span class="line"></span><br><span class="line">jd.(class)=org<span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.servlet</span><span class="selector-class">.view</span><span class="selector-class">.RedirectView</span></span><br><span class="line">jd.url=http:<span class="comment">//www.jd.com</span></span><br><span class="line"></span><br><span class="line">internalResource.(class)=org<span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.servlet</span><span class="selector-class">.view</span><span class="selector-class">.JstlView</span></span><br><span class="line">internalResource.url=/WEB-INF/jsp/welcome.jsp</span><br></pre></td></tr></table></figure>
+
+<p>（2） 定义 springmvc 配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.ResourceBundleViewResolver"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basename"</span> <span class="attr">value</span>=<span class="string">"myViews"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 注册处理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"/my.do"</span> <span class="attr">class</span>=<span class="string">"com.huang.handlers.MyController"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="视图解析器的优先级"><a href="#视图解析器的优先级" class="headerlink" title="视图解析器的优先级"></a>视图解析器的优先级</h3><p>视图解析器有一个 order 属性，专门用于设置多个视图解析器的优先级。 数字越小，优先级越高。数字相同，先注册的优先级高。 一般不为 InternalResourceViewResolver 解析器指定优先级，即让其优先级是最低的。</p>
+<img src="/2019/08/14/SpringMVC配置式开发/conf26.jpg">
+
+
+<p>若没有 order 属性，四个视图解析器中，ResourceBundleViewResolver 解析器的优先级最高。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/12/SpringMVC概述/" rel="next" title="SpringMVC概述">
+                <i class="fa fa-chevron-left"></i> SpringMVC概述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/15/SpringMVC注解式开发/" rel="prev" title="SpringMVC注解式开发">
+                SpringMVC注解式开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">黄远志</p>
+              <p class="site-description motion-element" itemprop="description">没有理所当然的成功，也没有毫无道理的平庸</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器映射器-HandlerMapping"><span class="nav-number">1.</span> <span class="nav-text">处理器映射器 HandlerMapping</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-BeanNameUrlHandlerMapping"><span class="nav-number">1.1.</span> <span class="nav-text">1. BeanNameUrlHandlerMapping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-SimpleUrlHandlerMapping"><span class="nav-number">1.2.</span> <span class="nav-text">2. SimpleUrlHandlerMapping</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器适配器-HandlerAdapter"><span class="nav-number">2.</span> <span class="nav-text">处理器适配器 HandlerAdapter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-SimpleControllerHandlerAdapter"><span class="nav-number">2.1.</span> <span class="nav-text">1. SimpleControllerHandlerAdapter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-HttpRequestHandlerAdapter"><span class="nav-number">2.2.</span> <span class="nav-text">2. HttpRequestHandlerAdapter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器"><span class="nav-number">3.</span> <span class="nav-text">处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承自-AbstractController-类"><span class="nav-number">3.1.</span> <span class="nav-text">继承自 AbstractController 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承自-MultiActionController-类"><span class="nav-number">3.2.</span> <span class="nav-text">继承自 MultiActionController 类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#InternalPathMethodNameResolver-方法名解析器"><span class="nav-number">3.2.1.</span> <span class="nav-text">InternalPathMethodNameResolver 方法名解析器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PropertiesMethodNameResolver-方法名解析器"><span class="nav-number">3.2.2.</span> <span class="nav-text">PropertiesMethodNameResolver 方法名解析器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ParameterMethodNameResolver-方法名解析"><span class="nav-number">3.2.3.</span> <span class="nav-text">ParameterMethodNameResolver 方法名解析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ModelAndView"><span class="nav-number">4.</span> <span class="nav-text">ModelAndView</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型"><span class="nav-number">4.1.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型的本质就是-HashMap"><span class="nav-number">4.1.1.</span> <span class="nav-text">模型的本质就是 HashMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HashMap-是一个单向查找数组"><span class="nav-number">4.1.2.</span> <span class="nav-text">HashMap 是一个单向查找数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkedHashMap"><span class="nav-number">4.1.3.</span> <span class="nav-text">LinkedHashMap</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图"><span class="nav-number">4.2.</span> <span class="nav-text">视图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图解析器-ViewResolver"><span class="nav-number">5.</span> <span class="nav-text">视图解析器 ViewResolver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-InternalResourceViewResolver-默认"><span class="nav-number">5.1.</span> <span class="nav-text">1. InternalResourceViewResolver(默认)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-BeanNameViewResolver"><span class="nav-number">5.2.</span> <span class="nav-text">2. BeanNameViewResolver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-XmlViewResolver"><span class="nav-number">5.3.</span> <span class="nav-text">3. XmlViewResolver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-ResourceBundleViewResolver"><span class="nav-number">5.4.</span> <span class="nav-text">4. ResourceBundleViewResolver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图解析器的优先级"><span class="nav-number">5.5.</span> <span class="nav-text">视图解析器的优先级</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黄远志</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

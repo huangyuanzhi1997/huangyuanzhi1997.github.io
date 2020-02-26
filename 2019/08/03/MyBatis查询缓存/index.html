@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MyBatis,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="查询缓存的使用，主要是为了提高查询访问速度。将用户对同一数据的重复查询过程简化，不再每次均从数据库查询获取结果数据，从而提高访问速度。">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis查询缓存">
+<meta property="og:url" content="https://huangyuanzhi.top/2019/08/03/MyBatis查询缓存/index.html">
+<meta property="og:site_name" content="远志の博客">
+<meta property="og:description" content="查询缓存的使用，主要是为了提高查询访问速度。将用户对同一数据的重复查询过程简化，不再每次均从数据库查询获取结果数据，从而提高访问速度。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis查询缓存/cache01.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis查询缓存/cache02.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis查询缓存/cache03.jpg">
+<meta property="og:updated_time" content="2019-08-06T05:34:43.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBatis查询缓存">
+<meta name="twitter:description" content="查询缓存的使用，主要是为了提高查询访问速度。将用户对同一数据的重复查询过程简化，不再每次均从数据库查询获取结果数据，从而提高访问速度。">
+<meta name="twitter:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis查询缓存/cache01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangyuanzhi.top/2019/08/03/MyBatis查询缓存/">
+
+
+
+
+
+  <title>MyBatis查询缓存 | 远志の博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">远志の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">敏而好学　勤奋刻苦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyuanzhi.top/2019/08/03/MyBatis查询缓存/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄远志">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远志の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MyBatis查询缓存</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-03T21:35:21+08:00">
+                2019-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>查询缓存的使用，主要是为了提高查询访问速度。将用户对同一数据的重复查询过程简化，不再每次均从数据库查询获取结果数据，从而提高访问速度。</p>
+<a id="more"></a>
+
+<p>MyBatis 的查询缓存机制，根据缓存区的作用域（生命周期） 可划分为两种： 一级查询缓存与二级查询缓存。</p>
+<h2 id="一级查询缓存"><a href="#一级查询缓存" class="headerlink" title="一级查询缓存"></a>一级查询缓存</h2><p>MyBatis 一级查询缓存是基于 org.apache.ibatis.cache.impl.PerpetualCache 类的 HashMap本地缓存，其作用域是 SqlSession。在同一个 SqlSession 中两次执行相同的 sql 查询语句，第一次执行完毕后，会将查询结果写入到缓存中，第二次会从缓存中直接获取数据，而不再到数据库中进行查询，从而提高查询效率。</p>
+<p>当一个 SqlSession 结束后，该 SqlSession 中的一级查询缓存也就不存在了。 myBatis 默认一级查询缓存是开启状态，且不能关闭。</p>
+<h3 id="一级查询缓存的存在性证明"><a href="#一级查询缓存的存在性证明" class="headerlink" title="一级查询缓存的存在性证明"></a>一级查询缓存的存在性证明</h3><p>（1） 测试类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 证明一级缓存是存在的</span></span><br><span class="line">@Test</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">	Student student = dao.selectStudentById(<span class="number">4</span>);</span><br><span class="line">	System.<span class="keyword">out</span>.println(student);</span><br><span class="line">	</span><br><span class="line">	Student student2 = dao.selectStudentById(<span class="number">4</span>);</span><br><span class="line">	System.<span class="keyword">out</span>.println(student2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 查看控制台</p>
+<img src="/2019/08/03/MyBatis查询缓存/cache01.jpg">
+
+
+<blockquote>
+<p>总结：  </p>
+<ol>
+<li>缓存的底层实现是一个Map，Map的value是查询结果  </li>
+<li>Map的key，即查询依据，使用的ORM构架不同，查询依据是不同的。  </li>
+<li>MyBatis的查询依据是：Sql的id + SQL语句  </li>
+<li>Hibernate的查询依据是：查询结果对象的id</li>
+</ol>
+</blockquote>
+<h3 id="从缓存读取数据的依据是-Sql-的-id"><a href="#从缓存读取数据的依据是-Sql-的-id" class="headerlink" title="从缓存读取数据的依据是 Sql 的 id"></a>从缓存读取数据的依据是 Sql 的 id</h3><p>一级缓存缓存的是相同 Sql 映射 id 的查询结果，而非相同 Sql 语句的查询结果。 因为 myBatis 内部对于查询缓存，无论是一级查询缓存还是二级查询缓存， 其底层均使用一个 HashMap 实现： key 为 Sql 的 id 相关内容， value 为从数据库中查询出的结果。</p>
+<p>（1） 映射文件</p>
+<p>这两个 SQL 映射除了映射 id (selectStudentById、selectStudentById2)不同，其它均相同，即查询结果肯定是相同的。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectStudentById"</span> resultType=<span class="string">"Student"</span>&gt;</span><br><span class="line">	select <span class="built_in">id</span>,<span class="built_in">name</span>,age,score </span><br><span class="line">	<span class="keyword">from</span> student </span><br><span class="line">	<span class="keyword">where</span> <span class="built_in">id</span>=<span class="comment">#&#123;xxx&#125;</span></span><br><span class="line">&lt;/select&gt;</span><br><span class="line"></span><br><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectStudentById2"</span> resultType=<span class="string">"Student"</span>&gt;</span><br><span class="line">	select <span class="built_in">id</span>,<span class="built_in">name</span>,age,score </span><br><span class="line">	<span class="keyword">from</span> student </span><br><span class="line">	<span class="keyword">where</span> <span class="built_in">id</span>=<span class="comment">#&#123;xxx&#125;</span></span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（2） Dao 接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>IStudentDao &#123;</span><br><span class="line">	</span><br><span class="line">	Student selectStudentById(int id);</span><br><span class="line">	Student selectStudentById2(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3） 测试类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">	Student student = dao.selectStudentById(<span class="number">1</span>);</span><br><span class="line">	System.<span class="keyword">out</span>.println(student);</span><br><span class="line">	</span><br><span class="line">	Student student2 = dao.selectStudentById2(<span class="number">1</span>);</span><br><span class="line">	System.<span class="keyword">out</span>.println(student2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4） 查看控制台</p>
+<img src="/2019/08/03/MyBatis查询缓存/cache02.jpg">
+
+
+<h3 id="增删改对一级查询缓存的影响"><a href="#增删改对一级查询缓存的影响" class="headerlink" title="增删改对一级查询缓存的影响"></a>增删改对一级查询缓存的影响</h3><p>增、删、改操作，无论是否进行提交 sqlSession.commit()，均会清空一级查询缓存，使查询再次从 DB 中 select。</p>
+<p>（1） 修改测试类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">// 证明增删改操作的执行，均会清空一级缓存</span></span><br><span class="line">	@Test</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test03</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//第一次查询</span></span><br><span class="line">		Student student = dao.selectStudentById(<span class="number">2</span>);</span><br><span class="line">		System.<span class="keyword">out</span>.println(student);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 增删改操作都会清空一级缓存，无论是否提交</span></span><br><span class="line">		dao.insertStudent(<span class="keyword">new</span> Student(<span class="string">"赵六"</span>, <span class="number">26</span>, <span class="number">96.5</span>));</span><br><span class="line"><span class="comment">//		sqlSession.commit();</span></span><br><span class="line">		<span class="comment">//第二次查询</span></span><br><span class="line">		Student student2 = dao.selectStudentById(<span class="number">2</span>);</span><br><span class="line">		System.<span class="keyword">out</span>.println(student2);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 查看控制台</p>
+<img src="/2019/08/03/MyBatis查询缓存/cache03.jpg">
+
+
+<h2 id="内置二级查询缓存"><a href="#内置二级查询缓存" class="headerlink" title="内置二级查询缓存"></a>内置二级查询缓存</h2><p>myBatis 查询缓存的作用域是根据映射文件 mapper 的 namespace 划分的，相同 namespace 的 mapper 查询数据存放在同一个缓存区域。 不同 namespace 下的数据互不干扰。无论是一级缓存还是二级缓存，都是按照 namespace 进行分别存放的。但一、二级缓存的不同之处在于， SqlSession 一旦关闭，则 SqlSession 中的数据将不存在，即一级缓存就不覆存在。而二级缓存的生命周期会与整个应用同步，与 SqlSession 是否关闭无关。</p>
+<p>使用二级缓存的目的，不是共享数据，因为 MyBatis 从缓存中读取数据的依据是 SQL 的 id，而非查询出的对象。所以， 二级缓存中的数据不是为了在多个查询之间共享（所有查询中只要查询结果中存在该对象的，就直接从缓存中读取，这是对数据的共享， Hibernate 中的缓存就是为了共享，但 MyBaits 的不是），而是为了延长该查询结果的保存时间，提高系统性能。</p>
+<p>myBatis 内置的二级缓存为 org.apache.ibatis.cache.impl.PerpetualCache。</p>
+<h3 id="二级缓存用法"><a href="#二级缓存用法" class="headerlink" title="二级缓存用法"></a>二级缓存用法</h3><p>（1）实体序列化</p>
+<p>要求查询结果所涉及到的实体类要实现 java.io.Serializable 接口。若该实体类存在父类，或其具有域属性，则父类与域属性类也要实现序列化接口。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span> score;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）mapper 映射中添加&lt;cache/&gt;标签</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">   <span class="comment">&lt;!-- 二级缓存的配置 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">cache</span> <span class="attr">eviction</span>=<span class="string">"FIFO"</span> <span class="attr">flushInterval</span>=<span class="string">"10800000"</span></span></span></span><br><span class="line"><span class="xml">    readOnly="true" size="512"/&gt;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertStudent"</span> <span class="attr">flushCache</span>=<span class="string">"false"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	insert into student(name,age,score) values(#</span><span class="template-variable">&#123;name&#125;</span><span class="xml">, #</span><span class="template-variable">&#123;age&#125;</span><span class="xml">, #</span><span class="template-variable">&#123;score&#125;</span><span class="xml">)</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- useCache="false"对当前Sql的二级缓存的局部关闭 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentById"</span> <span class="attr">useCache</span>=<span class="string">"false"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	select id,name,age,score from student where id=#</span><span class="template-variable">&#123;xxx&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentById2"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	select id,name,age,score from student where id=#</span><span class="template-variable">&#123;xxx&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（3）二级缓存的配置</p>
+<p>为&lt;cache/&gt;标签添加一些相关属性设置，可以对二级缓存的运行性能进行控制。若不指定设置，则均保持默认值。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;cache <span class="attribute">eviction</span>=<span class="string">"FIFO"</span> <span class="attribute">flushInterval</span>=<span class="string">"10800000"</span></span><br><span class="line">    <span class="attribute">readOnly</span>=<span class="string">"true"</span> <span class="attribute">size</span>=<span class="string">"512"</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>二级缓存的配置说明：</p>
+<ul>
+<li>eviction：逐出策略。当二级缓存中的对象达到最大值时，就需要通过逐出策略将缓存中的对象移出缓存。默认为 LRU。常用的策略有：<ul>
+<li>FIFO： First In First Out， 先进先出</li>
+<li>LRU： Least Recently Used，未被使用时间最长的</li>
+</ul>
+</li>
+<li>flushInterval：刷新缓存的时间间隔，单位毫秒。这里的刷新缓存即清空缓存。一般不指定，即当执行增删改时刷新缓存。</li>
+<li>readOnly：设置缓存中数据是否只读。 只读的缓存会给所有调用者返回缓存对象的相同实例，因此这些对象不能被修改，这提供了很重要的性能优势。但读写的缓存会返回缓<br>存对象的拷贝。这会慢一些，但是安全，因此默认是 false。</li>
+<li>size：二级缓存中可以存放的最多对象个数。默认为 1024 个。</li>
+</ul>
+<h3 id="二级缓存的关闭"><a href="#二级缓存的关闭" class="headerlink" title="二级缓存的关闭"></a>二级缓存的关闭</h3><p>二级缓存默认为开启状态。 若要将其关闭，则需要进行相关设置。根据关闭的范围大小，可以分为全局关闭与局部关闭。</p>
+<p>（1） 全局关闭</p>
+<p>所谓全局关闭是指，整个应用的二级缓存全部关闭，所有查询均不使用二级缓存。全局开关设置在主配置文件的全局设置&lt;settings/&gt;中，该属性为 cacheEnabled，设置为 false，则关闭；设置为 true，则开启， 默认值为 true。 即二级缓存默认是开启的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 关闭二级缓存 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"cacheEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2） 局部关闭</p>
+<p>所谓局部关闭是指，整个应用的二级缓存是开启的，但只是针对于某&lt;select/&gt;查询，不使用二级缓存。此时可以单独只关闭该&lt;select/&gt;标签的二级缓存。</p>
+<p>在该要关闭二级缓存的&lt;select/&gt;标签中，将其属性 useCache 设置为 false，即可关闭该查询的二级缓存。 该属性默认为 true，即每个&lt;select/&gt;查询的二级缓存默认是开启的。</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- useCache="false"对当前Sql的二级缓存的局部关闭 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentById"</span> <span class="attr">useCache</span>=<span class="string">"false"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	select id,name,age,score from student where id=#</span><span class="template-variable">&#123;xxx&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="二级缓存的使用原则"><a href="#二级缓存的使用原则" class="headerlink" title="二级缓存的使用原则"></a>二级缓存的使用原则</h3><h4 id="1-只能在一个命名空间下使用二级缓存"><a href="#1-只能在一个命名空间下使用二级缓存" class="headerlink" title="1. 只能在一个命名空间下使用二级缓存"></a>1. 只能在一个命名空间下使用二级缓存</h4><p>由于二级缓存中的数据是基于 namespace 的，即不同 namespace 中的数据互不干扰。在多个 namespace 中若均存在对同一个表的操作，那么这多个 namespace 中的数据可能就会出现不一致现象。</p>
+<h4 id="2-在单表上使用二级缓存"><a href="#2-在单表上使用二级缓存" class="headerlink" title="2. 在单表上使用二级缓存"></a>2. 在单表上使用二级缓存</h4><p>如果一个表与其它表有关联关系，那么就非常有可能存在多个 namespace 对同一数据的操作。而不同 namespace 中的数据互不干扰，所以有可能出现这多个 namespace 中的数据不一致现象。</p>
+<h4 id="3-查询多于修改时使用二级缓存"><a href="#3-查询多于修改时使用二级缓存" class="headerlink" title="3. 查询多于修改时使用二级缓存"></a>3. 查询多于修改时使用二级缓存</h4><p>在查询操作远远多于增删改操作的情况下可以使用二级缓存。因为任何增删改操作都将刷新二级缓存，对二级缓存的频繁刷新将降低系统性能。</p>
+<h2 id="ehcache二级查询缓存"><a href="#ehcache二级查询缓存" class="headerlink" title="ehcache二级查询缓存"></a>ehcache二级查询缓存</h2><p>mybatis 的特长是 SQL 操作，缓存数据管理不是其特长，为了提高缓存的性能， myBatis 允许使用第三方缓存产品。 ehCache 就是其中的一种。</p>
+<p>项目： cache-secondLevel-ehcache。</p>
+<blockquote>
+<p>注意：<br>使用 ehcache 二级缓存，实体类无需实现序列化接口。</p>
+</blockquote>
+<h3 id="ehcache二级查询缓存配置说明"><a href="#ehcache二级查询缓存配置说明" class="headerlink" title="ehcache二级查询缓存配置说明"></a>ehcache二级查询缓存配置说明</h3><h4 id="lt-diskStore-gt-标签"><a href="#lt-diskStore-gt-标签" class="headerlink" title="&lt;diskStore/&gt;标签"></a>&lt;diskStore/&gt;标签</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 指定一个文件目录，当内存空间不够，需要将二级缓存中数据写到硬盘上时，会写到这个指定目录中。其值一般为 java.io.tmpdir， 表示当前系统的默认文件临时目录。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">diskStore</span> <span class="attr">path</span>=<span class="string">"java.io.tmpdir"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="lt-defaultCache-gt-标签"><a href="#lt-defaultCache-gt-标签" class="headerlink" title="&lt;defaultCache/&gt;标签"></a>&lt;defaultCache/&gt;标签</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">defaultCache</span></span></span><br><span class="line"><span class="tag">        <span class="attr">maxElementsInMemory</span>=<span class="string">"10000"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">eternal</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">timeToIdleSeconds</span>=<span class="string">"120"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">timeToLiveSeconds</span>=<span class="string">"120"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">maxElementsOnDisk</span>=<span class="string">"10000000"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">diskExpiryThreadIntervalSeconds</span>=<span class="string">"120"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">persistence</span> <span class="attr">strategy</span>=<span class="string">"localTempSwap"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">defaultCache</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>设定缓存的默认属性数据：</p>
+<ul>
+<li><p>maxElementsInMemory： 指定该内存缓存区可以存放缓存对象的最多个数。  </p>
+</li>
+<li><p>eternal： 设定缓存对象是否不会过期。若设为 true，表示对象永远不会过期，此时会忽略 timeToIdleSeconds 与 timeToLiveSeconds 属性。默认值为 false。  </p>
+</li>
+<li><p>timeToIdleSeconds： 设定允许对象处于空闲状态的最长时间，以秒为单位。当对象自从最近一次被访问后，若处于空闲状态的时间超过了 timeToIdleSeconds 设定的值，这个对象就会过期。当对象过期， EHCache 就会将它从缓存中清除。 设置值为 0，则对象可以无限期地处于空闲状态。  </p>
+</li>
+<li><p>timeToLiveSeconds： 设定对象允许存在于缓存中的最长时间，以秒为单位。当对象自从被存放到缓存后，若处于缓存中的时间超过了 timeToLiveSeconds 设定的值，这个对象就会过期。当对象过期， EHCache 就会将它从缓存中清除。 设置值为 0，则对象可以无限期地存在于缓存中。 注意，只有 timeToLiveSeconds≥ timeToIdleSeconds，才有意义。  </p>
+</li>
+<li><p>overflowToDisk： 设定为 true，表示当缓存对象达到了 maxElementsInMemory 界限，会将溢出的对象写到<diskstore>元素指定的硬盘目录缓存中。    </diskstore></p>
+</li>
+<li><p>maxElementsOnDisk： 指定硬盘缓存区可以存放缓存对象的最多个数。  </p>
+</li>
+<li><p>diskPersistent： 指定当程序结束时，硬盘缓存区中的缓存对象是否做持久化。  </p>
+</li>
+<li><p>diskExpiryThreadIntervalSeconds： 指定硬盘中缓存对象的失效时间间隔。  </p>
+</li>
+<li><p>memoryStoreEvictionPolicy： 如果内存缓存区超过限制， 选择移向硬盘缓存区中的对象时使用的策略。 支持三种策略：  </p>
+<ol>
+<li>FIFO： First In First Out， 先进先出</li>
+<li>LFU： Less Frequently Used， 最少使用</li>
+<li>LRU： Least Recently Used， 最近最少使用</li>
+</ol>
+</li>
+</ul>
+<h3 id="启用-ehcache-缓存机制"><a href="#启用-ehcache-缓存机制" class="headerlink" title="启用 ehcache 缓存机制"></a>启用 ehcache 缓存机制</h3><p>在映射文件的 mapper 中的&lt;cache/&gt;中通过 type 指定缓存机制为 Ehcache 缓存。默认为 myBatis 内置的二级缓存 org.apache.ibatis.cache.impl.PerpetualCache。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span> <span class="attr">type</span>=<span class="string">"org.mybatis.caches.ehcache.EhcacheCache"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"timeToIdleSeconds"</span> <span class="attr">value</span>=<span class="string">"60"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">cache</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<br>&lt;cache&gt;属性值的优先级高于 ehcache.xml 中的属性值。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/03/MyBatis关联关系查询/" rel="next" title="MyBatis关联关系查询">
+                <i class="fa fa-chevron-left"></i> MyBatis关联关系查询
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/04/MyBatis注解式开发/" rel="prev" title="MyBatis注解式开发">
+                MyBatis注解式开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">黄远志</p>
+              <p class="site-description motion-element" itemprop="description">没有理所当然的成功，也没有毫无道理的平庸</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一级查询缓存"><span class="nav-number">1.</span> <span class="nav-text">一级查询缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一级查询缓存的存在性证明"><span class="nav-number">1.1.</span> <span class="nav-text">一级查询缓存的存在性证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从缓存读取数据的依据是-Sql-的-id"><span class="nav-number">1.2.</span> <span class="nav-text">从缓存读取数据的依据是 Sql 的 id</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增删改对一级查询缓存的影响"><span class="nav-number">1.3.</span> <span class="nav-text">增删改对一级查询缓存的影响</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置二级查询缓存"><span class="nav-number">2.</span> <span class="nav-text">内置二级查询缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二级缓存用法"><span class="nav-number">2.1.</span> <span class="nav-text">二级缓存用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二级缓存的关闭"><span class="nav-number">2.2.</span> <span class="nav-text">二级缓存的关闭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二级缓存的使用原则"><span class="nav-number">2.3.</span> <span class="nav-text">二级缓存的使用原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-只能在一个命名空间下使用二级缓存"><span class="nav-number">2.3.1.</span> <span class="nav-text">1. 只能在一个命名空间下使用二级缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在单表上使用二级缓存"><span class="nav-number">2.3.2.</span> <span class="nav-text">2. 在单表上使用二级缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-查询多于修改时使用二级缓存"><span class="nav-number">2.3.3.</span> <span class="nav-text">3. 查询多于修改时使用二级缓存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ehcache二级查询缓存"><span class="nav-number">3.</span> <span class="nav-text">ehcache二级查询缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ehcache二级查询缓存配置说明"><span class="nav-number">3.1.</span> <span class="nav-text">ehcache二级查询缓存配置说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-diskStore-gt-标签"><span class="nav-number">3.1.1.</span> <span class="nav-text">&lt;diskStore/&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-defaultCache-gt-标签"><span class="nav-number">3.1.2.</span> <span class="nav-text">&lt;defaultCache/&gt;标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用-ehcache-缓存机制"><span class="nav-number">3.2.</span> <span class="nav-text">启用 ehcache 缓存机制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黄远志</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

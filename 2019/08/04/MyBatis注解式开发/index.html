@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MyBatis,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="注解的基础知识MyBatis 的注解，主要是用于替换映射文件。而映射文件中无非存放着增、删、改、查的 SQL 映射标签。所以， MyBatis 注解，就是要替换映射文件中的 SQL 标签。 MyBatis 官方文档中指出，若要真正想发挥 MyBatis 功能，还是要用映射文件。即 MyBatis 官方并不建议通过注解方式来使用 MyBatis。">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis注解式开发">
+<meta property="og:url" content="https://huangyuanzhi.top/2019/08/04/MyBatis注解式开发/index.html">
+<meta property="og:site_name" content="远志の博客">
+<meta property="og:description" content="注解的基础知识MyBatis 的注解，主要是用于替换映射文件。而映射文件中无非存放着增、删、改、查的 SQL 映射标签。所以， MyBatis 注解，就是要替换映射文件中的 SQL 标签。 MyBatis 官方文档中指出，若要真正想发挥 MyBatis 功能，还是要用映射文件。即 MyBatis 官方并不建议通过注解方式来使用 MyBatis。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/04/MyBatis注解式开发/ann01.jpg">
+<meta property="og:updated_time" content="2019-08-06T14:30:49.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBatis注解式开发">
+<meta name="twitter:description" content="注解的基础知识MyBatis 的注解，主要是用于替换映射文件。而映射文件中无非存放着增、删、改、查的 SQL 映射标签。所以， MyBatis 注解，就是要替换映射文件中的 SQL 标签。 MyBatis 官方文档中指出，若要真正想发挥 MyBatis 功能，还是要用映射文件。即 MyBatis 官方并不建议通过注解方式来使用 MyBatis。">
+<meta name="twitter:image" content="https://huangyuanzhi.top/2019/08/04/MyBatis注解式开发/ann01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangyuanzhi.top/2019/08/04/MyBatis注解式开发/">
+
+
+
+
+
+  <title>MyBatis注解式开发 | 远志の博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">远志の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">敏而好学　勤奋刻苦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyuanzhi.top/2019/08/04/MyBatis注解式开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄远志">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远志の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MyBatis注解式开发</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-04T23:16:18+08:00">
+                2019-08-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="注解的基础知识"><a href="#注解的基础知识" class="headerlink" title="注解的基础知识"></a>注解的基础知识</h2><p>MyBatis 的注解，主要是用于替换映射文件。而映射文件中无非存放着增、删、改、查的 SQL 映射标签。所以， MyBatis 注解，就是要替换映射文件中的 SQL 标签。</p>
+<p>MyBatis 官方文档中指出，若要真正想发挥 MyBatis 功能，还是要用映射文件。即 MyBatis 官方并不建议通过注解方式来使用 MyBatis。</p>
+<a id="more"></a>
+
+
+<h3 id="注解的基础语法"><a href="#注解的基础语法" class="headerlink" title="注解的基础语法"></a>注解的基础语法</h3><ol>
+<li>注解后是没有分号的。  </li>
+<li>注解首字母是大写的，因为注解与类、接口是同一级别的。一个注解，后台对应着。一个@interface 类。</li>
+<li>在同一语法单元上，同一注解只能使用一次。</li>
+<li>在注解与语法单元之间可以隔若干空行、注释等非代码内容。</li>
+</ol>
+<h3 id="注解的注解"><a href="#注解的注解" class="headerlink" title="注解的注解"></a>注解的注解</h3><img src="/2019/08/04/MyBatis注解式开发/ann01.jpg">
+
+
+<p>打开@Deprecated 源码，看到其定义上还有三个注解： @Documented、 @Retention、 @Target。这三个注解的意义是：</p>
+<ul>
+<li>@Target： 用于指定该注解可以标注的语法类型。 CONSTRUCTOR（构造器）、LOCAL_VARIABLE（局部变量）、 METHOD（方法）、 FIELD（属性）、 PACKAGE（包）、 PARAMETER（参数）、 TYPE（类型）。</li>
+</ul>
+<blockquote>
+<p>注意：<br>对于 TYPE 常量，其意义有两个：一是指该注解可以用在类、接口、枚举等类上；二是指该注解可以作为其它注解的属性值，例如@Result、 @InterceptorRef。</p>
+</blockquote>
+<ul>
+<li>@Documented： 用于指定该注解定义时的注释信息能否显示在 javaAPI 说明文档上。 没有添加的话，使用 javadoc 生成 API 文档时就不会该注解的信息添加到文档。  </li>
+<li>@RetentionPolicy： 这是一个 enum 类型， 共有三个值：SOURCE,CLASS 和 RUNTIME。  </li>
+<li>SOURCE： 代表这个 Annotation 类型的信息只会保留在程序源码里，源码如果经过了编<br>译之后， Annotation 的数据就会消失， 并不会保留在编译好的.class 文件中。</li>
+<li>ClASS： 代表这个 Annotation 类型的信息除了保留在程序源码里外， 同时也会保留在编<br>译好的.class 文件里。但在执行时，并不会把这一些信息加载到虚拟机(JVM)中去。这是<br>Retention 的默认值。</li>
+<li>RUNTIME： 表示在源码、编译好的.class 文件中保留信息， 同时在执行时还会把这些信息加载到 JVM 中。</li>
+</ul>
+<blockquote>
+<p>举例：<br>@Override 中的 Retention 值为 SOURCE， 编译成功了就不要这一些检查的信息。相反@Deprecated 中 Retention 的值为 RUNTIME， 表示除了在编译时会警告我们使用了哪个被 Deprecated 的方法， 在执行的时候也可以查出该方法是否被 Deprecated。</p>
+</blockquote>
+<h3 id="注解的属性"><a href="#注解的属性" class="headerlink" title="注解的属性"></a>注解的属性</h3><ol>
+<li><p>数组问题<br>该属性在源码定义时被声明为数组，但在具体使用时却只要赋予一个值，此时无需将该值再定义为一个数组后赋给该属性。直接将该值赋给该属性即可。例如，对于声明为字符串数组 String[]的 value 属性，可以将字符串 String 直接赋给该 value。</p>
+</li>
+<li><p>默认值问题<br>若某属性在注解定义时声明了其默认值，则在注解使用时，可以不为其指定属性值。注解会自动使用其默认值。</p>
+</li>
+<li><p>value 属性问题<br>若注解在使用时只需使用其 value 属性，其它属性要么有默认值，要么该注解只声明了一个 value 属性，此时，在注解使用时 value 属性名称可省略，而直接在注解的括号中写出该 value 属性的值。</p>
+</li>
+</ol>
+<p>在注解里面，对于数组，如果数组只有一个元素，{}可以省略不写；注解里面只用到一个属性，value可以省略不写</p>
+<ol start="4">
+<li>无属性问题<br>有些注解在定义时，是没有属性的，如@Deprecated、 @Overide 都是没有属性声明的，那么在使用时只需给出注解名称即可。</li>
+</ol>
+<h2 id="MyBatis注解"><a href="#MyBatis注解" class="headerlink" title="MyBatis注解"></a>MyBatis注解</h2><h3 id="Insert"><a href="#Insert" class="headerlink" title="@Insert"></a>@Insert</h3><p>其 value 属性用于指定要执行的 insert 语句。</p>
+<h3 id="SelectKey"><a href="#SelectKey" class="headerlink" title="@SelectKey"></a>@SelectKey</h3><p>用于替换 XML 中的&lt;selectKey/&gt;标签，用于返回新插入数据的 id 值</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SelectKey</span>(statement=<span class="string">"select @@identity"</span>, resultType=<span class="keyword">int</span>.class, keyProperty=<span class="string">"id"</span>, <span class="keyword">before</span>=false)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>statement：获取新插入记录主键值的 SQL 语句  </li>
+<li>keyProperty：获取的该主键值返回后初始化对象的哪个属性  </li>
+<li>resultType：返回值类型  </li>
+<li>before：指定主键的生成相对于 insert 语句的执行先后顺序，该属性不能省略</li>
+</ul>
+<h3 id="Delete"><a href="#Delete" class="headerlink" title="@Delete"></a>@Delete</h3><p>其 value 属性用于指定要执行的 delete 语句。</p>
+<h3 id="Update"><a href="#Update" class="headerlink" title="@Update"></a>@Update</h3><p>其 value 属性用于指定要执行的 update 语句。</p>
+<h3 id="Select"><a href="#Select" class="headerlink" title="@Select"></a>@Select</h3><p>其 value 属性用于指定要执行的 select 语句。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>由于 MyBatis 注解替换的是映射文件，所以可以删除映射文件。</li>
+<li>由于没有了映射文件，所以主配置文件中不能使用&lt;mapper/&gt;注册 mapper 的位置了。需要使用&lt;package/&gt;标签。</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 指定映射mapper --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.huang.dao"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/03/MyBatis查询缓存/" rel="next" title="MyBatis查询缓存">
+                <i class="fa fa-chevron-left"></i> MyBatis查询缓存
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/06/Spring与IoC/" rel="prev" title="Spring与IoC">
+                Spring与IoC <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">黄远志</p>
+              <p class="site-description motion-element" itemprop="description">没有理所当然的成功，也没有毫无道理的平庸</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#注解的基础知识"><span class="nav-number">1.</span> <span class="nav-text">注解的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注解的基础语法"><span class="nav-number">1.1.</span> <span class="nav-text">注解的基础语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解的注解"><span class="nav-number">1.2.</span> <span class="nav-text">注解的注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解的属性"><span class="nav-number">1.3.</span> <span class="nav-text">注解的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis注解"><span class="nav-number">2.</span> <span class="nav-text">MyBatis注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Insert"><span class="nav-number">2.1.</span> <span class="nav-text">@Insert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SelectKey"><span class="nav-number">2.2.</span> <span class="nav-text">@SelectKey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Delete"><span class="nav-number">2.3.</span> <span class="nav-text">@Delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update"><span class="nav-number">2.4.</span> <span class="nav-text">@Update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Select"><span class="nav-number">2.5.</span> <span class="nav-text">@Select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.6.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黄远志</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
