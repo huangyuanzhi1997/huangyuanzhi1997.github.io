@@ -1,0 +1,1419 @@
+﻿<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="CURD 操作，即指对数据库中实体对象的增 Create、改 Update、查 Read、删 Delete 操作。">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis单表的CURD操作">
+<meta property="og:url" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/index.html">
+<meta property="og:site_name" content="远志の博客">
+<meta property="og:description" content="CURD 操作，即指对数据库中实体对象的增 Create、改 Update、查 Read、删 Delete 操作。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd01.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd02.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd03.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd04.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd06.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd07.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd08.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd09.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd10.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd11.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd13.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd14.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd15.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd16.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd17.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd18.jpg">
+<meta property="og:updated_time" content="2019-08-07T02:08:50.249Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBatis单表的CURD操作">
+<meta name="twitter:description" content="CURD 操作，即指对数据库中实体对象的增 Create、改 Update、查 Read、删 Delete 操作。">
+<meta name="twitter:image" content="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/curd01.jpg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>MyBatis单表的CURD操作 | 远志の博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b0daf3c94841e3c5a2bdb3262fe256b0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">远志の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">敏而好学　勤奋刻苦</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">11</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">23</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/huangyuanzhi1997" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄远志">
+      <meta itemprop="description" content="没有理所当然的成功，也没有毫无道理的平庸">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远志の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MyBatis单表的CURD操作
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-02 23:15:01" itemprop="dateCreated datePublished" datetime="2019-08-02T23:15:01+08:00">2019-08-02</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-07 10:08:50" itemprop="dateModified" datetime="2019-08-07T10:08:50+08:00">2019-08-07</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/框架/" itemprop="url" rel="index"><span itemprop="name">框架</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">24k</span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CURD 操作，即指对数据库中实体对象的增 Create、改 Update、查 Read、删 Delete 操作。</p>
+<a id="more"></a>
+
+<h2 id="自定义-Dao-接口实现类"><a href="#自定义-Dao-接口实现类" class="headerlink" title="自定义 Dao 接口实现类"></a>自定义 Dao 接口实现类</h2><h3 id="搭建测试环境"><a href="#搭建测试环境" class="headerlink" title="搭建测试环境"></a>搭建测试环境</h3><p>项目： curd</p>
+<p>（1）定义实体类</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Student &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">Integer</span> id;</span><br><span class="line">	<span class="keyword">private</span> String <span class="keyword">name</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">int</span> age;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span> score;</span><br></pre></td></tr></table></figure>
+
+<p>（2）定义 Dao 接口</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IStudentDao</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">insertStudent</span>(<span class="params">Student student</span>)</span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">insertStudentCacheId</span>(<span class="params">Student student</span>)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">deleteStudentById</span>(<span class="params"><span class="keyword">int</span> id</span>)</span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">updateStudent</span>(<span class="params">Student student</span>)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function">List&lt;Student&gt; <span class="title">selectAllStudents</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="function">Map&lt;String, Student&gt; <span class="title">selectStudentMap</span>(<span class="params"></span>)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function">Student <span class="title">selectStudentById</span>(<span class="params"><span class="keyword">int</span> id</span>)</span>;</span><br><span class="line">	<span class="function">Student <span class="title">selectStudentById</span>(<span class="params">Map&lt;String, Object&gt; map</span>)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function">List&lt;Student&gt; <span class="title">selectStudentsByName</span>(<span class="params">String name</span>)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）定义 Dao 实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentDaoImpl</span> <span class="keyword">implements</span> <span class="title">IStudentDao</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> SqlSession sqlSession;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertStudent</span><span class="params">(Student student)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//使用工具类获取SqlSession对象</span></span><br><span class="line">			sqlSession = MyBatisUtil.getSqlSession();</span><br><span class="line">			<span class="comment">//操作</span></span><br><span class="line">			sqlSession.insert(<span class="string">"insertStudent"</span>,student);</span><br><span class="line">			<span class="comment">//SqlSession提交</span></span><br><span class="line">			sqlSession.commit();</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="comment">//SqlSession关闭，添加了close()不用作事务回滚</span></span><br><span class="line">			<span class="keyword">if</span> (sqlSession != <span class="keyword">null</span>) </span><br><span class="line">				sqlSession.close();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）创建工具类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyBatisUtil</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title">getSqlSession</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			InputStream <span class="keyword">is</span> = Resources.getResourceAsStream(<span class="string">"mybatis.xml"</span>);</span><br><span class="line">			<span class="keyword">if</span> (sqlSessionFactory == <span class="literal">null</span>) &#123;</span><br><span class="line">				sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(<span class="keyword">is</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> sqlSessionFactory.openSession();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（5）定义测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> StudentDaoImpl dao;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Before</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		dao= <span class="keyword">new</span> StudentDaoImpl();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（6）数据库设计如下</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd01.jpg">
+
+
+<h3 id="单纯插入数据"><a href="#单纯插入数据" class="headerlink" title="单纯插入数据"></a>单纯插入数据</h3><p>（1）修改映射文件</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertStudent"</span></span></span></span><br><span class="line"><span class="xml">parameterType="com.huang.beans.Student"&gt;</span></span><br><span class="line"><span class="xml">	insert into </span></span><br><span class="line"><span class="xml">	student(name,age,score) </span></span><br><span class="line"><span class="xml">	values(#</span><span class="template-variable">&#123;name&#125;</span><span class="xml">,#</span><span class="template-variable">&#123;age&#125;</span><span class="xml">, #</span><span class="template-variable">&#123;score&#125;</span><span class="xml">)</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>id：该 SQL 语句的唯一标识， Java 代码中要使用该标识  </li>
+<li>#{ }：对指定参数类型属性值的引用。其底层是通过反射机制，调用 Student 类相关属性的 get 方法来获取值的。因为底层使用的是反射，所以这里使用的是类的属性名，而非表的字段名。</li>
+</ul>
+<p>（2）修改 Dao 实现类</p>
+<p>使用 SqlSession 对象的 insert()方法。该方法默认返回 DB 中受影响条数。其方法原型为：insert(String id, Object obj)。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">insertStudent</span><span class="params">(Student student)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//使用工具类获取SqlSession对象</span></span><br><span class="line">			sqlSession = MyBatisUtil.getSqlSession();</span><br><span class="line">			<span class="comment">//操作</span></span><br><span class="line">			sqlSession.insert(<span class="string">"insertStudent"</span>,student);</span><br><span class="line">			<span class="comment">//SqlSession提交</span></span><br><span class="line">			sqlSession.commit();</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="comment">//SqlSession关闭，添加了close()不用作事务回滚</span></span><br><span class="line">			<span class="keyword">if</span> (sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">				sqlSession.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<br>执行完对 DB 的修改操作，必须要做 SqlSession 的提交。否则，修改将无法同步到 DB 中。因为使用无参的 openSession()方法已经将事务的自动提交功能给关闭了。</p>
+</blockquote>
+<p>（3）修改测试类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">			Student student = <span class="keyword">new</span> Student(<span class="string">"n_"</span> + i, <span class="number">15</span> + i,<span class="number">85.5</span> + i);</span><br><span class="line">			dao.insertStudent(student);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）运行结果</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd02.jpg">
+
+
+<h3 id="插入后用新-id-初始化被插入对象"><a href="#插入后用新-id-初始化被插入对象" class="headerlink" title="插入后用新 id 初始化被插入对象"></a>插入后用新 id 初始化被插入对象</h3><p>（1）修改映射文件<br>映射文件的<insert>标签中，有一个子标签<selectkey>用于获取新插入记录的主键值。</selectkey></insert></p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertStudentCacheId"</span></span></span></span><br><span class="line"><span class="xml">parameterType="com.huang.beans.Student"&gt;</span></span><br><span class="line"><span class="xml">	insert into </span></span><br><span class="line"><span class="xml">	student(name,age,score) </span></span><br><span class="line"><span class="xml">	values(#</span><span class="template-variable">&#123;name&#125;</span><span class="xml">,#</span><span class="template-variable">&#123;age&#125;</span><span class="xml">, #</span><span class="template-variable">&#123;score&#125;</span><span class="xml">)</span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">selectKey</span> <span class="attr">resultType</span>=<span class="string">"int"</span> <span class="attr">keyProperty</span>=<span class="string">"id"</span> <span class="attr">order</span>=<span class="string">"AFTER"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	    select @@identity</span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">selectKey</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>resultType：指出获取的主键的类型。  </li>
+<li>keyProperty：指出主键在 Java 类中对应的属性名。此处会将获取的主键值直接封装到被插入的 Student 对象中，即 dao 中 insert()方法的第二个参数对象中。  </li>
+<li>order：指出 id 的生成相对于 insert 语句的执行是在前还是在后。 MySql 数据库表中的 id，均是先执行 insert 语句，而后生成 id， 所以需要设置为 AFTER； Oracle 数据库表中的 id，则是在 insert 执行之前先生成，所以需要设置为 BEFORE。 当前的 MyBatis 版本，不指定 order 属性，则会根据所用 DBMS，自动选择其值。</li>
+</ul>
+<p>（2）修改 Dao 实现类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">insertStudentCacheId</span><span class="params">(Student student)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//使用工具类获取SqlSession对象</span></span><br><span class="line">			sqlSession = MyBatisUtil.getSqlSession();</span><br><span class="line">			<span class="comment">//操作</span></span><br><span class="line">			sqlSession.insert(<span class="string">"insertStudentCacheId"</span>,student);</span><br><span class="line">			<span class="comment">//SqlSession提交</span></span><br><span class="line">			sqlSession.commit();</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="comment">//SqlSession关闭，添加了close()不用作事务回滚</span></span><br><span class="line">			<span class="keyword">if</span> (sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">				sqlSession.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		Student student = <span class="keyword">new</span> Student(<span class="string">"张三"</span>, <span class="number">28</span>, <span class="number">93.5</span>);</span><br><span class="line">		</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"插入前student = "</span> + student);</span><br><span class="line">		dao.insertStudentCatchId(student);</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"插入后student = "</span> + student);</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）运行结果</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd03.jpg">
+
+
+
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>（1）修改映射文件</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;delete <span class="built_in">id</span>=<span class="string">"deleteStudentById"</span>&gt;</span><br><span class="line">    delete <span class="keyword">from</span> student <span class="keyword">where</span> <span class="built_in">id</span>=<span class="comment">#&#123;xxx&#125;</span></span><br><span class="line">&lt;/delete&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<br>这里的动态参数 id 所赋值为#{xxx}。这个#{xxx}表示这就是个占位符，代表 delete()方法的第二个参数。 #{ }中可以放任意值，无需要与 delete()方法的第二个参数值相同。</p>
+</blockquote>
+<p>（2）修改 Dao 实现类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">deleteStudentById</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//使用工具类获取SqlSession对象</span></span><br><span class="line">			sqlSession = MyBatisUtil.getSqlSession();</span><br><span class="line">			<span class="comment">//操作</span></span><br><span class="line">			sqlSession.delete(<span class="string">"deleteStudentById"</span>,id);</span><br><span class="line">			<span class="comment">//SqlSession提交</span></span><br><span class="line">			sqlSession.commit();</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="comment">//SqlSession关闭，添加了close()不用作事务回滚</span></span><br><span class="line">			<span class="keyword">if</span> (sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">				sqlSession.close();</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		dao.deleteStudentById(<span class="number">5</span>);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><p>（1）修改映射文件</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;update <span class="built_in">id</span>=<span class="string">"updateStudent"</span>&gt;</span><br><span class="line">    update student</span><br><span class="line">    <span class="keyword">set</span> <span class="built_in">name</span>=<span class="comment">#&#123;name&#125;, age=#&#123;age&#125;, score=#&#123;score&#125;</span></span><br><span class="line">    <span class="keyword">where</span> <span class="built_in">id</span>=<span class="comment">#&#123;id&#125;</span></span><br><span class="line">&lt;/update&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<br>这里的#{ }中，必须要填写 update()方法所传第二个参数 student 对象的属性名称，不能随意填写。</p>
+</blockquote>
+<p>（2）修改 Dao 实现类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">updateStudent</span><span class="params">(Student student)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//使用工具类获取SqlSession对象</span></span><br><span class="line">			sqlSession = MyBatisUtil.getSqlSession();</span><br><span class="line">			<span class="comment">//操作</span></span><br><span class="line">			sqlSession.delete(<span class="string">"updateStudent"</span>,student);</span><br><span class="line">			<span class="comment">//SqlSession提交</span></span><br><span class="line">			sqlSession.commit();</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="comment">//SqlSession关闭，添加了close()不用作事务回滚</span></span><br><span class="line">			<span class="keyword">if</span> (sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">				sqlSession.close();</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test04</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Student student = <span class="keyword">new</span> Student(<span class="string">"张小三"</span>, <span class="number">18</span>, <span class="number">99.5</span>);</span><br><span class="line">	student.setId(<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	dao.updateStudent(student);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询所有对象-返回-List"><a href="#查询所有对象-返回-List" class="headerlink" title="查询所有对象-返回 List"></a>查询所有对象-返回 List</h3><p>（1）修改映射文件</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built_in">select</span> id=<span class="string">"selectAllStudents"</span> resultType=<span class="string">"Student"</span>&gt;</span><br><span class="line">	<span class="built_in">select</span> id,<span class="built_in">name</span>,age,<span class="built_in">score</span> <span class="keyword">from</span> student</span><br><span class="line">&lt;/<span class="built_in">select</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意：<br>resultType 属性并非指查询结果集最后的类型，而是每查出 DB 中的一条记录，将该记录封装成为的对象的类型。</p>
+<p>（2）注册类的别名</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">&lt;!-- 将指定包中所有类的简单类名当作其别名 ,type：全限定性类名,alias：别名--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.huang.beans"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（3）修改 Dao 实现类</p>
+<p>完成 Dao 实现类的 selectAllStudent()方法。 使用 SqlSession 的 selectList()方法完成查询操作。 该方法会将查询出的每条记录封装为指定类型对象后，再将最后的结果集封装为 List 返回。 方法原型为： List selectList (String statement)。</p>
+<p>statement：映射文件中配置的 SQL 语句的 id。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">	public <span class="built_in">List</span>&lt;Student&gt; selectAllStudents() &#123;</span><br><span class="line">		<span class="built_in">List</span>&lt;Student&gt; students = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			sqlSession = MyBatisUtils.getSqlSession();</span><br><span class="line">			students = sqlSession.selectList(<span class="string">"selectAllStudents"</span>);</span><br><span class="line">			<span class="comment">//sqlSession.commit();</span></span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>(sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">				sqlSession.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> students;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明：<br>在写查询时，由于不是对 DB 中数据进行修改，所以无需进行 SqlSession 的提交。但最终 SqlSession 对象还是需要关闭的。</p>
+<p>（4）修改测试类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询所有：返回List</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test05</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	List&lt;Student&gt; students = dao.selectAllStudents();</span><br><span class="line">	<span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">		System.out.println(student);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（5）运行结果</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd04.jpg">
+
+
+<h3 id="查询所有对象-返回-Map"><a href="#查询所有对象-返回-Map" class="headerlink" title="查询所有对象-返回 Map"></a>查询所有对象-返回 Map</h3><p>（1）修改 Dao 实现类</p>
+<p>完成 Dao 实现类的 selectStudentMap()方法。 使用 SqlSession 的 selectMap()方法完成查询操作。 该查询方法会将查询出的每条记录先封装为指定对象，然后再将该对象作为 value，将该对象的指定属性所对应的字段名作为 key 封装为一个 Map 对象。 方法原型为： Map&lt;Object,Object&gt; selectMap (String statement, String mapKey)。</p>
+<ul>
+<li>statement：映射文件中配置的 SQL 语句的 id。</li>
+<li>mapKey：查询出的 Map 所要使用的 key。这个 key 为数据表的字段名。查询出的结果是一个 Map，每行记录将会对应一个 Map.entry 对象，该对象的 key 为指定字段的值， value为记录数据所封装的对象。</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">	<span class="keyword">public</span> Map&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt; selectAllStudentsMap() &#123;</span><br><span class="line">		Map&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt; <span class="built_in">map</span> = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;&gt;();</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			sqlSession = MyBatisUtils.getSqlSession();</span><br><span class="line">			<span class="built_in">map</span> = sqlSession.selectMap(<span class="string">"selectAllStudents"</span>, <span class="string">"name"</span>);</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>(sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">				sqlSession.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">map</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）修改测试类</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> test06() &#123;</span><br><span class="line">	Map&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt; <span class="built_in">map</span> = dao.selectAllStudentsMap();</span><br><span class="line">	System.out.<span class="built_in">println</span>(<span class="built_in">map</span>.<span class="built_in">get</span>(<span class="string">"张三"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）运行结果</p>
+
+
+<blockquote>
+<p>说明：<br>若指定的作为 key 的属性值在 DB 中并不唯一，则后面的记录值会覆盖掉前面的值。即指定 key 的 value 值，一定是 DB 中该同名属性的最后一条记录值。</p>
+</blockquote>
+<h3 id="查询单个对象"><a href="#查询单个对象" class="headerlink" title="查询单个对象"></a>查询单个对象</h3><p>（1）修改映射文件</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 符号jjj表示占位符 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentById"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	select id,name,age,score from student where id=#</span><span class="template-variable">&#123;jjj&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（2）修改 Dao 实现类</p>
+<p>使用 SqlSession 的 selectOne()方法。其会将查询的结果记录封装为一个指定类型的对象。方法原型为： Object selectOne (String statement, Object parameter)</p>
+<ul>
+<li>statement：映射文件中配置的 SQL 语句的 id  </li>
+<li>parameter：查询条件中动态参数的值</li>
+</ul>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="function">Student <span class="title">selectStudentById</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">	Student student = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		sqlSession = MyBatisUtils.getSqlSession();</span><br><span class="line">		student = sqlSession.selectOne(<span class="string">"selectStudentById"</span>, id);</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		<span class="keyword">if</span>(sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">			sqlSession.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> student;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test07</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Student student = dao.selectStudentById(<span class="number">22</span>);</span><br><span class="line">	System.out.println(student);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><p>（1）修改映射文件</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectStudentsByName"</span> resultType=<span class="string">"Student"</span>&gt;</span><br><span class="line">	select <span class="built_in">id</span>,<span class="built_in">name</span>,age,score <span class="keyword">from</span> student <span class="keyword">where</span> <span class="built_in">name</span> like '%' <span class="comment">#&#123;xxx&#125; '%'</span></span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<br>在进行模糊查询时， 需要进行字符串的拼接。 SQL 中的字符串的拼接使用的是函数 concat(arg1,arg2,…)。注意不能使用 Java 中的字符串连接符+。</p>
+</blockquote>
+<p>（2）修改 Dao 实现类</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">public <span class="built_in">List</span>&lt;Student&gt; selectStudentsByName(<span class="built_in">String</span> name) &#123;</span><br><span class="line">	<span class="built_in">List</span>&lt;Student&gt; students = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		sqlSession = MyBatisUtils.getSqlSession();</span><br><span class="line">		students = sqlSession.selectList(<span class="string">"selectStudentsByName"</span>, name);</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		<span class="keyword">if</span>(sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">			sqlSession.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> students;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test08</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	List&lt;Student&gt; students = dao.selectStudentsByName(<span class="string">"张"</span>);</span><br><span class="line">	<span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">		System.out.println(student);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）运行结果</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd06.jpg">
+
+
+<h4 id="与-的区别"><a href="#与-的区别" class="headerlink" title="$与#的区别"></a>$与#的区别</h4><ol>
+<li><p>理论区别<br>$与#的区别是很大的。 #为占位符，而$为字符串拼接符。<br>字符串拼接是将参数值以硬编码的方式直接拼接到了 SQL 语句中。字符串拼接就会引发两个问题： SQL 注入问题与没有使用预编译所导致的执行效率低下问题。</p>
+</li>
+<li><p>执行区别</p>
+ <img src="/2019/08/02/MyBatis单表的CURD操作/curd07.jpg">
+
+ <img src="/2019/08/02/MyBatis单表的CURD操作/curd08.jpg">
+</li>
+<li><p>应用场景</p>
+</li>
+</ol>
+<p>一般情况下，动态参数的值是由用户输入的，则不能使用拼接符$，因为有可能会出现 SQL 注入；若动态参数的值是由系统计算生成的，则可以使用拼接符$。 但这样虽然不存在 SQL 注入的风险，但仍存在执行效率问题。</p>
+<h3 id="根据-Map-进行查询"><a href="#根据-Map-进行查询" class="headerlink" title="根据 Map 进行查询"></a>根据 Map 进行查询</h3><p>mapper 中 SQL 语句的动态参数也可以是 Map 的 key。</p>
+<p>（1）修改映射文件</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id=<span class="string">"selectStudentByMap"</span> resultType=<span class="string">"Student"</span>&gt;</span><br><span class="line">    <span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">where</span> id=<span class="meta">#&#123;studentId&#125;</span></span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（2）修改 Dao 实现类</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">public Student selectStudentByMap(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">Object</span>&gt; map) &#123;</span><br><span class="line">	Student student = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		</span><br><span class="line">		sqlSession = MyBatisUtils.getSqlSession();</span><br><span class="line">		student = sqlSession.selectOne(<span class="string">"selectStudentByMap"</span>);</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">			sqlSession.close();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> student;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> test09() &#123;</span><br><span class="line">	Student student = <span class="keyword">new</span> Student();</span><br><span class="line">	student.setId(<span class="number">6</span>);</span><br><span class="line">	</span><br><span class="line">	Map&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt; <span class="built_in">map</span> = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>,<span class="keyword">Object</span>&gt;();</span><br><span class="line">	<span class="built_in">map</span>.put(<span class="string">"studentId"</span>, <span class="number">10</span>);</span><br><span class="line">	<span class="built_in">map</span>.put(<span class="string">"student"</span>, student);</span><br><span class="line">	</span><br><span class="line">	student = dao.selectStudentByMap(<span class="built_in">map</span>);</span><br><span class="line">	System.out.<span class="built_in">println</span>(student);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="属性名与查询字段名不相同"><a href="#属性名与查询字段名不相同" class="headerlink" title="属性名与查询字段名不相同"></a>属性名与查询字段名不相同</h2><p>resultType 可以将查询结果直接映射为实体 Bean 对象的条件是， SQL 查询的字段名与实体 Bean 的属性名一致。 因为在将查询结果转换为指定类型对象时，系统自动将查询结果字段名称作为对象的属性名， 通过反射机制完成对象的创建。当 SQL 查询结果的字段名和实体 Bean 的属性名不一致时， 将无法创建出需要类型的对象。</p>
+<h3 id="搭建测试环境-1"><a href="#搭建测试环境-1" class="headerlink" title="搭建测试环境"></a>搭建测试环境</h3><blockquote>
+<p>基于 curd 项目作修改</p>
+</blockquote>
+<p>（1）修改 student 表</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd09.jpg">
+
+<p>（2）修改 Dao 接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>IStudentDao &#123;</span><br><span class="line">	Student selectStudentById(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）定义 Dao 实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentDaoImpl</span> <span class="keyword">implements</span> <span class="title">IStudentDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> SqlSession sqlSession;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Student <span class="title">selectStudentById</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">		Student student = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			sqlSession = MyBatisUtils.getSqlSession();</span><br><span class="line">			student = sqlSession.selectOne(<span class="string">"selectStudentById"</span>, id);</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">				sqlSession.close();</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> student;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）修改测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> IStudentDao dao;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Before</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		dao = <span class="keyword">new</span> StudentDaoImpl();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Student student = dao.selectStudentById(<span class="number">1</span>);</span><br><span class="line">		System.out.println(student);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询字段使用别名"><a href="#查询字段使用别名" class="headerlink" title="查询字段使用别名"></a>查询字段使用别名</h3><p>虽然属性名称与表中字段名称不一致，但可以为查询结果的字段名称赋予别名，让别名与实体 Bean 的属性名相同。这样框架也可以根据查询结果利用反射机制将对象创建。</p>
+<p>在映射文件 mapper 中添加如下映射。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectStudentById"</span> resultType=<span class="string">"Student"</span>&gt;</span><br><span class="line">    select tid <span class="built_in">id</span>,tname <span class="built_in">name</span>,tage age,score <span class="keyword">from</span> student <span class="keyword">where</span> tid=<span class="comment">#&#123;xxx&#125;</span></span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd10.jpg">
+
+
+<h3 id="使用结果映射-resultMap"><a href="#使用结果映射-resultMap" class="headerlink" title="使用结果映射 resultMap"></a>使用结果映射 resultMap</h3><p>可以使用结果映射 resultMap（这里的 Map 是映射 mapper 的意思） 来建立映射关系，完成由字段到属性的映射，达到将查询结果封装为对象的目的。 resultMap 是对 resultType的增强。</p>
+<p>修改映射文件 mapper.xml。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   &lt;resultMap type=<span class="string">"Student"</span> <span class="built_in">id</span>=<span class="string">"studentMapper"</span>&gt;</span><br><span class="line">       &lt;<span class="built_in">id</span> column=<span class="string">"tid"</span> <span class="keyword">property</span>=<span class="string">"id"</span>/&gt;</span><br><span class="line">       &lt;<span class="literal">result</span> column=<span class="string">"tname"</span> <span class="keyword">property</span>=<span class="string">"name"</span>/&gt;</span><br><span class="line">       &lt;<span class="literal">result</span> column=<span class="string">"tage"</span> <span class="keyword">property</span>=<span class="string">"age"</span>/&gt;</span><br><span class="line">   &lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectStudentById"</span> resultMap=<span class="string">"studentMapper"</span>&gt;</span><br><span class="line">    select tid,tname,tage,score </span><br><span class="line">    <span class="keyword">from</span> student <span class="keyword">where</span> tid=<span class="comment">#&#123;xxx&#125;</span></span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd11.jpg">
+
+
+<h2 id="Mapper-动态代理"><a href="#Mapper-动态代理" class="headerlink" title="Mapper 动态代理"></a>Mapper 动态代理</h2><p>在前面例子中自定义 Dao 接口实现类时发现一个问题： Dao 的实现类其实并没有干什么实质性的工作，它仅仅就是通过 SqlSession 的相关 API 定位到映射文件 mapper 中相应 id 的 SQL 语句，真正对 DB 进行操作的工作其实是由框架通过 mapper 中的 SQL 完成的。</p>
+<p>所以， MyBatis 框架就抛开了 Dao 的实现类，直接定位到映射文件 mapper 中的相应 SQL语句，对 DB 进行操作。这种对 Dao 的实现方式称为 Mapper 的动态代理方式。Mapper 动态代理方式无需程序员实现 Dao 接口。接口是由 MyBatis 结合映射文件自动生成的动态代理实现的。</p>
+<p>项目： dynamicMapper（基于 curd 项目修改）</p>
+<h3 id="映射文件的-namespace-属性值"><a href="#映射文件的-namespace-属性值" class="headerlink" title="映射文件的 namespace 属性值"></a>映射文件的 namespace 属性值</h3><p>一般情况下，一个 Dao 接口的实现类方法使用的是同一个 SQL 映射文件中的 SQL 映射 id。 所以， MyBatis 框架要求，将映射文件中<mapper>标签的 namespace 属性设为 Dao 接口的全类名，则系统会根据方法所属 Dao 接口，自动到相应 namespace 的映射文件中查找相<br>关的 SQL 映射。</mapper></p>
+<p>简单来说，通过接口名即可定位到映射文件 mapper。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mapper <span class="keyword">namespace</span>=<span class="string">"com.huang.dao.IStudentDao"</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改日志输出控制文件"><a href="#修改日志输出控制文件" class="headerlink" title="修改日志输出控制文件"></a>修改日志输出控制文件</h3><p>mapper 的 namespace 修改了，则需要将日志输出控制文件中 logger 的输出对象进行修改。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#<span class="number">#def</span>ine <span class="selector-tag">a</span> logger</span><br><span class="line">log4j<span class="selector-class">.logger</span><span class="selector-class">.com</span><span class="selector-class">.huang</span><span class="selector-class">.dao</span><span class="selector-class">.IStudentDao</span>=trace,console</span><br></pre></td></tr></table></figure>
+
+<h3 id="Dao-接口方法名"><a href="#Dao-接口方法名" class="headerlink" title="Dao 接口方法名"></a>Dao 接口方法名</h3><p>MyBatis 框架要求， 接口中的方法名，与映射文件中相应的 SQL 标签的 id 值相同。 系统会自动根据方法名到相应的映射文件中查找同名的 SQL 映射 id。简单来说，通过方法名就可定位到映射文件 mapper 中相应的 SQL 语句。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IStudentDao</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">insertStudent</span>(<span class="params">Student student</span>)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">deleteStudentById</span>(<span class="params"><span class="keyword">int</span> id</span>)</span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">updateStudent</span>(<span class="params">Student student</span>)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function">List&lt;Student&gt; <span class="title">selectAllStudents</span>(<span class="params"></span>)</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function">Student <span class="title">selectStudentById</span>(<span class="params"><span class="keyword">int</span> id</span>)</span>;</span><br><span class="line">	<span class="function">List&lt;Student&gt; <span class="title">selectStudentsByName</span>(<span class="params">String name</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除-Dao-实现类"><a href="#删除-Dao-实现类" class="headerlink" title="删除 Dao 实现类"></a>删除 Dao 实现类</h3><p>由于通过调用 Dao 接口的方法，不仅可以从 SQL 映射文件中找到所要执行 SQL 语句，还可通过方法参数及返回值，将 SQL 语句的动态参数传入，将查询结果返回。所以， Dao 的实现工作，完全可以由 MyBatis 系统自动根据映射文件完成。</p>
+<h3 id="修改测试类"><a href="#修改测试类" class="headerlink" title="修改测试类"></a>修改测试类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> IStudentDao dao;</span><br><span class="line">	<span class="keyword">private</span> SqlSession session;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Before</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		session = MyBatisUtils.getSqlSession();</span><br><span class="line">		dao = session.getMapper(IStudentDao.class);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@After</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (session != <span class="keyword">null</span>) &#123;</span><br><span class="line">			session.close();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Student student = <span class="keyword">new</span> Student(<span class="string">"张三"</span>, <span class="number">23</span>, <span class="number">93.5</span>);</span><br><span class="line">		System.out.println(<span class="string">"插入前：student = "</span> + student);</span><br><span class="line">		dao.insertStudent(student);</span><br><span class="line">		System.out.println(<span class="string">"插入后：student = "</span> + student);</span><br><span class="line">		<span class="comment">//添加SqlSession的提交方法</span></span><br><span class="line">		session.commit();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*@Test</span></span><br><span class="line"><span class="comment">	public void test02() &#123;</span></span><br><span class="line"><span class="comment">		Student student = new Student("张三", 23, 93.5);</span></span><br><span class="line"><span class="comment">		System.out.println("插入前：student = " + student);</span></span><br><span class="line"><span class="comment">		dao.insertStudentCacheId(student);</span></span><br><span class="line"><span class="comment">		System.out.println("插入后：student = " + student);</span></span><br><span class="line"><span class="comment">	&#125;*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		dao.deleteStudentById(<span class="number">22</span>);</span><br><span class="line">		<span class="comment">//添加SqlSession的提交方法</span></span><br><span class="line">		session.commit();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test04</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Student student = <span class="keyword">new</span> Student(<span class="string">"张大三"</span>, <span class="number">23</span>, <span class="number">93.5</span>);</span><br><span class="line">		student.setId(<span class="number">8</span>);</span><br><span class="line">		dao.updateStudent(student);</span><br><span class="line">		<span class="comment">//添加SqlSession的提交方法</span></span><br><span class="line">		session.commit();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多查询条件无法整体接收问题的解决"><a href="#多查询条件无法整体接收问题的解决" class="headerlink" title="多查询条件无法整体接收问题的解决"></a>多查询条件无法整体接收问题的解决</h3><p>在实际工作中，表单中所给出的查询条件有时是无法将其封装为一个对象的，也就是说，查询方法只能携带多个参数，而不能携带将这多个参数进行封装的一个对象。对于这个问题，有两种解决方案。</p>
+<h4 id="1-将这多个参数封装为一个-Map"><a href="#1-将这多个参数封装为一个-Map" class="headerlink" title="1. 将这多个参数封装为一个 Map"></a>1. 将这多个参数封装为一个 Map</h4><p>（1）修改 Dao 接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>IStudentDao &#123;</span><br><span class="line">	List&lt;Student&gt; selectStudentsByCondition(Map&lt;String, Object&gt; map);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）修改映射文件</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectStudentsByCondition"</span> resultType=<span class="string">"Student"</span>&gt;</span><br><span class="line">		select <span class="built_in">id</span>,<span class="built_in">name</span>,age,score </span><br><span class="line">		<span class="keyword">from</span> student </span><br><span class="line">		<span class="keyword">where</span> <span class="built_in">name</span> like '%' <span class="comment">#&#123;nameCon&#125; '%' </span></span><br><span class="line">		<span class="keyword">and</span> age &gt; <span class="comment">#&#123;ageCon&#125;</span></span><br><span class="line">		<span class="keyword">and</span> score &gt; <span class="comment">#&#123;scoreCon&#125;</span></span><br><span class="line">	&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据吗map查询</span></span><br><span class="line">@Test</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> test01() &#123;</span><br><span class="line">	Student stu = <span class="keyword">new</span> Student(<span class="string">"王小五"</span>, <span class="number">20</span>, <span class="number">96.5</span>);</span><br><span class="line">	</span><br><span class="line">	Map&lt;<span class="keyword">String</span>, Object&gt; <span class="built_in">map</span> = <span class="keyword">new</span> HashMap&lt;<span class="keyword">String</span>, Object&gt;();</span><br><span class="line">	<span class="built_in">map</span>.<span class="built_in">put</span>(<span class="string">"nameCon"</span>, <span class="string">"王"</span>);</span><br><span class="line">	<span class="built_in">map</span>.<span class="built_in">put</span>(<span class="string">"ageCon"</span>, <span class="number">23</span>);</span><br><span class="line">	<span class="built_in">map</span>.<span class="built_in">put</span>(<span class="string">"stu"</span>, stu);</span><br><span class="line">	</span><br><span class="line">	List&lt;Student&gt; students = dao.selectStudentsByCondition(<span class="built_in">map</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">for</span> (Student student : students) &#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(student);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-多个参数逐个接收"><a href="#2-多个参数逐个接收" class="headerlink" title="2. 多个参数逐个接收"></a>2. 多个参数逐个接收</h4><p>对于 mapper 中的 SQL 语句，可以通过参数索引#{index}的方式逐个接收每个参数。</p>
+<p>（1）修改 Dao 接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>IStudentDao &#123;</span><br><span class="line">	List&lt;Student&gt; selectStudentsByCondition(String name, int age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）修改映射文件</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectStudentsByCondition"</span> resultType=<span class="string">"Student"</span>&gt;</span><br><span class="line">		select <span class="built_in">id</span>,<span class="built_in">name</span>,age,score </span><br><span class="line">		<span class="keyword">from</span> student </span><br><span class="line">		<span class="keyword">where</span> <span class="built_in">name</span> like '%' <span class="comment">#&#123;0&#125; '%' </span></span><br><span class="line">		<span class="keyword">and</span> age &gt; <span class="comment">#&#123;1&#125;</span></span><br><span class="line">	&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	List&lt;Student&gt; students = dao.selectStudentsByCondition(<span class="string">"张"</span>, <span class="number">23</span>);</span><br><span class="line">	<span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">		System.out.println(student);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>问题：<br>#{}中可以放什么内容？<br>1）参数对象的属性<br>2）随意内容，此时的#{}是个占位符<br>3）参数为map时的key<br>4）参数为map时，若key所对应的value为对象，则可将该对象的属性放入<br>5）参数的索引号</p>
+</blockquote>
+<h2 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h2><p>动态 SQL，主要用于解决查询条件不确定的情况：在程序运行期间，根据用户提交的查询条件进行查询。提交的查询条件不同，执行的 SQL 语句不同。若将每种可能的情况均逐一列出，对所有条件进行排列组合，将会出现大量的 SQL 语句。此时，可使用动态 SQL 来解决这样的问题。</p>
+<p>动态 SQL，即通过 MyBatis 提供的各种标签对条件作出判断以实现动态拼接 SQL 语句。这里的条件判断使用的表达式为 OGNL 表达式。 常用的动态 SQL 标签有&lt;if/&gt;、 &lt;where/&gt;、&lt;choose/&gt;、&lt;foreach/&gt;等。</p>
+<blockquote>
+<p>MyBatis 的动态 SQL 语句，与 JSTL 中的语句非常相似。</p>
+</blockquote>
+<p>项目： dynamicSql</p>
+<h3 id="搭建测试环境-2"><a href="#搭建测试环境-2" class="headerlink" title="搭建测试环境"></a>搭建测试环境</h3><p>（1） 定义数据库表</p>
+<p>{$ asset_img curd12.jpg $}</p>
+<p>（2） 定义实体</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Student &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">Integer</span> id;</span><br><span class="line">	<span class="keyword">private</span> String <span class="keyword">name</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">int</span> age;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span> score;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3） 创建工具类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyBatisUtils</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title">getSqlSession</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			InputStream <span class="keyword">is</span> = Resources.getResourceAsStream(<span class="string">"mybatis.xml"</span>);</span><br><span class="line">			<span class="keyword">if</span> (sqlSessionFactory == <span class="literal">null</span>) &#123;</span><br><span class="line">				sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(<span class="keyword">is</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> sqlSessionFactory.openSession();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）定义测试类</p>
+<p>定义@Before 与@After 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> IStudentDao dao;</span><br><span class="line">	<span class="keyword">private</span> SqlSession sqlSession;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Before</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		sqlSession = MyBatisUtils.getSqlSession();</span><br><span class="line">		dao = sqlSession.getMapper(IStudentDao.class);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@After</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">			sqlSession.close();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<br>在 mapper 的动态 SQL 中若出现大于号（&gt;）、小于号（&lt;）、大于等于号（&gt;=），小于等于号（&lt;=）等符号，最好将其转换为实体符号。否则， XML 可能会出现解析出错问题。特别是对于小于号（&lt;），在 XML 中是绝对不能出现的。否则，一定出错。</p>
+</blockquote>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd13.jpg">
+
+
+<h3 id="lt-if-gt-标签"><a href="#lt-if-gt-标签" class="headerlink" title="&lt;if/&gt;标签"></a>&lt;if/&gt;标签</h3><p>对于该标签的执行，当 test 的值为 true 时，会将其包含的 SQL 片断拼接到其所在的 SQL语句中。这引发的问题是，查询条件不确定，查询条件依赖于用户提交的内容。此时，就可使用动态 SQL 语句，根据用户提交内容对将要执行的 SQL 进行拼接。</p>
+<p>（1）定义 Dao 接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>IStudentDao &#123;</span><br><span class="line">	List&lt;Student&gt; selectStudentsByIf(Student student);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）定义映射文件</p>
+<p>为了解决两个条件均未做设定的情况，在 where 后添加了一个“1=1”的条件。这样就不至于两个条件均未设定而出现只剩下一个 where，而没有任何可拼接的条件的不完整 SQL语句。</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">   <span class="comment">&lt;!-- if标签 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentsByIf"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	select id,name,age,score </span></span><br><span class="line"><span class="xml">	from student </span></span><br><span class="line"><span class="xml">	where 1 = 1</span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"name != null and name != ''"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		and name like '%' #</span><span class="template-variable">&#123;name&#125;</span><span class="xml"> '%'</span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"age &gt; 0"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		and age &gt; #</span><span class="template-variable">&#123;age&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	@Test</span><br><span class="line">	public void test01() &#123;</span><br><span class="line">		Student stu = <span class="keyword">new</span> Student(<span class="string">"张"</span>, <span class="number">18</span>, <span class="number">0</span>);</span><br><span class="line">//		Student stu = <span class="keyword">new</span> Student(<span class="string">""</span>, <span class="number">23</span>, <span class="number">0</span>);</span><br><span class="line">//		Student stu = <span class="keyword">new</span> Student(<span class="string">""</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		List&lt;Student&gt; students = dao.selectStudentsByIf(stu);</span><br><span class="line">		<span class="keyword">for</span> (Student student : <span class="type">students</span>) &#123;</span><br><span class="line">			System.<span class="keyword">out</span>.println(student);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）运行结果</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd14.jpg">
+
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd15.jpg">
+
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd16.jpg">
+
+
+
+<h3 id="lt-where-gt-标签"><a href="#lt-where-gt-标签" class="headerlink" title="&lt;where/&gt;标签"></a>&lt;where/&gt;标签</h3><p>&lt;if/&gt;标签的中存在一个比较麻烦的地方：需要在 where 后手工添加 1=1 的子句。因为，<br>若 where 后的所有&lt;if/&gt;条件均为 false，而 where 后若又没有 1=1 子句，则 SQL 中就会只剩<br>下一个空的 where， SQL 出错。所以，在 where 后，需要添加永为真子句 1=1，以防止这种情况的发生。但当数据量很大时，会严重影响查询效率。</p>
+<p>（1）修改 Dao 接口</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; selectStudentsByWhere(<span class="name">Student</span> student)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）定义映射文件</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- where标签 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentsByWhere"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	select id,name,age,score </span></span><br><span class="line"><span class="xml">	from student </span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">where</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"name != null and name != ''"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			and name like '%' #</span><span class="template-variable">&#123;name&#125;</span><span class="xml"> '%'</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"age &gt; 0"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			and age &gt; #</span><span class="template-variable">&#123;age&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">where</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	@Test</span><br><span class="line">	public void test02() &#123;</span><br><span class="line">		Student stu = <span class="keyword">new</span> Student(<span class="string">"张"</span>, <span class="number">18</span>, <span class="number">0</span>);</span><br><span class="line">//		 Student stu = <span class="keyword">new</span> Student(<span class="string">""</span>, <span class="number">23</span>, <span class="number">0</span>);</span><br><span class="line">//		 Student stu = <span class="keyword">new</span> Student(<span class="string">""</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		List&lt;Student&gt; students = dao.selectStudentsByWhere(stu);</span><br><span class="line">		<span class="keyword">for</span> (Student student : <span class="type">students</span>) &#123;</span><br><span class="line">			System.<span class="keyword">out</span>.println(student);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）运行结果</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd17.jpg">
+
+
+<h3 id="lt-choose-gt-标签"><a href="#lt-choose-gt-标签" class="headerlink" title="&lt;choose/&gt;标签"></a>&lt;choose/&gt;标签</h3><p>该标签中只可以包含&lt;when/&gt;&lt;otherwise/&gt;，可以包含多个<when>与一个&lt;otherwise/&gt;。它们联合使用，完成 Java 中的开关语句 switch..case 功能。</when></p>
+<p>（1）修改 Dao 接口</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; selectStudentsByChoose(<span class="name">Student</span> student)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）定义映射文件</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- choose标签 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentsByChoose"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	select id,name,age,score </span></span><br><span class="line"><span class="xml">	from student </span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">where</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">choose</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">"name != null and name !=''"</span>&gt;</span></span></span><br><span class="line"><span class="xml">				and name like '%' #</span><span class="template-variable">&#123;name&#125;</span><span class="xml"> '%'</span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;/<span class="name">when</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">"age &gt; 0"</span>&gt;</span></span></span><br><span class="line"><span class="xml">				and age &gt; #</span><span class="template-variable">&#123;age&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;/<span class="name">when</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span></span><br><span class="line"><span class="xml">				1 = 2</span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">where</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	@Test</span><br><span class="line">	public void test03() &#123;</span><br><span class="line">//		Student stu = <span class="keyword">new</span> Student(<span class="string">"张"</span>, <span class="number">18</span>, <span class="number">0</span>);</span><br><span class="line">		Student stu = <span class="keyword">new</span> Student(<span class="string">""</span>, <span class="number">23</span>, <span class="number">0</span>);</span><br><span class="line">//		Student stu = <span class="keyword">new</span> Student(<span class="string">""</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		List&lt;Student&gt; students = dao.selectStudentsByChoose(stu);</span><br><span class="line">		<span class="keyword">for</span> (Student student : <span class="type">students</span>) &#123;</span><br><span class="line">			System.<span class="keyword">out</span>.println(student);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="lt-foreach-gt-标签"><a href="#lt-foreach-gt-标签" class="headerlink" title="&lt;foreach/&gt;标签"></a>&lt;foreach/&gt;标签</h3><p>&lt;foreach/&gt;标签用于实现对于数组与集合的遍历。对其使用，需要注意：</p>
+<ul>
+<li>collection 表示要遍历的集合类型，这里是数组，即 array。  </li>
+<li>open、 close、 separator 为对遍历内容的 SQL 拼接。</li>
+</ul>
+<p>（1）修改 Dao 接口</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span>&lt;Student&gt; selectStudentsByForeach(<span class="built_in">int</span>[] ids);</span><br><span class="line"><span class="built_in">List</span>&lt;Student&gt; selectStudentsByForeach2(<span class="built_in">List</span>&lt;Integer&gt; ids);</span><br><span class="line"><span class="built_in">List</span>&lt;Student&gt; selectStudentsByForeach3(<span class="built_in">List</span>&lt;Student&gt; ids);</span><br></pre></td></tr></table></figure>
+
+<p>（2）定义映射文件</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- foreach标签 ，遍历数组--&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentsByForeach"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="comment">&lt;!-- select id,name,age,score from student where id in (1,3,5) --&gt;</span></span></span><br><span class="line"><span class="xml">	select id,name,age,score </span></span><br><span class="line"><span class="xml">	from student </span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"array.length &gt; 0"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		where id in </span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"array"</span> <span class="attr">item</span>=<span class="string">"myid"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">close</span>=<span class="string">")"</span> <span class="attr">separator</span>=<span class="string">","</span>&gt;</span></span></span><br><span class="line"><span class="xml">			#</span><span class="template-variable">&#123;myid&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- foreach标签 ，遍历泛型为基本类型的 List--&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentsByForeach2"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="comment">&lt;!-- select id,name,age,score from student where id in (1,3,5) --&gt;</span></span></span><br><span class="line"><span class="xml">	select id,name,age,score </span></span><br><span class="line"><span class="xml">	from student </span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"list.size &gt; 0"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		where id in </span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"myid"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">close</span>=<span class="string">")"</span> <span class="attr">separator</span>=<span class="string">","</span>&gt;</span></span></span><br><span class="line"><span class="xml">			#</span><span class="template-variable">&#123;myid&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- foreach标签遍历泛型为自定义类型的 List --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentsByForeach3"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="comment">&lt;!-- select id,name,age,score from student where id in (1,3,5) --&gt;</span></span></span><br><span class="line"><span class="xml">	select id,name,age,score </span></span><br><span class="line"><span class="xml">	from student </span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"list.size &gt; 0"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		where id in </span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"stu"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">close</span>=<span class="string">")"</span> <span class="attr">separator</span>=<span class="string">","</span>&gt;</span></span></span><br><span class="line"><span class="xml">			#</span><span class="template-variable">&#123;stu.id&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test04</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">	<span class="keyword">int</span>[] ids = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">	List&lt;Student&gt; students = dao.selectStudentsByForeach(ids);</span><br><span class="line">	<span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(student);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Test</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test05</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">	List&lt;Integer&gt; ids = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	ids.<span class="keyword">add</span>(<span class="number">1</span>);</span><br><span class="line">	ids.<span class="keyword">add</span>(<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">	List&lt;Student&gt; students = dao.selectStudentsByForeach2(ids);</span><br><span class="line">	<span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(student);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Test</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test06</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">	Student stu1 = <span class="keyword">new</span> Student();</span><br><span class="line">	stu1.setId(<span class="number">1</span>);</span><br><span class="line">	Student stu2 = <span class="keyword">new</span> Student();</span><br><span class="line">	stu2.setId(<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">	List&lt;Student&gt; stus = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	stus.<span class="keyword">add</span>(stu1);</span><br><span class="line">	stus.<span class="keyword">add</span>(stu2);</span><br><span class="line">	</span><br><span class="line">	List&lt;Student&gt; students = dao.selectStudentsByForeach3(stus);</span><br><span class="line">	<span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(student);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="lt-sql-gt-标签"><a href="#lt-sql-gt-标签" class="headerlink" title="&lt;sql/&gt;标签"></a>&lt;sql/&gt;标签</h3><p>&lt;sql/&gt; 标签用于定义 SQL 片断，以便其它 SQL 标签复用。而其它标签使用该 SQL 片断，<br>需要使用 &lt;include/&gt; 子标签。 该 &lt;sql/&gt; 标签可以定义 SQL 语句中的任何部分，所以 &lt;include/&gt; 子标签可以放在动态 SQL 的任何位置。</p>
+<p>（1）修改 Dao 接口</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List<span class="tag">&lt;<span class="name">Student</span>&gt;</span> selectStudentsBySqlFragment(List<span class="tag">&lt;<span class="name">Student</span>&gt;</span> ids);</span><br></pre></td></tr></table></figure>
+
+<p>（2）定义映射文件</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- sql标签 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectStudentsBySqlFragment"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="comment">&lt;!-- select id,name,age,score from student where id in (1,3,5) --&gt;</span></span></span><br><span class="line"><span class="xml">	select <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">"selectColumns"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">	from student </span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"list.size &gt; 0"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		where id in </span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"stu"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">close</span>=<span class="string">")"</span> <span class="attr">separator</span>=<span class="string">","</span>&gt;</span></span></span><br><span class="line"><span class="xml">			#</span><span class="template-variable">&#123;stu.id&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">"selectColumns"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	id,name,age,score </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（3）修改测试类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test07</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">	Student stu1 = <span class="keyword">new</span> Student();</span><br><span class="line">	stu1.setId(<span class="number">1</span>);</span><br><span class="line">	Student stu2 = <span class="keyword">new</span> Student();</span><br><span class="line">	stu2.setId(<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">	List&lt;Student&gt; stus = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	stus.<span class="keyword">add</span>(stu1);</span><br><span class="line">	stus.<span class="keyword">add</span>(stu2);</span><br><span class="line">	</span><br><span class="line">	List&lt;Student&gt; students = dao.selectStudentsBySqlFragment(stus);</span><br><span class="line">	<span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(student);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）运行结果</p>
+<img src="/2019/08/02/MyBatis单表的CURD操作/curd18.jpg">
+      
+    </div>
+
+    
+
+    
+      
+    
+
+
+     <div>
+       
+          ﻿<div>
+
+    
+
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+
+    
+</div>
+       
+      </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>黄远志</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/" title="MyBatis单表的CURD操作">https://huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/MyBatis/" rel="tag"><i class="fa fa-tag"></i> MyBatis<i class="fa fa-tag"></i></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/31/MyBatis入门/" rel="next" title="MyBatis入门">
+                <i class="fa fa-chevron-left"></i> MyBatis入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/03/MyBatis关联关系查询/" rel="prev" title="MyBatis关联关系查询">
+                MyBatis关联关系查询 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/images/author.jpg" alt="黄远志">
+  
+  <p class="site-author-name" itemprop="name">黄远志</p>
+  <div class="site-description motion-element" itemprop="description">没有理所当然的成功，也没有毫无道理的平庸</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/huangyuanzhi1997" title="GitHub &rarr; https://github.com/huangyuanzhi1997" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="/460013011@qq.com" title="E-Mail &rarr; 460013011@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+  <div class="cc-license motion-element" itemprop="license">
+  
+  
+    
+  
+  
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义-Dao-接口实现类"><span class="nav-text">自定义 Dao 接口实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建测试环境"><span class="nav-text">搭建测试环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单纯插入数据"><span class="nav-text">单纯插入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入后用新-id-初始化被插入对象"><span class="nav-text">插入后用新 id 初始化被插入对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据"><span class="nav-text">删除数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改数据"><span class="nav-text">修改数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询所有对象-返回-List"><span class="nav-text">查询所有对象-返回 List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询所有对象-返回-Map"><span class="nav-text">查询所有对象-返回 Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询单个对象"><span class="nav-text">查询单个对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊查询"><span class="nav-text">模糊查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#与-的区别"><span class="nav-text">$与#的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据-Map-进行查询"><span class="nav-text">根据 Map 进行查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性名与查询字段名不相同"><span class="nav-text">属性名与查询字段名不相同</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建测试环境-1"><span class="nav-text">搭建测试环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询字段使用别名"><span class="nav-text">查询字段使用别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用结果映射-resultMap"><span class="nav-text">使用结果映射 resultMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mapper-动态代理"><span class="nav-text">Mapper 动态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#映射文件的-namespace-属性值"><span class="nav-text">映射文件的 namespace 属性值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改日志输出控制文件"><span class="nav-text">修改日志输出控制文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dao-接口方法名"><span class="nav-text">Dao 接口方法名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除-Dao-实现类"><span class="nav-text">删除 Dao 实现类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改测试类"><span class="nav-text">修改测试类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多查询条件无法整体接收问题的解决"><span class="nav-text">多查询条件无法整体接收问题的解决</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-将这多个参数封装为一个-Map"><span class="nav-text">1. 将这多个参数封装为一个 Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-多个参数逐个接收"><span class="nav-text">2. 多个参数逐个接收</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态SQL"><span class="nav-text">动态SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建测试环境-2"><span class="nav-text">搭建测试环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-if-gt-标签"><span class="nav-text">&lt;if/&gt;标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-where-gt-标签"><span class="nav-text">&lt;where/&gt;标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-choose-gt-标签"><span class="nav-text">&lt;choose/&gt;标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-foreach-gt-标签"><span class="nav-text">&lt;foreach/&gt;标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-sql-gt-标签"><span class="nav-text">&lt;sql/&gt;标签</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黄远志</span>
+
+  
+    <span class="post-meta-divider">|</span>
+   <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+
+   站点总字数： <span title="站点总字数">299k字</span>
+  
+
+
+ 
+</div>
+
+
+
+<!-- 底部访客分隔符访问分隔符 -->
+<!--  -->
+
+
+
+
+
+<!-- 新增访客统计代码 -->
+
+
+<div class="busuanzi-count">
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span class="site-uv">
+
+      <i class="fa fa-user"></i>
+
+      总访客量： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+|
+    </span>
+
+
+    <span class="site-uv">
+
+      <i class="fa fa-eye"></i>
+
+      总访问数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+
+    </span>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </div></footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,0" opacity="1" zindex="-1" count="150" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
