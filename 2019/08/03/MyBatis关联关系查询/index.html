@@ -1,0 +1,1305 @@
+﻿<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="关联查询当查询内容涉及到具有关联关系的多个表时， 就需要使用关联查询。根据表与表间的关联关系的不同，关联查询分为四种： （1）一对一关联查询（2）一对多关联查询（3）多对一关联查询（4）多对多关联查询 由于日常工作中最常见的关联关系是一对多、多对一与多对多，所以这里就不专门只讲解一对一关联查询了，其解决方案与多对一解决方案是相同的。">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis关联关系查询">
+<meta property="og:url" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/index.html">
+<meta property="og:site_name" content="远志の博客">
+<meta property="og:description" content="关联查询当查询内容涉及到具有关联关系的多个表时， 就需要使用关联查询。根据表与表间的关联关系的不同，关联查询分为四种： （1）一对一关联查询（2）一对多关联查询（3）多对一关联查询（4）多对多关联查询 由于日常工作中最常见的关联关系是一对多、多对一与多对多，所以这里就不专门只讲解一对一关联查询了，其解决方案与多对一解决方案是相同的。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass01.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass02.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass03.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass05.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass06.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass07.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass08.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass09.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass10.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass11.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass12.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass13.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass14.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass15.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass16.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass17.jpg">
+<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass18.jpg">
+<meta property="og:updated_time" content="2019-08-06T05:39:46.934Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBatis关联关系查询">
+<meta name="twitter:description" content="关联查询当查询内容涉及到具有关联关系的多个表时， 就需要使用关联查询。根据表与表间的关联关系的不同，关联查询分为四种： （1）一对一关联查询（2）一对多关联查询（3）多对一关联查询（4）多对多关联查询 由于日常工作中最常见的关联关系是一对多、多对一与多对多，所以这里就不专门只讲解一对一关联查询了，其解决方案与多对一解决方案是相同的。">
+<meta name="twitter:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass01.jpg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>MyBatis关联关系查询 | 远志の博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b0daf3c94841e3c5a2bdb3262fe256b0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">远志の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">敏而好学　勤奋刻苦</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">11</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">23</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/huangyuanzhi1997" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄远志">
+      <meta itemprop="description" content="没有理所当然的成功，也没有毫无道理的平庸">
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远志の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MyBatis关联关系查询
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-03 21:34:41" itemprop="dateCreated datePublished" datetime="2019-08-03T21:34:41+08:00">2019-08-03</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-06 13:39:46" itemprop="dateModified" datetime="2019-08-06T13:39:46+08:00">2019-08-06</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/框架/" itemprop="url" rel="index"><span itemprop="name">框架</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">13k</span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h2><p>当查询内容涉及到具有关联关系的多个表时， 就需要使用关联查询。根据表与表间的关联关系的不同，关联查询分为四种：</p>
+<p>（1）一对一关联查询<br>（2）一对多关联查询<br>（3）多对一关联查询<br>（4）多对多关联查询</p>
+<p>由于日常工作中最常见的关联关系是一对多、多对一与多对多，所以这里就不专门只讲解一对一关联查询了，其解决方案与多对一解决方案是相同的。</p>
+<a id="more"></a>
+
+<h3 id="一对多关联查询"><a href="#一对多关联查询" class="headerlink" title="一对多关联查询"></a>一对多关联查询</h3><p>项目： one2many</p>
+<p>这里的一对多关联查询是指，在查询一方对象的时候，同时将其所关联的多方对象也都查询出来。</p>
+<p>下面以国家 Country 与部长 Minister 间的一对多关系进行演示。</p>
+<p>（1） 定义实体</p>
+<p>在定义实体时， 若定义的是双向关联，即双方的属性中均有对方对象作为域属性出现，那么它们在定义各自的 toString()方法时需要注意，只让某一方可以输出另一方即可，不要让双方的 toString()方法均可输出对方。这样会形成递归调用，程序出错。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Country</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer cid;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> cname;</span><br><span class="line">	<span class="comment">//关联属性</span></span><br><span class="line">	<span class="keyword">private</span> Set&lt;Minister&gt; ministers;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Minister</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer mid;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> mname;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 定义数据库表</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass01.jpg">
+
+<img src="/2019/08/03/MyBatis关联关系查询/ass02.jpg">
+
+
+<p>（3） 定义 Dao 层接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>ICountryDao &#123;</span><br><span class="line">	Country selectCountryById(int cid);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4） 定义工具类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyBatisUtils</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title">getSqlSession</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			InputStream <span class="keyword">is</span> = Resources.getResourceAsStream(<span class="string">"mybatis.xml"</span>);</span><br><span class="line">			<span class="keyword">if</span> (sqlSessionFactory == <span class="literal">null</span>) &#123;</span><br><span class="line">				sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(<span class="keyword">is</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> sqlSessionFactory.openSession();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（5） 定义映射文件</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span></span><br><span class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE mapper</span></span></span><br><span class="line"><span class="xml">PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="xml">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.huang.dao.ICountryDao"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	</span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"Country"</span> <span class="attr">id</span>=<span class="string">"countryMapper"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"cid"</span> <span class="attr">property</span>=<span class="string">"cid"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"cname"</span> <span class="attr">property</span>=<span class="string">"cname"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">		</span></span><br><span class="line"><span class="xml">		<span class="comment">&lt;!-- 关联属性的映射关系 --&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"ministers"</span> <span class="attr">ofType</span>=<span class="string">"Minister"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"mid"</span> <span class="attr">property</span>=<span class="string">"mid"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"mname"</span> <span class="attr">property</span>=<span class="string">"mname"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span></span><br><span class="line"><span class="xml">	</span></span><br><span class="line"><span class="xml">	<span class="comment">&lt;!-- 多表连接查询 --&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectCountryById"</span> <span class="attr">resultMap</span>=<span class="string">"countryMapper"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		select cid,cname,mid,mname</span></span><br><span class="line"><span class="xml">		from country,minister</span></span><br><span class="line"><span class="xml">		where countryId=cid and cid=#</span><span class="template-variable">&#123;xxx&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span></span><br><span class="line"><span class="xml">	</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（6） 定义主配置文件</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span></span><br><span class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE configuration</span></span></span><br><span class="line"><span class="xml">PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="xml">"http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml">	<span class="comment">&lt;!-- 注册DB连接四要素属性文件 --&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbc.properties"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">	</span></span><br><span class="line"><span class="xml">	<span class="comment">&lt;!-- 定义类型别名 --&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="comment">&lt;!-- 将指定包中所有类的简单类名当作其别名 --&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.huang.beans"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">	<span class="comment">&lt;!-- 配置运行环境 --&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"testEM"</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"testEM"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;jdbc.driver&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;jdbc.url&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;jdbc.user&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;jdbc.password&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">	<span class="comment">&lt;!-- 注册映射文件 --&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/huang/dao/mapper.xml"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（7） 定义测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> ICountryDao dao;</span><br><span class="line">	<span class="keyword">private</span> SqlSession sqlSession;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Before</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		sqlSession = MyBatisUtils.getSqlSession();</span><br><span class="line">		dao = sqlSession.getMapper(ICountryDao.class);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@After</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">			sqlSession.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Country country = dao.selectCountryById(<span class="number">2</span>);</span><br><span class="line">		System.out.println(country);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（8） 运行结果</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass03.jpg">
+
+
+<p>在映射文件中使用&lt;collection/&gt;标签体现出两个实体对象间的关联关系。 其两个属性的意义为：</p>
+<ul>
+<li>property： 指定关联属性， 即 Country 类中的集合属性</li>
+<li>ofType：集合属性的泛型类型</li>
+</ul>
+<h4 id="多表单独查询方式"><a href="#多表单独查询方式" class="headerlink" title="多表单独查询方式"></a>多表单独查询方式</h4><p>多表连接查询方式是将多张表进行连接，连为一张表后进行查询。其查询的本质是一张表。</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass05.jpg">
+
+
+<p>关联属性&lt;collection/&gt;的数据来自于另一个查询&lt;selectMinisterByCountry/&gt;。而该查询&lt;selectMinisterByCountry/&gt;的动态参数 countryId=#{ooo}的值来自于查询&lt;selectCountryById/&gt;的查询结果字段 cid。</p>
+<h3 id="多对一关联查询"><a href="#多对一关联查询" class="headerlink" title="多对一关联查询"></a>多对一关联查询</h3><p>项目： many2one(基于one2many)</p>
+<p>这里的多对一关联查询是指，在查询多方对象的时候，同时将其所关联的一方对象也查询出来。</p>
+<p>由于在查询多方对象时也是一个一个查询，所以多对一关联查询，其实就是一对一关联查询。即一对一关联查询的实现方式与多对一的实现方式是相同的。</p>
+<p>下面以部长 Minister 与国家 Country 间的多对一关系进行演示。</p>
+<h4 id="1-多表连接查询方式"><a href="#1-多表连接查询方式" class="headerlink" title="1. 多表连接查询方式"></a>1. 多表连接查询方式</h4><p>（1） 修改实体</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Country</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer cid;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> cname;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Minister</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer mid;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> mname;</span><br><span class="line"><span class="comment">//	关联属性</span></span><br><span class="line">	<span class="keyword">private</span> Country country;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 修改数据库</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass06.jpg">
+
+
+<p>（3） 修改 Dao 层接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>IMinisterDao &#123;</span><br><span class="line">	Minister selectMinisterById(int mid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4） 修改映射文件</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;resultMap type=<span class="string">"Minister"</span> <span class="built_in">id</span>=<span class="string">"ministerMapper"</span>&gt;</span><br><span class="line">	&lt;<span class="built_in">id</span> column=<span class="string">"mid"</span> <span class="keyword">property</span>=<span class="string">"mid"</span>/&gt;</span><br><span class="line">	&lt;<span class="literal">result</span> column=<span class="string">"mname"</span> <span class="keyword">property</span>=<span class="string">"mname"</span>/&gt;</span><br><span class="line">	&lt;association <span class="keyword">property</span>=<span class="string">"country"</span> javaType=<span class="string">"Country"</span>&gt;</span><br><span class="line">		&lt;<span class="built_in">id</span> column=<span class="string">"cid"</span> <span class="keyword">property</span>=<span class="string">"cid"</span>/&gt;</span><br><span class="line">		&lt;<span class="literal">result</span> column=<span class="string">"cname"</span> <span class="keyword">property</span>=<span class="string">"cname"</span>/&gt;</span><br><span class="line">	&lt;/association&gt;</span><br><span class="line">&lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectMinisterById"</span> resultMap=<span class="string">"ministerMapper"</span>&gt;</span><br><span class="line">	select mid,mname,cid,cname</span><br><span class="line">	<span class="keyword">from</span> minister, country</span><br><span class="line">	<span class="keyword">where</span> countryId=cid <span class="keyword">and</span> mid=<span class="comment">#&#123;xxx&#125;</span></span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（5） 修改测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> IMinisterDao dao;</span><br><span class="line">	<span class="keyword">private</span> SqlSession sqlSession;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Before</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		sqlSession = MyBatisUtils.getSqlSession();</span><br><span class="line">		dao = sqlSession.getMapper(IMinisterDao.class);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@After</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">			sqlSession.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Minister minister = dao.selectMinisterById(<span class="number">2</span>);</span><br><span class="line">		System.out.println(minister);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（6） 运行结果</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass07.jpg">
+
+
+<h4 id="2-多表单独查询方式"><a href="#2-多表单独查询方式" class="headerlink" title="2. 多表单独查询方式"></a>2. 多表单独查询方式</h4><p>（1） 修改映射文件</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass08.jpg">
+
+<p>（2） 运行结果</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass09.jpg">
+
+
+<h3 id="自关联查询"><a href="#自关联查询" class="headerlink" title="自关联查询"></a>自关联查询</h3><p>所谓自关联是指，自己即充当一方，又充当多方，是 1:n 或 n:1 的变型。例如，对于新闻栏目 NewsColumn，可以充当一方，即父栏目，也可以充当多方，即子栏目。而反映到 DB 表中，只有一张表，这张表中具有一个外键，用于表示该栏目的父栏目。一级栏目没有父栏目，所以可以将其外键值设为 0，而子栏目则具有外键值。</p>
+<p>为了便于理解，将自关联分为两种情况来讲解。一种是当作 1:n 讲解，即当前类作为一方，其包含多方的集合域属性。一种是当作 n:1 讲解，即当前类作为多方，其包含一方的域属性。下面以新闻栏目为例:</p>
+<h4 id="1-以一对多方式处理"><a href="#1-以一对多方式处理" class="headerlink" title="1. 以一对多方式处理"></a>1. 以一对多方式处理</h4><p>以一对多方式处理，即一方可以看到多方。 该处理方式的应用场景比较多，例如在页面上点击父栏目，显示出其子栏目。再如，将鼠标定位在窗口中的某菜单项上会显示其所有子菜单项等。</p>
+<p>A. 查询指定栏目的所有子孙栏目</p>
+<p>根据指定的 id，仅查询出其所有子栏目。当然，包括其所有辈份的孙子栏目。 即，给出的查询 id 实际为父栏目 id。</p>
+<p>（1） 自关联的 DB 表</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass10.jpg">
+
+<p>（2） 定义实体类</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 新闻栏目：当前的新闻栏目被看作是一方，即父栏目</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewsLabel</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> name;  <span class="comment">// 栏目名称</span></span><br><span class="line">	<span class="keyword">private</span> Set&lt;NewsLabel&gt; children;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3） 定义 Dao 接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>INewsLabelDao &#123;</span><br><span class="line">	List&lt;NewsLabel&gt; selectChildrenByParent(int pid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4） 定义 mapper 映射</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;mapper namespace=<span class="string">"com.huang.dao.INewsLabelDao"</span>&gt;</span><br><span class="line">	&lt;!<span class="comment">-- </span></span><br><span class="line">	&lt;select <span class="built_in">id</span>=<span class="string">""</span> resultMap=<span class="string">"newslabelMapper"</span>&gt;</span><br><span class="line">		select <span class="built_in">id</span>,<span class="built_in">name</span> <span class="keyword">from</span> newslabel <span class="keyword">where</span> pid=<span class="comment">#&#123;ooo&#125;</span></span><br><span class="line">	&lt;/select&gt;</span><br><span class="line">	 <span class="comment">--&gt;</span></span><br><span class="line">	&lt;resultMap type=<span class="string">"NewsLabel"</span> <span class="built_in">id</span>=<span class="string">"newslabelMapper"</span>&gt;</span><br><span class="line">		&lt;<span class="built_in">id</span> column=<span class="string">"id"</span> <span class="keyword">property</span>=<span class="string">"id"</span>/&gt;</span><br><span class="line">		&lt;<span class="literal">result</span> column=<span class="string">"name"</span> <span class="keyword">property</span>=<span class="string">"name"</span>/&gt;</span><br><span class="line">		&lt;collection <span class="keyword">property</span>=<span class="string">"children"</span> </span><br><span class="line">					ofType=<span class="string">"NewsLabel"</span></span><br><span class="line">					select=<span class="string">"selectChildrenByParent"</span></span><br><span class="line">					column=<span class="string">"id"</span>/&gt;</span><br><span class="line">	&lt;/resultMap&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;select <span class="built_in">id</span>=<span class="string">"selectChildrenByParent"</span> resultMap=<span class="string">"newslabelMapper"</span>&gt;</span><br><span class="line">		select <span class="built_in">id</span>,<span class="built_in">name</span> </span><br><span class="line">		<span class="keyword">from</span> newslabel </span><br><span class="line">		<span class="keyword">where</span> pid=<span class="comment">#&#123;xxx&#125;</span></span><br><span class="line">	&lt;/select&gt;</span><br><span class="line">	</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（5） 定义测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> INewsLabelDao dao;</span><br><span class="line">	<span class="keyword">private</span> SqlSession sqlSession;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Before</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		sqlSession = MyBatisUtils.getSqlSession();</span><br><span class="line">		dao = sqlSession.getMapper(INewsLabelDao.class);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@After</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(sqlSession != <span class="keyword">null</span>) &#123;</span><br><span class="line">			sqlSession.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		List&lt;NewsLabel&gt; children = dao.selectChildrenByParent(<span class="number">3</span>);</span><br><span class="line">		<span class="keyword">for</span> (NewsLabel newsLabel : children) &#123;</span><br><span class="line">			System.out.println(newsLabel);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（6） 运行结果</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass11.jpg">
+
+
+<p>B. 查询指定栏目及其所有子孙栏目</p>
+<p>这里的查询结果，即要包含指定 id 的当前栏目，还包含其所有辈份的孙子栏目。 即给出的 id 实际为当前要查询的栏目的 id。</p>
+<p>（1） 修改 Dao 接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>INewsLabelDao &#123;</span><br><span class="line">	NewsLabel selectNewsLabelById(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 修改 mapper 映射</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectNewslabelByParent"</span> resultMap=<span class="string">"newslabelMapper"</span>&gt;</span><br><span class="line">		select <span class="built_in">id</span>,<span class="built_in">name</span> </span><br><span class="line">		<span class="keyword">from</span> newslabel </span><br><span class="line">		<span class="keyword">where</span> pid=<span class="comment">#&#123;ooo&#125;</span></span><br><span class="line">	&lt;/select&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;resultMap type=<span class="string">"NewsLabel"</span> <span class="built_in">id</span>=<span class="string">"newslabelMapper"</span>&gt;</span><br><span class="line">		&lt;<span class="built_in">id</span> column=<span class="string">"id"</span> <span class="keyword">property</span>=<span class="string">"id"</span>/&gt;</span><br><span class="line">		&lt;<span class="literal">result</span> column=<span class="string">"name"</span> <span class="keyword">property</span>=<span class="string">"name"</span>/&gt;</span><br><span class="line">		&lt;collection <span class="keyword">property</span>=<span class="string">"children"</span> </span><br><span class="line">					ofType=<span class="string">"NewsLabel"</span></span><br><span class="line">					select=<span class="string">"selectNewslabelByParent"</span></span><br><span class="line">					column=<span class="string">"id"</span>/&gt;</span><br><span class="line">	&lt;/resultMap&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;select <span class="built_in">id</span>=<span class="string">"selectNewsLabelById"</span> resultMap=<span class="string">"newslabelMapper"</span>&gt;</span><br><span class="line">		select <span class="built_in">id</span>,<span class="built_in">name</span> </span><br><span class="line">		<span class="keyword">from</span> newslabel </span><br><span class="line">		<span class="keyword">where</span> <span class="built_in">id</span>=<span class="comment">#&#123;xxx&#125;</span></span><br><span class="line">	&lt;/select&gt;</span><br><span class="line">	</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（3） 修改测试类</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"><span class="keyword">public</span> void test01() &#123;</span><br><span class="line">	NewsLabel <span class="keyword">new</span><span class="type">sLabel</span> = dao.selectNewsLabelById(<span class="number">3</span>);</span><br><span class="line">	System.out.println(<span class="keyword">new</span><span class="type">sLabel</span>);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）运行结果</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass12.jpg">
+
+<blockquote>
+<p>注意 A 和 B 查询的区别</p>
+</blockquote>
+<h4 id="2-以多对一方式处理"><a href="#2-以多对一方式处理" class="headerlink" title="2. 以多对一方式处理"></a>2. 以多对一方式处理</h4><p>以多对一方式处理，即多方可以看到一方。 该处理方式的应用场景，例如在网页上显示当前页面的站内位置。</p>
+<p>（1） 定义实体类</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 新闻栏目：当前的新闻栏目被看作是一方，即父栏目</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewsLabel</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> name;  <span class="comment">// 栏目名称</span></span><br><span class="line">	<span class="keyword">private</span> NewsLabel parent; <span class="comment">//父栏目</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 定义 Dao 接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>INewsLabelDao &#123;</span><br><span class="line">	NewsLabel selectNewsLabelById(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3） 定义 mapper 映射</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;resultMap type=<span class="string">"NewsLabel"</span> <span class="built_in">id</span>=<span class="string">"newslabelMapper"</span>&gt;</span><br><span class="line">	&lt;<span class="built_in">id</span> column=<span class="string">"id"</span> <span class="keyword">property</span>=<span class="string">"id"</span>/&gt;</span><br><span class="line">	&lt;<span class="literal">result</span> column=<span class="string">"name"</span> <span class="keyword">property</span>=<span class="string">"name"</span>/&gt;</span><br><span class="line">	&lt;collection <span class="keyword">property</span>=<span class="string">"parent"</span> </span><br><span class="line">				javaType=<span class="string">"NewsLabel"</span></span><br><span class="line">				select=<span class="string">"selectNewsLabelById"</span></span><br><span class="line">				column=<span class="string">"pid"</span>/&gt;</span><br><span class="line">&lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectNewsLabelById"</span> resultMap=<span class="string">"newslabelMapper"</span>&gt;</span><br><span class="line">	select <span class="built_in">id</span>,<span class="built_in">name</span>,pid </span><br><span class="line">	<span class="keyword">from</span> newslabel </span><br><span class="line">	<span class="keyword">where</span> <span class="built_in">id</span>=<span class="comment">#&#123;xxx&#125;</span></span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（4） 定义测试类</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"><span class="keyword">public</span> void test01() &#123;</span><br><span class="line">	NewsLabel <span class="keyword">new</span><span class="type">sLabel</span> = dao.selectNewsLabelById(<span class="number">9</span>);</span><br><span class="line">	System.out.println(<span class="keyword">new</span><span class="type">sLabel</span>);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（5） 运行结果</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass13.jpg">
+
+
+<h3 id="多对多关联查询"><a href="#多对多关联查询" class="headerlink" title="多对多关联查询"></a>多对多关联查询</h3><p>什么是多对多关联关系？一个学生可以选多门课程，而一门课程可以由多个学生选。这就是典型的多对多关系关系。所以，所谓多对多关系，其实是由两个互反的一对多关系组成。一般情况下，多对多关系都会通过一个中间表来建立， 例如选课表。</p>
+<p>项目： many2many</p>
+<p>（1） 定义实体</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer sid;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> sname;  </span><br><span class="line">	<span class="keyword">private</span> Set&lt;Course&gt; courses;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Course</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer cid;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> cname;</span><br><span class="line">	<span class="keyword">private</span> Set&lt;Student&gt; students;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2） 定义数据库表</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass14.jpg">
+
+<img src="/2019/08/03/MyBatis关联关系查询/ass15.jpg">
+
+<img src="/2019/08/03/MyBatis关联关系查询/ass16.jpg">
+
+<p>（3） 定义 Dao 层接口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>IStudentDao &#123;</span><br><span class="line">	Student selectStudentById(int sid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4） 定义工具类</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyBatisUtils</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title">getSqlSession</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			InputStream <span class="keyword">is</span> = Resources.getResourceAsStream(<span class="string">"mybatis.xml"</span>);</span><br><span class="line">			<span class="keyword">if</span> (sqlSessionFactory == <span class="literal">null</span>) &#123;</span><br><span class="line">				sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(<span class="keyword">is</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> sqlSessionFactory.openSession();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（5） 定义 mapper 映射</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;resultMap type=<span class="string">"Student"</span> <span class="built_in">id</span>=<span class="string">"studentMapper"</span>&gt;</span><br><span class="line">	&lt;<span class="built_in">id</span> column=<span class="string">"sid"</span> <span class="keyword">property</span>=<span class="string">"sid"</span>/&gt;</span><br><span class="line">	&lt;<span class="literal">result</span> column=<span class="string">"sname"</span> <span class="keyword">property</span>=<span class="string">"sname"</span>/&gt;</span><br><span class="line">	&lt;collection <span class="keyword">property</span>=<span class="string">"courses"</span> </span><br><span class="line">				ofType=<span class="string">"Course"</span>&gt;</span><br><span class="line">	    &lt;<span class="built_in">id</span> column=<span class="string">"cid"</span> <span class="keyword">property</span>=<span class="string">"cid"</span>/&gt;</span><br><span class="line">	    &lt;<span class="literal">result</span> column=<span class="string">"cname"</span> <span class="keyword">property</span>=<span class="string">"cname"</span>/&gt;</span><br><span class="line">	&lt;/collection&gt;</span><br><span class="line">				</span><br><span class="line">&lt;/resultMap&gt;</span><br><span class="line"></span><br><span class="line">&lt;select <span class="built_in">id</span>=<span class="string">"selectStudentById"</span> resultMap=<span class="string">"studentMapper"</span>&gt;</span><br><span class="line">	select sid,sname,cid,cname</span><br><span class="line">	<span class="keyword">from</span> student,<span class="keyword">middle</span>,course</span><br><span class="line">	<span class="keyword">where</span> sid=studentId </span><br><span class="line">	<span class="keyword">and</span> cid=courseId </span><br><span class="line">	<span class="keyword">and</span> sid=<span class="comment">#&#123;xxx&#125;</span></span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（5） 定义测试类</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Student student = dao.selectStudentById(<span class="number">1</span>);</span><br><span class="line">	System.out.println(student);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（6） 运行结果</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass17.jpg">
+
+
+<h2 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h2><p>MyBatis 中的延迟加载，也称为懒加载，是指在进行关联查询时， 按照设置延迟规则推迟对关联对象的 select 查询。 延迟加载可以有效的减少数据库压力。</p>
+<blockquote>
+<p>注意：<br>MyBatis 的延迟加载只是对关联对象的查询有迟延设置，对于主加载对象都是直接执行查询语句的。</p>
+</blockquote>
+<h3 id="关联对象加载时机"><a href="#关联对象加载时机" class="headerlink" title="关联对象加载时机"></a>关联对象加载时机</h3><p>MyBatis 根据对关联对象查询的 select 语句的执行时机，分为三种类型：直接加载、侵入式延迟加载与深度延迟加载。</p>
+<ul>
+<li>直接加载： 执行完对主加载对象的 select 语句，马上执行对关联对象的 select 查询。  </li>
+<li>侵入式延迟： 执行对主加载对象的查时，不会执行对关联对象的查询。但当要访问主加载对象的详情时，就会马上执行关联对象的 select 查询。 即对关联对象的查询执行，侵入到了主加载对象的详情访问中。也可以这样理解：将关联对象的详情侵入到了主加载对象的详情中，即将关联对象的详情作为主加载对象的详情的一部分出现了。  </li>
+<li>深度延迟： 执行对主加载对象的查询时，不会执行对关联对象的查询。访问主加载对象<br>的详情时也不会执行关联对象的 select 查询。只有当真正访问关联对象的详情时，才会<br>执行对关联对象的 select 查询。</li>
+</ul>
+<blockquote>
+<p>注意:<br>延迟加载的应用要求，关联对象的查询与主加载对象的查询必须是分别进行的 select 语句，不能是使用多表连接所进行的 select 查询。 因为，多表连接查询，其实质是对一张表的查询，对由多个表连接后形成的一张表的查询。会一次性将多张表的所有信息查询出来。</p>
+</blockquote>
+<p>MyBatis 中对于延迟加载设置，可以应用到一对一、一对多、多对一、多对多的所有关联关系查询中。下面以一对多关联关系查询为例：</p>
+<h3 id="直接加载"><a href="#直接加载" class="headerlink" title="直接加载"></a>直接加载</h3><p>在主配置文件的&lt;properties/&gt;与&lt;typeAliases/&gt;标签之间，添 &lt;settings/&gt;标签，用于完成全局参数设置。（可参考 MyBatis 官方文档）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置整个应用所使用的常量 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 延迟加载的总开关 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>标签的书写位置，是由约束文件进行规定好的，不能随便写</p>
+<img src="/2019/08/03/MyBatis关联关系查询/ass18.jpg">
+
+
+<h3 id="深度延迟加载"><a href="#深度延迟加载" class="headerlink" title="深度延迟加载"></a>深度延迟加载</h3><p>修改主配置文件的&lt;settings/&gt;，将延迟加载开关 lazyLoadingEnabled 开启（置为 true），将侵入式延迟加载开关 aggressiveLazyLoading 关闭（置为 false）。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置整个应用所使用的常量 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 延迟加载的总开关 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 侵入式延迟加载开关 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"aggressiveLazyLoading"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="侵入式延迟加载"><a href="#侵入式延迟加载" class="headerlink" title="侵入式延迟加载"></a>侵入式延迟加载</h3><p>修改主配置文件的&lt;settings/&gt;，将延迟加载开关 lazyLoadingEnabled 开启（置为 true），将侵入式延迟加载开关 aggressiveLazyLoading 也开启（置为 true，默认为 true）。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置整个应用所使用的常量 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 延迟加载的总开关 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 侵入式延迟加载开关 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"aggressiveLazyLoading"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<br>侵入式延迟加载需要在延迟加载开关 lazyLoadingEnabled<br>开启时才会起作用。若 lazyLoadingEnabled 为 false，则 aggressiveLazyLoading 无论取何值，均不起作用。</p>
+</blockquote>
+<p>延迟加载策略总结</p>
+<table>
+<thead>
+<tr>
+<th align="center">加载策略</th>
+<th align="center">lazyLoadingEnabled取值</th>
+<th align="center">aggressiveLazyLoading取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">直接加载</td>
+<td align="center">false</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">深度延迟加载</td>
+<td align="center">true</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">侵入式延迟加载</td>
+<td align="center">true</td>
+<td align="center">true</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+
+     <div>
+       
+          ﻿<div>
+
+    
+
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+
+    
+</div>
+       
+      </div>
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>黄远志</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/" title="MyBatis关联关系查询">https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/MyBatis/" rel="tag"><i class="fa fa-tag"></i> MyBatis<i class="fa fa-tag"></i></a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/02/MyBatis单表的CURD操作/" rel="next" title="MyBatis单表的CURD操作">
+                <i class="fa fa-chevron-left"></i> MyBatis单表的CURD操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/03/MyBatis查询缓存/" rel="prev" title="MyBatis查询缓存">
+                MyBatis查询缓存 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/images/author.jpg" alt="黄远志">
+  
+  <p class="site-author-name" itemprop="name">黄远志</p>
+  <div class="site-description motion-element" itemprop="description">没有理所当然的成功，也没有毫无道理的平庸</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/huangyuanzhi1997" title="GitHub &rarr; https://github.com/huangyuanzhi1997" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="/460013011@qq.com" title="E-Mail &rarr; 460013011@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+  <div class="cc-license motion-element" itemprop="license">
+  
+  
+    
+  
+  
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关联查询"><span class="nav-text">关联查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一对多关联查询"><span class="nav-text">一对多关联查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多表单独查询方式"><span class="nav-text">多表单独查询方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多对一关联查询"><span class="nav-text">多对一关联查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-多表连接查询方式"><span class="nav-text">1. 多表连接查询方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-多表单独查询方式"><span class="nav-text">2. 多表单独查询方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自关联查询"><span class="nav-text">自关联查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-以一对多方式处理"><span class="nav-text">1. 以一对多方式处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-以多对一方式处理"><span class="nav-text">2. 以多对一方式处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多对多关联查询"><span class="nav-text">多对多关联查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延迟加载"><span class="nav-text">延迟加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关联对象加载时机"><span class="nav-text">关联对象加载时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接加载"><span class="nav-text">直接加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度延迟加载"><span class="nav-text">深度延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#侵入式延迟加载"><span class="nav-text">侵入式延迟加载</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黄远志</span>
+
+  
+    <span class="post-meta-divider">|</span>
+   <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+
+   站点总字数： <span title="站点总字数">299k字</span>
+  
+
+
+ 
+</div>
+
+
+
+<!-- 底部访客分隔符访问分隔符 -->
+<!--  -->
+
+
+
+
+
+<!-- 新增访客统计代码 -->
+
+
+<div class="busuanzi-count">
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span class="site-uv">
+
+      <i class="fa fa-user"></i>
+
+      总访客量： <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+|
+    </span>
+
+
+    <span class="site-uv">
+
+      <i class="fa fa-eye"></i>
+
+      总访问数： <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+
+    </span>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </div></footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,0" opacity="1" zindex="-1" count="150" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
