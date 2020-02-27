@@ -186,7 +186,7 @@ th {
 body {
   position: relative;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 2;
   color: #555;
   background: #eee;
@@ -203,7 +203,7 @@ body {
 }
 @media (min-width: 1600px) {
   body {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 h1,
@@ -1238,7 +1238,7 @@ pre .javascript .function {
 .post-body .figure .caption {
   margin: -20px auto 15px;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   color: #999;
   font-weight: bold;
   line-height: 1;
@@ -1891,7 +1891,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #67c2f5;
+  background: #8bff7f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3190,7 +3190,7 @@ pre .javascript .function {
   }
 }
 body {
-  background: url("/images/background.png");
+  background: url("/images/background/background05.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 100% 25%;
@@ -3201,16 +3201,13 @@ body {
 }
 .content-wrap,
 .sidebar {
-  opacity: 0.9 !important;
+  opacity: 0.85 !important;
 }
 .header-inner {
-  background: rgba(255,255,255,0.9) !important;
+  background: rgba(255,255,255,0.85) !important;
 }
 .headband {
   display: none;
-}
-.headband img {
-  z-index: 999;
 }
 .post-body p a {
   color: #0593d3;
@@ -3221,4 +3218,53 @@ body {
   color: #fc6423;
   border-bottom: none;
   border-bottom: 1px solid #fc6423;
+}
+.footer + .back-to-top {
+  margin-right: 50px;
+  line-height: 1.5;
+  right: 10px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  background-color: rgba(111,66,193,0.78);
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.35);
+}
+.footer-inner {
+  background-color: rgba(255,255,255,0.75);
+  padding-left: 0;
+  color: #333;
+  border-top-width: 3px;
+  border-top-style: solid;
+  border-top-color: #a166ab;
+  box-shadow: 0 -10px 10px 0 rgba(0,0,0,0.15);
+}
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 101%;
+  margin: 0;
+}
+.site-nav li {
+  width: 50%;
+}
+.menu .menu-item a:hover,
+.menu-item-active a {
+  background: rgba(238,238,238,0.75);
+  border-radius: 5px;
+}
+.post-nav a {
+  color: #2a80a7;
+}
+.post-nav a:hover {
+  color: #a166ab;
+  text-shadow: 1px 1px 3px rgba(204,24,226,0.49);
+}
+.post-copyright {
+  padding: 20px;
+  background: #f6f6f6;
+  border-left: 4px solid #ddd;
+  line-height: 1.6rem;
 }
