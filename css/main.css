@@ -1891,7 +1891,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b625c6;
+  background: #e30b6e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3190,7 +3190,7 @@ pre .javascript .function {
   }
 }
 body {
-  background: url("https://picsum.photos//1920x1080");
+  background: url("https://picsum.photos/random/1920x1080");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 100% 25%;
