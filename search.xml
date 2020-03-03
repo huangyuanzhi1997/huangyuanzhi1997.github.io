@@ -520,7 +520,7 @@
 <li>AOF 文件会在操作过程中变得越来越大。如果要做一百次加法计算，最后只会在数据库里面得到最终的数值，但是在 AOF 里面会存在 100 次记录，其中 99 条记录对最终的结果是无用的；但 Redis 支持在不影响服务的前提下在后台重构 AOF 文件，让文件得以整理变小。  </li>
 <li>可以同时使用这两种方式， Redis 默认优先加载 AOF 文件（ AOF 数据最完整）。</li>
 </ol>
-<h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><p>主从复制是使用两个或两个以上相同的数据库，将一个数据库当做主数据库，而另一个数据库当做从数据库。在主数据库中进行相应操作时，从数据库记录下所有主数据库的操作，使其二者一模一样。</p>
+<h2 id="主从复制（Master-Slave）"><a href="#主从复制（Master-Slave）" class="headerlink" title="主从复制（Master/Slave）"></a>主从复制（Master/Slave）</h2><p>主从复制是使用两个或两个以上相同的数据库，将一个数据库当做主数据库，而另一个数据库当做从数据库。在主数据库中进行相应操作时，从数据库记录下所有主数据库的操作，使其二者一模一样。</p>
 <h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>读在从库读，写在主库写。简单来说就是将数据库分为了主库和从库，主库用于写数据，多个从库完成读数据的操作，主从库之间通过某种机制进行数据的同步，是一种常见的数据库架构。</p>
 <h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><ol>
 <li><p>修改配置文件，启动时，服务器读取配置文件，并自动成为指定服务器的从服务器，从而构成主从复制的关系。</p>
@@ -557,7 +557,25 @@
 <li>当 master 发生故障，需手动将其中一台 slave 使用 slaveof no one 命令提升为 master，其它 slave 执行 slaveof 命令指向这个新的 master，从新的 master 处同步数据。  </li>
 <li>主从复制模式的故障转移需要手动操作，要实现自动化处理，这就需要 Sentinel 哨兵，实现故障自动转移。</li>
 </ol>
-<h3 id="高可用-Sentinel-哨兵"><a href="#高可用-Sentinel-哨兵" class="headerlink" title="高可用 Sentinel 哨兵"></a>高可用 Sentinel 哨兵</h3><h2 id="安全设置"><a href="#安全设置" class="headerlink" title="安全设置"></a>安全设置</h2><h3 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h3><h3 id="绑定-IP"><a href="#绑定-IP" class="headerlink" title="绑定 IP"></a>绑定 IP</h3><h3 id="修改默认端口"><a href="#修改默认端口" class="headerlink" title="修改默认端口"></a>修改默认端口</h3>]]></content>
+<h3 id="高可用-Sentinel-哨兵"><a href="#高可用-Sentinel-哨兵" class="headerlink" title="高可用 Sentinel 哨兵"></a>高可用 Sentinel 哨兵</h3><p>Sentinel 哨兵是 Redis 官方提供的高可用方案，可以用它来监控多个 Redis 服务实例的运行情况。</p>
+<p>Sentinel 系统有三个主要任务：  </p>
+<ol>
+<li>监控： Sentinel 不断的检查主服务和从服务器是否按照预期正常工作。  </li>
+<li>提醒：被监控的 Redis 出现问题时， Sentinel 会通知管理员或其他应用程序。  </li>
+<li>自动故障转移：监控的主 Redis 不能正常工作， Sentinel 会开始进行故障迁移操作。将一个从服务器升级新的主服务器。 让其他从服务器挂到新的主服务器。同时向客户端<br>提供新的主服务器地址。</li>
+</ol>
+<img src="/2019/09/10/分布式架构——Redis%20进阶/readis00.png">
+
+
+<h4 id="Sentinel-配置"><a href="#Sentinel-配置" class="headerlink" title="Sentinel 配置"></a>Sentinel 配置</h4><p>Sentinel 系统默认 port 是 26379。三个配置 port 分别设置为 26380、26382、26384。</p>
+<p>三个文件分别命名为：</p>
+<ul>
+<li>sentinel26380.conf  </li>
+<li>sentinel26382.conf  </li>
+<li>sentinel26384.conf</li>
+</ul>
+<h4 id="Sentinel-配置文件修改"><a href="#Sentinel-配置文件修改" class="headerlink" title="Sentinel 配置文件修改"></a>Sentinel 配置文件修改</h4><h4 id="启动主从（-Master-Slave）-Redis"><a href="#启动主从（-Master-Slave）-Redis" class="headerlink" title="启动主从（ Master/Slave） Redis"></a>启动主从（ Master/Slave） Redis</h4><h4 id="启动-Sentinel"><a href="#启动-Sentinel" class="headerlink" title="启动 Sentinel"></a>启动 Sentinel</h4><h4 id="主-Redis-不能工作"><a href="#主-Redis-不能工作" class="headerlink" title="主 Redis 不能工作"></a>主 Redis 不能工作</h4><h4 id="Sentinel-的起作用"><a href="#Sentinel-的起作用" class="headerlink" title="Sentinel 的起作用"></a>Sentinel 的起作用</h4><h4 id="新的-Redis-加入-Sentinel-系统，自动加入-Master"><a href="#新的-Redis-加入-Sentinel-系统，自动加入-Master" class="headerlink" title="新的 Redis 加入 Sentinel 系统，自动加入 Master"></a>新的 Redis 加入 Sentinel 系统，自动加入 Master</h4><h4 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h4><h4 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h4><h2 id="安全设置"><a href="#安全设置" class="headerlink" title="安全设置"></a>安全设置</h2><p>访问 Redis 默认是没有密码的，这样不安全，任意用户都可以访问。可以启用使用密码才能访问 Redis。 设置 Redis 的访问密码，需要修改 redis.conf 中 requirepass 这一行密码。密码要比较复杂，不容易破解，而且需要定期修改。 </p>
+<h3 id="1-设置密码"><a href="#1-设置密码" class="headerlink" title="1. 设置密码"></a>1. 设置密码</h3><h4 id="开启访问密码设置"><a href="#开启访问密码设置" class="headerlink" title="开启访问密码设置"></a>开启访问密码设置</h4><h4 id="访问有密码的-Redis"><a href="#访问有密码的-Redis" class="headerlink" title="访问有密码的 Redis"></a>访问有密码的 Redis</h4><h3 id="2-绑定-IP"><a href="#2-绑定-IP" class="headerlink" title="2. 绑定 IP"></a>2. 绑定 IP</h3><h3 id="3-修改默认端口"><a href="#3-修改默认端口" class="headerlink" title="3. 修改默认端口"></a>3. 修改默认端口</h3>]]></content>
       <categories>
         <category>分布式</category>
       </categories>
