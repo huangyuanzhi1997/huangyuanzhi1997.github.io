@@ -473,7 +473,7 @@
 </ol>
 <h2 id="MyBatis注解"><a href="#MyBatis注解" class="headerlink" title="MyBatis注解"></a>MyBatis注解</h2><h3 id="Insert"><a href="#Insert" class="headerlink" title="@Insert"></a>@Insert</h3><p>其 value 属性用于指定要执行的 insert 语句。</p>
 <h3 id="SelectKey"><a href="#SelectKey" class="headerlink" title="@SelectKey"></a>@SelectKey</h3><p>用于替换 XML 中的&lt;selectKey/&gt;标签，用于返回新插入数据的 id 值</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SelectKey</span>(statement=<span class="string">"select @@identity"</span>, resultType=<span class="keyword">int</span>.class, keyProperty=<span class="string">"id"</span>, <span class="keyword">before</span>=false)</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="constructor">SelectKey(<span class="params">statement</span>=<span class="string">"select @@identity"</span>, <span class="params">resultType</span>=<span class="params">int</span>.<span class="params">class</span>, <span class="params">keyProperty</span>=<span class="string">"id"</span>, <span class="params">before</span>=<span class="params">false</span>)</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>statement：获取新插入记录主键值的 SQL 语句  </li>
