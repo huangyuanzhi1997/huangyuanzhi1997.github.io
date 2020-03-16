@@ -1,3 +1,4 @@
+https://huangyuanzhi.top/2019/11/02/分布式架构——Nginx/
 https://huangyuanzhi.top/2019/10/16/Oracle 入门教程/
 https://huangyuanzhi.top/2019/09/10/分布式架构——Redis 进阶/
 https://huangyuanzhi.top/2019/08/30/分布式架构——Redis/

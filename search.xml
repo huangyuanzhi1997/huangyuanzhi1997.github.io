@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>分布式架构——Nginx</title>
+    <url>/2019/11/02/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E2%80%94%E2%80%94Nginx/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Nginx（engine x）是一个高性能的 HTTP 和反向代理服务器，也是一个 IMAP/POP3/SMTP 服务器，并在一个 BSD-like 协议下发行。其特点是占有内存少，并发能力强；并且 Nginx 以它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名。</p>
+<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h2 id="Nginx-Web-服务器优点"><a href="#Nginx-Web-服务器优点" class="headerlink" title="Nginx Web 服务器优点"></a>Nginx Web 服务器优点</h2><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2>]]></content>
+      <categories>
+        <category>分布式</category>
+      </categories>
+      <tags>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Oracle 入门教程</title>
     <url>/2019/10/16/Oracle%20%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Oracle 数据库系统是美国 Oracle 公司(甲骨文)提供的以分布式数据库为核心的一组软件产品，是目前最流行的客户/服务器 (Client/Server) 或 B/S 体系结构的数据库之一，比如 SilverStream 就是基于数据库的一种中间件。 Oracle 数据库是目前世界上使用最为广泛的数据库管理系统，作为一个通用的数据库系统，它具有完整的数据管理功能；作为一个关系型数据库，它是一个完备关系的产品；作为分布式数据库它实现了分布式处理功能，但它的所有知识，只要在一种机型上学习了 Oracle 知识，便能在各种类型的机器上使用它。</p>
