@@ -4,7 +4,13 @@
     <title>分布式架构——Nginx</title>
     <url>/2019/11/02/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E2%80%94%E2%80%94Nginx/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Nginx（engine x）是一个高性能的 HTTP 和反向代理服务器，也是一个 IMAP/POP3/SMTP 服务器，并在一个 BSD-like 协议下发行。其特点是占有内存少，并发能力强；并且 Nginx 以它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名。</p>
-<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h2 id="Nginx-Web-服务器优点"><a href="#Nginx-Web-服务器优点" class="headerlink" title="Nginx Web 服务器优点"></a>Nginx Web 服务器优点</h2><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2>]]></content>
+<a id="more"></a>
+
+<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><h3 id="HTTP-静态服务器"><a href="#HTTP-静态服务器" class="headerlink" title="HTTP 静态服务器"></a>HTTP 静态服务器</h3><p>Nginx 作 HTTP 静态服务器时可以用来存储图片，文件等静态资源。</p>
+<h3 id="负载均衡服务器"><a href="#负载均衡服务器" class="headerlink" title="负载均衡服务器"></a>负载均衡服务器</h3><p>Nginx 既可以在内部直接支持 Rails 和 PHP 程序对外进行服务，也可以支持作为 HTTP 代理服务器对外进行服务。 Nginx 采用 C 进行编写，不论是系统资源开销还是 CPU 使用效率都比 Perlbal 要好很多。</p>
+<h3 id="邮件代理服务器"><a href="#邮件代理服务器" class="headerlink" title="邮件代理服务器"></a>邮件代理服务器</h3><p>Nginx 同时也是一个非常优秀的邮件代理服务器（最早开发这个产品的目的之一也是作为邮件代理服务器）， Last.fm 描述了成功并且美妙的使用经验。</p>
+<h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><p>正向代理是客户端直接访问服务器（隐藏真实客户端）。而反向代理是客户端请求 Nginx，Nginx 请求服务器，然后返回数据给客户端（隐藏真实服务端）。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h2 id="Nginx-Web-服务器优点"><a href="#Nginx-Web-服务器优点" class="headerlink" title="Nginx Web 服务器优点"></a>Nginx Web 服务器优点</h2><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2>]]></content>
       <categories>
         <category>分布式</category>
       </categories>
