@@ -1891,7 +1891,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d72298;
+  background: #01ff6f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3194,7 +3194,6 @@ body {
   background: url("https://uploadbeta.com/api/pictures/random");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 100% 25%;
   background-size: cover;
 }
 .backstretch {
