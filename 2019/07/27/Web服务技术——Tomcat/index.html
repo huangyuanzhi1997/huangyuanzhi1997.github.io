@@ -386,6 +386,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/27/Web服务技术——Tomcat/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/27/Web服务技术——Tomcat/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -677,6 +687,9 @@ work：jsp翻译成class文件存放地</code></pre><h2 id="如何把一个项�
 
           
 
+  
+    <div class="comments" id="comments">
+    </div>
   
 
 
@@ -1118,6 +1131,41 @@ work：jsp翻译成class文件存放地</code></pre><h2 id="如何把一个项�
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>  <!-- 删除Valine核心代码库外链调用 -->
+  <script src="/js/src/Valine.min.js"></script>  <!-- 调用下载的本地文件以加速加载速度 -->
+  
+      <!-- 这里改为从本地加载 -->
+  
+  <script src="/js/src/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'td3ru1FMyrqnXvojfxCEMMBi-gzGzoHsz',
+        appKey: 'lgYQHCBovOR1ASgALnvHVeBl',
+        placeholder: '期待您的神评论！',
+        avatar:'mm',
+        guest_info:['nick'],  <!-- 评论者只需要提供评论的昵称即可 -->
+        pageSize:'10' || 10,
+    });
+       
+    var infoEle = document.querySelector('#comments .info');  <!-- 去除 power by valine -->
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+      infoEle.childNodes.forEach(function(item) {
+        item.parentNode.removeChild(item);
+      });
+    }
+
+  </script>
 
 
 
