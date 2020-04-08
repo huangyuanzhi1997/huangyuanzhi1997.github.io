@@ -3,14 +3,120 @@
   <entry>
     <title>分布式架构——Nginx</title>
     <url>/2019/11/02/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E2%80%94%E2%80%94Nginx/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Nginx（engine x）是一个高性能的 HTTP 和反向代理服务器，也是一个 IMAP/POP3/SMTP 服务器，并在一个 BSD-like 协议下发行。其特点是占有内存少，并发能力强；并且 Nginx 以它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Nginx-简介"><a href="#Nginx-简介" class="headerlink" title="Nginx 简介"></a>Nginx 简介</h2><p>Nginx（engine x）是一个高性能的 HTTP 和反向代理服务器，也是一个 IMAP/POP3/SMTP 服务器，并在一个 BSD-like 协议下发行。其特点是占有内存少，并发能力强；并且 Nginx 以它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名。</p>
 <a id="more"></a>
 
-<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><h3 id="HTTP-静态服务器"><a href="#HTTP-静态服务器" class="headerlink" title="HTTP 静态服务器"></a>HTTP 静态服务器</h3><p>Nginx 作 HTTP 静态服务器时可以用来存储图片，文件等静态资源。</p>
+<h2 id="Nginx-用途"><a href="#Nginx-用途" class="headerlink" title="Nginx 用途"></a>Nginx 用途</h2><h3 id="HTTP-静态服务器"><a href="#HTTP-静态服务器" class="headerlink" title="HTTP 静态服务器"></a>HTTP 静态服务器</h3><p>Nginx 作 HTTP 静态服务器时可以用来存储图片，文件等静态资源。</p>
 <h3 id="负载均衡服务器"><a href="#负载均衡服务器" class="headerlink" title="负载均衡服务器"></a>负载均衡服务器</h3><p>Nginx 既可以在内部直接支持 Rails 和 PHP 程序对外进行服务，也可以支持作为 HTTP 代理服务器对外进行服务。 Nginx 采用 C 进行编写，不论是系统资源开销还是 CPU 使用效率都比 Perlbal 要好很多。</p>
 <h3 id="邮件代理服务器"><a href="#邮件代理服务器" class="headerlink" title="邮件代理服务器"></a>邮件代理服务器</h3><p>Nginx 同时也是一个非常优秀的邮件代理服务器（最早开发这个产品的目的之一也是作为邮件代理服务器）， Last.fm 描述了成功并且美妙的使用经验。</p>
 <h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><p>正向代理是客户端直接访问服务器（隐藏真实客户端）。而反向代理是客户端请求 Nginx，Nginx 请求服务器，然后返回数据给客户端（隐藏真实服务端）。</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h2 id="Nginx-Web-服务器优点"><a href="#Nginx-Web-服务器优点" class="headerlink" title="Nginx Web 服务器优点"></a>Nginx Web 服务器优点</h2><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2>]]></content>
+<h2 id="Nginx-特点"><a href="#Nginx-特点" class="headerlink" title="Nginx 特点"></a>Nginx 特点</h2><h3 id="热部署"><a href="#热部署" class="headerlink" title="热部署"></a>热部署</h3><p>在 master 管理进程与 worker 工作进程的分离设计中，Nginx 具有热部署的功能，在 7× 24 小时不间断服务的前提下，可升级 Nginx 的可执行文件。也可以在不停止服务的情况下修改配置文件，更换日志文件等功能。</p>
+<h3 id="高并发"><a href="#高并发" class="headerlink" title="高并发"></a>高并发</h3><p>理论上，Nginx 支持的并发连接上限取决于内存，并且能够及时的处理更多的并发请求。</p>
+<h3 id="低内存"><a href="#低内存" class="headerlink" title="低内存"></a>低内存</h3><p>在一般的情况下，10000 个非活跃的 HTTP Keep-Alive 连接在 Nginx 中仅消耗 2.5M 的内存，这也是 Nginx 支持高并发连接的基础。</p>
+<h3 id="响应快"><a href="#响应快" class="headerlink" title="响应快"></a>响应快</h3><p>在正常的情况下，单次请求会得到更快的响应。在高峰期，Nginx 可以比其他的 Web 服务器更快的响应请求。</p>
+<h3 id="高可靠性"><a href="#高可靠性" class="headerlink" title="高可靠性"></a>高可靠性</h3><p>高可靠性来自其核心框架代码的优秀设计、模块设计的简单性，并且这些模块都非常的稳定；当一个worker进程出错时，master 管理进程会快速的拉起新的 worker 子进程提供服务。</p>
+<h2 id="Nginx-Web-服务器优点"><a href="#Nginx-Web-服务器优点" class="headerlink" title="Nginx Web 服务器优点"></a>Nginx Web 服务器优点</h2><p>常见的 Web 服务器有 Nginx、Apache、Lighttpd 等，他们的特点如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Web 服务器</th>
+<th align="left">Nginx</th>
+<th align="left">Apache</th>
+<th align="left">Lighttpd</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Proxy 代理</td>
+<td align="left">非常好</td>
+<td align="left">非常好</td>
+<td align="left">一般</td>
+</tr>
+<tr>
+<td align="left">Rewriter（重写）</td>
+<td align="left">非常好</td>
+<td align="left">好</td>
+<td align="left">一般</td>
+</tr>
+<tr>
+<td align="left">Fcgi（接口）</td>
+<td align="left">好</td>
+<td align="left">不好</td>
+<td align="left">非常好</td>
+</tr>
+<tr>
+<td align="left">热部署</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">系统压力比较</td>
+<td align="left">很小</td>
+<td align="left">很大</td>
+<td align="left">比较小</td>
+</tr>
+<tr>
+<td align="left">稳定性</td>
+<td align="left">非常好</td>
+<td align="left">好</td>
+<td align="left">不好</td>
+</tr>
+<tr>
+<td align="left">安全性</td>
+<td align="left">一般</td>
+<td align="left">好</td>
+<td align="left">一般</td>
+</tr>
+<tr>
+<td align="left">技术支持</td>
+<td align="left">很少</td>
+<td align="left">非常好</td>
+<td align="left">一般</td>
+</tr>
+<tr>
+<td align="left">静态文件处理</td>
+<td align="left">非常好</td>
+<td align="left">一般</td>
+<td align="left">好</td>
+</tr>
+<tr>
+<td align="left">Vhosts 虚拟主机</td>
+<td align="left">不支持</td>
+<td align="left">支持</td>
+<td align="left">支持</td>
+</tr>
+<tr>
+<td align="left">反向代理</td>
+<td align="left">非常好</td>
+<td align="left">一般</td>
+<td align="left">一般</td>
+</tr>
+<tr>
+<td align="left">Session sticky（粘滞会话）</td>
+<td align="left">不支持</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">Epoll（I/O 事件通知机制）</td>
+<td align="left">支持</td>
+<td align="left">不支持</td>
+<td align="left">支持</td>
+</tr>
+<tr>
+<td align="left">量级</td>
+<td align="left">轻量</td>
+<td align="left">重量级</td>
+<td align="left">轻量</td>
+</tr>
+<tr>
+<td align="left">复杂度（安装、配置）</td>
+<td align="left">简单</td>
+<td align="left">较复杂</td>
+<td align="left">简单</td>
+</tr>
+</tbody></table>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2>]]></content>
       <categories>
         <category>分布式</category>
       </categories>
