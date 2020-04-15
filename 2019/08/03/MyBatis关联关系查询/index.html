@@ -84,32 +84,32 @@
 <meta name="keywords" content="MyBatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MyBatis关联关系查询">
-<meta property="og:url" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/index.html">
+<meta property="og:url" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/index.html">
 <meta property="og:site_name" content="远志の博客">
 <meta property="og:description" content="关联查询当查询内容涉及到具有关联关系的多个表时， 就需要使用关联查询。根据表与表间的关联关系的不同，关联查询分为四种： （1）一对一关联查询（2）一对多关联查询（3）多对一关联查询（4）多对多关联查询 由于日常工作中最常见的关联关系是一对多、多对一与多对多，所以这里就不专门只讲解一对一关联查询了，其解决方案与多对一解决方案是相同的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass01.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass02.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass03.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass05.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass06.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass07.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass08.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass09.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass10.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass11.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass12.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass13.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass14.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass15.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass16.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass17.jpg">
-<meta property="og:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass18.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass01.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass02.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass03.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass05.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass06.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass07.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass08.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass09.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass10.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass11.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass12.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass13.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass14.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass15.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass16.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass17.jpg">
+<meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass18.jpg">
 <meta property="og:updated_time" content="2019-08-06T05:39:46.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis关联关系查询">
 <meta name="twitter:description" content="关联查询当查询内容涉及到具有关联关系的多个表时， 就需要使用关联查询。根据表与表间的关联关系的不同，关联查询分为四种： （1）一对一关联查询（2）一对多关联查询（3）多对一关联查询（4）多对多关联查询 由于日常工作中最常见的关联关系是一对多、多对一与多对多，所以这里就不专门只讲解一对一关联查询了，其解决方案与多对一解决方案是相同的。">
-<meta name="twitter:image" content="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass01.jpg">
+<meta name="twitter:image" content="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/ass01.jpg">
 
 
 
@@ -139,7 +139,7 @@
 
 
 
-  <link rel="canonical" href="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/">
+  <link rel="canonical" href="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/">
 
 
 
@@ -316,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/">
+    <link itemprop="mainEntityOfPage" href="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="黄远志">
@@ -715,7 +715,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/" title="MyBatis关联关系查询">https://huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/</a>
+    <a href="https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/" title="MyBatis关联关系查询">https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>

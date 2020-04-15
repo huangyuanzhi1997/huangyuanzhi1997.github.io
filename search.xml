@@ -1256,7 +1256,7 @@
 
 
 <h3 id="返回-ModelAndView-时的请求转发"><a href="#返回-ModelAndView-时的请求转发" class="headerlink" title="返回 ModelAndView 时的请求转发"></a>返回 ModelAndView 时的请求转发</h3><p>默认情况下， 当处理器方法返回 ModelAndView 时，跳转到指定的 View，使用的是请求转发。但也可显式的进行指出，此时，需在 setViewName()指定的视图前添加 forward:，且此时的视图不会再与视图解析器中的前辍与后辍进行拼接。即必须写出相对于项目根的路径。</p>
-<p>相关知识请查看之前的文章：<br><a href="https://www.huangyuanzhi.top/2019/08/14/SpringMVC%E9%85%8D%E7%BD%AE%E5%BC%8F%E5%BC%80%E5%8F%91/#more" title="Spring配置式开发" target="_blank" rel="noopener">Spring配置式开发</a><br><a href="https://www.huangyuanzhi.top/2019/08/15/SpringMVC%E6%B3%A8%E8%A7%A3%E5%BC%8F%E5%BC%80%E5%8F%91/#more" title="SpringMVC注解式开发" target="_blank" rel="noopener">SpringMVC注解式开发</a> </p>
+<p>相关知识请查看之前的文章：<br><a href="https://www.huangyuanzhi.top/2019/08/14/SpringMVC%E9%85%8D%E7%BD%AE%E5%BC%8F%E5%BC%80%E5%8F%91/#more" title="Spring配置式开发">Spring配置式开发</a><br><a href="https://www.huangyuanzhi.top/2019/08/15/SpringMVC%E6%B3%A8%E8%A7%A3%E5%BC%8F%E5%BC%80%E5%8F%91/#more" title="SpringMVC注解式开发">SpringMVC注解式开发</a> </p>
 <h4 id="1-请求转发到页面"><a href="#1-请求转发到页面" class="headerlink" title="1. 请求转发到页面"></a>1. 请求转发到页面</h4><p>当通过请求转发跳转到目标资源（页面或 Controller）时，若需要向下传递数据，除了可以使用 request， session 外，还可以将数据存放于 ModelAndView 中的 Model 中。页面通过 EL 表达式可直接访问该数据。</p>
 <img src="/2019/08/17/SpringMVC核心技术/core02.png">
 
@@ -1670,7 +1670,7 @@
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>所谓 SpringMVC 的注解式开发是指，处理器是基于注解的类的开发。 对于每一个定义的处理器，无需在配置文件中逐个注册，只需在代码中通过对类与方法的注解，便可完成注册。即注解替换的是配置文件中对于处理器的注册部分。</p>
 <a id="more"></a>
 
-<h2 id="第一个注解式开发程序"><a href="#第一个注解式开发程序" class="headerlink" title="第一个注解式开发程序"></a>第一个注解式开发程序</h2><p><a href="https://www.huangyuanzhi.top/2019/08/12/SpringMVC%E6%A6%82%E8%BF%B0/#more" title="开发流程" target="_blank" rel="noopener">开发流程五个步骤请查看之前的文章</a></p>
+<h2 id="第一个注解式开发程序"><a href="#第一个注解式开发程序" class="headerlink" title="第一个注解式开发程序"></a>第一个注解式开发程序</h2><p><a href="https://www.huangyuanzhi.top/2019/08/12/SpringMVC%E6%A6%82%E8%BF%B0/#more" title="开发流程">开发流程五个步骤请查看之前的文章</a></p>
 <h3 id="注册组件扫描器"><a href="#注册组件扫描器" class="headerlink" title="注册组件扫描器"></a>注册组件扫描器</h3><p>这里的组件即处理器，需要指定处理器所在基本包。</p>
 <figure class="highlight vhdl"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">context</span>:<span class="keyword">component</span>-scan base-<span class="keyword">package</span>=<span class="string">"com.huang.handlers"</span>/&gt;</span><br></pre></td></tr></table></figure>
 
@@ -1987,7 +1987,7 @@
 <li>还可以对 url 进行统一映射管理</li>
 </ol>
 </blockquote>
-<h2 id="处理器适配器-HandlerAdapter"><a href="#处理器适配器-HandlerAdapter" class="headerlink" title="处理器适配器 HandlerAdapter"></a>处理器适配器 HandlerAdapter</h2><p>有关适配器模式的详细介绍，请点击<a href="https://www.huangyuanzhi.top/2019/07/28/SSM%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more" target="_blank" rel="noopener">这里</a></p>
+<h2 id="处理器适配器-HandlerAdapter"><a href="#处理器适配器-HandlerAdapter" class="headerlink" title="处理器适配器 HandlerAdapter"></a>处理器适配器 HandlerAdapter</h2><p>有关适配器模式的详细介绍，请点击<a href="https://www.huangyuanzhi.top/2019/07/28/SSM%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more">这里</a></p>
 <p>之所以要将 Handler 定义为 Controller 接口的实现类， 就是因为这里使用的处理器适配器是 SimpleControllerHandlerAdapter。打开其源码，可以看到将 handler 强转为了 Controller。在定义 Handler 时，若不将其定义为 Controller 接口的实现类，这里的强转要出错的。</p>
 <img src="/2019/08/14/SpringMVC配置式开发/conf03.jpg">
 
