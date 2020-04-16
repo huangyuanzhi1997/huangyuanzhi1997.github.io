@@ -116,13 +116,33 @@
 <td align="left">简单</td>
 </tr>
 </tbody></table>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="启动-Nginx"><a href="#启动-Nginx" class="headerlink" title="启动 Nginx"></a>启动 Nginx</h3><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line"><span class="literal">start</span> nginx</span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="启动-Nginx"><a href="#启动-Nginx" class="headerlink" title="启动 Nginx"></a>启动 Nginx</h3><h4 id="Linux-下启动-Nginx"><a href="#Linux-下启动-Nginx" class="headerlink" title="Linux 下启动 Nginx"></a>Linux 下启动 Nginx</h4><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">service nginx <span class="literal">start</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Windows-下启动-Nginx"><a href="#Windows-下启动-Nginx" class="headerlink" title="Windows 下启动 Nginx"></a>Windows 下启动 Nginx</h4><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line"><span class="literal">start</span> nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="平滑启动-Nginx"><a href="#平滑启动-Nginx" class="headerlink" title="平滑启动 Nginx"></a>平滑启动 Nginx</h4><p>在不停止 Nginx 的情况下，重启 Nginx，重新加载配置文件，启动新的工作线程，停止旧的工作线程。</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">nginx -s reload</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="停止-Nginx"><a href="#停止-Nginx" class="headerlink" title="停止 Nginx"></a>停止 Nginx</h3><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">nginx -s <span class="built_in">stop</span></span><br></pre></td></tr></table></figure>
 
+<p>stop 是快速关闭，不管有没有正在处理的请求。</p>
 <figure class="highlight cos"><table><tr><td class="code"><pre><span class="line">nginx -<span class="keyword">s</span> <span class="keyword">quit</span></span><br></pre></td></tr></table></figure>
 
+<p>quit 是 Nginx 在退出前完成已经接受的连接请求。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">pkill <span class="number">-9</span> nginx</span><br></pre></td></tr></table></figure>
+
+<p>强制停止 Nginx。</p>
+<h3 id="检查-nginx-conf-文件的修改是否正确"><a href="#检查-nginx-conf-文件的修改是否正确" class="headerlink" title="检查 nginx.conf 文件的修改是否正确"></a>检查 nginx.conf 文件的修改是否正确</h3><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">nginx -t -c <span class="regexp">/etc/</span>nginx<span class="regexp">/nginx.conf</span></span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">nginx -t</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="重载配置-Nginx"><a href="#重载配置-Nginx" class="headerlink" title="重载配置 Nginx"></a>重载配置 Nginx</h3><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">nginx -s reload</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看-Nginx-的版本"><a href="#查看-Nginx-的版本" class="headerlink" title="查看 Nginx 的版本"></a>查看 Nginx 的版本</h3><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">nginx -v</span></span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">nginx -V</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
