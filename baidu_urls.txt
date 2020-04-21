@@ -1,7 +1,8 @@
-https://www.huangyuanzhi.top/2019/11/02/分布式架构——Nginx/
+https://www.huangyuanzhi.top/2019/12/10/分布式架构——Nginx基础/
+https://www.huangyuanzhi.top/2019/11/02/分布式架构——Redis高级/
 https://www.huangyuanzhi.top/2019/10/16/Oracle 入门教程/
-https://www.huangyuanzhi.top/2019/09/10/分布式架构——Redis 进阶/
-https://www.huangyuanzhi.top/2019/08/30/分布式架构——Redis/
+https://www.huangyuanzhi.top/2019/09/10/分布式架构——Redis进阶/
+https://www.huangyuanzhi.top/2019/08/30/分布式架构——Redis基础/
 https://www.huangyuanzhi.top/2019/08/23/Java常用的注解/
 https://www.huangyuanzhi.top/2019/08/21/MyBatis常用的设计模式/
 https://www.huangyuanzhi.top/2019/08/17/SpringMVC核心技术/
