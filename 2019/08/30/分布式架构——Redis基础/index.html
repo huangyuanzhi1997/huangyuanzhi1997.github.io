@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/30/分布式架构——Redis基础/redis01.png">
 <meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/30/分布式架构——Redis基础/redis02.png">
 <meta property="og:image" content="https://www.huangyuanzhi.top/2019/08/30/分布式架构——Redis基础/redis03.png">
-<meta property="og:updated_time" content="2020-04-21T10:56:57.139Z">
+<meta property="og:updated_time" content="2020-05-02T12:30:00.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式架构——Redis基础">
 <meta name="twitter:description" content="分布式应用程序就是指应用程序分布在不同计算机上，通过网络来共同完成一项任务，通常为服务器/客户端模式。更广义上理解“分布”，不只是应用程序，还包括数据库等，分布在不同计算机，完成同一个任务。这种架构提供了负载均衡的能力，大大提高了系统负载能力，解决了网站高并发的需求。">
@@ -356,8 +356,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-04-21T18:56:57+08:00">
-                2020-04-21
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-02T20:30:00+08:00">
+                2020-05-02
               </time>
             
           </span>
@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.4k
                 </span>
               
 
@@ -532,7 +532,34 @@
 
 
 <h3 id="关闭-Redis"><a href="#关闭-Redis" class="headerlink" title="关闭 Redis"></a>关闭 Redis</h3><h3 id="Redis-基本操作命令"><a href="#Redis-基本操作命令" class="headerlink" title="Redis 基本操作命令"></a>Redis 基本操作命令</h3><p>Redis 默认为 16 个库（在 redis.conf 文件配置），默认自动使用 0 号库。</p>
-<h4 id="沟通命令，查看状态"><a href="#沟通命令，查看状态" class="headerlink" title="沟通命令，查看状态"></a>沟通命令，查看状态</h4><h4 id="查看当前数据库中-key-的数目"><a href="#查看当前数据库中-key-的数目" class="headerlink" title="查看当前数据库中 key 的数目"></a>查看当前数据库中 key 的数目</h4><h4 id="切换库命令"><a href="#切换库命令" class="headerlink" title="切换库命令"></a>切换库命令</h4><h4 id="删除当前库的数据"><a href="#删除当前库的数据" class="headerlink" title="删除当前库的数据"></a>删除当前库的数据</h4><h4 id="退出当前-Redis-连接"><a href="#退出当前-Redis-连接" class="headerlink" title="退出当前 Redis 连接"></a>退出当前 Redis 连接</h4><h3 id="Redis-的-Key-的操作命令"><a href="#Redis-的-Key-的操作命令" class="headerlink" title="Redis 的 Key 的操作命令"></a>Redis 的 Key 的操作命令</h3><h4 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h4><h4 id="expire"><a href="#expire" class="headerlink" title="expire"></a>expire</h4><h4 id="ttl"><a href="#ttl" class="headerlink" title="ttl"></a>ttl</h4><h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><h4 id="del"><a href="#del" class="headerlink" title="del"></a>del</h4>
+<h4 id="沟通命令，查看状态"><a href="#沟通命令，查看状态" class="headerlink" title="沟通命令，查看状态"></a>沟通命令，查看状态</h4><p>输入 ping， Redis 给我们返回 PONG，表示 Redis 服务运行正常。</p>
+<h4 id="查看当前数据库中-key-的数目"><a href="#查看当前数据库中-key-的数目" class="headerlink" title="查看当前数据库中 key 的数目"></a>查看当前数据库中 key 的数目</h4><p>语法： dbsize<br>作用： 返回当前数据库的 key 的数量。<br>返回值：数字， key 的数量</p>
+<h4 id="切换库命令"><a href="#切换库命令" class="headerlink" title="切换库命令"></a>切换库命令</h4><p>命令为 select db，使用其他数据库， 命令是 select index。</p>
+<h4 id="删除当前库的数据"><a href="#删除当前库的数据" class="headerlink" title="删除当前库的数据"></a>删除当前库的数据</h4><p>命令为 flushdb。</p>
+<h4 id="退出当前-Redis-连接"><a href="#退出当前-Redis-连接" class="headerlink" title="退出当前 Redis 连接"></a>退出当前 Redis 连接</h4><p>命令为 exit 或 quit。</p>
+<h3 id="Redis-的-Key-的操作命令"><a href="#Redis-的-Key-的操作命令" class="headerlink" title="Redis 的 Key 的操作命令"></a>Redis 的 Key 的操作命令</h3><h4 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h4><p>语法： keys pattern<br>作用：查找所有符合模式 pattern 的 key. pattern 可以使用通配符。<br>通配符：</p>
+<ul>
+<li>“* ”：表示 0 到多个字符 ，例如： keys * 查询所有的 key。  </li>
+<li>“？”：表示单个字符，例如： wo?d , 匹配 word , wood</li>
+</ul>
+<h4 id="expire"><a href="#expire" class="headerlink" title="expire"></a>expire</h4><p>语法： expire key seconds<br>作用：设置 key 的生存时间， 超过时间， key 自动删除。单位是秒。<br>返回值：设置成功返回数字 1， 其他情况是 0</p>
+<h4 id="ttl"><a href="#ttl" class="headerlink" title="ttl"></a>ttl</h4><p>法： ttl key<br>作用：以秒为单位，返回 key 的剩余生存时间（ttl: time to live）<br>返回值：  </p>
+<ul>
+<li>-1 ：没有设置 key 的生存时间， key 永不过期。  </li>
+<li>-2 ： key 不存在。  </li>
+<li>数字： key 的剩余时间，秒为单位。  </li>
+</ul>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p>语法： type key<br>作用：查看 key 所存储值的数据类型。<br>返回值：字符串表示的数据类型  </p>
+<ul>
+<li>none（key 不存在）  </li>
+<li>string（字符串）  </li>
+<li>list（列表）  </li>
+<li>set（集合）  </li>
+<li>zset（有序集）  </li>
+<li>hash（哈希表）</li>
+</ul>
+<h4 id="del"><a href="#del" class="headerlink" title="del"></a>del</h4><p>语法： del key [key…]<br>作用：删除存在的 key ，不存在的 key 忽略。<br>返回值：数字，删除的 key 的数量</p>
+
       
     </div>
     
