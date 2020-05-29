@@ -1040,19 +1040,13 @@
 
 <img src="/2019/08/30/分布式架构——Redis基础/redis01.png">
 
-
 <p>在其他窗口查看 Redis 启动的进程</p>
 <img src="/2019/08/30/分布式架构——Redis基础/redis02.png">
 
-<h4 id="后台启动"><a href="#后台启动" class="headerlink" title="后台启动"></a>后台启动</h4><p>Redis 应用以后台的方式启动，关闭窗口，查看 Redis 进程，依然存在。</p>
+<h4 id="后台启动"><a href="#后台启动" class="headerlink" title="后台启动"></a>后台启动</h4><p>Redis 应用以后台的方式启动，关闭窗口后 Redis 进程依然存在。</p>
 <figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">[huang<span class="variable">@localhost</span> src]<span class="variable">$ </span>./redis-server &amp;</span><br></pre></td></tr></table></figure>
 
 <img src="/2019/08/30/分布式架构——Redis基础/redis03.png">
-
-
-
-
-
 
 <h3 id="关闭-Redis"><a href="#关闭-Redis" class="headerlink" title="关闭 Redis"></a>关闭 Redis</h3><h3 id="Redis-基本操作命令"><a href="#Redis-基本操作命令" class="headerlink" title="Redis 基本操作命令"></a>Redis 基本操作命令</h3><p>Redis 默认为 16 个库（在 redis.conf 文件配置），默认自动使用 0 号库。</p>
 <h4 id="沟通命令，查看状态"><a href="#沟通命令，查看状态" class="headerlink" title="沟通命令，查看状态"></a>沟通命令，查看状态</h4><p>输入 ping， Redis 给我们返回 PONG，表示 Redis 服务运行正常。</p>
