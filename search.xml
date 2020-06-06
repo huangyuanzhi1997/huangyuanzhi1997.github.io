@@ -20,7 +20,8 @@
 <li>WebService 可被其他应用程序使用；</li>
 <li>XML 是 WebService 的基础。</li>
 </ul>
-<h3 id="WebService-如何工作"><a href="#WebService-如何工作" class="headerlink" title="WebService 如何工作"></a>WebService 如何工作</h3><h3 id="WebService-两种类型的应用"><a href="#WebService-两种类型的应用" class="headerlink" title="WebService 两种类型的应用"></a>WebService 两种类型的应用</h3><h2 id="WebService-平台元素"><a href="#WebService-平台元素" class="headerlink" title="WebService 平台元素"></a>WebService 平台元素</h2><p>未完……</p>
+<h3 id="WebService-如何工作"><a href="#WebService-如何工作" class="headerlink" title="WebService 如何工作"></a>WebService 如何工作</h3><h3 id="WebService-两种类型的应用"><a href="#WebService-两种类型的应用" class="headerlink" title="WebService 两种类型的应用"></a>WebService 两种类型的应用</h3><h2 id="WebService-平台元素"><a href="#WebService-平台元素" class="headerlink" title="WebService 平台元素"></a>WebService 平台元素</h2><p>WebService 拥有三种基本的元素，它们是：SOAP、WSDL 以及 UDDI。基本的 WebService 平台是 XML + HTTP。</p>
+<h3 id="什么是-SOAP"><a href="#什么是-SOAP" class="headerlink" title="什么是 SOAP"></a>什么是 SOAP</h3><h3 id="什么是-WSDL"><a href="#什么是-WSDL" class="headerlink" title="什么是 WSDL"></a>什么是 WSDL</h3><h3 id="什么是-UDDI"><a href="#什么是-UDDI" class="headerlink" title="什么是 UDDI"></a>什么是 UDDI</h3><p>未完……</p>
 ]]></content>
       <categories>
         <category>分布式</category>
