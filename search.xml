@@ -230,6 +230,7 @@
 ]]></content>
       <categories>
         <category>分布式</category>
+        <category>Nginx</category>
       </categories>
       <tags>
         <tag>Nginx</tag>
@@ -384,6 +385,7 @@
 <h3 id="1-设置密码"><a href="#1-设置密码" class="headerlink" title="1. 设置密码"></a>1. 设置密码</h3><h4 id="开启访问密码设置"><a href="#开启访问密码设置" class="headerlink" title="开启访问密码设置"></a>开启访问密码设置</h4><h4 id="访问有密码的-Redis"><a href="#访问有密码的-Redis" class="headerlink" title="访问有密码的 Redis"></a>访问有密码的 Redis</h4><h3 id="2-绑定-IP"><a href="#2-绑定-IP" class="headerlink" title="2. 绑定 IP"></a>2. 绑定 IP</h3><h3 id="3-修改默认端口"><a href="#3-修改默认端口" class="headerlink" title="3. 修改默认端口"></a>3. 修改默认端口</h3>]]></content>
       <categories>
         <category>分布式</category>
+        <category>Redis</category>
       </categories>
       <tags>
         <tag>Redis</tag>
@@ -1044,6 +1046,7 @@
 ]]></content>
       <categories>
         <category>分布式</category>
+        <category>Redis</category>
       </categories>
       <tags>
         <tag>Redis</tag>
@@ -1162,6 +1165,7 @@
 ]]></content>
       <categories>
         <category>分布式</category>
+        <category>Redis</category>
       </categories>
       <tags>
         <tag>Redis</tag>
