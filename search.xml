@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>分布式架构——WebService基础</title>
+    <url>/2020/01/07/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E2%80%94%E2%80%94WebService%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="WebService-简介"><a href="#WebService-简介" class="headerlink" title="WebService 简介"></a>WebService 简介</h2><p>W3C 组织对其的定义如下：它是一个软件系统，为了支持跨网络的机器间相互操作交互而设计。WebService 服务通常被定义为一组模块化的 API，它们可以通过网络进行调用，来执行远程系统的请求服务。</p>
+<p>简单的说：WebService 即 Web 服务，它是一种跨编程语言和跨操作系统平台的远程调用技术。</p>
+<a id="more"></a>
+
+<ul>
+<li>跨编程语言和跨操作平台，就是说当服务端程序采用 Java 编写，客户端程序则可以采用其他编程语言编写；跨操作系统平台则是指服务端程序和客户端程序可以在不同的操作系统上运行。  </li>
+<li>远程调用，就是一台计算机上的一个程序可以调用到另外一台计算机上的一个对象的方法。</li>
+</ul>
+<p>基本的 WebService 平台是 XML+HTTP。</p>
+<h3 id="什么是-WebService"><a href="#什么是-WebService" class="headerlink" title="什么是 WebService"></a>什么是 WebService</h3><ul>
+<li>WebService 是应用程序组件；</li>
+<li>WebService 使用开放协议进行通信；</li>
+<li>WebService 是独立的（self-contained）并可自我描述；</li>
+<li>WebService 可通过使用 UDDI 来发现；</li>
+<li>WebService 可被其他应用程序使用；</li>
+<li>XML 是 WebService 的基础。</li>
+</ul>
+<h3 id="WebService-有何优点"><a href="#WebService-有何优点" class="headerlink" title="WebService 有何优点"></a>WebService 有何优点</h3><ol>
+<li>可以让异构的程序相互访问（跨平台）；  </li>
+<li>松耦合；  </li>
+<li>基于标准协议（通用语言，允许其他程序访问）。</li>
+</ol>
+<h3 id="WebService-如何工作"><a href="#WebService-如何工作" class="headerlink" title="WebService 如何工作"></a>WebService 如何工作</h3><h4 id="调用原理"><a href="#调用原理" class="headerlink" title="调用原理"></a>调用原理</h4><img src="/2020/01/07/分布式架构——WebService基础/webservice01.png">
+
+<p>实现一个完整的 Web 服务包括以下步骤：</p>
+<ul>
+<li>Web 服务提供者设计实现 Web 服务，并将调试正确后的 Web 服务通过 Web 服务中介者发布，并在 UDDI 注册中心注册；（发布）  </li>
+<li>Web 服务请求者向 Web 服务中介者请求特定的服务，中介者根据请求查询 UDDI 注册中心，为请求者寻找满足请求的服务；（发现）  </li>
+<li>Web 服务中介者向 Web 服务请求者返回满足条件的 Web 服务描述信息，该描述信息用 WSDL 写成，各种支持 Web 服务的机器都能阅读；（发现）  </li>
+<li>利用从 Web 服务中介者返回的描述信息生成相应的 SOAP 消息，发送给Web服务提供者，以实现 Web 服务的调用；（绑定）  </li>
+<li>Web 服务提供者按 SOAP 消息执行相应的 Web 服务，并将服务结果返回给 Web 服务请求者。（绑定）</li>
+</ul>
+<h4 id="调用方式"><a href="#调用方式" class="headerlink" title="调用方式"></a>调用方式</h4><p>WebService 的调用方式有 3 种：</p>
+<ul>
+<li>HTTPGet</li>
+<li>HTTPPost</li>
+<li>HTTPSOAP</li>
+</ul>
+<p>SOAP 的优点是可以传递结构化的数据，而前两种不行；SOAP 最终也是使用 HTTP 传送 XML。</p>
+<h3 id="WebService-两种类型的应用"><a href="#WebService-两种类型的应用" class="headerlink" title="WebService 两种类型的应用"></a>WebService 两种类型的应用</h3><h4 id="1-可重复使用的应用程序组件"><a href="#1-可重复使用的应用程序组件" class="headerlink" title="1.可重复使用的应用程序组件"></a>1.可重复使用的应用程序组件</h4><p>WebService 可以把应用程序组件作为服务来提供，比如汇率转换、天气预报或者甚至是语言翻译等等。比较理想的情况是，每种应用程序组件只有一个最优秀的版本，这样任何人都可以在其应用程序中使用它。</p>
+<h4 id="2-连接现有的软件"><a href="#2-连接现有的软件" class="headerlink" title="2.连接现有的软件"></a>2.连接现有的软件</h4><p>通过为不同的应用程序提供一种链接其数据的途径，WebService 有助于解决协同工作的问题。通过使用 WebService 可以在不同的应用程序与平台之间来交换数据。</p>
+<h2 id="WebService-平台元素"><a href="#WebService-平台元素" class="headerlink" title="WebService 平台元素"></a>WebService 平台元素</h2><p>WebService 拥有三种基本的元素，它们是：SOAP、WSDL 以及 UDDI。基本的 WebService 平台是 XML + HTTP。</p>
+<h3 id="什么是-SOAP"><a href="#什么是-SOAP" class="headerlink" title="什么是 SOAP"></a>什么是 SOAP</h3><ul>
+<li>SOAP 指简易对象访问协议；</li>
+<li>SOAP 是一种通信协议；</li>
+<li>SOAP 用于应用程序之间的通信；</li>
+<li>SOAP 是一种用于发送消息的格式；</li>
+<li>SOAP 被设计用来通过因特网进行通信；</li>
+<li>SOAP 独立于平台；</li>
+<li>SOAP 独立于语言；</li>
+<li>SOAP 基于 XML；</li>
+<li>SOAP 很简单并可扩展；</li>
+<li>SOAP 允许绕过防火墙；</li>
+<li>SOAP 将作为 W3C 标准来发展。</li>
+</ul>
+<h3 id="什么是-WSDL"><a href="#什么是-WSDL" class="headerlink" title="什么是 WSDL"></a>什么是 WSDL</h3><ul>
+<li>WSDL 是基于 XML 的用于描述 WebService 以及如何访问 WebService 的语言；</li>
+<li>WSDL 指网络服务描述语言；</li>
+<li>WSDL 使用 XML 编写；</li>
+<li>WSDL 是一种 XML 文档；</li>
+<li>WSDL 用于描述网络服务；</li>
+<li>WSDL 也可用于定位网络服务；</li>
+<li>WSDL 还不是 W3C 标准。</li>
+</ul>
+<h3 id="什么是-UDDI"><a href="#什么是-UDDI" class="headerlink" title="什么是 UDDI"></a>什么是 UDDI</h3><ul>
+<li>UDDI 是一种目录服务，通过它，企业可注册并搜索 WebService；</li>
+<li>UDDI 指通用的描述、发现以及整合（Universal Description, Discovery and tegration）；</li>
+<li>UDDI 是一种用于存储有关 WebService 的信息的目录；</li>
+<li>UDDI 是一种由 WSDL 描述的网络服务接口目录；</li>
+<li>UDDI 经由 SOAP 进行通迅。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>分布式</category>
+        <category>WebService</category>
+      </categories>
+      <tags>
+        <tag>WebService</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>分布式架构——Nginx基础</title>
     <url>/2019/12/10/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E2%80%94%E2%80%94Nginx%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Nginx-简介"><a href="#Nginx-简介" class="headerlink" title="Nginx 简介"></a>Nginx 简介</h2><p>Nginx（engine x）是一个高性能的 HTTP 和反向代理服务器，也是一个 IMAP/POP3/SMTP 服务器，并在一个 BSD-like 协议下发行。其特点是占有内存少，并发能力强；并且 Nginx 以它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名。</p>
