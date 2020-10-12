@@ -4467,6 +4467,338 @@
       </tags>
   </entry>
   <entry>
+    <title>SSM入门基础知识</title>
+    <url>/2019/07/28/SSM%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><p>所谓系统架构是指，整合应用系统程序大的结构。经常提到的系统结构有两种：三层架构与 MVC。这两种结构既有区别，又有联系。但这两种结构的使用，均是为了降低系统模块间的耦合度。</p>
+<a id="more"></a>
+
+<h3 id="三层架构"><a href="#三层架构" class="headerlink" title="三层架构"></a>三层架构</h3><p>三层架构是指：视图层 View、服务层 Service 与持久层 Dao。 它们分别完成不同的功能。</p>
+<ul>
+<li>View 层：用于接收用户提交请求的代码在这里编写。</li>
+<li>Service 层：系统的业务逻辑主要在这里完成。</li>
+<li>Dao 层：直接操作数据库的代码，对数据库进行增删改查。</li>
+</ul>
+<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><p>Service 层是建立在 Dao 层之上的，建立了 Dao 层后才可以建立 Service 层，而 Service 层又是在 Controller 层之下的，因而 Service 层应该既调用 Dao 层的接口，又要提供接口给 Controller 层的类来进行调用，它刚好处于一个中间层的位置。每个模型都有一个 Service 接口，每个接口分别封装各自的业务处理方法。</p>
+<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>为了更好的降低各层间的耦合度，在三层架构程序设计中，采用面向抽象编程。即上层<br>对下层的调用，是通过接口实现的。而下层对上层的真正服务提供者，是下层接口的实现类。<br>服务标准（接口）是相同的，服务提供者（实现类）可以更换。这就实现了层间解耦合。</p>
+<blockquote>
+<p>耦合性<br>耦合性也叫耦合度，是程序结构中各个模块之间相互关联的度量，它取决于各个模块之间接口的复杂程度调用模块的方式以及哪些信息通过接口。关联性越高，耦合度越高，后期维护成本就越大，因此在开发过程中要尽量避免代码耦合度。</p>
+</blockquote>
+<p>下面用一张图来表示三层架构的关系</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm01.jpg">
+
+
+<h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><p>MVC，即 Model 模型、 View 视图，及 Controller 控制器。</p>
+<ul>
+<li>View： 视图，为用户提供使用界面，与用户直接进行交互。</li>
+<li>Model： 模型，承载数据，并对用户提交请求进行计算的模块。其分为两类，一类称为<br>数据承载 Bean，一类称为业务处理 Bean。所谓数据承载 Bean 是指实体类，专门用户<br>承载业务数据的，如 Student、 User 等。而业务处理 Bean 则是指 Service 或 Dao 对象，<br>专门用于处理用户提交请求的。</li>
+<li>Controller： 控制器，用于将用户请求转发给相应的 Model 进行处理，并根据 Model 的计算结果向用户提供相应响应。</li>
+</ul>
+<p>MVC 架构程序的工作流程：</p>
+<ol>
+<li>用户通过 View 页面向服务端提出请求，可以是表单请求、超链接请求、 Ajax 请求等。</li>
+<li>服务端 Controller 控制器接收到请求后对请求进行解析，找到相应的 Model 对用户请<br>求进行处理。</li>
+<li>Model 处理后，将处理结果再交给 Controller。</li>
+<li>Controller 在接到处理结果后，根据处理结果找到要作为向客户端发回的响应 View 页<br>面。页面经渲染（数据填充）后，再发送给客户端。</li>
+</ol>
+<img src="/2019/07/28/SSM入门基础知识/ssm02.jpg">
+
+
+<h3 id="MVC与三层架构的关系"><a href="#MVC与三层架构的关系" class="headerlink" title="MVC与三层架构的关系"></a>MVC与三层架构的关系</h3><p>MVC与三层架构很相似，但它们不一样。</p>
+<h4 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h4><ol>
+<li>分层、解耦</li>
+<li>相同的设计理念，把视图设计与数据持久化进行分离，从而降低耦合性，易于扩展，提高团队开发效率。</li>
+</ol>
+<h4 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h4><ol>
+<li>三层是基于业务逻辑来分的，而mMVC是基于页面来分的。</li>
+<li>MVC模式是一种复合设计模式，一种解决方案。</li>
+<li>三层是种软件架构，通过接口实现编程。</li>
+<li>三层模式是体系结构模式，MVC是设计模式。</li>
+<li>三层模式又可归于部署模式，MVC可归于表示模式。</li>
+</ol>
+<p>如图表示它们二者的关系</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm03.jpg">
+
+
+<h3 id="SSM与三层架构的关系"><a href="#SSM与三层架构的关系" class="headerlink" title="SSM与三层架构的关系"></a>SSM与三层架构的关系</h3><p>SSM，即 SpringMVC、 Spring 与 MyBatis 三个框架。它们在三层架构中所处的位置是不同的，即它们在三层架构中的功能各不相同，各司其职。</p>
+<ul>
+<li>SpringMVC：作为 View 层的实现者，完成用户的请求接收功能。SpringMVC 的 Controller 作为整个应用的控制器，完成用户请求的转发及对用户的响应。</li>
+<li>MyBatis：作为 Dao 层的实现者，完成对数据库的增、删、改、查功能。</li>
+<li>Spring：以整个应用大管家的身份出现。整个应用中所有 Bean 的生命周期行为，均由Spring 来管理。即整个应用中所有对象的创建、初始化、销毁，及对象间关联关系的维<br>护，均由 Spring 进行管理。</li>
+</ul>
+<img src="/2019/07/28/SSM入门基础知识/ssm04.jpg">
+
+
+<h2 id="环境设置"><a href="#环境设置" class="headerlink" title="环境设置"></a>环境设置</h2><p>解决乱码问题，可以在端口后面加上 URIEncoding=”UTF-8”，把8080改为80访问时可以不用输入端口号</p>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><blockquote>
+<p>理模式是指，为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之间起到中介的作用。——百度百科《代理模式》</p>
+</blockquote>
+<p>换句话说， 使用代理对象，是为了在不修改目标对象的基础上， 增强主业务逻辑。<br>客户类真正的想要访问的对象是目标对象，但客户类真正可以访问的对象是代理对象。<br>客户类对目标对象的访问是通过访问代理对象来实现的。当然，代理类与目标类要实现同一个接口。</p>
+<p>对于代理模式，需要注意以下几点：  </p>
+<ol>
+<li>代理类和目标类要实现同一个接口，即业务接口。  </li>
+<li>客户类对目标类的调用均是通过代理类完成的。  </li>
+<li>代理类的执行既执行了对目标类的增强业务逻辑，又调用了目标类的主业务逻辑。</li>
+</ol>
+<p>根据代理关系建立的时间不同，可以将代理分为两类：静态代理与动态代理。</p>
+<h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><p>静态代理是指，代理类在程序运行前就已经定义好，其与目标类的关系在程序运行前就已经确立。(需要定义代理类)</p>
+<h4 id="代理实现与解析"><a href="#代理实现与解析" class="headerlink" title="代理实现与解析"></a>代理实现与解析</h4><p>静态代理实现转账：</p>
+<p>（1）定义业务接口 IAccountService，其中含有抽象方法 transfer()。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line">	<span class="comment">//主业务逻辑:转账</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）定义目标类 AccountServiceImpl，该类实现了业务接口。在对接口方法的实现上，只实现主业务逻辑转账即可。这个方法称为目标方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//目标方法</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"调用Dao层，完成转账业务。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）定义代理类 AccountServiceImplProxy。这个类要实现 IAccount 接口。并且该代理类要将接口对象作为一个成员变量，还要定义一个带参的构造器，这个参数为接口对象。目的是，将目标对象引入代理类，以便代理类调用目标类的目标法。</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.service.IAccountService;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.AccountServiceImpl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceImplProxy</span> <span class="keyword">implements</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//声明业务接口对象</span></span><br><span class="line">	<span class="keyword">private</span> IAccountService <span class="keyword">target</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">AccountServiceImplProxy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//业务接口对象作为构造器参数，用于接受目标对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">AccountServiceImplProxy</span><span class="params">(IAccountService <span class="keyword">target</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.<span class="keyword">target</span> = <span class="keyword">target</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 代理方法，实现对目标方法的功能增强</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//此处为对目标类的增强</span></span><br><span class="line">		System.out.println(<span class="string">"对转账进行身份认证！"</span>);</span><br><span class="line">		<span class="keyword">target</span>.transfer();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）定义客户类 Client。在客户类中首先要创建目标对象，再创建代理对象，并使用标对象对其进行初始化。然后由代理对象来调用执行业务方法。</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.proxy.AccountServiceImplProxy;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.AccountServiceImpl;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.IAccountService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建目标对象</span></span><br><span class="line">		IAccountService <span class="keyword">target</span> = <span class="keyword">new</span> AccountServiceImpl();</span><br><span class="line">		<span class="comment">//创建代理对象，并使用目标对象来初始化它</span></span><br><span class="line">		IAccountService service = <span class="keyword">new</span> AccountServiceImplProxy(<span class="keyword">target</span>);</span><br><span class="line">		<span class="comment">//此时执行的内容，就是对目标对象增加过的内容</span></span><br><span class="line">		service.transfer();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm06.jpg">
+
+<h3 id="JDK-动态代理"><a href="#JDK-动态代理" class="headerlink" title="JDK 动态代理"></a>JDK 动态代理</h3><p>动态代理是指， 程序在整个运行过程中根本就不存在目标类的代理类，目标对象的代理对象只是由代理生成工具（如代理工厂类）在程序运行时由 JVM 根据反射等机制动态生成的。代理对象与目标对象的代理关系在程序运行时才确立。</p>
+<p>对比静态代理，静态代理是指在程序运行前就已经定义好了目标类的代理类。代理类与目标类的代理关系在程序运行之前就确立了。</p>
+<p>动态代理的实现方式常用的有两种：使用 JDK 的 Proxy，与通过 CGLIB 生成代理。</p>
+<p>动态代理的实现方式常用的有两种：使用 JDK 的 Proxy，与通过 CGLIB 生成代理。</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> newProxyInstance ( ClassLoader loader, Class&lt;?&gt;[] interfaces,InvocationHandler <span class="keyword">handler</span>)</span><br><span class="line"></span><br><span class="line">loader：目标类的类加载器，通过目标对象的反射可获取</span><br><span class="line">interfaces：目标类实现的接口数组，通过目标对象的反射可获取</span><br><span class="line"><span class="keyword">handler</span>：业务增强逻辑，需要再定义。</span><br></pre></td></tr></table></figure>
+
+<p>InvocationHandler 是个接口，其具体介绍如下：<br>实现了 InvocationHandler 接口的类用于加强目标类的主业务逻辑。这个接口中有一个方法 invoke()，具体加强的代码逻辑就是定义在该方法中的。程序调用主业务逻辑时，会自动调用 invoke()方法。</p>
+<p>invoke()方法的介绍如下：</p>
+<figure class="highlight oxygene"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Object invoke ( Object proxy, <span class="function"><span class="keyword">Method</span> <span class="title">method</span>, <span class="title">Object</span>[] <span class="title">args</span>)</span></span><br><span class="line"><span class="function"><span class="title">proxy</span>：代表生成的代理对象</span></span><br><span class="line"><span class="function"><span class="title">method</span>：代表目标方法</span></span><br><span class="line"><span class="function"><span class="title">args</span>：代表目标方法的参数</span></span><br></pre></td></tr></table></figure>
+
+<p>由于该方法是由代理对象自动调用的，所以这三个参数的值不用程序员给出。</p>
+<p>第二个参数为 Method 类对象，该类有一个方法也叫 invoke()，可以调用目标类的目标方法。这两个 invoke()方法，虽然同名，但无关。</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">public Object<span class="built_in"> invoke </span>( Object obj, Object... args)</span><br><span class="line">obj：表示目标对象</span><br><span class="line">args：表示目标方法参数，就是其上一层<span class="built_in"> invoke </span>方法的第三个参数</span><br></pre></td></tr></table></figure>
+
+<p>该方法的作用是：调用执行 obj 对象所属类的方法，这个方法由其调用者 Method 对象确定。<br>在代码中，一般的写法为</p>
+<figure class="highlight oxygene"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">method</span>.<span class="title">invoke</span><span class="params">(target, args)</span>;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中， method 为上一层 invoke 方法的第二个参数。这样，即可调用了目标类的目标方法。</p>
+<h4 id="代理实现与解析-1"><a href="#代理实现与解析-1" class="headerlink" title="代理实现与解析"></a>代理实现与解析</h4><p>动态代理实现转账：</p>
+<p>（1）定义业务接口 IAccounSevice，其中含有抽象方法 transfer()。</p>
+<p>（2）定义目标类 AccountServiceImpl，该类实现了业务接口。在对接口方法的实现上，只实现主业务逻辑。这个方法称为目标方法。</p>
+<p>以上两步与静态代理类第一二步中代码相同。</p>
+<p>（3）定义主业务增强逻辑类 MyExtension，该类需实现接口 InvocationHandler。在该类中定义一个 Object 类型的成员变量，还要定义一个带参的构造器，这个参数为 Object 对象。目的是，将目标对象引入该类，以便通过反射调用目标方法。</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.service.IAccountService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="comment">//代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyExtension</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//声明业务接口对象</span></span><br><span class="line">	<span class="keyword">private</span> IAccountService <span class="keyword">target</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyExtension</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//业务接口对象作为构造器参数，用于接受目标对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyExtension</span><span class="params">(IAccountService <span class="keyword">target</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.<span class="keyword">target</span> = <span class="keyword">target</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function">Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		<span class="comment">//增加主业务逻辑代码</span></span><br><span class="line">		System.out.println(<span class="string">"对转账用户进行身份认证"</span>);</span><br><span class="line">		<span class="comment">//无论业务方法有无参数，有无返回值，下面的写法均可兼顾</span></span><br><span class="line">		<span class="function"><span class="keyword">return</span> method.<span class="title">invoke</span><span class="params">(<span class="keyword">target</span>, args)</span></span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）定义客户类 Client。客户类中主要语句有三句：<br>A、定义目标对象。在生成代理对象时会需要目标对象对其初始化。<br>B、定义代理对象。需要注意的是，代理类 Proxy 会通过反射机制，自动实现 IAccount接口。代理对象需要使用目标对象对其进行初始化。<br>C、代理对象调用主业务方法。</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.proxy.MyExtension;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.AccountServiceImpl;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.IAccountService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建目标对象</span></span><br><span class="line">		IAccountService <span class="keyword">target</span> = <span class="keyword">new</span> AccountServiceImpl();</span><br><span class="line">		<span class="comment">//创建代理对象，并使用目标对象来初始化它</span></span><br><span class="line">		IAccountService service = (IAccountService) Proxy.newProxyInstance(</span><br><span class="line">				<span class="keyword">target</span>.getClass().getClassLoader(), <span class="comment">//获取目标对象类加载器</span></span><br><span class="line">				<span class="keyword">target</span>.getClass().getInterfaces(),  <span class="comment">//获取目标类实现的所有接口</span></span><br><span class="line">				<span class="keyword">new</span> MyExtension(<span class="keyword">target</span>));					<span class="comment">//增强业务逻辑</span></span><br><span class="line">		<span class="comment">//此时执行的内容，就是对目标对象增加过的内容</span></span><br><span class="line">		service.transfer();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="CGLIB-动态代理"><a href="#CGLIB-动态代理" class="headerlink" title="CGLIB 动态代理"></a>CGLIB 动态代理</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>使用 JDK 的 Proxy 实现代理，要求目标类与代理类实现相同的接口。若目标类不存在接口， 则无法使用该方式实现。</p>
+<p>但对于无接口的类，要为其创建动态代理，就要使用 CGLIB 来实现。 CGLIB 代理的生成原理是生成目标类的子类，而子类是增强过的，这个子类对象就是代理对象。 所以， 使用CGLIB 生成动态代理，要求目标类必须能够被继承，即不能是 final 的类。</p>
+<blockquote>
+<p>CGLIB(Code Generation Library)是一个开源项目，是一个强大的、高性能的、高质量的代码生成类库。它可以在运行期扩展和增强 Java 类。 Hibernate 用它来实现持久对象的字节码的动态生成， Spring 用它来实现 AOP 编程。——百度百科《CGLIB》</p>
+</blockquote>
+<p>CGLIB 包的底层是通过使用一个小而快的字节码处理框架 ASM(Java 字节码操控框架)，来转换字节码并生成新的类。 CGLIB 是通过对字节码进行增强来生成代理的。</p>
+<h4 id="代理实现与解析-2"><a href="#代理实现与解析-2" class="headerlink" title="代理实现与解析"></a>代理实现与解析</h4><p>Setp1：导入 CGLIB 的 Jar 包： cglib-full.jar。</p>
+<p>Step2：定义目标类。</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">package com.huang.service;</span><br><span class="line"><span class="comment">//目标类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SomeService</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//目标方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">doFirst</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行了doFirst()方法"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"abcde"</span>;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//目标方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSecond</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行了doSecond()方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Step3：创建代理类的工厂。该类要实现 MethodInterceptor 接口。</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.factory;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.service.SomeService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.Enhancer;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodProxy;</span><br><span class="line"></span><br><span class="line"><span class="comment">//代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCglibFactory</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> SomeService <span class="keyword">target</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyCglibFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">target</span> = <span class="keyword">new</span> SomeService();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function">SomeService <span class="title">myCglibCreator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 创建增强器对象</span></span><br><span class="line">		Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line">		<span class="comment">// 指定目标类，即父类</span></span><br><span class="line">		enhancer.setSuperclass(SomeService.class);</span><br><span class="line">		<span class="comment">// 设置回调接口对象</span></span><br><span class="line">		enhancer.setCallback(<span class="keyword">this</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> (SomeService) enhancer.create();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 回调方法</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> Object intercept(Object obj, Method method, Object[] args,</span><br><span class="line">			MethodProxy proxy) <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">		<span class="comment">// 调用目标方法</span></span><br><span class="line">		Object result = method.invoke(<span class="keyword">target</span>, args);</span><br><span class="line">		<span class="keyword">if</span> (result != <span class="keyword">null</span>) &#123;</span><br><span class="line">			result = ((String) result).toUpperCase();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Step4：创建测试类。</p>
+<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.service.SomeService;</span><br><span class="line"><span class="keyword">import</span> com.huang.factory.MyCglibFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">			SomeService service = <span class="keyword">new</span> <span class="type">MyCglibFactory</span>().myCglibCreator();</span><br><span class="line">			<span class="keyword">String</span> result = service.doFirst();</span><br><span class="line">			System.out.println(<span class="string">"result = "</span> + result);</span><br><span class="line">			service.doSecond(); </span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm07.jpg">
+
+
+<h4 id="方法回调设计模式"><a href="#方法回调设计模式" class="headerlink" title="方法回调设计模式"></a>方法回调设计模式</h4><p>在 Java 中，就是类 A 调用类 B 中的某个方法 b，然后类 B 又在某个时候反过来调用类 A中的某个方法 a，对于 A 来说，这个 a 方法便叫做回调方法。Java 的接口提供了一种很好的方式来实现方法回调。这个方式就是定义一个简单的接口，在接口之中定义一个我们希望回调的方法。 这个接口称为回调接口。</p>
+<p>在前面的例子中，我们定义的 AccountServiceCglibProxyFactory 类就相当于前面所说的 A类，而 Enhancer 类则是 B 类。 A 类中调用了 Enhancer 类 setCallback(this)方法，并将回调对象 this 作为实参传递给了 Enhancer 类。 Enhancer 类在后续执行过程中，会调用 A 类中的 intercept()方法，这个 intercept()方法就是回调方法。</p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>适配器模式的定义是， Convert the interface of a class into another interface clients expect，将某个类的接口转换为接口客户所需的类型。 换句话说， 适配器模式解决的问题是， 使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以在一起工作、可以进行统一管理。</p>
+<p>举个例子：</p>
+<p>需求：厨师的工作是 cook()，程序员的工作是 program()，司机的工作是 drive()，教师的工作是 teach()，不同的工种，其具体工作内容不同。现在程序要将这些（例如有 30 个不同工种）不同工种的工作内容全部输出。</p>
+<p>解决方案一：逐个访问每个工种对象的相应工作方法。无法循环遍历，无法统一管理。<br>解决方案二：使用适配器设计模式，将这些不兼容的具体工作转换为一个统一的工作，实现循环遍历。</p>
+<h3 id="基本元素定义"><a href="#基本元素定义" class="headerlink" title="基本元素定义"></a>基本元素定义</h3><p>这里举个适配器模式的例子：这里有厨师接口 ICooker、程序员接口 IProgrammer，分别用于定义他们各自工种的具体工作。然后又定义了全聚德的厨师 QjdCooker、京东的程序员 JdProgrammer。这些不同的工种所做的工作都各自是不同的，无法进行统一管理，协同工作。</p>
+<p>所以，此时就需要定义一个员工适配器接口 IWorkerAdapter，用于将这些不同的工种进行统一管理。</p>
+<h4 id="不使用适配器模式"><a href="#不使用适配器模式" class="headerlink" title="不使用适配器模式"></a>不使用适配器模式</h4><p>若不使用适配器模式，则调用者需要定义出所有的工种对象，然后逐个工种对象的工作方法进行调用。有 30 个工种，就应调用 30 个工作方法。很麻烦。</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm09.jpg" class="ssm08.jpg} 创建 Adapters 工程，下面用代码实现： （1）定义 ICooker undefined （2）定义 IProgrammer undefined （3）定义 QjdCooker undefined （4）定义 GjProgrammer undefined （5）不使用适配器模式的测试类定义为 undefined #### 定义一个适配器模式 这种方式类似于多功能充电器，一个电源插头上接着多种类型的充电接口。用户在使用时需要使用电器接口与多功能充电器上的充电接口逐个进行对比，接口匹配，则可以充电。 {% asset_img">
+
+
+<p>修改代码如下：</p>
+<p>（1）定义 IWorkerAdapter</p>
+<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.adapters;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line">	<span class="comment">//为了兼顾所有工种员工，这里的参数必须为Object类型</span></span><br><span class="line">	<span class="keyword">String</span> work(Object worker);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）定义 WorkerAdapter</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.adapters.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.IWorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.ICooker;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.IProgrammer;</span><br><span class="line"></span><br><span class="line"><span class="comment">//适配器类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WorkerAdapter</span> <span class="keyword">implements</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">work</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">		String workContent = <span class="string">""</span>;</span><br><span class="line">		<span class="comment">//若传来的对象是厨师，则其调用其cook()方法</span></span><br><span class="line">		<span class="keyword">if</span> (worker <span class="keyword">instanceof</span> ICooker) &#123;</span><br><span class="line">			workContent = ((ICooker)worker).cook();</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span> (worker <span class="keyword">instanceof</span> IProgrammer) &#123;</span><br><span class="line">			workContent = ((IProgrammer)worker).program();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> workContent;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）定义测试类</p>
+<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.IWorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.impl.WorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.ICooker;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.IProgrammer;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.impl.GjProgrammer;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.impl.QjdCooker;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		ICooker qjdCooker = <span class="keyword">new</span> <span class="type">QjdCooker</span>(); </span><br><span class="line">		IProgrammer gjProgrammer = <span class="keyword">new</span> <span class="type">GjProgrammer</span>();</span><br><span class="line">		Object[] workers = &#123;qjdCooker,gjProgrammer&#125;;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 创建适配器对象</span></span><br><span class="line">		IWorkerAdapter adapter = <span class="keyword">new</span> <span class="type">WorkerAdapter</span>();</span><br><span class="line">		<span class="comment">// 循环遍历每个工种对象，让每个工种对象在适配器中逐个进行匹配</span></span><br><span class="line">		<span class="keyword">for</span> (Object worker : <span class="type">workers</span>) &#123;</span><br><span class="line">			<span class="keyword">String</span> workContent = adapter.work(worker);</span><br><span class="line">			System.out.println(workContent);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="为每个工种都定义一个适配器"><a href="#为每个工种都定义一个适配器" class="headerlink" title="为每个工种都定义一个适配器"></a>为每个工种都定义一个适配器</h4><p>为每一个工种定义一个适配器，其程序结构如下：</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm10.jpg">
+
+<p>代码如下：</p>
+<p>（1）修改 IWorkerAdapter</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.adapters;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line">	<span class="comment">//为了兼顾所有工种员工，这里的参数必须为Object类型</span></span><br><span class="line">	<span class="function">String <span class="title">work</span><span class="params">(Object worker)</span></span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//判断当前适配器是否支持指定的工种对象</span></span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(Object worker)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）定义 CookerAdapter</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.adapters.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.IWorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.ICooker;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.IProgrammer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CookerAdapter</span> <span class="keyword">implements</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">work</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> ((ICooker)worker).cook();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (worker <span class="keyword">instanceof</span> ICooker);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）定义 ProgrammerAdapter</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.adapters.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.IWorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.IProgrammer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProgrammerAdappter</span> <span class="keyword">implements</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">work</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> ((IProgrammer)worker).program();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> ((worker <span class="keyword">instanceof</span> IProgrammer));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）定义测试类</p>
+<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.IWorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.impl.CookerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.impl.ProgrammerAdappter;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.ICooker;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.IProgrammer;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.impl.GjProgrammer;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.impl.QjdCooker;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		ICooker qjdCooker = <span class="keyword">new</span> <span class="type">QjdCooker</span>(); </span><br><span class="line">		IProgrammer gjProgrammer = <span class="keyword">new</span> <span class="type">GjProgrammer</span>();</span><br><span class="line">		Object[] workers = &#123;qjdCooker,gjProgrammer&#125;;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 循环遍历每个工种对象，让每个工种对象在适配器中逐个进行匹配</span></span><br><span class="line">		<span class="keyword">for</span> (Object worker : <span class="type">workers</span>) &#123;</span><br><span class="line">			IWorkerAdapter adapter = getAdapter(worker);</span><br><span class="line">			System.out.println(adapter.work(worker));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//根据worker获取相应的适配器</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> IWorkerAdapter getAdapter(Object worker) &#123;</span><br><span class="line">		List&lt;IWorkerAdapter&gt; adapters = getAllAdapters();</span><br><span class="line">		<span class="keyword">for</span> (IWorkerAdapter adapter : <span class="type">adapters</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (adapter.supports(worker)) &#123;</span><br><span class="line">				<span class="keyword">return</span> adapter;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 获取所有的适配器</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> List&lt;IWorkerAdapter&gt; getAllAdapters() &#123;</span><br><span class="line">		List&lt;IWorkerAdapter&gt; adapters = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();</span><br><span class="line">		adapters.add(<span class="keyword">new</span> <span class="type">CookerAdapter</span>());</span><br><span class="line">		adapters.add(<span class="keyword">new</span> <span class="type">ProgrammerAdappter</span>());</span><br><span class="line">		<span class="keyword">return</span> adapters;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="缺省适配器模式"><a href="#缺省适配器模式" class="headerlink" title="缺省适配器模式"></a>缺省适配器模式</h3><p>缺省适配器模式是由适配器模式简化而来， 省略了适配器模式中目标接口， 也就是源接口和目标接口相同， 源接口为接口， 目标接口为类。</p>
+<p>典型的缺省适配器模式是 JavaEE 规范中的 Servlet 接口与 GenericServlet 抽象类。Servlet 接口中包含五个抽象方法，而其中的 service()方法才是用于实现业务逻辑的、必须要实现的方法，另外四个方法一般都是空实现，或简单实现。</p>
+<p>GenericServlet 抽象类实现了 Servlet 接口的 service()方法以外的另外四个方法，所以自定义的 Servlet 只需要继承 GenericServlet 抽象类，实现 service()方法即可。无需再实现 Servlet 接口了。</p>
+<h2 id="模板方法设计模式"><a href="#模板方法设计模式" class="headerlink" title="模板方法设计模式"></a>模板方法设计模式</h2><p>在现实生活中，完成某件事情是需要 n 多个固定步骤的。如“在淘宝网进行购物”这件事情的完成一般需要三个步骤：登录网站、挑选商品(抽象方法)、 付款。但对于登录网站与付款这两步，每个人几乎都是相同的操作。但不同的地方是，每个人所挑选的商品是不同的。</p>
+<p>在软件开发过程中同样存在这样的情况。某类的某个方法的实现，需要几个固定步骤。在这些固定步骤中，对于该类的不同对象，有些步骤的实现是固定不的，有些步骤的实现是大相径庭的，有些步骤的实现是可变可不变的。对于这种情况，就适合使用模板方法设计模式编程。</p>
+<p>模板方法设计模式的定义是：定义一个操作中某种算法的框架，而将一些步骤延迟到子类中。模板方法模式使得子类在不改变一个算法结构的前提下，对某些步骤实现个性化定义。</p>
+<h3 id="模板方法程序构成"><a href="#模板方法程序构成" class="headerlink" title="模板方法程序构成"></a>模板方法程序构成</h3><p>在模板方法设计模式中，存在一个父类。其中包含两类方法：模板方法与步骤方法。</p>
+<ol>
+<li>模板方法：即实现某种算法的方法步骤。而这些步骤都是调用的步骤方法完的。  </li>
+<li>步骤方法：即完成模板方法的每个阶段性方法。每个步骤方法完成某一特定的、完成总算法的一部分功能。</li>
+</ol>
+<p>步骤方法有三种类型：抽象方法、最终方法与钩子方法。</p>
+<ol>
+<li>抽象方法：是要求子类必须实现的方法，是完成模板方法的算法步骤中必须由子类完成的个性化定义。  </li>
+<li>最终方法：是子类不能重写的方法，是若要完成模板方法的算法步骤，对于所有子类执行都一样的步骤。</li>
+<li>钩子方法：是父类给出了默认实现，但子类也可以重写的方法。</li>
+</ol>
+<h3 id="程序举例"><a href="#程序举例" class="headerlink" title="程序举例"></a>程序举例</h3><p>模拟“淘宝购物”，创建 templateMethod 工程，代码如下：</p>
+<p>（1）定义父类</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">package com.huang.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">Shopping</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//模板方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buyGoods</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		userLogin();	<span class="comment">//用户登录</span></span><br><span class="line">		buy();			<span class="comment">//挑选商品</span></span><br><span class="line">		pay();			<span class="comment">//付款</span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//子类不能重写的方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> final <span class="keyword">void</span> <span class="title">userLogin</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"用户登录"</span>);</span><br><span class="line">	&#125; </span><br><span class="line">		</span><br><span class="line">	<span class="comment">//子类必须实现</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">buy</span>(<span class="params"></span>)</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//钩子方法，子类可以重写</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pay</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"使用银联支付"</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）定义子类</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.service;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ShoesShopping</span> <span class="keyword">extends</span> <span class="title">Shopping</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public void buy() &#123;</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"购买鸿星尔克运动鞋"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.service;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ClothesShopping</span> <span class="keyword">extends</span> <span class="title">Shopping</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public void buy() &#123;</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"购买七匹狼男装"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public void pay() &#123;</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"使用支付宝付款"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）定义测试类</p>
+<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.service.ClothesShopping;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.ShoesShopping;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.Shopping;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line"></span><br><span class="line">		Shopping shoesShopping = <span class="keyword">new</span> <span class="type">ShoesShopping</span>();</span><br><span class="line">		shoesShopping.buyGoods();</span><br><span class="line">		System.out.println(<span class="string">"-----------------------"</span>);</span><br><span class="line">		Shopping clothesShopping = <span class="keyword">new</span> <span class="type">ClothesShopping</span>();</span><br><span class="line">		clothesShopping.buyGoods();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm11.jpg">
+
+
+<h2 id="Junit测试"><a href="#Junit测试" class="headerlink" title="Junit测试"></a>Junit测试</h2><h3 id="Jar包的下载"><a href="#Jar包的下载" class="headerlink" title="Jar包的下载"></a>Jar包的下载</h3><p>关于Junit的Jar包下载，百度有很多的详细下载教程，这里不再赘述。</p>
+<h3 id="测试类的创建"><a href="#测试类的创建" class="headerlink" title="测试类的创建"></a>测试类的创建</h3><p>对于测试类的创建有这样一些习惯：</p>
+<ul>
+<li>在项目中新建一个 source folder，并命名为 test，将来所有测试类均定义在这个目录中。  </li>
+<li>对于测试类所在包，一般是被测类所在包的包名后加再加一个 test 子包。  </li>
+<li>对于测试类类名，一般是被测类类名后加上 Test。</li>
+</ul>
+<p>测试类的创建常用的有两种方式：</p>
+<h4 id="1-使用向导创建测试类"><a href="#1-使用向导创建测试类" class="headerlink" title="1. 使用向导创建测试类"></a>1. 使用向导创建测试类</h4><p>直接创建 JUnit Test Case。此时，会自动导入其需要的 Jar 包。</p>
+<p>创建过程中，勾选上 setUp()与 tearDown()方法，这两个方法的作用是：</p>
+<ul>
+<li>setUp()：测试方法执行之前执行，主要用于测试前的初始化，如连接数据库等。</li>
+<li>tearDown()：测试方法执行之后执行，主要用于资源释放，如关闭数据库连接等。</li>
+<li>创建好后，直接在 setUp()与 tearDown()中编写初始化语句与资源释放语句即可。</li>
+</ul>
+<p>对于测试方法的命名， 一般是以小写 test 开头，该测试方法用于测试哪个方法，就将该方法名放于 test 之后。当然，首字母要大写。 如，要测试 modify()方法，则它的测试方法名一般为： testModify()。</p>
+<h4 id="2-使用注解创建测试类"><a href="#2-使用注解创建测试类" class="headerlink" title="2. 使用注解创建测试类"></a>2. 使用注解创建测试类</h4><p>Step1：导入包需的 JUnit Jar 包<br>Step2：直接创建一个普通的 Java 类<br>Step3：在其中可以定义初始化方法与资源释放方法。方法签名要求： public void，无参。方法名随意。当然，方法名最好按照规范命名。<br>Step4：在方法前添加注解</p>
+<p>添加@Before 则为初始化方法；<br>添加@After 则为资源释放方法；<br>添加@Test 则为测试方法。</p>
+<h3 id="测试方法的运行"><a href="#测试方法的运行" class="headerlink" title="测试方法的运行"></a>测试方法的运行</h3><p>在测试方法的方法签名上右击，选择 Run As/JUnit Test</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm12.jpg">
+
+<p>运行结果看到绿条，则说明运行成功；看到红条，说明运行出了问题。</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm13.jpg">
+
+<img src="/2019/07/28/SSM入门基础知识/ssm14.jpg">
+
+
+<h2 id="Log4j-与Log4j2"><a href="#Log4j-与Log4j2" class="headerlink" title="Log4j 与Log4j2"></a>Log4j 与Log4j2</h2><blockquote>
+<p>一个完整的软件，日志是必不可少的。程序从开发、测试、维护、运行等环节，都需要向控制台或文件等位置输出大量信息 。这些信息的输出，在 很多时候是使 用 System.out.println() 无法完成的。</p>
+</blockquote>
+<p>日志信息根据用途与记录内容的不同，分为调试日志、运行日志、异常日志等。</p>
+<p>用于日志记录的技术很多，如 jdk 的 logger 技术， apache 的 log4j、 log4j2 技术等。</p>
+<p>Log4j 的全称为 Log for java，即，专门用于 java 语言的日志记录工具。其目前有两个版本： Log4j 与 Log4j2。</p>
+<h3 id="Log4j基础"><a href="#Log4j基础" class="headerlink" title="Log4j基础"></a>Log4j基础</h3><h4 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h4><p>为了方便对于日志信息的输出显示，对日志内容进行了分级管理。 日志级别由高到低 ，共分 6 个级别： fatal(致命的)、 error、 warn、 info、 debug、 trace(堆栈)。</p>
+<h4 id="日志输出控制文件"><a href="#日志输出控制文件" class="headerlink" title="日志输出控制文件"></a>日志输出控制文件</h4><p>Log4j 的日志输出控制文件，主要由三个部分构成：</p>
+<ol>
+<li>日志信息的输出位置：控制日志信息将要输出的位置，是控制台还是文件等。</li>
+<li>日志信息的输出格式：控制日志信息的显示格式，即以怎样的字符串形式显示。</li>
+<li>日志信息的输出级别： 控制日志信息的显示内容，即显示哪些级别的日志信息。</li>
+</ol>
+<h3 id="Log4j技术"><a href="#Log4j技术" class="headerlink" title="Log4j技术"></a>Log4j技术</h3><p>在 Java 代码中进行日志输出，需要用到 Logger 类的静态方法 getLogger()。</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.log4j.Logger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建日志记录对象Logger</span></span><br><span class="line">		Logger logger = Logger.getLogger(MyTest.class);</span><br><span class="line">		logger.fatal(<span class="string">"fatal msg"</span>);</span><br><span class="line">		logger.<span class="keyword">error</span>(<span class="string">"error msg"</span>);</span><br><span class="line">		logger.warn(<span class="string">"warn msg"</span>);</span><br><span class="line">		logger.info(<span class="string">"info msg"</span>);</span><br><span class="line">		logger.debug(<span class="string">"debug msg"</span>);</span><br><span class="line">		logger.trace(<span class="string">"trace msg"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm15.jpg">
+
+
+<p>将来这些日志输出语句，会根据 log4j.properties 文件中日志级别的设置进行输出，会输出到指定位置。 其输出结果是：输出指定级别及其更高级别的信息。如指定 info 级别，则会输出 fatal、 error、warn、 info 级别的信息。</p>
+<h4 id="日志输出控制文件分析"><a href="#日志输出控制文件分析" class="headerlink" title="日志输出控制文件分析"></a>日志输出控制文件分析</h4><p>日志属性文件 log4j.properties 是专门用于控制日志输出的。其主要进行三方面控制：</p>
+<ul>
+<li>输出位置：控制日志将要输出的位置，是控制台还是文件等。  </li>
+<li>输出布局：控制日志信息的显示形式。  </li>
+<li>输出级别：控制要输出的日志级别。</li>
+</ul>
+<p>日志属性文件由两个对象组成：日志附加器与根日志。</p>
+<ul>
+<li>根日志，即为 Java 代码中的日志记录器，其主要由两个属性构成：日志输出级别与日志附加器。  </li>
+<li>日志附加器，则由日志输出位置定义，由其它很多属性进行修饰，如输出布局、文件位置、文件大小等。</li>
+</ul>
+<h5 id="定义日志附加器"><a href="#定义日志附加器" class="headerlink" title="定义日志附加器"></a>定义日志附加器</h5><p>所谓日志附加器，就是为日志记录器附加上很多其它设置信息。附加器的本质是一个接口，其定义语法为： log4j.appender.appenderName = 输出位置， appenderName 为自定义名称。</p>
+<p>常用的附加器实现类如下：</p>
+<ul>
+<li>org.apache.log4j.ConsoleAppender： 日志输出到控制台  </li>
+<li>org.apache.log4j.FileAppender： 日志输出到文件  </li>
+<li>org.apache.log4j.RollingFileAppender： 当日志文件大小到达指定尺寸的时候将产生一个新的日志文件  </li>
+<li>org.apache.log4j.DailyRollingFileAppender： 每天产生一个日志文件</li>
+</ul>
+<h5 id="修饰日志附加器"><a href="#修饰日志附加器" class="headerlink" title="修饰日志附加器"></a>修饰日志附加器</h5><p>所谓修饰日志附加器，就是为定义好的附加器添加一些属性，以控制到指定位置的输出。不同的附加器，其修饰属性不同。</p>
+<h5 id="Log4j常用布局类型"><a href="#Log4j常用布局类型" class="headerlink" title="Log4j常用布局类型"></a>Log4j常用布局类型</h5><ul>
+<li>org.apache.log4j.HTMLLayout： 网页布局， 以 HTML 表格形式布局  </li>
+<li>org.apache.log4j.SimpleLayout： 简单布局， 包含日志信息的级别和信息字符串  </li>
+<li>org.apache.log4j.PatternLayout： 匹配器布局， 可以灵活地指定布局模式。其主要是通过设置 PatternLayout 的 ConversionPattern 属性值来控制具 体输出格式的 。</li>
+</ul>
+<h5 id="配置根-Logger"><a href="#配置根-Logger" class="headerlink" title="配置根 Logger"></a>配置根 Logger</h5><p>配置 rootLogger，以便于代码加载来控制日志的输出。其语法为：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span> = [ level ] , appenderName, …</span><br></pre></td></tr></table></figure>
+
+<p>其中， level 是日志记录的优先级，分为 OFF、 FATAL、 ERROR、 WARN、 INFO、 DEBUG、ALL。 Log4j 建议只使用四个级别，优先级从高到低分别是 ERROR、 WARN、 INFO、 DEBUG。OFF 为关闭日志功能。</p>
+<blockquote>
+<p>说明：<br>低级别的可以显示高级别的，但高级别的不能显示低级别的。所以，级别越高，将来显示的信息就越少。</p>
+</blockquote>
+<h3 id="Log4j2-技术"><a href="#Log4j2-技术" class="headerlink" title="Log4j2 技术"></a>Log4j2 技术</h3><p>Log4j2，是对 Log4j 的升级，其在配置与使用上发生了较大变化。</p>
+<p>log4j2 配置文件是 XML 文件，不再支持 properties 文件。默认的文件名为 log4j2.xml。其存放的位置为 classpath 中。</p>
+<h4 id="代码中实现日志记录"><a href="#代码中实现日志记录" class="headerlink" title="代码中实现日志记录"></a>代码中实现日志记录</h4><p>在要输出日志的类中创建日志对象 Logger，并通过 Logger 的方法在代码中加入日志输出语句。该日志对象是通过静态类 LogManager 的 getLogger()方法获取的。</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.logging.log4j.LogManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.logging.log4j.Logger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建日志对象Logger</span></span><br><span class="line">		Logger logger = LogManager.getLogger(MyTest.class);</span><br><span class="line">		logger.debug(<span class="string">"this debug msg"</span>);</span><br><span class="line">		logger.info(<span class="string">"this info msg"</span>);</span><br><span class="line">		logger.warn(<span class="string">"this warn msg"</span>);</span><br><span class="line">		logger.<span class="keyword">error</span>(<span class="string">"this error msg"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm16.jpg">
+
+<blockquote>
+<p>注意:<br> Logger 与 LogManager 均为 org.apache.logging.log4j 包中的类，非 org.apache.log4j 包中的。</p>
+</blockquote>
+<h4 id="日志输出控制文件分析-1"><a href="#日志输出控制文件分析-1" class="headerlink" title="日志输出控制文件分析"></a>日志输出控制文件分析</h4><p>Log4j2 配置文件是 XML 文件，不再支持 properties 文件。默认的文件名为 log4j2.xml。其存放的位置为 classpath 中。</p>
+<p>若没有设置 log4j2.xml，则系统会使用默认的日志配置：只会输出到控制台 error 级别的信息。</p>
+<figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">status</span>=<span class="string">"OFF"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">appenders</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"myConsole"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">PatternLayout</span></span></span></span><br><span class="line"><span class="xml">				pattern="[%-5p][%d</span><span class="template-variable">&#123;yyyy-MM-dd HH:mm:ss&#125;</span><span class="xml">] [%c %L] %m%n" /&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">Console</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">File</span> <span class="attr">name</span>=<span class="string">"myLogFile"</span> <span class="attr">fileName</span>=<span class="string">"log/test.log"</span> <span class="attr">append</span>=<span class="string">"true"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">PatternLayout</span></span></span></span><br><span class="line"><span class="xml">				pattern="[%-5p][%d</span><span class="template-variable">&#123;yyyy-MM-dd HH:mm:ss&#125;</span><span class="xml">] [%c %L] %m%n" /&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">File</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"myRollingFile"</span> <span class="attr">fileName</span>=<span class="string">"logs/app.log"</span></span></span></span><br><span class="line"><span class="xml">			filePattern="logs/$$</span><span class="template-variable">&#123;date:yyyy-MM&#125;</span><span class="xml">/app-%d</span><span class="template-variable">&#123;MM-dd-yyyy&#125;</span><span class="xml">-%i.log.gz"&gt;</span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">PatternLayout</span></span></span></span><br><span class="line"><span class="xml">				pattern="[%-5p][%d</span><span class="template-variable">&#123;yyyy-MM-dd HH:mm:ss&#125;</span><span class="xml">] [%c %L] %m%n" /&gt;</span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"1KB"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">appenders</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">loggers</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="comment">&lt;!-- &lt;logger name="全限定类名或接口名" level="info"&gt; &lt;appender-ref ref="myConsole" </span></span></span><br><span class="line"><span class="xml">			/&gt; <span class="tag">&lt;/<span class="name">logger</span>&gt;</span> --&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"trace"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"myConsole"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="comment">&lt;!-- &lt;appender-ref ref="myLogFile" /&gt; &lt;appender-ref ref="myRollingFile" </span></span></span><br><span class="line"><span class="xml">				/&gt; --&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">loggers</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>配置文件说明：</p>
+<p>（1）&lt;configuration/&gt;标签<br><configuration>标签的 status 属性用于设置 Log4j2 自身运行的日志显示级别，一般为 OFF，不显示。 当然，也可以设置为 ERROR、 DEBUG 等其它级别。</configuration></p>
+<p>（2）&lt;Console/&gt;标签<br><console>标签的 target 属性用于设置输出的目标形式，其值一般为：<br>SYSTEM_OUT 或 SYSTEM_ERR</console></p>
+<img src="/2019/07/28/SSM入门基础知识/ssm17.jpg">
+
+<p>（3）&lt;File/&gt;标签<br><file>标签的 fileName 属性用于设置文件的文件保存路径及文件名。如本例的意思是，日志文件名为 test.log，将其存放在当前项目的根目录下的 log 子目录中。</file></p>
+<p>append 属性用于设置是否以追加方式将日志写入指定文件。</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm18.jpg">
+
+<p>（4）&lt;RollingFile/&gt;标签<br>fileName 指定存放目录及第一个日志文件名。 filePattern 指定新创建的日志文件的文件名。本例还会对文件进行压缩。</p>
+<img src="/2019/07/28/SSM入门基础知识/ssm19.jpg">
+
+<p>（5）&lt;loggers/&gt;标签<br>用于配置根 Logger 对象，以指定所使用的日志记录器，及显示的级别。</p>
+<p>其子标签<root>用于指定所使用的日志记录器。该子标签的属性 level 用于指定显示级别。而日志记录器是通过<root>的子标签<appender-ref>来引用<appenders>中定义好的记录器的。</appenders></appender-ref></root></root></p>
+<p>需要注意的是，只要在<appenders>中定义了<file>、 <rollingfile>等，且在其中指定了日志存放的目录，那么这些目录就会自动创建。无论在<loggers>的<root>中是否声明使用它们。</root></loggers></rollingfile></file></appenders></p>
+<img src="/2019/07/28/SSM入门基础知识/ssm20.jpg">
+
+
+<p>&lt;\adfjdkf&gt;</p>
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>SSM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL数据库基础入门与实战</title>
     <url>/2019/07/28/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%88%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="常见数据库"><a href="#常见数据库" class="headerlink" title="常见数据库"></a>常见数据库</h2><ul>
@@ -4910,338 +5242,6 @@
       </categories>
       <tags>
         <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSM入门基础知识</title>
-    <url>/2019/07/28/SSM%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><p>所谓系统架构是指，整合应用系统程序大的结构。经常提到的系统结构有两种：三层架构与 MVC。这两种结构既有区别，又有联系。但这两种结构的使用，均是为了降低系统模块间的耦合度。</p>
-<a id="more"></a>
-
-<h3 id="三层架构"><a href="#三层架构" class="headerlink" title="三层架构"></a>三层架构</h3><p>三层架构是指：视图层 View、服务层 Service 与持久层 Dao。 它们分别完成不同的功能。</p>
-<ul>
-<li>View 层：用于接收用户提交请求的代码在这里编写。</li>
-<li>Service 层：系统的业务逻辑主要在这里完成。</li>
-<li>Dao 层：直接操作数据库的代码，对数据库进行增删改查。</li>
-</ul>
-<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><p>Service 层是建立在 Dao 层之上的，建立了 Dao 层后才可以建立 Service 层，而 Service 层又是在 Controller 层之下的，因而 Service 层应该既调用 Dao 层的接口，又要提供接口给 Controller 层的类来进行调用，它刚好处于一个中间层的位置。每个模型都有一个 Service 接口，每个接口分别封装各自的业务处理方法。</p>
-<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>为了更好的降低各层间的耦合度，在三层架构程序设计中，采用面向抽象编程。即上层<br>对下层的调用，是通过接口实现的。而下层对上层的真正服务提供者，是下层接口的实现类。<br>服务标准（接口）是相同的，服务提供者（实现类）可以更换。这就实现了层间解耦合。</p>
-<blockquote>
-<p>耦合性<br>耦合性也叫耦合度，是程序结构中各个模块之间相互关联的度量，它取决于各个模块之间接口的复杂程度调用模块的方式以及哪些信息通过接口。关联性越高，耦合度越高，后期维护成本就越大，因此在开发过程中要尽量避免代码耦合度。</p>
-</blockquote>
-<p>下面用一张图来表示三层架构的关系</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm01.jpg">
-
-
-<h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><p>MVC，即 Model 模型、 View 视图，及 Controller 控制器。</p>
-<ul>
-<li>View： 视图，为用户提供使用界面，与用户直接进行交互。</li>
-<li>Model： 模型，承载数据，并对用户提交请求进行计算的模块。其分为两类，一类称为<br>数据承载 Bean，一类称为业务处理 Bean。所谓数据承载 Bean 是指实体类，专门用户<br>承载业务数据的，如 Student、 User 等。而业务处理 Bean 则是指 Service 或 Dao 对象，<br>专门用于处理用户提交请求的。</li>
-<li>Controller： 控制器，用于将用户请求转发给相应的 Model 进行处理，并根据 Model 的计算结果向用户提供相应响应。</li>
-</ul>
-<p>MVC 架构程序的工作流程：</p>
-<ol>
-<li>用户通过 View 页面向服务端提出请求，可以是表单请求、超链接请求、 Ajax 请求等。</li>
-<li>服务端 Controller 控制器接收到请求后对请求进行解析，找到相应的 Model 对用户请<br>求进行处理。</li>
-<li>Model 处理后，将处理结果再交给 Controller。</li>
-<li>Controller 在接到处理结果后，根据处理结果找到要作为向客户端发回的响应 View 页<br>面。页面经渲染（数据填充）后，再发送给客户端。</li>
-</ol>
-<img src="/2019/07/28/SSM入门基础知识/ssm02.jpg">
-
-
-<h3 id="MVC与三层架构的关系"><a href="#MVC与三层架构的关系" class="headerlink" title="MVC与三层架构的关系"></a>MVC与三层架构的关系</h3><p>MVC与三层架构很相似，但它们不一样。</p>
-<h4 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h4><ol>
-<li>分层、解耦</li>
-<li>相同的设计理念，把视图设计与数据持久化进行分离，从而降低耦合性，易于扩展，提高团队开发效率。</li>
-</ol>
-<h4 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h4><ol>
-<li>三层是基于业务逻辑来分的，而mMVC是基于页面来分的。</li>
-<li>MVC模式是一种复合设计模式，一种解决方案。</li>
-<li>三层是种软件架构，通过接口实现编程。</li>
-<li>三层模式是体系结构模式，MVC是设计模式。</li>
-<li>三层模式又可归于部署模式，MVC可归于表示模式。</li>
-</ol>
-<p>如图表示它们二者的关系</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm03.jpg">
-
-
-<h3 id="SSM与三层架构的关系"><a href="#SSM与三层架构的关系" class="headerlink" title="SSM与三层架构的关系"></a>SSM与三层架构的关系</h3><p>SSM，即 SpringMVC、 Spring 与 MyBatis 三个框架。它们在三层架构中所处的位置是不同的，即它们在三层架构中的功能各不相同，各司其职。</p>
-<ul>
-<li>SpringMVC：作为 View 层的实现者，完成用户的请求接收功能。SpringMVC 的 Controller 作为整个应用的控制器，完成用户请求的转发及对用户的响应。</li>
-<li>MyBatis：作为 Dao 层的实现者，完成对数据库的增、删、改、查功能。</li>
-<li>Spring：以整个应用大管家的身份出现。整个应用中所有 Bean 的生命周期行为，均由Spring 来管理。即整个应用中所有对象的创建、初始化、销毁，及对象间关联关系的维<br>护，均由 Spring 进行管理。</li>
-</ul>
-<img src="/2019/07/28/SSM入门基础知识/ssm04.jpg">
-
-
-<h2 id="环境设置"><a href="#环境设置" class="headerlink" title="环境设置"></a>环境设置</h2><p>解决乱码问题，可以在端口后面加上 URIEncoding=”UTF-8”，把8080改为80访问时可以不用输入端口号</p>
-<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><blockquote>
-<p>理模式是指，为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之间起到中介的作用。——百度百科《代理模式》</p>
-</blockquote>
-<p>换句话说， 使用代理对象，是为了在不修改目标对象的基础上， 增强主业务逻辑。<br>客户类真正的想要访问的对象是目标对象，但客户类真正可以访问的对象是代理对象。<br>客户类对目标对象的访问是通过访问代理对象来实现的。当然，代理类与目标类要实现同一个接口。</p>
-<p>对于代理模式，需要注意以下几点：  </p>
-<ol>
-<li>代理类和目标类要实现同一个接口，即业务接口。  </li>
-<li>客户类对目标类的调用均是通过代理类完成的。  </li>
-<li>代理类的执行既执行了对目标类的增强业务逻辑，又调用了目标类的主业务逻辑。</li>
-</ol>
-<p>根据代理关系建立的时间不同，可以将代理分为两类：静态代理与动态代理。</p>
-<h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><p>静态代理是指，代理类在程序运行前就已经定义好，其与目标类的关系在程序运行前就已经确立。(需要定义代理类)</p>
-<h4 id="代理实现与解析"><a href="#代理实现与解析" class="headerlink" title="代理实现与解析"></a>代理实现与解析</h4><p>静态代理实现转账：</p>
-<p>（1）定义业务接口 IAccountService，其中含有抽象方法 transfer()。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line">	<span class="comment">//主业务逻辑:转账</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（2）定义目标类 AccountServiceImpl，该类实现了业务接口。在对接口方法的实现上，只实现主业务逻辑转账即可。这个方法称为目标方法。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//目标方法</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"调用Dao层，完成转账业务。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（3）定义代理类 AccountServiceImplProxy。这个类要实现 IAccount 接口。并且该代理类要将接口对象作为一个成员变量，还要定义一个带参的构造器，这个参数为接口对象。目的是，将目标对象引入代理类，以便代理类调用目标类的目标法。</p>
-<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.service.IAccountService;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.AccountServiceImpl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceImplProxy</span> <span class="keyword">implements</span> <span class="title">IAccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//声明业务接口对象</span></span><br><span class="line">	<span class="keyword">private</span> IAccountService <span class="keyword">target</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">AccountServiceImplProxy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//业务接口对象作为构造器参数，用于接受目标对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">AccountServiceImplProxy</span><span class="params">(IAccountService <span class="keyword">target</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.<span class="keyword">target</span> = <span class="keyword">target</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 代理方法，实现对目标方法的功能增强</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//此处为对目标类的增强</span></span><br><span class="line">		System.out.println(<span class="string">"对转账进行身份认证！"</span>);</span><br><span class="line">		<span class="keyword">target</span>.transfer();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（4）定义客户类 Client。在客户类中首先要创建目标对象，再创建代理对象，并使用标对象对其进行初始化。然后由代理对象来调用执行业务方法。</p>
-<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.proxy.AccountServiceImplProxy;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.AccountServiceImpl;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.IAccountService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建目标对象</span></span><br><span class="line">		IAccountService <span class="keyword">target</span> = <span class="keyword">new</span> AccountServiceImpl();</span><br><span class="line">		<span class="comment">//创建代理对象，并使用目标对象来初始化它</span></span><br><span class="line">		IAccountService service = <span class="keyword">new</span> AccountServiceImplProxy(<span class="keyword">target</span>);</span><br><span class="line">		<span class="comment">//此时执行的内容，就是对目标对象增加过的内容</span></span><br><span class="line">		service.transfer();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果如下</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm06.jpg">
-
-<h3 id="JDK-动态代理"><a href="#JDK-动态代理" class="headerlink" title="JDK 动态代理"></a>JDK 动态代理</h3><p>动态代理是指， 程序在整个运行过程中根本就不存在目标类的代理类，目标对象的代理对象只是由代理生成工具（如代理工厂类）在程序运行时由 JVM 根据反射等机制动态生成的。代理对象与目标对象的代理关系在程序运行时才确立。</p>
-<p>对比静态代理，静态代理是指在程序运行前就已经定义好了目标类的代理类。代理类与目标类的代理关系在程序运行之前就确立了。</p>
-<p>动态代理的实现方式常用的有两种：使用 JDK 的 Proxy，与通过 CGLIB 生成代理。</p>
-<p>动态代理的实现方式常用的有两种：使用 JDK 的 Proxy，与通过 CGLIB 生成代理。</p>
-<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> newProxyInstance ( ClassLoader loader, Class&lt;?&gt;[] interfaces,InvocationHandler <span class="keyword">handler</span>)</span><br><span class="line"></span><br><span class="line">loader：目标类的类加载器，通过目标对象的反射可获取</span><br><span class="line">interfaces：目标类实现的接口数组，通过目标对象的反射可获取</span><br><span class="line"><span class="keyword">handler</span>：业务增强逻辑，需要再定义。</span><br></pre></td></tr></table></figure>
-
-<p>InvocationHandler 是个接口，其具体介绍如下：<br>实现了 InvocationHandler 接口的类用于加强目标类的主业务逻辑。这个接口中有一个方法 invoke()，具体加强的代码逻辑就是定义在该方法中的。程序调用主业务逻辑时，会自动调用 invoke()方法。</p>
-<p>invoke()方法的介绍如下：</p>
-<figure class="highlight oxygene"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Object invoke ( Object proxy, <span class="function"><span class="keyword">Method</span> <span class="title">method</span>, <span class="title">Object</span>[] <span class="title">args</span>)</span></span><br><span class="line"><span class="function"><span class="title">proxy</span>：代表生成的代理对象</span></span><br><span class="line"><span class="function"><span class="title">method</span>：代表目标方法</span></span><br><span class="line"><span class="function"><span class="title">args</span>：代表目标方法的参数</span></span><br></pre></td></tr></table></figure>
-
-<p>由于该方法是由代理对象自动调用的，所以这三个参数的值不用程序员给出。</p>
-<p>第二个参数为 Method 类对象，该类有一个方法也叫 invoke()，可以调用目标类的目标方法。这两个 invoke()方法，虽然同名，但无关。</p>
-<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">public Object<span class="built_in"> invoke </span>( Object obj, Object... args)</span><br><span class="line">obj：表示目标对象</span><br><span class="line">args：表示目标方法参数，就是其上一层<span class="built_in"> invoke </span>方法的第三个参数</span><br></pre></td></tr></table></figure>
-
-<p>该方法的作用是：调用执行 obj 对象所属类的方法，这个方法由其调用者 Method 对象确定。<br>在代码中，一般的写法为</p>
-<figure class="highlight oxygene"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">method</span>.<span class="title">invoke</span><span class="params">(target, args)</span>;</span></span><br></pre></td></tr></table></figure>
-
-<p>其中， method 为上一层 invoke 方法的第二个参数。这样，即可调用了目标类的目标方法。</p>
-<h4 id="代理实现与解析-1"><a href="#代理实现与解析-1" class="headerlink" title="代理实现与解析"></a>代理实现与解析</h4><p>动态代理实现转账：</p>
-<p>（1）定义业务接口 IAccounSevice，其中含有抽象方法 transfer()。</p>
-<p>（2）定义目标类 AccountServiceImpl，该类实现了业务接口。在对接口方法的实现上，只实现主业务逻辑。这个方法称为目标方法。</p>
-<p>以上两步与静态代理类第一二步中代码相同。</p>
-<p>（3）定义主业务增强逻辑类 MyExtension，该类需实现接口 InvocationHandler。在该类中定义一个 Object 类型的成员变量，还要定义一个带参的构造器，这个参数为 Object 对象。目的是，将目标对象引入该类，以便通过反射调用目标方法。</p>
-<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.service.IAccountService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="comment">//代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyExtension</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//声明业务接口对象</span></span><br><span class="line">	<span class="keyword">private</span> IAccountService <span class="keyword">target</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyExtension</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//业务接口对象作为构造器参数，用于接受目标对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyExtension</span><span class="params">(IAccountService <span class="keyword">target</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.<span class="keyword">target</span> = <span class="keyword">target</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function">Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		<span class="comment">//增加主业务逻辑代码</span></span><br><span class="line">		System.out.println(<span class="string">"对转账用户进行身份认证"</span>);</span><br><span class="line">		<span class="comment">//无论业务方法有无参数，有无返回值，下面的写法均可兼顾</span></span><br><span class="line">		<span class="function"><span class="keyword">return</span> method.<span class="title">invoke</span><span class="params">(<span class="keyword">target</span>, args)</span></span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（4）定义客户类 Client。客户类中主要语句有三句：<br>A、定义目标对象。在生成代理对象时会需要目标对象对其初始化。<br>B、定义代理对象。需要注意的是，代理类 Proxy 会通过反射机制，自动实现 IAccount接口。代理对象需要使用目标对象对其进行初始化。<br>C、代理对象调用主业务方法。</p>
-<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.proxy.MyExtension;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.AccountServiceImpl;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.IAccountService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建目标对象</span></span><br><span class="line">		IAccountService <span class="keyword">target</span> = <span class="keyword">new</span> AccountServiceImpl();</span><br><span class="line">		<span class="comment">//创建代理对象，并使用目标对象来初始化它</span></span><br><span class="line">		IAccountService service = (IAccountService) Proxy.newProxyInstance(</span><br><span class="line">				<span class="keyword">target</span>.getClass().getClassLoader(), <span class="comment">//获取目标对象类加载器</span></span><br><span class="line">				<span class="keyword">target</span>.getClass().getInterfaces(),  <span class="comment">//获取目标类实现的所有接口</span></span><br><span class="line">				<span class="keyword">new</span> MyExtension(<span class="keyword">target</span>));					<span class="comment">//增强业务逻辑</span></span><br><span class="line">		<span class="comment">//此时执行的内容，就是对目标对象增加过的内容</span></span><br><span class="line">		service.transfer();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="CGLIB-动态代理"><a href="#CGLIB-动态代理" class="headerlink" title="CGLIB 动态代理"></a>CGLIB 动态代理</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>使用 JDK 的 Proxy 实现代理，要求目标类与代理类实现相同的接口。若目标类不存在接口， 则无法使用该方式实现。</p>
-<p>但对于无接口的类，要为其创建动态代理，就要使用 CGLIB 来实现。 CGLIB 代理的生成原理是生成目标类的子类，而子类是增强过的，这个子类对象就是代理对象。 所以， 使用CGLIB 生成动态代理，要求目标类必须能够被继承，即不能是 final 的类。</p>
-<blockquote>
-<p>CGLIB(Code Generation Library)是一个开源项目，是一个强大的、高性能的、高质量的代码生成类库。它可以在运行期扩展和增强 Java 类。 Hibernate 用它来实现持久对象的字节码的动态生成， Spring 用它来实现 AOP 编程。——百度百科《CGLIB》</p>
-</blockquote>
-<p>CGLIB 包的底层是通过使用一个小而快的字节码处理框架 ASM(Java 字节码操控框架)，来转换字节码并生成新的类。 CGLIB 是通过对字节码进行增强来生成代理的。</p>
-<h4 id="代理实现与解析-2"><a href="#代理实现与解析-2" class="headerlink" title="代理实现与解析"></a>代理实现与解析</h4><p>Setp1：导入 CGLIB 的 Jar 包： cglib-full.jar。</p>
-<p>Step2：定义目标类。</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">package com.huang.service;</span><br><span class="line"><span class="comment">//目标类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SomeService</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//目标方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">doFirst</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行了doFirst()方法"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"abcde"</span>;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//目标方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSecond</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"执行了doSecond()方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Step3：创建代理类的工厂。该类要实现 MethodInterceptor 接口。</p>
-<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.factory;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.service.SomeService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.Enhancer;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodProxy;</span><br><span class="line"></span><br><span class="line"><span class="comment">//代理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCglibFactory</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> SomeService <span class="keyword">target</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyCglibFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">target</span> = <span class="keyword">new</span> SomeService();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function">SomeService <span class="title">myCglibCreator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 创建增强器对象</span></span><br><span class="line">		Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line">		<span class="comment">// 指定目标类，即父类</span></span><br><span class="line">		enhancer.setSuperclass(SomeService.class);</span><br><span class="line">		<span class="comment">// 设置回调接口对象</span></span><br><span class="line">		enhancer.setCallback(<span class="keyword">this</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> (SomeService) enhancer.create();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 回调方法</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> Object intercept(Object obj, Method method, Object[] args,</span><br><span class="line">			MethodProxy proxy) <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">		<span class="comment">// 调用目标方法</span></span><br><span class="line">		Object result = method.invoke(<span class="keyword">target</span>, args);</span><br><span class="line">		<span class="keyword">if</span> (result != <span class="keyword">null</span>) &#123;</span><br><span class="line">			result = ((String) result).toUpperCase();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Step4：创建测试类。</p>
-<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.service.SomeService;</span><br><span class="line"><span class="keyword">import</span> com.huang.factory.MyCglibFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">			SomeService service = <span class="keyword">new</span> <span class="type">MyCglibFactory</span>().myCglibCreator();</span><br><span class="line">			<span class="keyword">String</span> result = service.doFirst();</span><br><span class="line">			System.out.println(<span class="string">"result = "</span> + result);</span><br><span class="line">			service.doSecond(); </span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果如下</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm07.jpg">
-
-
-<h4 id="方法回调设计模式"><a href="#方法回调设计模式" class="headerlink" title="方法回调设计模式"></a>方法回调设计模式</h4><p>在 Java 中，就是类 A 调用类 B 中的某个方法 b，然后类 B 又在某个时候反过来调用类 A中的某个方法 a，对于 A 来说，这个 a 方法便叫做回调方法。Java 的接口提供了一种很好的方式来实现方法回调。这个方式就是定义一个简单的接口，在接口之中定义一个我们希望回调的方法。 这个接口称为回调接口。</p>
-<p>在前面的例子中，我们定义的 AccountServiceCglibProxyFactory 类就相当于前面所说的 A类，而 Enhancer 类则是 B 类。 A 类中调用了 Enhancer 类 setCallback(this)方法，并将回调对象 this 作为实参传递给了 Enhancer 类。 Enhancer 类在后续执行过程中，会调用 A 类中的 intercept()方法，这个 intercept()方法就是回调方法。</p>
-<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>适配器模式的定义是， Convert the interface of a class into another interface clients expect，将某个类的接口转换为接口客户所需的类型。 换句话说， 适配器模式解决的问题是， 使得原本由于接口不兼容而不能一起工作、不能统一管理的那些类可以在一起工作、可以进行统一管理。</p>
-<p>举个例子：</p>
-<p>需求：厨师的工作是 cook()，程序员的工作是 program()，司机的工作是 drive()，教师的工作是 teach()，不同的工种，其具体工作内容不同。现在程序要将这些（例如有 30 个不同工种）不同工种的工作内容全部输出。</p>
-<p>解决方案一：逐个访问每个工种对象的相应工作方法。无法循环遍历，无法统一管理。<br>解决方案二：使用适配器设计模式，将这些不兼容的具体工作转换为一个统一的工作，实现循环遍历。</p>
-<h3 id="基本元素定义"><a href="#基本元素定义" class="headerlink" title="基本元素定义"></a>基本元素定义</h3><p>这里举个适配器模式的例子：这里有厨师接口 ICooker、程序员接口 IProgrammer，分别用于定义他们各自工种的具体工作。然后又定义了全聚德的厨师 QjdCooker、京东的程序员 JdProgrammer。这些不同的工种所做的工作都各自是不同的，无法进行统一管理，协同工作。</p>
-<p>所以，此时就需要定义一个员工适配器接口 IWorkerAdapter，用于将这些不同的工种进行统一管理。</p>
-<h4 id="不使用适配器模式"><a href="#不使用适配器模式" class="headerlink" title="不使用适配器模式"></a>不使用适配器模式</h4><p>若不使用适配器模式，则调用者需要定义出所有的工种对象，然后逐个工种对象的工作方法进行调用。有 30 个工种，就应调用 30 个工作方法。很麻烦。</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm09.jpg" class="ssm08.jpg} 创建 Adapters 工程，下面用代码实现： （1）定义 ICooker undefined （2）定义 IProgrammer undefined （3）定义 QjdCooker undefined （4）定义 GjProgrammer undefined （5）不使用适配器模式的测试类定义为 undefined #### 定义一个适配器模式 这种方式类似于多功能充电器，一个电源插头上接着多种类型的充电接口。用户在使用时需要使用电器接口与多功能充电器上的充电接口逐个进行对比，接口匹配，则可以充电。 {% asset_img">
-
-
-<p>修改代码如下：</p>
-<p>（1）定义 IWorkerAdapter</p>
-<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.adapters;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line">	<span class="comment">//为了兼顾所有工种员工，这里的参数必须为Object类型</span></span><br><span class="line">	<span class="keyword">String</span> work(Object worker);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（2）定义 WorkerAdapter</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.adapters.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.IWorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.ICooker;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.IProgrammer;</span><br><span class="line"></span><br><span class="line"><span class="comment">//适配器类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WorkerAdapter</span> <span class="keyword">implements</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">work</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">		String workContent = <span class="string">""</span>;</span><br><span class="line">		<span class="comment">//若传来的对象是厨师，则其调用其cook()方法</span></span><br><span class="line">		<span class="keyword">if</span> (worker <span class="keyword">instanceof</span> ICooker) &#123;</span><br><span class="line">			workContent = ((ICooker)worker).cook();</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span> (worker <span class="keyword">instanceof</span> IProgrammer) &#123;</span><br><span class="line">			workContent = ((IProgrammer)worker).program();</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> workContent;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（3）定义测试类</p>
-<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.IWorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.impl.WorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.ICooker;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.IProgrammer;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.impl.GjProgrammer;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.impl.QjdCooker;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		ICooker qjdCooker = <span class="keyword">new</span> <span class="type">QjdCooker</span>(); </span><br><span class="line">		IProgrammer gjProgrammer = <span class="keyword">new</span> <span class="type">GjProgrammer</span>();</span><br><span class="line">		Object[] workers = &#123;qjdCooker,gjProgrammer&#125;;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 创建适配器对象</span></span><br><span class="line">		IWorkerAdapter adapter = <span class="keyword">new</span> <span class="type">WorkerAdapter</span>();</span><br><span class="line">		<span class="comment">// 循环遍历每个工种对象，让每个工种对象在适配器中逐个进行匹配</span></span><br><span class="line">		<span class="keyword">for</span> (Object worker : <span class="type">workers</span>) &#123;</span><br><span class="line">			<span class="keyword">String</span> workContent = adapter.work(worker);</span><br><span class="line">			System.out.println(workContent);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="为每个工种都定义一个适配器"><a href="#为每个工种都定义一个适配器" class="headerlink" title="为每个工种都定义一个适配器"></a>为每个工种都定义一个适配器</h4><p>为每一个工种定义一个适配器，其程序结构如下：</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm10.jpg">
-
-<p>代码如下：</p>
-<p>（1）修改 IWorkerAdapter</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.adapters;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line">	<span class="comment">//为了兼顾所有工种员工，这里的参数必须为Object类型</span></span><br><span class="line">	<span class="function">String <span class="title">work</span><span class="params">(Object worker)</span></span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//判断当前适配器是否支持指定的工种对象</span></span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(Object worker)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（2）定义 CookerAdapter</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.adapters.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.IWorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.ICooker;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.IProgrammer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CookerAdapter</span> <span class="keyword">implements</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">work</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> ((ICooker)worker).cook();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (worker <span class="keyword">instanceof</span> ICooker);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（3）定义 ProgrammerAdapter</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.adapters.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.IWorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.IProgrammer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProgrammerAdappter</span> <span class="keyword">implements</span> <span class="title">IWorkerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">work</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> ((IProgrammer)worker).program();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(Object worker)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> ((worker <span class="keyword">instanceof</span> IProgrammer));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（4）定义测试类</p>
-<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.IWorkerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.impl.CookerAdapter;</span><br><span class="line"><span class="keyword">import</span> com.huang.adapters.impl.ProgrammerAdappter;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.ICooker;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.IProgrammer;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.impl.GjProgrammer;</span><br><span class="line"><span class="keyword">import</span> com.huang.worker.impl.QjdCooker;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		ICooker qjdCooker = <span class="keyword">new</span> <span class="type">QjdCooker</span>(); </span><br><span class="line">		IProgrammer gjProgrammer = <span class="keyword">new</span> <span class="type">GjProgrammer</span>();</span><br><span class="line">		Object[] workers = &#123;qjdCooker,gjProgrammer&#125;;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 循环遍历每个工种对象，让每个工种对象在适配器中逐个进行匹配</span></span><br><span class="line">		<span class="keyword">for</span> (Object worker : <span class="type">workers</span>) &#123;</span><br><span class="line">			IWorkerAdapter adapter = getAdapter(worker);</span><br><span class="line">			System.out.println(adapter.work(worker));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//根据worker获取相应的适配器</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> IWorkerAdapter getAdapter(Object worker) &#123;</span><br><span class="line">		List&lt;IWorkerAdapter&gt; adapters = getAllAdapters();</span><br><span class="line">		<span class="keyword">for</span> (IWorkerAdapter adapter : <span class="type">adapters</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (adapter.supports(worker)) &#123;</span><br><span class="line">				<span class="keyword">return</span> adapter;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 获取所有的适配器</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> List&lt;IWorkerAdapter&gt; getAllAdapters() &#123;</span><br><span class="line">		List&lt;IWorkerAdapter&gt; adapters = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();</span><br><span class="line">		adapters.add(<span class="keyword">new</span> <span class="type">CookerAdapter</span>());</span><br><span class="line">		adapters.add(<span class="keyword">new</span> <span class="type">ProgrammerAdappter</span>());</span><br><span class="line">		<span class="keyword">return</span> adapters;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="缺省适配器模式"><a href="#缺省适配器模式" class="headerlink" title="缺省适配器模式"></a>缺省适配器模式</h3><p>缺省适配器模式是由适配器模式简化而来， 省略了适配器模式中目标接口， 也就是源接口和目标接口相同， 源接口为接口， 目标接口为类。</p>
-<p>典型的缺省适配器模式是 JavaEE 规范中的 Servlet 接口与 GenericServlet 抽象类。Servlet 接口中包含五个抽象方法，而其中的 service()方法才是用于实现业务逻辑的、必须要实现的方法，另外四个方法一般都是空实现，或简单实现。</p>
-<p>GenericServlet 抽象类实现了 Servlet 接口的 service()方法以外的另外四个方法，所以自定义的 Servlet 只需要继承 GenericServlet 抽象类，实现 service()方法即可。无需再实现 Servlet 接口了。</p>
-<h2 id="模板方法设计模式"><a href="#模板方法设计模式" class="headerlink" title="模板方法设计模式"></a>模板方法设计模式</h2><p>在现实生活中，完成某件事情是需要 n 多个固定步骤的。如“在淘宝网进行购物”这件事情的完成一般需要三个步骤：登录网站、挑选商品(抽象方法)、 付款。但对于登录网站与付款这两步，每个人几乎都是相同的操作。但不同的地方是，每个人所挑选的商品是不同的。</p>
-<p>在软件开发过程中同样存在这样的情况。某类的某个方法的实现，需要几个固定步骤。在这些固定步骤中，对于该类的不同对象，有些步骤的实现是固定不的，有些步骤的实现是大相径庭的，有些步骤的实现是可变可不变的。对于这种情况，就适合使用模板方法设计模式编程。</p>
-<p>模板方法设计模式的定义是：定义一个操作中某种算法的框架，而将一些步骤延迟到子类中。模板方法模式使得子类在不改变一个算法结构的前提下，对某些步骤实现个性化定义。</p>
-<h3 id="模板方法程序构成"><a href="#模板方法程序构成" class="headerlink" title="模板方法程序构成"></a>模板方法程序构成</h3><p>在模板方法设计模式中，存在一个父类。其中包含两类方法：模板方法与步骤方法。</p>
-<ol>
-<li>模板方法：即实现某种算法的方法步骤。而这些步骤都是调用的步骤方法完的。  </li>
-<li>步骤方法：即完成模板方法的每个阶段性方法。每个步骤方法完成某一特定的、完成总算法的一部分功能。</li>
-</ol>
-<p>步骤方法有三种类型：抽象方法、最终方法与钩子方法。</p>
-<ol>
-<li>抽象方法：是要求子类必须实现的方法，是完成模板方法的算法步骤中必须由子类完成的个性化定义。  </li>
-<li>最终方法：是子类不能重写的方法，是若要完成模板方法的算法步骤，对于所有子类执行都一样的步骤。</li>
-<li>钩子方法：是父类给出了默认实现，但子类也可以重写的方法。</li>
-</ol>
-<h3 id="程序举例"><a href="#程序举例" class="headerlink" title="程序举例"></a>程序举例</h3><p>模拟“淘宝购物”，创建 templateMethod 工程，代码如下：</p>
-<p>（1）定义父类</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">package com.huang.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">Shopping</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//模板方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buyGoods</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		userLogin();	<span class="comment">//用户登录</span></span><br><span class="line">		buy();			<span class="comment">//挑选商品</span></span><br><span class="line">		pay();			<span class="comment">//付款</span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//子类不能重写的方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> final <span class="keyword">void</span> <span class="title">userLogin</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"用户登录"</span>);</span><br><span class="line">	&#125; </span><br><span class="line">		</span><br><span class="line">	<span class="comment">//子类必须实现</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">buy</span>(<span class="params"></span>)</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//钩子方法，子类可以重写</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pay</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"使用银联支付"</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（2）定义子类</p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.service;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ShoesShopping</span> <span class="keyword">extends</span> <span class="title">Shopping</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public void buy() &#123;</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"购买鸿星尔克运动鞋"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.service;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ClothesShopping</span> <span class="keyword">extends</span> <span class="title">Shopping</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public void buy() &#123;</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"购买七匹狼男装"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public void pay() &#123;</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"使用支付宝付款"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（3）定义测试类</p>
-<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.huang.service.ClothesShopping;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.ShoesShopping;</span><br><span class="line"><span class="keyword">import</span> com.huang.service.Shopping;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line"></span><br><span class="line">		Shopping shoesShopping = <span class="keyword">new</span> <span class="type">ShoesShopping</span>();</span><br><span class="line">		shoesShopping.buyGoods();</span><br><span class="line">		System.out.println(<span class="string">"-----------------------"</span>);</span><br><span class="line">		Shopping clothesShopping = <span class="keyword">new</span> <span class="type">ClothesShopping</span>();</span><br><span class="line">		clothesShopping.buyGoods();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果如下：</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm11.jpg">
-
-
-<h2 id="Junit测试"><a href="#Junit测试" class="headerlink" title="Junit测试"></a>Junit测试</h2><h3 id="Jar包的下载"><a href="#Jar包的下载" class="headerlink" title="Jar包的下载"></a>Jar包的下载</h3><p>关于Junit的Jar包下载，百度有很多的详细下载教程，这里不再赘述。</p>
-<h3 id="测试类的创建"><a href="#测试类的创建" class="headerlink" title="测试类的创建"></a>测试类的创建</h3><p>对于测试类的创建有这样一些习惯：</p>
-<ul>
-<li>在项目中新建一个 source folder，并命名为 test，将来所有测试类均定义在这个目录中。  </li>
-<li>对于测试类所在包，一般是被测类所在包的包名后加再加一个 test 子包。  </li>
-<li>对于测试类类名，一般是被测类类名后加上 Test。</li>
-</ul>
-<p>测试类的创建常用的有两种方式：</p>
-<h4 id="1-使用向导创建测试类"><a href="#1-使用向导创建测试类" class="headerlink" title="1. 使用向导创建测试类"></a>1. 使用向导创建测试类</h4><p>直接创建 JUnit Test Case。此时，会自动导入其需要的 Jar 包。</p>
-<p>创建过程中，勾选上 setUp()与 tearDown()方法，这两个方法的作用是：</p>
-<ul>
-<li>setUp()：测试方法执行之前执行，主要用于测试前的初始化，如连接数据库等。</li>
-<li>tearDown()：测试方法执行之后执行，主要用于资源释放，如关闭数据库连接等。</li>
-<li>创建好后，直接在 setUp()与 tearDown()中编写初始化语句与资源释放语句即可。</li>
-</ul>
-<p>对于测试方法的命名， 一般是以小写 test 开头，该测试方法用于测试哪个方法，就将该方法名放于 test 之后。当然，首字母要大写。 如，要测试 modify()方法，则它的测试方法名一般为： testModify()。</p>
-<h4 id="2-使用注解创建测试类"><a href="#2-使用注解创建测试类" class="headerlink" title="2. 使用注解创建测试类"></a>2. 使用注解创建测试类</h4><p>Step1：导入包需的 JUnit Jar 包<br>Step2：直接创建一个普通的 Java 类<br>Step3：在其中可以定义初始化方法与资源释放方法。方法签名要求： public void，无参。方法名随意。当然，方法名最好按照规范命名。<br>Step4：在方法前添加注解</p>
-<p>添加@Before 则为初始化方法；<br>添加@After 则为资源释放方法；<br>添加@Test 则为测试方法。</p>
-<h3 id="测试方法的运行"><a href="#测试方法的运行" class="headerlink" title="测试方法的运行"></a>测试方法的运行</h3><p>在测试方法的方法签名上右击，选择 Run As/JUnit Test</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm12.jpg">
-
-<p>运行结果看到绿条，则说明运行成功；看到红条，说明运行出了问题。</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm13.jpg">
-
-<img src="/2019/07/28/SSM入门基础知识/ssm14.jpg">
-
-
-<h2 id="Log4j-与Log4j2"><a href="#Log4j-与Log4j2" class="headerlink" title="Log4j 与Log4j2"></a>Log4j 与Log4j2</h2><blockquote>
-<p>一个完整的软件，日志是必不可少的。程序从开发、测试、维护、运行等环节，都需要向控制台或文件等位置输出大量信息 。这些信息的输出，在 很多时候是使 用 System.out.println() 无法完成的。</p>
-</blockquote>
-<p>日志信息根据用途与记录内容的不同，分为调试日志、运行日志、异常日志等。</p>
-<p>用于日志记录的技术很多，如 jdk 的 logger 技术， apache 的 log4j、 log4j2 技术等。</p>
-<p>Log4j 的全称为 Log for java，即，专门用于 java 语言的日志记录工具。其目前有两个版本： Log4j 与 Log4j2。</p>
-<h3 id="Log4j基础"><a href="#Log4j基础" class="headerlink" title="Log4j基础"></a>Log4j基础</h3><h4 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h4><p>为了方便对于日志信息的输出显示，对日志内容进行了分级管理。 日志级别由高到低 ，共分 6 个级别： fatal(致命的)、 error、 warn、 info、 debug、 trace(堆栈)。</p>
-<h4 id="日志输出控制文件"><a href="#日志输出控制文件" class="headerlink" title="日志输出控制文件"></a>日志输出控制文件</h4><p>Log4j 的日志输出控制文件，主要由三个部分构成：</p>
-<ol>
-<li>日志信息的输出位置：控制日志信息将要输出的位置，是控制台还是文件等。</li>
-<li>日志信息的输出格式：控制日志信息的显示格式，即以怎样的字符串形式显示。</li>
-<li>日志信息的输出级别： 控制日志信息的显示内容，即显示哪些级别的日志信息。</li>
-</ol>
-<h3 id="Log4j技术"><a href="#Log4j技术" class="headerlink" title="Log4j技术"></a>Log4j技术</h3><p>在 Java 代码中进行日志输出，需要用到 Logger 类的静态方法 getLogger()。</p>
-<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.log4j.Logger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建日志记录对象Logger</span></span><br><span class="line">		Logger logger = Logger.getLogger(MyTest.class);</span><br><span class="line">		logger.fatal(<span class="string">"fatal msg"</span>);</span><br><span class="line">		logger.<span class="keyword">error</span>(<span class="string">"error msg"</span>);</span><br><span class="line">		logger.warn(<span class="string">"warn msg"</span>);</span><br><span class="line">		logger.info(<span class="string">"info msg"</span>);</span><br><span class="line">		logger.debug(<span class="string">"debug msg"</span>);</span><br><span class="line">		logger.trace(<span class="string">"trace msg"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果如下：</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm15.jpg">
-
-
-<p>将来这些日志输出语句，会根据 log4j.properties 文件中日志级别的设置进行输出，会输出到指定位置。 其输出结果是：输出指定级别及其更高级别的信息。如指定 info 级别，则会输出 fatal、 error、warn、 info 级别的信息。</p>
-<h4 id="日志输出控制文件分析"><a href="#日志输出控制文件分析" class="headerlink" title="日志输出控制文件分析"></a>日志输出控制文件分析</h4><p>日志属性文件 log4j.properties 是专门用于控制日志输出的。其主要进行三方面控制：</p>
-<ul>
-<li>输出位置：控制日志将要输出的位置，是控制台还是文件等。  </li>
-<li>输出布局：控制日志信息的显示形式。  </li>
-<li>输出级别：控制要输出的日志级别。</li>
-</ul>
-<p>日志属性文件由两个对象组成：日志附加器与根日志。</p>
-<ul>
-<li>根日志，即为 Java 代码中的日志记录器，其主要由两个属性构成：日志输出级别与日志附加器。  </li>
-<li>日志附加器，则由日志输出位置定义，由其它很多属性进行修饰，如输出布局、文件位置、文件大小等。</li>
-</ul>
-<h5 id="定义日志附加器"><a href="#定义日志附加器" class="headerlink" title="定义日志附加器"></a>定义日志附加器</h5><p>所谓日志附加器，就是为日志记录器附加上很多其它设置信息。附加器的本质是一个接口，其定义语法为： log4j.appender.appenderName = 输出位置， appenderName 为自定义名称。</p>
-<p>常用的附加器实现类如下：</p>
-<ul>
-<li>org.apache.log4j.ConsoleAppender： 日志输出到控制台  </li>
-<li>org.apache.log4j.FileAppender： 日志输出到文件  </li>
-<li>org.apache.log4j.RollingFileAppender： 当日志文件大小到达指定尺寸的时候将产生一个新的日志文件  </li>
-<li>org.apache.log4j.DailyRollingFileAppender： 每天产生一个日志文件</li>
-</ul>
-<h5 id="修饰日志附加器"><a href="#修饰日志附加器" class="headerlink" title="修饰日志附加器"></a>修饰日志附加器</h5><p>所谓修饰日志附加器，就是为定义好的附加器添加一些属性，以控制到指定位置的输出。不同的附加器，其修饰属性不同。</p>
-<h5 id="Log4j常用布局类型"><a href="#Log4j常用布局类型" class="headerlink" title="Log4j常用布局类型"></a>Log4j常用布局类型</h5><ul>
-<li>org.apache.log4j.HTMLLayout： 网页布局， 以 HTML 表格形式布局  </li>
-<li>org.apache.log4j.SimpleLayout： 简单布局， 包含日志信息的级别和信息字符串  </li>
-<li>org.apache.log4j.PatternLayout： 匹配器布局， 可以灵活地指定布局模式。其主要是通过设置 PatternLayout 的 ConversionPattern 属性值来控制具 体输出格式的 。</li>
-</ul>
-<h5 id="配置根-Logger"><a href="#配置根-Logger" class="headerlink" title="配置根 Logger"></a>配置根 Logger</h5><p>配置 rootLogger，以便于代码加载来控制日志的输出。其语法为：</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span> = [ level ] , appenderName, …</span><br></pre></td></tr></table></figure>
-
-<p>其中， level 是日志记录的优先级，分为 OFF、 FATAL、 ERROR、 WARN、 INFO、 DEBUG、ALL。 Log4j 建议只使用四个级别，优先级从高到低分别是 ERROR、 WARN、 INFO、 DEBUG。OFF 为关闭日志功能。</p>
-<blockquote>
-<p>说明：<br>低级别的可以显示高级别的，但高级别的不能显示低级别的。所以，级别越高，将来显示的信息就越少。</p>
-</blockquote>
-<h3 id="Log4j2-技术"><a href="#Log4j2-技术" class="headerlink" title="Log4j2 技术"></a>Log4j2 技术</h3><p>Log4j2，是对 Log4j 的升级，其在配置与使用上发生了较大变化。</p>
-<p>log4j2 配置文件是 XML 文件，不再支持 properties 文件。默认的文件名为 log4j2.xml。其存放的位置为 classpath 中。</p>
-<h4 id="代码中实现日志记录"><a href="#代码中实现日志记录" class="headerlink" title="代码中实现日志记录"></a>代码中实现日志记录</h4><p>在要输出日志的类中创建日志对象 Logger，并通过 Logger 的方法在代码中加入日志输出语句。该日志对象是通过静态类 LogManager 的 getLogger()方法获取的。</p>
-<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huang.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.logging.log4j.LogManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.logging.log4j.Logger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建日志对象Logger</span></span><br><span class="line">		Logger logger = LogManager.getLogger(MyTest.class);</span><br><span class="line">		logger.debug(<span class="string">"this debug msg"</span>);</span><br><span class="line">		logger.info(<span class="string">"this info msg"</span>);</span><br><span class="line">		logger.warn(<span class="string">"this warn msg"</span>);</span><br><span class="line">		logger.<span class="keyword">error</span>(<span class="string">"this error msg"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果如下：</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm16.jpg">
-
-<blockquote>
-<p>注意:<br> Logger 与 LogManager 均为 org.apache.logging.log4j 包中的类，非 org.apache.log4j 包中的。</p>
-</blockquote>
-<h4 id="日志输出控制文件分析-1"><a href="#日志输出控制文件分析-1" class="headerlink" title="日志输出控制文件分析"></a>日志输出控制文件分析</h4><p>Log4j2 配置文件是 XML 文件，不再支持 properties 文件。默认的文件名为 log4j2.xml。其存放的位置为 classpath 中。</p>
-<p>若没有设置 log4j2.xml，则系统会使用默认的日志配置：只会输出到控制台 error 级别的信息。</p>
-<figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">status</span>=<span class="string">"OFF"</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">appenders</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"myConsole"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">PatternLayout</span></span></span></span><br><span class="line"><span class="xml">				pattern="[%-5p][%d</span><span class="template-variable">&#123;yyyy-MM-dd HH:mm:ss&#125;</span><span class="xml">] [%c %L] %m%n" /&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">Console</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">File</span> <span class="attr">name</span>=<span class="string">"myLogFile"</span> <span class="attr">fileName</span>=<span class="string">"log/test.log"</span> <span class="attr">append</span>=<span class="string">"true"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">PatternLayout</span></span></span></span><br><span class="line"><span class="xml">				pattern="[%-5p][%d</span><span class="template-variable">&#123;yyyy-MM-dd HH:mm:ss&#125;</span><span class="xml">] [%c %L] %m%n" /&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">File</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"myRollingFile"</span> <span class="attr">fileName</span>=<span class="string">"logs/app.log"</span></span></span></span><br><span class="line"><span class="xml">			filePattern="logs/$$</span><span class="template-variable">&#123;date:yyyy-MM&#125;</span><span class="xml">/app-%d</span><span class="template-variable">&#123;MM-dd-yyyy&#125;</span><span class="xml">-%i.log.gz"&gt;</span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">PatternLayout</span></span></span></span><br><span class="line"><span class="xml">				pattern="[%-5p][%d</span><span class="template-variable">&#123;yyyy-MM-dd HH:mm:ss&#125;</span><span class="xml">] [%c %L] %m%n" /&gt;</span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"1KB"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">appenders</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">loggers</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="comment">&lt;!-- &lt;logger name="全限定类名或接口名" level="info"&gt; &lt;appender-ref ref="myConsole" </span></span></span><br><span class="line"><span class="xml">			/&gt; <span class="tag">&lt;/<span class="name">logger</span>&gt;</span> --&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"trace"</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"myConsole"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="comment">&lt;!-- &lt;appender-ref ref="myLogFile" /&gt; &lt;appender-ref ref="myRollingFile" </span></span></span><br><span class="line"><span class="xml">				/&gt; --&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">loggers</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>配置文件说明：</p>
-<p>（1）&lt;configuration/&gt;标签<br><configuration>标签的 status 属性用于设置 Log4j2 自身运行的日志显示级别，一般为 OFF，不显示。 当然，也可以设置为 ERROR、 DEBUG 等其它级别。</configuration></p>
-<p>（2）&lt;Console/&gt;标签<br><console>标签的 target 属性用于设置输出的目标形式，其值一般为：<br>SYSTEM_OUT 或 SYSTEM_ERR</console></p>
-<img src="/2019/07/28/SSM入门基础知识/ssm17.jpg">
-
-<p>（3）&lt;File/&gt;标签<br><file>标签的 fileName 属性用于设置文件的文件保存路径及文件名。如本例的意思是，日志文件名为 test.log，将其存放在当前项目的根目录下的 log 子目录中。</file></p>
-<p>append 属性用于设置是否以追加方式将日志写入指定文件。</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm18.jpg">
-
-<p>（4）&lt;RollingFile/&gt;标签<br>fileName 指定存放目录及第一个日志文件名。 filePattern 指定新创建的日志文件的文件名。本例还会对文件进行压缩。</p>
-<img src="/2019/07/28/SSM入门基础知识/ssm19.jpg">
-
-<p>（5）&lt;loggers/&gt;标签<br>用于配置根 Logger 对象，以指定所使用的日志记录器，及显示的级别。</p>
-<p>其子标签<root>用于指定所使用的日志记录器。该子标签的属性 level 用于指定显示级别。而日志记录器是通过<root>的子标签<appender-ref>来引用<appenders>中定义好的记录器的。</appenders></appender-ref></root></root></p>
-<p>需要注意的是，只要在<appenders>中定义了<file>、 <rollingfile>等，且在其中指定了日志存放的目录，那么这些目录就会自动创建。无论在<loggers>的<root>中是否声明使用它们。</root></loggers></rollingfile></file></appenders></p>
-<img src="/2019/07/28/SSM入门基础知识/ssm20.jpg">
-
-
-<p>&lt;\adfjdkf&gt;</p>
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
-        <tag>SSM</tag>
       </tags>
   </entry>
   <entry>

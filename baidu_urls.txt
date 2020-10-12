@@ -18,8 +18,8 @@ https://www.huangyuanzhi.top/2019/08/03/MyBatis查询缓存/
 https://www.huangyuanzhi.top/2019/08/03/MyBatis关联关系查询/
 https://www.huangyuanzhi.top/2019/08/02/MyBatis单表的CURD操作/
 https://www.huangyuanzhi.top/2019/07/31/MyBatis入门/
-https://www.huangyuanzhi.top/2019/07/28/MySQL数据库基础入门与实战/
 https://www.huangyuanzhi.top/2019/07/28/SSM入门基础知识/
+https://www.huangyuanzhi.top/2019/07/28/MySQL数据库基础入门与实战/
 https://www.huangyuanzhi.top/2019/07/27/Web服务技术——Tomcat/
 https://www.huangyuanzhi.top/2019/07/26/数据库连接技术——JDBC/
 https://www.huangyuanzhi.top/2019/07/25/Web服务技术——Servlet/
