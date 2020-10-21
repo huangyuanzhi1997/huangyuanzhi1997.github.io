@@ -80,6 +80,7 @@
         <category>WebService</category>
       </categories>
       <tags>
+        <tag>分布式</tag>
         <tag>WebService</tag>
       </tags>
   </entry>
@@ -233,6 +234,7 @@
         <category>Nginx</category>
       </categories>
       <tags>
+        <tag>分布式</tag>
         <tag>Nginx</tag>
       </tags>
   </entry>
@@ -388,6 +390,7 @@
         <category>Redis</category>
       </categories>
       <tags>
+        <tag>分布式</tag>
         <tag>Redis</tag>
       </tags>
   </entry>
@@ -1049,6 +1052,7 @@
         <category>Redis</category>
       </categories>
       <tags>
+        <tag>分布式</tag>
         <tag>Redis</tag>
       </tags>
   </entry>
@@ -1168,6 +1172,7 @@
         <category>Redis</category>
       </categories>
       <tags>
+        <tag>分布式</tag>
         <tag>Redis</tag>
       </tags>
   </entry>
